@@ -9,7 +9,6 @@
 <meta name="description" content="A 2-day Cuban Salsa intensive with Wilmer &amp; Maria in Ghent. 23–24 January 2027 at Shoonya Dance Centre. Six masterclasses: Afrocuban, Rumba Cubana, Son Cubano, Salsa Cubana, Timba Cubana, Afrotimba Fusión. All levels welcome. Early bird from €110.">
 <meta name="keywords" content="Cuban Salsa workshop Ghent, Wilmer Maria salsa, Cuban Salsa intensive Belgium, dance workshop Ghent, Shoonya Dance Centre, Afrocuban Ghent, Timba Cubana workshop, salsa weekend Belgium">
 <meta name="author" content="Shoonya Dance Centre">
-<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://workshops.shoonyadance.com/round-trip-to-cuba/">
 <link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/round-trip-to-cuba/">
 <link rel="alternate" hreflang="nl" href="https://workshops.shoonyadance.com/round-trip-to-cuba/nl/">
@@ -206,21 +205,24 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg:           #0B090F;
-  --accent:       #B25A2A;
-  --accent-light: #C96E3C;
-  --brand:        #B564F7;
-  --text:         #FFFFFF;
-  --text-muted:   rgba(255,255,255,0.60);
-  --text-dim:     rgba(255,255,255,0.32);
-  --cream:        #F5F1EC;
-  --cream-mid:    #EDE8E1;
-  --dark-ink:     #1C1008;
-  --dark-ink-mid: rgba(28,16,8,0.64);
-  --border-w:     rgba(255,255,255,0.09);
-  --border-c:     rgba(178,90,42,0.28);
-  --max:          1200px;
-  --gutter:       clamp(24px, 5vw, 80px);
+  --bg:                #0B090F;
+  --bg-deep:           #100E14;
+  --accent:            #B25A2A;
+  --accent-rgb:        178, 90, 42;
+  --accent-light:      #C96E3C;
+  --brand:             #B564F7;
+  --text:              #FFFFFF;
+  --text-muted:        rgba(255,255,255,0.60);
+  --text-dim:          rgba(255,255,255,0.50);   /* functional secondary labels — WCAG AA */
+  --text-atmospheric:  rgba(255,255,255,0.32);   /* decorative only — scroll, dividers */
+  --cream:             #F5F1EC;
+  --cream-mid:         #EDE8E1;
+  --dark-ink:          #1C1008;
+  --dark-ink-mid:      rgba(28,16,8,0.64);
+  --border-w:          rgba(255,255,255,0.09);
+  --border-c:          rgba(var(--accent-rgb),0.28);
+  --max:               1200px;
+  --gutter:            clamp(24px, 5vw, 80px);
 }
 
 html { scroll-behavior: smooth; }
@@ -426,7 +428,7 @@ a { color: inherit; text-decoration: none; }
 
 .nav-cta {
   display: inline-block;
-  padding: 9px 22px;
+  padding: 14px 22px;
   background: var(--accent);
   color: #FFFFFF;
   font-size: 12px;
@@ -487,7 +489,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 8px;
   padding: 6px 14px 5px;
-  border: 1px solid rgba(178,90,42,0.6);
+  border: 1px solid rgba(var(--accent-rgb),0.6);
   border-radius: 100px;
   font-size: 10px;
   font-weight: 700;
@@ -707,7 +709,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── 4. Programme ──────────────────────────────────────── */
 .programme-section {
-  background: #100E14;
+  background: var(--bg-deep);
 }
 
 .programme-header {
@@ -771,8 +773,8 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
-  background: rgba(178,90,42,0.10);
-  border: 1px solid rgba(178,90,42,0.22);
+  background: rgba(var(--accent-rgb),0.10);
+  border: 1px solid rgba(var(--accent-rgb),0.22);
   border-radius: 100px;
   padding: 4px 12px 3px;
   flex-shrink: 0;
@@ -830,7 +832,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Social Night callout */
 .social-night-band {
-  background: #100E14;
+  background: var(--bg-deep);
   border-radius: 0 0 16px 16px;
 }
 
@@ -1160,8 +1162,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .price-tier.earlybird {
-  background: rgba(178,90,42,0.14);
-  border: 1px solid rgba(178,90,42,0.28);
+  background: rgba(var(--accent-rgb),0.14);
+  border: 1px solid var(--border-c);
 }
 
 .price-tier.regular {
@@ -1178,7 +1180,7 @@ a { color: inherit; text-decoration: none; }
 
 .tier-note {
   font-size: 11px;
-  color: rgba(255,255,255,0.38);
+  color: var(--text-dim);
   margin-top: 2px;
 }
 
@@ -1203,7 +1205,7 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.30);
+  color: var(--text-dim);
   margin-bottom: 14px;
 }
 
@@ -1274,8 +1276,8 @@ a { color: inherit; text-decoration: none; }
   display: inline-block;
   margin-top: 14px;
   padding: 4px 12px 3px;
-  background: rgba(178,90,42,0.10);
-  border: 1px solid rgba(178,90,42,0.22);
+  background: rgba(var(--accent-rgb),0.10);
+  border: 1px solid rgba(var(--accent-rgb),0.22);
   border-radius: 100px;
   font-size: 10px;
   font-weight: 600;
@@ -1286,7 +1288,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ─── 8. Register CTA ───────────────────────────────────── */
 .cta-section {
-  background: #100E14;
+  background: var(--bg-deep);
   text-align: center;
   padding: clamp(80px, 10vw, 140px) var(--gutter);
 }
@@ -1555,6 +1557,41 @@ a { color: inherit; text-decoration: none; }
   .pg-btn { width: 100%; }
 }
 
+/* ─── Accessibility ─────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.btn-primary:focus-visible,
+.btn-ghost:focus-visible,
+.nav-cta:focus-visible,
+.pg-btn:focus-visible {
+  border-radius: 100px;
+}
+
+.faq-item summary:focus-visible {
+  border-radius: 0;
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1584,6 +1621,7 @@ a { color: inherit; text-decoration: none; }
     '  <p class="pg-desc">This page is currently open to Shoonya members and early registrants only.<br>Enter the passphrase to continue.</p>',
     '  <p class="pg-error" id="pg-error">Incorrect passphrase. Try again.</p>',
     '  <form id="pg-form" autocomplete="off">',
+    '    <label for="pg-input" class="sr-only">Passphrase</label>',
     '    <input id="pg-input" class="pg-input" type="password" placeholder="Passphrase" autocomplete="off">',
     '    <button class="pg-btn" type="submit">Enter</button>',
     '  </form>',
@@ -1629,7 +1667,7 @@ a { color: inherit; text-decoration: none; }
 <!-- ═══════════════════════════════════════════
      1. NAVIGATION
 ═══════════════════════════════════════════ -->
-<nav class="nav">
+<nav class="nav" aria-label="Main navigation">
   <a class="nav-logo" href="https://shoonyadance.com">
     <img src="../assets/logos/shoonyadance/shoonya-logo-white-nobg.png" alt="Shoonya Dance Centre">
   </a>
@@ -1701,7 +1739,7 @@ a { color: inherit; text-decoration: none; }
 <!-- ═══════════════════════════════════════════
      3. INTRO / ABOUT
 ═══════════════════════════════════════════ -->
-<div class="intro">
+<section class="intro">
   <div class="section">
     <div class="intro-inner">
       <div>
@@ -1730,13 +1768,13 @@ a { color: inherit; text-decoration: none; }
           <div class="stat-label">Full days of Cuban dance</div>
         </div>
         <div class="stat-card">
-          <div class="stat-number">All</div>
-          <div class="stat-label">Levels welcome</div>
+          <div class="stat-number">€110</div>
+          <div class="stat-label">Early bird from</div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
 
 
 <!-- ═══════════════════════════════════════════
@@ -1834,7 +1872,7 @@ a { color: inherit; text-decoration: none; }
     <div class="social-night-band">
       <div class="social-night-inner">
         <div class="social-night-photo">
-          <img src="../assets/trip-cuba/IMG_6679.JPG" alt="Wilmer & Maria dancing">
+          <img src="../assets/trip-cuba/IMG_6679.JPG" alt="Wilmer & Maria dancing" loading="lazy">
           <div class="social-night-overlay"></div>
         </div>
 
@@ -1874,7 +1912,7 @@ a { color: inherit; text-decoration: none; }
         <div class="teacher-rule"></div>
 
         <p class="teachers-bio">
-          Wilmer y Maria are a unique and iconic dance duo in the Salsa world, combining
+          Wilmer &amp; Maria are a unique and iconic dance duo in the Salsa world, combining
           their training in Afro-rumba, ballet, contemporary and Cuban folk dances —
           both graduating from Cuban dance academies. They moved from Cuba to Italy in
           2002, which propelled them forward as one of the best Cuban Salsa artist duos
@@ -1904,7 +1942,7 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <div class="teachers-photo-wrap">
-        <img src="../assets/trip-cuba/IMG_3814.JPG" alt="Wilmer & Maria">
+        <img src="../assets/trip-cuba/IMG_3814.JPG" alt="Wilmer & Maria" loading="lazy">
         <div class="teachers-photo-vignette"></div>
       </div>
     </div>
@@ -1916,10 +1954,10 @@ a { color: inherit; text-decoration: none; }
      6. PHOTO INTERLUDE
 ═══════════════════════════════════════════ -->
 <div class="photo-interlude">
-  <img src="../assets/trip-cuba/a3f6a203-2fad-44da-a9ab-540cb0be061c.JPG" alt="Wilmer & Maria dancing">
+  <img src="../assets/trip-cuba/a3f6a203-2fad-44da-a9ab-540cb0be061c.JPG" alt="Wilmer & Maria dancing" loading="lazy">
   <div class="photo-interlude-overlay"></div>
   <div class="photo-interlude-label">
-    <p class="photo-caption">"They don't just teach Cuban dance — they bring Cuba to you."</p>
+    <p class="photo-caption">They don't just teach Cuban dance — they bring Cuba to you.</p>
   </div>
 </div>
 
