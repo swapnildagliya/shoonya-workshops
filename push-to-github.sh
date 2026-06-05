@@ -30,8 +30,12 @@ else
 fi
 
 # Stage, commit, push
-echo "→ Staging all files..."
+# Note: CNAME is excluded — GitHub Pages manages it from repo Settings.
+# Committing CNAME on every deploy triggers GitHub's delete/recreate cycle
+# which resets SSL cert provisioning each time.
+echo "→ Staging all files (excluding CNAME)..."
 git add -A
+git restore --staged CNAME 2>/dev/null || true
 
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M")
 echo "→ Committing: deploy $TIMESTAMP"
