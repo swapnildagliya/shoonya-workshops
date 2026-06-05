@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-REPO_URL="YOUR_GITHUB_REPO_URL"
+REPO_URL="https://github.com/swapnildagliya/shoonya-workshops.git"
 BRANCH="main"
 
 echo "── Round Trip to Cuba · GitHub Pages deploy ──"
