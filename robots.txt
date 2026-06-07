@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://workshops.shoonyadance.com/sitemap.xml
