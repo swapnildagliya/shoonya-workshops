@@ -499,6 +499,20 @@ body {
       <h2>Miniseries</h2>
       <p>A miniseries is a short course with one teacher — typically 5–10 sessions focused on a specific style or technique. Unlike a weekly class, you register for the full series and go deeper than a drop-in ever allows.</p>
     </div>
+    <!-- Kalbeliya — auto-hides 11 June 2026 -->
+    <article class="miniseries-item" id="miniseries-kalbeliya">
+      <div class="miniseries-item-main">
+        <p class="miniseries-item-label">Ends 10 June 2026 · Wednesdays 18:30–19:30</p>
+        <h3>Kalbeliya</h3>
+        <p class="miniseries-item-teacher">with Swapnil Dagliya</p>
+        <p class="miniseries-item-desc">The expressive folk dance of Rajasthan — fluid spins, sweeping lines, and sinuous movement with a flowing skirt. Final session this Wednesday.</p>
+      </div>
+      <div class="miniseries-item-meta">
+        <p class="miniseries-item-price">€92</p>
+        <a href="https://www.shoonyadance.com/garba-kalbeliya-danslessen-in-gent" class="card-link" target="_blank" rel="noopener">Details &amp; register</a>
+      </div>
+    </article>
+
     <!-- Oriental Flow — auto-hides 14 June 2026 -->
     <article class="miniseries-item" id="miniseries-of">
       <div class="miniseries-item-main">
@@ -560,6 +574,12 @@ body {
   if (new Date() >= new Date('2026-06-15T00:00:00')) {
     var card = document.getElementById('card-rtc');
     if (card) card.removeAttribute('hidden');
+  }
+
+  // Hide Kalbeliya from 11 June 2026 onwards (last session 10 June)
+  if (new Date() >= new Date('2026-06-11T00:00:00')) {
+    var kal = document.getElementById('miniseries-kalbeliya');
+    if (kal) kal.setAttribute('hidden', '');
   }
 
   // Hide Oriental Flow miniseries from 14 June 2026 onwards (series ends 13 June)
