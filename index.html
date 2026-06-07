@@ -211,7 +211,10 @@ body {
   color: var(--ink);
 }
 .card-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
   font-family: 'PT Serif', serif;
   font-size: 11px;
   letter-spacing: 0.14em;
@@ -261,7 +264,43 @@ body {
   border: 0.5px solid var(--border);
   display: inline-block;
   padding: 10px 18px;
+  margin-bottom: 14px;
 }
+.miniseries-note {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.miniseries-note a {
+  color: var(--ink);
+}
+
+/* ── CLASSES LINK ────────────────────────────────── */
+.classes-link {
+  border-top: 0.5px solid var(--border);
+  padding: 28px 40px;
+}
+.classes-link-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.classes-link span {
+  font-size: 13px;
+  color: var(--subtle);
+}
+.classes-link a {
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--border);
+  padding-bottom: 1px;
+  transition: border-color 0.18s;
+}
+.classes-link a:hover { border-color: var(--ink); }
 
 @media (max-width: 640px) {
   .miniseries { padding: 48px 20px 56px; }
@@ -316,6 +355,9 @@ body {
   .hero { padding: 48px 20px 40px; }
   .workshops { padding: 0 20px 64px; }
   .grid { grid-template-columns: 1fr; }
+  .miniseries { padding: 48px 20px 56px; }
+  .miniseries-header { flex-direction: column; gap: 12px; }
+  .classes-link { padding: 24px 20px; }
   .footer { padding: 40px 20px; }
   .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
   .footer-address { text-align: left; }
@@ -397,11 +439,19 @@ body {
   <div class="miniseries-inner">
     <div class="miniseries-header">
       <h2>Miniseries</h2>
-      <p>Short course series — typically 5–10 sessions with one teacher, focused on a specific style or technique. New series announced each semester.</p>
+      <p>A miniseries is a short course with one teacher — typically 5–10 sessions focused on a specific style or technique. Unlike a weekly class, you register for the full series and go deeper than a drop-in ever allows.</p>
     </div>
     <p class="miniseries-soon">Semester 1 — 2026/2027 programme coming soon.</p>
+    <p class="miniseries-note">New series are announced in August. <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Join the newsletter</a> to hear first.</p>
   </div>
 </section>
+
+<div class="classes-link">
+  <div class="classes-link-inner">
+    <span>Looking for weekly classes?</span>
+    <a href="https://www.shoonyadance.com/classes" target="_blank" rel="noopener">See the full schedule at shoonyadance.com →</a>
+  </div>
+</div>
 
 <footer class="footer">
   <div class="footer-inner">
