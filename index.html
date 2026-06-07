@@ -1,8 +1,443 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0; url=/round-trip-to-cuba/">
-  <link rel="canonical" href="https://workshops.shoonyadance.com/round-trip-to-cuba/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Workshops &amp; Intensives — Shoonya Dance Centre Ghent</title>
+<meta name="description" content="All upcoming workshops and dance intensives at Shoonya Dance Centre in Ghent. Indian Dance Summer Intensive, Lindy Hop Bootcamp, and more.">
+<link rel="canonical" href="https://workshops.shoonyadance.com/">
+<link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/">
+<link rel="alternate" hreflang="x-default" href="https://workshops.shoonyadance.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Workshops &amp; Intensives — Shoonya Dance Centre Ghent">
+<meta property="og:description" content="Concentrated learning outside the weekly schedule. Indian dance, swing, Cuban salsa and more at Shoonya Dance Centre.">
+<meta property="og:url" content="https://workshops.shoonyadance.com/">
+<meta property="og:site_name" content="Shoonya Dance Centre">
+<meta property="og:locale" content="en_BE">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<!-- Schema: ItemList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Workshops & Intensives — Shoonya Dance Centre",
+  "url": "https://workshops.shoonyadance.com/",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "url": "https://workshops.shoonyadance.com/indian-dance-summer-intensive/",
+      "name": "Indian Dance Summer Intensive 2026"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "url": "https://workshops.shoonyadance.com/lindy-hop-bootcamp/",
+      "name": "Lindy Hop Bootcamp"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "url": "https://workshops.shoonyadance.com/round-trip-to-cuba/",
+      "name": "Round Trip to Cuba — Cuban Salsa Weekend Intensive"
+    }
+  ]
+}
+</script>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #000000;
+  --muted: #4a4a4a;
+  --subtle: #7a7a7a;
+  --border: #e4e0db;
+  --purple: #B564F7;
+  --saffron: #E85D1F;
+  --swing-dark: #0B090F;
+}
+
+body {
+  font-family: 'PT Serif', Georgia, serif;
+  color: var(--ink);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ────────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 0.5px solid var(--border);
+  padding: 0 40px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  font-family: 'Marcellus', Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-cta {
+  font-family: 'PT Serif', serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--ink);
+  padding: 7px 16px;
+  transition: background 0.18s, color 0.18s;
+}
+.nav-cta:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* ── HERO ───────────────────────────────────────── */
+.hero {
+  padding: 72px 40px 56px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Marcellus', Georgia, serif;
+  font-size: clamp(38px, 5.5vw, 60px);
+  line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: 22px;
+}
+.hero-lead {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 500px;
+}
+
+/* ── GRID ───────────────────────────────────────── */
+.workshops {
+  padding: 0 40px 88px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* ── CARD ───────────────────────────────────────── */
+.card[hidden] { display: none !important; }
+.card {
+  border: 0.5px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+.card-photo {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  flex-shrink: 0;
+}
+.card-body {
+  padding: 26px 26px 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.card-date {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  margin-bottom: 10px;
+}
+.card h2 {
+  font-family: 'Marcellus', Georgia, serif;
+  font-size: 21px;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+.card-teacher {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+.card-desc {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin-bottom: 18px;
+  flex: 1;
+}
+.card-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.chip {
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  border: 0.5px solid var(--border);
+  padding: 4px 9px;
+  color: var(--ink);
+}
+.card-link {
+  display: block;
+  font-family: 'PT Serif', serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 11px 18px;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.18s, color 0.18s;
+}
+.card-link:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+/* ── MINISERIES ─────────────────────────────────── */
+.miniseries {
+  border-top: 0.5px solid var(--border);
+  padding: 64px 40px 72px;
+}
+.miniseries-inner {
+  max-width: 880px;
+  margin: 0 auto;
+}
+.miniseries-header {
+  display: flex;
+  align-items: baseline;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+.miniseries-header h2 {
+  font-family: 'Marcellus', Georgia, serif;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.miniseries-header p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.miniseries-soon {
+  font-size: 14px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  border: 0.5px solid var(--border);
+  display: inline-block;
+  padding: 10px 18px;
+}
+
+@media (max-width: 640px) {
+  .miniseries { padding: 48px 20px 56px; }
+  .miniseries-header { flex-direction: column; gap: 12px; }
+}
+
+/* ── FOOTER ─────────────────────────────────────── */
+.footer {
+  background: var(--ink);
+  color: #fff;
+  padding: 48px 40px;
+}
+.footer-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.footer-logo img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+.footer-address {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+}
+.footer-address a {
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+}
+.footer-address a:hover { color: #fff; }
+.footer-socials {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.footer-social {
+  color: rgba(255,255,255,0.5);
+  transition: color 0.18s;
+}
+.footer-social:hover { color: #fff; }
+.footer-social svg { display: block; width: 18px; height: 18px; }
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 640px) {
+  .nav { padding: 0 20px; }
+  .hero { padding: 48px 20px 40px; }
+  .workshops { padding: 0 20px 64px; }
+  .grid { grid-template-columns: 1fr; }
+  .footer { padding: 40px 20px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .footer-address { text-align: left; }
+}
+</style>
 </head>
-<body><a href="/round-trip-to-cuba/">Round Trip to Cuba</a></body>
+<body>
+
+<nav class="nav" aria-label="Site">
+  <a href="https://www.shoonyadance.com" class="nav-brand">Shoonya Dance Centre</a>
+  <a href="https://www.shoonyadance.com/classes" class="nav-cta">Weekly classes →</a>
+</nav>
+
+<header class="hero">
+  <p class="hero-eyebrow">Shoonya Dance Centre · Ghent</p>
+  <h1>Workshops &amp;<br>Intensives</h1>
+  <p class="hero-lead">Concentrated learning outside the weekly schedule. Each workshop is taught by a specialist — expect focused technique, a small group, and space to go deep.</p>
+</header>
+
+<section class="workshops" aria-label="Workshop listings">
+  <div class="grid">
+
+    <!-- Indian Dance Summer Intensive — 26–29 August 2026 -->
+    <article class="card">
+      <img class="card-photo" src="assets/indian-dance.jpg" alt="Indian Dance Summer Intensive" loading="lazy">
+      <div class="card-body">
+        <p class="card-date">26–29 August 2026</p>
+        <h2>Indian Dance Summer Intensive</h2>
+        <p class="card-teacher">with Swapnil Dagliya</p>
+        <p class="card-desc">Four days. Five Indian dance forms — Bhangra, Terah Taali, Kalbeliya, Semi-Classical, and BollyFolk. Open level, no experience needed.</p>
+        <div class="card-chips">
+          <span class="chip">All levels</span>
+          <span class="chip">4 days</span>
+          <span class="chip">Indian folk &amp; semi-classical</span>
+        </div>
+        <a href="/indian-dance-summer-intensive/" class="card-link">Full details &amp; register</a>
+      </div>
+    </article>
+
+    <!-- Lindy Hop Bootcamp — 9 September 2026 -->
+    <article class="card">
+      <img class="card-photo" src="assets/lindy-hop/hero.jpg" alt="Lindy Hop Bootcamp" loading="lazy">
+      <div class="card-body">
+        <p class="card-date">9 September 2026</p>
+        <h2>Lindy Hop Bootcamp</h2>
+        <p class="card-teacher">with Ann-Sofie Van Enis &amp; Sep Vermeersch</p>
+        <p class="card-desc">One evening. The fundamentals that matter on the social floor — swing outs, partnered Charleston, tuck turns. 2.5 hours of deep practice.</p>
+        <div class="card-chips">
+          <span class="chip">Intermediate</span>
+          <span class="chip">1 evening</span>
+          <span class="chip">Lindy Hop</span>
+        </div>
+        <a href="/lindy-hop-bootcamp/" class="card-link">Full details &amp; register</a>
+      </div>
+    </article>
+
+    <!-- Round Trip to Cuba — 23–24 January 2027 — date-gated until 15 June 2026 -->
+    <article class="card" id="card-rtc" hidden>
+      <img class="card-photo" src="assets/trip-cuba/cd008a68-c142-4c98-ae10-6aaa75fc085b.JPG" alt="Round Trip to Cuba" loading="lazy">
+      <div class="card-body">
+        <p class="card-date">23–24 January 2027</p>
+        <h2>Round Trip to Cuba</h2>
+        <p class="card-teacher">with Wilmer &amp; Maria</p>
+        <p class="card-desc">A 2-day Cuban Salsa weekend intensive. Six masterclasses — Afrocuban, Rumba Cubana, Son Cubano, Salsa Cubana, Timba Cubana, Afrotimba Fusión.</p>
+        <div class="card-chips">
+          <span class="chip">All levels</span>
+          <span class="chip">2 days</span>
+          <span class="chip">Cuban Salsa</span>
+        </div>
+        <a href="/round-trip-to-cuba/" class="card-link">Full details &amp; register</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ── MINISERIES ─────────────────────────────────────────────── -->
+<section class="miniseries" aria-label="Miniseries">
+  <div class="miniseries-inner">
+    <div class="miniseries-header">
+      <h2>Miniseries</h2>
+      <p>Short course series — typically 5–10 sessions with one teacher, focused on a specific style or technique. New series announced each semester.</p>
+    </div>
+    <p class="miniseries-soon">Semester 1 — 2026/2027 programme coming soon.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <a href="https://shoonyadance.com">
+        <img src="assets/logos/shoonyadance/shoonya-logo-white-nobg.png" alt="Shoonya Dance Centre">
+      </a>
+    </div>
+    <p class="footer-address">
+      Stapelplein 41 · 9000 Gent · Belgium<br>
+      <a href="https://www.shoonyadance.com">shoonyadance.com</a>
+    </p>
+    <div class="footer-socials">
+      <a class="footer-social" href="https://instagram.com/shoonyadance" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <a class="footer-social" href="https://facebook.com/shoonyadance" aria-label="Facebook" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M13 22v-8h3l.5-4H13V7.5c0-1.1.3-1.9 2-1.9h2V2.1c-.4 0-1.5-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V10H6.5v4H10v8h3z"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Show Round Trip to Cuba card from 15 June 2026 onwards
+  if (new Date() >= new Date('2026-06-15T00:00:00')) {
+    var card = document.getElementById('card-rtc');
+    if (card) card.removeAttribute('hidden');
+  }
+</script>
+
+</body>
 </html>
