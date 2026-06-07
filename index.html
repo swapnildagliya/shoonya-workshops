@@ -275,6 +275,64 @@ body {
   color: var(--ink);
 }
 
+/* ── MINISERIES ITEM ────────────────────────────── */
+.miniseries-item[hidden] { display: none !important; }
+.miniseries-item {
+  border: 0.5px solid var(--border);
+  padding: 28px 28px 24px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
+.miniseries-item-main { flex: 1; min-width: 0; }
+.miniseries-item-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--subtle);
+  margin-bottom: 8px;
+}
+.miniseries-item h3 {
+  font-family: 'Marcellus', Georgia, serif;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.miniseries-item-teacher {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.miniseries-item-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+.miniseries-item-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.miniseries-item-price {
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.miniseries-divider {
+  border: none;
+  border-top: 0.5px solid var(--border);
+  margin: 28px 0;
+}
+@media (max-width: 640px) {
+  .miniseries-item { flex-direction: column; gap: 20px; }
+  .miniseries-item-meta { align-items: flex-start; }
+}
+
 /* ── CLASSES LINK ────────────────────────────────── */
 .classes-link {
   border-top: 0.5px solid var(--border);
@@ -441,7 +499,23 @@ body {
       <h2>Miniseries</h2>
       <p>A miniseries is a short course with one teacher — typically 5–10 sessions focused on a specific style or technique. Unlike a weekly class, you register for the full series and go deeper than a drop-in ever allows.</p>
     </div>
-    <p class="miniseries-soon">Semester 1 — 2026/2027 programme coming soon.</p>
+    <!-- Oriental Flow — auto-hides 14 June 2026 -->
+    <article class="miniseries-item" id="miniseries-of">
+      <div class="miniseries-item-main">
+        <p class="miniseries-item-label">Ends 13 June 2026 · Saturdays 10:00–12:00</p>
+        <h3>Oriental Flow</h3>
+        <p class="miniseries-item-teacher">with Nathalie El Ghoul</p>
+        <p class="miniseries-item-desc">A 5-week series at the intersection of contemporary dance, oriental technique, yoga, and somatic practice. One session remaining — 13 June. Free trial available at the first session.</p>
+      </div>
+      <div class="miniseries-item-meta">
+        <p class="miniseries-item-price">€99 · €90 members</p>
+        <a href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8" class="card-link" target="_blank" rel="noopener">Register</a>
+      </div>
+    </article>
+
+    <hr class="miniseries-divider" id="miniseries-divider">
+
+    <p class="miniseries-soon" id="miniseries-soon">Semester 1 — 2026/2027 programme coming soon.</p>
     <p class="miniseries-note">New series are announced in August. <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Join the newsletter</a> to hear first.</p>
   </div>
 </section>
@@ -486,6 +560,14 @@ body {
   if (new Date() >= new Date('2026-06-15T00:00:00')) {
     var card = document.getElementById('card-rtc');
     if (card) card.removeAttribute('hidden');
+  }
+
+  // Hide Oriental Flow miniseries from 14 June 2026 onwards (series ends 13 June)
+  if (new Date() >= new Date('2026-06-14T00:00:00')) {
+    var of = document.getElementById('miniseries-of');
+    if (of) of.setAttribute('hidden', '');
+    var div = document.getElementById('miniseries-divider');
+    if (div) div.setAttribute('hidden', '');
   }
 </script>
 
