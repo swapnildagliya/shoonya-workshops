@@ -279,12 +279,29 @@ body {
 .miniseries-item[hidden] { display: none !important; }
 .miniseries-item {
   border: 0.5px solid var(--border);
-  padding: 28px 28px 24px;
+  padding: 0;
   margin-bottom: 20px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 0;
+  overflow: hidden;
+}
+.miniseries-item-photo {
+  width: 140px;
+  flex-shrink: 0;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.miniseries-item-body {
+  flex: 1;
+  min-width: 0;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 32px;
+  gap: 24px;
+  padding: 24px 24px 20px;
 }
 .miniseries-item-main { flex: 1; min-width: 0; }
 .miniseries-item-label {
@@ -329,7 +346,9 @@ body {
   margin: 28px 0;
 }
 @media (max-width: 640px) {
-  .miniseries-item { flex-direction: column; gap: 20px; }
+  .miniseries-item { flex-direction: column; }
+  .miniseries-item-photo { width: 100%; height: 180px; }
+  .miniseries-item-body { flex-direction: column; gap: 16px; }
   .miniseries-item-meta { align-items: flex-start; }
 }
 
@@ -501,29 +520,35 @@ body {
     </div>
     <!-- Kalbeliya — auto-hides 11 June 2026 -->
     <article class="miniseries-item" id="miniseries-kalbeliya">
-      <div class="miniseries-item-main">
-        <p class="miniseries-item-label">Ends 10 June 2026 · Wednesdays 18:30–19:30</p>
-        <h3>Kalbeliya</h3>
-        <p class="miniseries-item-teacher">with Swapnil Dagliya</p>
-        <p class="miniseries-item-desc">The expressive folk dance of Rajasthan — fluid spins, sweeping lines, and sinuous movement with a flowing skirt. Final session this Wednesday.</p>
-      </div>
-      <div class="miniseries-item-meta">
-        <p class="miniseries-item-price">€92</p>
-        <a href="https://www.shoonyadance.com/garba-kalbeliya-danslessen-in-gent" class="card-link" target="_blank" rel="noopener">Details &amp; register</a>
+      <img class="miniseries-item-photo" src="assets/kalbeliya.jpg" alt="Kalbeliya" loading="lazy">
+      <div class="miniseries-item-body">
+        <div class="miniseries-item-main">
+          <p class="miniseries-item-label">Ends 10 June 2026 · Wednesdays 18:30–19:30</p>
+          <h3>Kalbeliya</h3>
+          <p class="miniseries-item-teacher">with Swapnil Dagliya</p>
+          <p class="miniseries-item-desc">The expressive folk dance of Rajasthan — fluid spins, sweeping lines, and sinuous movement with a flowing skirt. Final session this Wednesday.</p>
+        </div>
+        <div class="miniseries-item-meta">
+          <p class="miniseries-item-price">€92</p>
+          <a href="https://www.shoonyadance.com/garba-kalbeliya-danslessen-in-gent" class="card-link" target="_blank" rel="noopener">Details &amp; register</a>
+        </div>
       </div>
     </article>
 
     <!-- Oriental Flow — auto-hides 14 June 2026 -->
     <article class="miniseries-item" id="miniseries-of">
-      <div class="miniseries-item-main">
-        <p class="miniseries-item-label">Ends 13 June 2026 · Saturdays 10:00–12:00</p>
-        <h3>Oriental Flow</h3>
-        <p class="miniseries-item-teacher">with Nathalie El Ghoul</p>
-        <p class="miniseries-item-desc">A 5-week series at the intersection of contemporary dance, oriental technique, yoga, and somatic practice. One session remaining — 13 June. Free trial available at the first session.</p>
-      </div>
-      <div class="miniseries-item-meta">
-        <p class="miniseries-item-price">€99 · €90 members</p>
-        <a href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8" class="card-link" target="_blank" rel="noopener">Register</a>
+      <img class="miniseries-item-photo" src="assets/oriental-flow.jpg" alt="Oriental Flow with Nathalie El Ghoul" loading="lazy">
+      <div class="miniseries-item-body">
+        <div class="miniseries-item-main">
+          <p class="miniseries-item-label">Ends 13 June 2026 · Saturdays 10:00–12:00</p>
+          <h3>Oriental Flow</h3>
+          <p class="miniseries-item-teacher">with Nathalie El Ghoul</p>
+          <p class="miniseries-item-desc">A 5-week series at the intersection of contemporary dance, oriental technique, yoga, and somatic practice. One session remaining — 13 June. Free trial available at the first session.</p>
+        </div>
+        <div class="miniseries-item-meta">
+          <p class="miniseries-item-price">€99 · €90 members</p>
+          <a href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8" class="card-link" target="_blank" rel="noopener">Register</a>
+        </div>
       </div>
     </article>
 
