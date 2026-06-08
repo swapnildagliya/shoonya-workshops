@@ -1725,7 +1725,7 @@ a { color: inherit; text-decoration: none; }
     '    <input id="pg-input" class="pg-input" type="password" placeholder="Passphrase" autocomplete="off">',
     '    <button class="pg-btn" type="submit">Enter</button>',
     '  </form>',
-    '  <p class="pg-hint">Hint: you know this studio.</p>',
+    '  <p class="pg-hint">Hint: where we\'re going + our door number.</p>',
     '</div>'
   ].join('');
 
@@ -1761,6 +1761,12 @@ a { color: inherit; text-decoration: none; }
     }
   });
 }());
+
+// Hide Shoonya member price note when page goes public (15 June)
+if (new Date() >= new Date('2026-06-15T00:00:00')) {
+  var mpn = document.getElementById('member-price-note');
+  if (mpn) mpn.setAttribute('hidden', '');
+}
 </script>
 
 
@@ -2046,7 +2052,7 @@ a { color: inherit; text-decoration: none; }
       </div>
 
       <div class="teachers-photo-wrap">
-        <img src="../assets/trip-cuba/IMG_5154.JPG" alt="Wilmer & Maria" loading="lazy">
+        <img src="../assets/trip-cuba/IMG_3814.JPG" alt="Wilmer & Maria" loading="lazy">
         <div class="teachers-photo-vignette"></div>
       </div>
     </div>
@@ -2138,6 +2144,12 @@ a { color: inherit; text-decoration: none; }
         </div>
 
       </div>
+    </div>
+
+    <!-- Shoonya member price — shown until page goes public (15 June) -->
+    <div id="member-price-note" style="margin-top:28px; padding:16px 20px; border:1px solid rgba(181,100,247,0.35); background:rgba(181,100,247,0.08);">
+      <p style="color:var(--brand); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">Currently enrolled at Shoonya?</p>
+      <p style="color:var(--text-muted); font-size:14px; line-height:1.6; margin:0;">Your price is <strong style="color:var(--text);">€90</strong> — applied automatically in the registration system when you use your Shoonya ID.</p>
     </div>
 
   </div>
