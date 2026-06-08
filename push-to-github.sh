@@ -4,7 +4,7 @@ set -e
 REPO_URL="https://github.com/swapnildagliya/shoonya-workshops.git"
 BRANCH="main"
 
-echo "── Round Trip to Cuba · GitHub Pages deploy ──"
+echo "── Shoonya Workshops · GitHub Pages deploy ──"
 
 # Init repo if not already one
 if [ ! -d ".git" ]; then

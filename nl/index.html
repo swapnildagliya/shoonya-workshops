@@ -350,6 +350,32 @@ body {
   object-position: center top;
   display: block;
 }
+.miniseries-photo-wrap {
+  width: 140px;
+  flex-shrink: 0;
+  position: relative;
+  align-self: stretch;
+}
+.miniseries-photo-wrap .miniseries-item-photo {
+  width: 100%;
+  height: 100%;
+}
+.card-photo-wrap {
+  position: relative;
+}
+.photo-credit {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 10px;
+  color: rgba(255,255,255,0.70);
+  text-align: right;
+  padding: 14px 7px 5px;
+  letter-spacing: 0.03em;
+  pointer-events: none;
+  background: linear-gradient(transparent, rgba(0,0,0,0.50));
+}
 .miniseries-item-body {
   flex: 1;
   min-width: 0;
@@ -406,6 +432,7 @@ body {
 @media (max-width: 640px) {
   .miniseries-item { flex-direction: column; }
   .miniseries-item-photo { width: 100%; height: 180px; }
+  .miniseries-photo-wrap { width: 100%; }
   .miniseries-item-body { flex-direction: column; gap: 16px; }
   .miniseries-item-meta { align-items: flex-start; }
 }
@@ -520,7 +547,10 @@ body {
 
     <!-- Indian Dance Summer Intensive — 26–29 augustus 2026 -->
     <article class="card">
-      <img class="card-photo" src="../assets/indian-dance.jpg" alt="Indian Dance Summer Intensive" loading="lazy">
+      <div class="card-photo-wrap">
+        <img class="card-photo" src="../assets/indian-dance.jpg" alt="Indian Dance Summer Intensive" loading="lazy">
+        <span class="photo-credit">© Stijn Dejonckheere</span>
+      </div>
       <div class="card-body">
         <p class="card-date">26–29 augustus 2026</p>
         <h2>Indian Dance Summer Intensive</h2>
@@ -537,7 +567,10 @@ body {
 
     <!-- Lindy Hop Bootcamp — 9 september 2026 -->
     <article class="card">
-      <img class="card-photo" src="../assets/lindy-hop/hero.jpg" alt="Lindy Hop Bootcamp" loading="lazy">
+      <div class="card-photo-wrap">
+        <img class="card-photo" src="../assets/lindy-hop/hero.jpg" alt="Lindy Hop Bootcamp" loading="lazy">
+        <span class="photo-credit">© Juls Sobrón / Upside Down</span>
+      </div>
       <div class="card-body">
         <p class="card-date">9 september 2026</p>
         <h2>Lindy Hop Bootcamp</h2>
@@ -581,7 +614,10 @@ body {
     </div>
     <!-- Kalbeliya — auto-hides 11 juni 2026 -->
     <article class="miniseries-item" id="miniseries-kalbeliya">
-      <img class="miniseries-item-photo" src="../assets/kalbeliya.jpg" alt="Kalbeliya" loading="lazy">
+      <div class="miniseries-photo-wrap">
+        <img class="miniseries-item-photo" src="../assets/kalbeliya.jpg" alt="Kalbeliya" loading="lazy">
+        <span class="photo-credit">© Stijn Dejonckheere</span>
+      </div>
       <div class="miniseries-item-body">
         <div class="miniseries-item-main">
           <p class="miniseries-item-label">Eindigt 10 juni 2026 · Woensdagen 18:30–19:30</p>
@@ -613,8 +649,49 @@ body {
 
     <hr class="miniseries-divider" id="miniseries-divider">
 
-    <p class="miniseries-soon" id="miniseries-soon">Semester 1 — programma 2026/2027 binnenkort beschikbaar.</p>
-    <p class="miniseries-note">Nieuwe reeksen worden in augustus aangekondigd. <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Schrijf je in op de nieuwsbrief</a> om het als eerste te horen.</p>
+    <!-- Bhangra Starter Series — 16 sep – 7 okt 2026 -->
+    <article class="miniseries-item" id="miniseries-bhangra">
+      <div class="miniseries-photo-wrap">
+        <img class="miniseries-item-photo" src="../indian-dance-summer-intensive/img/bhangra.jpg" alt="Bhangra" loading="lazy" style="object-position: 65% top;">
+        <span class="photo-credit">© Stijn Dejonckheere</span>
+      </div>
+      <div class="miniseries-item-body">
+        <div class="miniseries-item-main">
+          <p class="miniseries-item-label">16 sep – 7 okt · Woensdagen 19:30–20:30 · 4 sessies</p>
+          <h3>Bhangra — Starter Series</h3>
+          <p class="miniseries-item-teacher">met Swapnil Dagliya</p>
+          <p class="miniseries-item-desc">Een 4-weekse beginnersserie. De oogstdans uit Punjab — vol energie, met krachtige schouderbeweging, grote sprongen en de onmiskenbare tik van de dholdrum. Sessies: 16 · 23 · 30 sep &amp; 7 okt. Sluit aan op Bhangra Niveau 2 in hetzelfde semester.</p>
+          <a class="miniseries-register-link" id="reg-bhangra" href="https://schedule.shoonyadance.com" target="_blank" rel="noopener">Inschrijven via het wekelijkse rooster →</a>
+        </div>
+        <div class="miniseries-item-meta">
+          <p class="miniseries-item-status">Beginners welkom</p>
+          <p class="miniseries-item-status" id="status-bhangra">€50 · sep 2026</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- Indian Semi-Classical Starter Series — 16 sep – 7 okt 2026 -->
+    <article class="miniseries-item" id="miniseries-isc">
+      <div class="miniseries-photo-wrap">
+        <img class="miniseries-item-photo" src="../indian-dance-summer-intensive/img/semiclassical.jpg" alt="Indian Semi-Classical" loading="lazy" style="object-position: center 30%;">
+        <span class="photo-credit">© Kattoo Hillewaere</span>
+      </div>
+      <div class="miniseries-item-body">
+        <div class="miniseries-item-main">
+          <p class="miniseries-item-label">16 sep – 7 okt · Woensdagen 20:30–21:45 · 4 sessies</p>
+          <h3>Indian Semi-Classical — Starter Series</h3>
+          <p class="miniseries-item-teacher">met Swapnil Dagliya</p>
+          <p class="miniseries-item-desc">Een 4-weekse beginnersserie. Houding, mudra's, oogexpressie en de gecontroleerde overgang tussen klassieke Indische dans en Bollywood-vertelling. Sessies: 16 · 23 · 30 sep &amp; 7 okt. Sluit aan op Semi-Classical Niveau 2 in hetzelfde semester.</p>
+          <a class="miniseries-register-link" id="reg-isc" href="https://schedule.shoonyadance.com" target="_blank" rel="noopener">Inschrijven via het wekelijkse rooster →</a>
+        </div>
+        <div class="miniseries-item-meta">
+          <p class="miniseries-item-status">Beginners welkom</p>
+          <p class="miniseries-item-status" id="status-isc">€58 · sep 2026</p>
+        </div>
+      </div>
+    </article>
+
+    <p class="miniseries-note" style="margin-top:24px;">Meer reeksen worden in augustus aangekondigd. <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Schrijf je in op de nieuwsbrief</a> om het als eerste te horen.</p>
   </div>
 </section>
 
@@ -672,6 +749,25 @@ body {
     if (of) of.setAttribute('hidden', '');
     var div = document.getElementById('miniseries-divider');
     if (div) div.setAttribute('hidden', '');
+  }
+
+  // Bhangra + ISC Starter Series — 16 sep – 7 okt 2026
+  // Inschrijving sluit ~2 weken na start (30 sep); reeks eindigt 7 okt; verbergen 8 okt
+  if (new Date() >= new Date('2026-09-30T00:00:00')) {
+    var sb = document.getElementById('status-bhangra');
+    if (sb) sb.textContent = 'Inschrijving gesloten';
+    var si = document.getElementById('status-isc');
+    if (si) si.textContent = 'Inschrijving gesloten';
+    var rbh = document.getElementById('reg-bhangra');
+    if (rbh) rbh.setAttribute('hidden', '');
+    var risc = document.getElementById('reg-isc');
+    if (risc) risc.setAttribute('hidden', '');
+  }
+  if (new Date() >= new Date('2026-10-08T00:00:00')) {
+    var bh = document.getElementById('miniseries-bhangra');
+    if (bh) bh.setAttribute('hidden', '');
+    var isc = document.getElementById('miniseries-isc');
+    if (isc) isc.setAttribute('hidden', '');
   }
 </script>
 
