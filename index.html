@@ -406,13 +406,13 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  font-size: 8px;
-  color: rgba(255,255,255,0.55);
-  text-align: center;
-  padding: 3px 4px 5px;
-  letter-spacing: 0.05em;
+  font-size: 10px;
+  color: rgba(255,255,255,0.70);
+  text-align: right;
+  padding: 14px 7px 5px;
+  letter-spacing: 0.03em;
   pointer-events: none;
-  background: linear-gradient(transparent, rgba(0,0,0,0.40));
+  background: linear-gradient(transparent, rgba(0,0,0,0.50));
 }
 .miniseries-item-body {
   flex: 1;
@@ -600,6 +600,7 @@ body {
     <article class="card">
       <div class="card-photo-wrap">
         <img class="card-photo" src="assets/indian-dance.jpg" alt="Indian Dance Summer Intensive" loading="lazy">
+        <span class="photo-credit">© Stijn Dejonckheere</span>
         <div class="card-date-badge">
           <span class="badge-day">26–29</span>
           <span class="badge-month">Aug 2026</span>
@@ -675,7 +676,10 @@ body {
     </div>
     <!-- Kalbeliya — auto-hides 11 June 2026 -->
     <article class="miniseries-item" id="miniseries-kalbeliya">
-      <img class="miniseries-item-photo" src="assets/kalbeliya.jpg" alt="Kalbeliya" loading="lazy">
+      <div class="miniseries-photo-wrap">
+        <img class="miniseries-item-photo" src="assets/kalbeliya.jpg" alt="Kalbeliya" loading="lazy">
+        <span class="photo-credit">© Stijn Dejonckheere</span>
+      </div>
       <div class="miniseries-item-body">
         <div class="miniseries-item-main">
           <p class="miniseries-item-label">Ends 10 June 2026 · Wednesdays 18:30–19:30</p>
