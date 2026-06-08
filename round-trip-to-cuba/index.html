@@ -1606,6 +1606,92 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
+/* ── MORE WORKSHOPS ──────────────────────────────────── */
+.more-workshops {
+  border-top: 1px solid var(--border-w);
+  background: var(--bg-deep);
+  padding: 52px var(--gutter);
+}
+.more-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.more-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+}
+.more-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.more-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  border: 1px solid var(--border-w);
+  text-decoration: none;
+  transition: border-color 0.18s, background 0.18s;
+}
+.more-item:hover {
+  border-color: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.03);
+}
+.more-item-left { flex: 1; min-width: 0; }
+.more-date {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 6px;
+}
+.more-title {
+  display: block;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 17px;
+  color: var(--text);
+}
+.more-arrow {
+  color: var(--text-dim);
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: color 0.18s, transform 0.18s;
+}
+.more-item:hover .more-arrow {
+  color: var(--text);
+  transform: translateX(3px);
+}
+.more-hub {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.more-hub:hover { color: var(--text); }
+.nav-back {
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.nav-back:hover { color: var(--text); }
+@media (max-width: 640px) {
+  .more-grid { grid-template-columns: 1fr; }
+  .nav-back { display: none; }
+}
+
 </style>
 </head>
 <body>
@@ -1694,6 +1780,7 @@ a { color: inherit; text-decoration: none; }
   </ul>
 
   <div class="nav-right">
+    <a class="nav-back" href="https://workshops.shoonyadance.com/">← Workshops</a>
     <a class="nav-lang" href="nl/" hreflang="nl" lang="nl" aria-label="Nederlandse versie">NL</a>
     <a class="nav-cta" href="#register">Register now</a>
   </div>
@@ -2127,6 +2214,29 @@ a { color: inherit; text-decoration: none; }
       </details>
 
     </div>
+  </div>
+</section>
+
+<section class="more-workshops" aria-label="More workshops at Shoonya">
+  <div class="more-inner">
+    <p class="more-label">More at Shoonya</p>
+    <div class="more-grid">
+      <a class="more-item" href="https://workshops.shoonyadance.com/indian-dance-summer-intensive/">
+        <span class="more-item-left">
+          <span class="more-date">26–29 Aug 2026</span>
+          <span class="more-title">Indian Dance Summer Intensive</span>
+        </span>
+        <span class="more-arrow">→</span>
+      </a>
+      <a class="more-item" href="https://workshops.shoonyadance.com/lindy-hop-bootcamp/">
+        <span class="more-item-left">
+          <span class="more-date">9 Sep 2026</span>
+          <span class="more-title">Lindy Hop Bootcamp</span>
+        </span>
+        <span class="more-arrow">→</span>
+      </a>
+    </div>
+    <a class="more-hub" href="https://workshops.shoonyadance.com/">← All workshops</a>
   </div>
 </section>
 
