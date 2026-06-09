@@ -66,6 +66,12 @@
       "position": 3,
       "url": "https://workshops.shoonyadance.com/round-trip-to-cuba/",
       "name": "Round Trip to Cuba — Cuban Salsa Weekend Intensive"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "url": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/",
+      "name": "Bachata Choreo Minireeks"
     }
   ]
 }
@@ -755,6 +761,26 @@ body {
       </div>
     </article>
 
+    <!-- Bachata Choreo Minireeks — 10 Nov – 15 Dec 2026 -->
+    <article class="miniseries-item" id="miniseries-bachata-choreo">
+      <div class="miniseries-photo-wrap">
+        <img class="miniseries-item-photo" src="assets/bachata-choreo/alex-lenka.jpg" alt="Bachata Choreo Minireeks — Alex Papaianopol &amp; Lenka Badriyah" loading="lazy" style="object-position: 55% 15%;">
+      </div>
+      <div class="miniseries-item-body">
+        <div class="miniseries-item-main">
+          <p class="miniseries-item-label">10 Nov – 15 Dec 2026 · Tuesdays 21:00–22:00 · 6 sessions</p>
+          <h3>Bachata Choreo Minireeks</h3>
+          <p class="miniseries-item-teacher">with Alex Papaianopol &amp; Lenka Badriyah</p>
+          <p class="miniseries-item-desc">A 6-week couple choreography series for Intermediate &amp; Advanced bachata dancers. Build a complete piece from the ground up — movement quality, partner dynamics, musicality, styling, and a full run-through. Partner required throughout.</p>
+          <a class="miniseries-register-link" id="reg-bachata-choreo" href="https://workshops.shoonyadance.com/bachata-choreo-minireeks/" target="_blank" rel="noopener">Full details →</a>
+        </div>
+        <div class="miniseries-item-meta">
+          <p class="miniseries-item-status" id="status-bachata-choreo">Registration open</p>
+          <p class="miniseries-item-status">€75 · Nov 2026</p>
+        </div>
+      </div>
+    </article>
+
     <p class="miniseries-note" style="margin-top:24px;">More series announced in August. <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Join the newsletter</a> to hear first.</p>
   </div>
 </section>
@@ -833,6 +859,13 @@ body {
     if (bh) bh.setAttribute('hidden', '');
     var isc = document.getElementById('miniseries-isc');
     if (isc) isc.setAttribute('hidden', '');
+  }
+
+  // Bachata Choreo Minireeks — 10 Nov – 15 Dec 2026
+  // Hide from 16 December 2026 (series ends 15 Dec)
+  if (new Date() >= new Date('2026-12-16T00:00:00')) {
+    var bch = document.getElementById('miniseries-bachata-choreo');
+    if (bch) bch.setAttribute('hidden', '');
   }
 </script>
 
