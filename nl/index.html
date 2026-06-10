@@ -39,7 +39,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@300;400;500;600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <!-- Schema: ItemList -->
 <script type="application/ld+json">
@@ -47,25 +47,31 @@
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": "Workshops & Intensives — Shoonya Dance Centre",
-  "url": "https://workshops.shoonyadance.com/nl/",
+  "url": "https://workshops.shoonyadance.com/",
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
-      "url": "https://workshops.shoonyadance.com/indian-dance-summer-intensive/nl/",
+      "url": "https://workshops.shoonyadance.com/indian-dance-summer-intensive/",
       "name": "Indian Dance Summer Intensive 2026"
     },
     {
       "@type": "ListItem",
       "position": 2,
-      "url": "https://workshops.shoonyadance.com/lindy-hop-bootcamp/nl/",
+      "url": "https://workshops.shoonyadance.com/lindy-hop-bootcamp/",
       "name": "Lindy Hop Bootcamp"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "url": "https://workshops.shoonyadance.com/round-trip-to-cuba/nl/",
-      "name": "Round Trip to Cuba — Cubaanse Salsa Weekendintensive"
+      "url": "https://workshops.shoonyadance.com/round-trip-to-cuba/",
+      "name": "Round Trip to Cuba — Cuban Salsa Weekend Intensive"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "url": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/",
+      "name": "Bachata Choreo Minireeks"
     }
   ]
 }
@@ -77,7 +83,7 @@
   "@context": "https://schema.org",
   "@type": "DanceSchool",
   "name": "Shoonya Dance Centre",
-  "description": "Gents huis voor wereldwijde dans — Indiase dans, Cubaanse salsa, Lindy Hop, Afrikaanse dans en meer. Workshops en intensives naast het wekelijkse lesrooster.",
+  "description": "Ghent's home of world dance — Indian dance, Cuban salsa, Lindy Hop, African dance and more. Workshops and intensives alongside the weekly schedule.",
   "url": "https://shoonyadance.com",
   "email": "info@shoonyadance.com",
   "address": {
@@ -89,8 +95,10 @@
   },
   "sameAs": [
     "https://www.instagram.com/shoonyadance",
-    "https://www.facebook.com/shoonyadance"
-  ]
+    "https://www.facebook.com/shoonyadance",
+    "https://www.shoonyadance.com"
+  ],
+  "isPartOf": { "@type": "WebSite", "url": "https://www.shoonyadance.com" }
 }
 </script>
 
@@ -101,68 +109,62 @@
   --bg:        #0B090F;
   --surface:   #100E14;
   --text:      #FFFFFF;
-  --muted:     rgba(255,255,255,0.60);
+  --muted:     rgba(255,255,255,0.62);
   --dim:       rgba(255,255,255,0.42);
   --border-w:  rgba(255,255,255,0.09);
-  --border-m:  rgba(255,255,255,0.18);
+  --border-m:  rgba(255,255,255,0.22);
   --purple:    #B564F7;
-  --saffron:   #E85D1F;
-  /* legacy alias kept for footer */
-  --ink:       #FFFFFF;
+  --purple-deep: #7A36BC;
 }
 
+html { scroll-behavior: auto; }
+
 body {
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'PT Serif', Georgia, serif;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 
-/* ── NAV ────────────────────────────────────────── */
+img { display: block; }
+
+/* ambient grain + radial wash */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 60% at 70% -10%, rgba(181,100,247,0.10), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 10% 110%, rgba(181,100,247,0.06), transparent 60%);
+}
+
+/* ── NAV ── */
 .nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(11,9,15,0.90);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-w);
-  padding: 0 40px;
-  height: 58px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 0 48px;
+  height: 66px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s ease, border-color 0.4s ease;
 }
-.nav-brand {
-  font-family: 'Marcellus', Georgia, serif;
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text);
-  text-decoration: none;
+.nav.scrolled {
+  background: rgba(11,9,15,0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--border-w);
 }
-.nav-cta {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text);
-  text-decoration: none;
-  border: 1px solid var(--border-m);
-  padding: 7px 16px;
-  transition: background 0.18s, color 0.18s, border-color 0.18s;
-}
-.nav-cta:hover {
-  background: #fff;
-  color: #000;
-  border-color: #fff;
-}
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
+.nav-brand img { height: 46px; width: auto; }
+.nav-right { display: flex; align-items: center; gap: 22px; }
 .nav-lang {
   font-family: 'Inter', sans-serif;
   font-size: 11px;
@@ -173,86 +175,243 @@ body {
   transition: color 0.18s;
 }
 .nav-lang:hover { color: var(--text); }
+.nav-cta {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid var(--border-m);
+  padding: 8px 18px;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+}
+.nav-cta:hover { background: #fff; color: #000; border-color: #fff; }
 
-/* ── HERO ───────────────────────────────────────── */
+/* ── HERO — kinetic type + layered photo + oo centerpiece ── */
 .hero {
-  padding: 72px 40px 56px;
-  max-width: 880px;
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 48px 80px;
+  z-index: 1;
+}
+.hero-inner {
+  width: 100%;
+  max-width: 1500px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 .hero-eyebrow {
-  font-size: 11px;
-  letter-spacing: 0.20em;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--purple);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
-.hero h1 {
+.hero-title {
   font-family: 'Marcellus', Georgia, serif;
-  font-size: clamp(38px, 5.5vw, 60px);
-  line-height: 1.05;
+  font-weight: 400;
+  line-height: 0.96;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
   color: var(--text);
-  margin-bottom: 22px;
+  position: relative;
 }
+.hero-line {
+  display: block;
+  font-size: clamp(56px, 11.5vw, 168px);
+  white-space: nowrap;
+  position: relative;
+}
+.hero-line .w { display: inline-block; will-change: transform; }
+.hero-line:nth-child(1) { z-index: 1; }
+.hero-line:nth-child(2) { z-index: 3; margin-left: 0.08em; }
+.hero-line:nth-child(3) { z-index: 1; margin-left: 0.16em; color: var(--purple); }
+
+/* full-bleed looping video background behind the kinetic type */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero-video video,
+.hero-video .hero-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero-video .hero-poster { object-position: 65% 40%; }
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, rgba(11,9,15,0.96) 0%, rgba(11,9,15,0.62) 45%, rgba(11,9,15,0.55) 100%);
+}
+
+/* the travelling oo-mark centerpiece — behind hero type, dips under the marquee band */
+.oo-traveller {
+  position: absolute;
+  top: 8vh;
+  left: 50%;
+  width: clamp(260px, 34vw, 520px);
+  margin-left: calc(clamp(260px, 34vw, 520px) / -2);
+  z-index: 1;
+  opacity: 0; /* hidden at rest — fades in on scroll via GSAP */
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.oo-traveller img { width: 100%; height: auto; }
+
 .hero-lead {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 460px;
+  margin-top: 48px;
+}
+.hero-cta {
+  display: inline-block;
+  margin-top: 36px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.55);
+  padding: 16px 34px;
+  transition: background 0.22s, border-color 0.22s;
+}
+.hero-cta:hover { background: var(--purple); border-color: var(--purple); }
+
+/* ── MARQUEE — solid band the oo-mark dips behind ── */
+.marquee {
+  position: relative;
+  z-index: 5;
+  background: var(--purple);
+  color: #0B090F;
+  overflow: hidden;
+  padding: 22px 0;
+  border-top: 1px solid var(--purple);
+  border-bottom: 1px solid var(--purple);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+}
+.marquee-chunk {
+  font-family: 'Marcellus', Georgia, serif;
+  font-size: clamp(22px, 3vw, 38px);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  padding-right: 0.8em;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── WORKSHOPS — sticky stacked panels ── */
+.workshops {
+  position: relative;
+  z-index: 4;
+  padding: 160px 0 0;
+}
+.workshops-head {
+  max-width: 1500px;
+  margin: 0 auto 90px;
+  padding: 0 48px;
+}
+.workshops-head h2 {
+  font-family: 'Marcellus', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(36px, 6vw, 84px);
+  line-height: 1.04;
+  text-transform: uppercase;
+}
+.workshops-head h2 em {
+  font-style: normal;
+  color: var(--purple);
+}
+.workshops-head p {
+  margin-top: 22px;
   font-size: 17px;
   line-height: 1.7;
   color: var(--muted);
-  max-width: 500px;
+  max-width: 520px;
 }
 
-/* ── GRID ───────────────────────────────────────── */
-.workshops {
-  padding: 0 40px 88px;
-  max-width: 880px;
-  margin: 0 auto;
-}
-.grid {
+.stack { position: relative; }
+.panel[hidden] { display: none !important; }
+.panel {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  background: var(--bg);
+  border-top: 1px solid var(--border-w);
+  overflow: hidden;
 }
-
-/* ── CARD ───────────────────────────────────────── */
-.card[hidden] { display: none !important; }
-.card {
-  border: 1px solid var(--border-w);
-  background: var(--surface);
-  display: flex;
-  flex-direction: column;
-  transition: border-color 0.18s;
-}
-.card:hover { border-color: var(--border-m); }
-.card-photo-wrap {
+.panel:nth-child(even) .panel-media { order: 2; }
+.panel-media {
   position: relative;
-  flex-shrink: 0;
+  overflow: hidden;
+  min-height: 50vh;
 }
-.card-photo {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  flex-shrink: 0;
-}
-.card-date-badge {
+.panel-media img {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  inset: -5% 0;
+  width: 100%;
+  height: 110%;
+  object-fit: cover;
+  object-position: center center;
+  will-change: transform;
+}
+.panel-media .photo-credit {
+  position: absolute;
+  bottom: 10px; right: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  text-align: right;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.85);
+  z-index: 2;
+}
+.panel-date {
+  position: absolute;
+  top: 24px;
+  right: 24px;
   background: #fff;
   color: #000;
-  padding: 9px 13px;
+  padding: 12px 16px;
   text-align: center;
-  min-width: 62px;
+  min-width: 72px;
+  z-index: 2;
 }
-.badge-day {
+.panel-date .d {
   display: block;
   font-family: 'Marcellus', Georgia, serif;
-  font-size: 22px;
+  font-size: 26px;
   line-height: 1.1;
   white-space: nowrap;
 }
-.badge-month {
+.panel-date .m {
   display: block;
   font-family: 'Inter', sans-serif;
   font-size: 9px;
@@ -262,59 +421,44 @@ body {
   margin-top: 3px;
   white-space: nowrap;
 }
-.card-body {
-  padding: 26px 26px 30px;
-  flex: 1;
+.panel-body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding: clamp(40px, 6vw, 110px);
 }
-/* NL hub uses <p class="card-date"> text — kept for NL layout */
-.card-date {
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin-bottom: 10px;
-}
-.card h2 {
+.panel-body h3 {
   font-family: 'Marcellus', Georgia, serif;
-  font-size: 21px;
-  line-height: 1.2;
-  color: var(--text);
-  margin-bottom: 5px;
+  font-weight: 400;
+  font-size: clamp(32px, 4.2vw, 62px);
+  line-height: 1.06;
+  margin-bottom: 12px;
 }
-.card-teacher {
-  font-size: 14px;
+.panel-teacher {
+  font-size: 16px;
   font-style: italic;
   color: var(--muted);
-  margin-bottom: 15px;
+  margin-bottom: 26px;
 }
-.card-desc {
-  font-size: 15px;
-  line-height: 1.65;
+.panel-desc {
+  font-size: 17px;
+  line-height: 1.75;
   color: var(--muted);
-  margin-bottom: 18px;
-  flex: 1;
+  margin-bottom: 28px;
+  max-width: 480px;
 }
-.card-chips {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  margin-bottom: 22px;
-}
+.panel-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
 .chip {
+  font-family: 'Inter', sans-serif;
   font-size: 10px;
   letter-spacing: 0.10em;
   text-transform: uppercase;
   border: 0.5px solid var(--border-w);
-  padding: 4px 9px;
+  padding: 5px 10px;
   color: var(--dim);
 }
-.card-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
+.panel-link {
+  align-self: flex-start;
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   font-weight: 500;
@@ -322,106 +466,101 @@ body {
   text-transform: uppercase;
   color: var(--text);
   border: 1px solid var(--border-m);
-  padding: 11px 18px;
+  padding: 15px 30px;
   text-decoration: none;
-  text-align: center;
-  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
-.card-link:hover {
-  background: #fff;
-  color: #000;
-  border-color: #fff;
-}
+.panel-link:hover { background: #fff; color: #000; border-color: #fff; }
 
-/* ── MINISERIES ─────────────────────────────────── */
-.miniseries {
-  border-top: 1px solid var(--border-w);
-  padding: 64px 40px 72px;
-}
-.miniseries-inner {
-  max-width: 880px;
+.workshops-empty {
+  max-width: 1500px;
   margin: 0 auto;
-}
-.miniseries-header {
-  display: flex;
-  align-items: baseline;
-  gap: 32px;
-  margin-bottom: 32px;
-}
-.miniseries-header h2 {
-  font-family: 'Marcellus', Georgia, serif;
-  font-size: 28px;
-  flex-shrink: 0;
-  color: var(--text);
-}
-.miniseries-header p {
-  font-size: 15px;
-  line-height: 1.6;
+  padding: 0 48px 80px;
+  font-size: 16px;
+  line-height: 1.7;
   color: var(--muted);
 }
-.miniseries-soon {
-  font-size: 14px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--dim);
-  border: 0.5px solid var(--border-w);
-  display: inline-block;
-  padding: 10px 18px;
-  margin-bottom: 14px;
-}
-.miniseries-note {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-.miniseries-note a {
-  color: var(--text);
-}
+.workshops-empty a { color: var(--text); }
 
-/* ── MINISERIES ITEM ────────────────────────────── */
+/* ── MINISERIES — pinned title left, list scrolls right ── */
+.miniseries {
+  position: relative;
+  z-index: 4;
+  background: var(--surface);
+  border-top: 1px solid var(--border-w);
+  padding: 160px 48px;
+}
+.miniseries-grid {
+  max-width: 1500px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(40px, 5vw, 100px);
+  align-items: start;
+}
+.miniseries-left { position: sticky; top: 110px; }
+.miniseries-left h2 {
+  font-family: 'Marcellus', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(36px, 5.5vw, 76px);
+  line-height: 1.04;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+.miniseries-intro {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 420px;
+}
+.miniseries-intro .iw { opacity: 0.12; }
+.miniseries-note {
+  margin-top: 34px;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.miniseries-note a { color: var(--text); }
+
 .miniseries-item[hidden] { display: none !important; }
 .miniseries-item {
   border: 1px solid var(--border-w);
-  background: var(--surface);
-  padding: 0;
-  margin-bottom: 20px;
+  background: var(--bg);
+  margin-bottom: 24px;
   display: flex;
   align-items: stretch;
-  justify-content: space-between;
-  gap: 0;
   overflow: hidden;
-  transition: border-color 0.18s;
+  transition: border-color 0.3s;
+  will-change: transform;
 }
 .miniseries-item:hover { border-color: var(--border-m); }
-.miniseries-item-photo {
-  width: 140px;
-  flex-shrink: 0;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-}
 .miniseries-photo-wrap {
-  width: 140px;
+  width: 170px;
   flex-shrink: 0;
   position: relative;
   align-self: stretch;
+  overflow: hidden;
 }
-.miniseries-photo-wrap .miniseries-item-photo {
+.miniseries-item-photo {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 1.1s cubic-bezier(0.22,1,0.36,1);
 }
-.photo-credit {
+.miniseries-item:hover .miniseries-item-photo { transform: scale(1.05); }
+.miniseries-photo-wrap .photo-credit {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  font-size: 10px;
-  color: rgba(255,255,255,0.70);
-  text-align: right;
-  padding: 14px 7px 5px;
-  letter-spacing: 0.03em;
+  bottom: 8px; left: 8px; right: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  color: rgba(255,255,255,0.55);
+  text-align: left;
+  letter-spacing: 0.04em;
   pointer-events: none;
-  background: linear-gradient(transparent, rgba(0,0,0,0.50));
+  text-shadow: 0 1px 4px rgba(0,0,0,0.85);
 }
 .miniseries-item-body {
   flex: 1;
@@ -430,42 +569,44 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
-  padding: 24px 24px 20px;
+  padding: 30px 32px 26px;
 }
 .miniseries-item-main { flex: 1; min-width: 0; }
 .miniseries-item-label {
+  font-family: 'Inter', sans-serif;
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .miniseries-item h3 {
   font-family: 'Marcellus', Georgia, serif;
-  font-size: 20px;
+  font-weight: 400;
+  font-size: 23px;
   line-height: 1.2;
-  color: var(--text);
   margin-bottom: 4px;
 }
 .miniseries-item-teacher {
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
   color: var(--muted);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .miniseries-item-desc {
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: 15px;
+  line-height: 1.7;
   color: var(--muted);
 }
 .miniseries-item-meta {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 14px;
+  gap: 12px;
   flex-shrink: 0;
 }
 .miniseries-item-status {
+  font-family: 'Inter', sans-serif;
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -474,7 +615,8 @@ body {
 }
 .miniseries-register-link {
   display: inline-block;
-  margin-top: 14px;
+  margin-top: 16px;
+  font-family: 'Inter', sans-serif;
   font-size: 12px;
   color: var(--purple);
   text-decoration: none;
@@ -486,327 +628,417 @@ body {
 .miniseries-divider {
   border: none;
   border-top: 1px solid var(--border-w);
-  margin: 28px 0;
-}
-@media (max-width: 640px) {
-  .miniseries-item { flex-direction: column; }
-  .miniseries-item-photo { width: 100%; height: 180px; }
-  .miniseries-photo-wrap { width: 100%; }
-  .miniseries-item-body { flex-direction: column; gap: 16px; }
-  .miniseries-item-meta { align-items: flex-start; }
+  margin: 36px 0;
 }
 
-/* ── CLASSES LINK ────────────────────────────────── */
-.classes-link {
+/* ── CLASSES CTA — massive type band ── */
+.classes-cta {
+  position: relative;
+  z-index: 4;
   border-top: 1px solid var(--border-w);
-  padding: 28px 40px;
+  background: var(--bg);
+  padding: 180px 48px;
+  text-align: center;
+  overflow: hidden;
 }
-.classes-link-inner {
-  max-width: 880px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.classes-cta .oo-bg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(380px, 46vw, 700px);
+  transform: translate(-50%, -50%);
+  opacity: 0.10;
+  pointer-events: none;
 }
-.classes-link span {
-  font-size: 13px;
-  color: var(--dim);
+.classes-cta .oo-bg img { width: 100%; height: auto; }
+.classes-cta-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 26px;
+  position: relative;
 }
-.classes-link a {
-  font-size: 13px;
+.classes-cta h2 {
+  font-family: 'Marcellus', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(34px, 5.5vw, 80px);
+  line-height: 1.06;
+  text-transform: uppercase;
+  position: relative;
+}
+.classes-cta a.big {
+  display: inline-block;
+  margin-top: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--text);
   text-decoration: none;
-  border-bottom: 0.5px solid var(--border-w);
-  padding-bottom: 1px;
-  transition: border-color 0.18s;
+  border: 1px solid rgba(255,255,255,0.55);
+  padding: 18px 40px;
+  transition: background 0.22s, border-color 0.22s;
+  position: relative;
 }
-.classes-link a:hover { border-color: rgba(255,255,255,0.5); }
+.classes-cta a.big:hover { background: var(--purple); border-color: var(--purple); }
 
-@media (max-width: 640px) {
-  .miniseries { padding: 48px 20px 56px; }
-  .miniseries-header { flex-direction: column; gap: 12px; }
-}
-
-/* ── FOOTER ─────────────────────────────────────── */
+/* ── FOOTER ── */
 .footer {
+  position: relative;
+  z-index: 4;
   background: #000;
   color: #fff;
-  padding: 48px 40px;
+  padding: 64px 48px 56px;
 }
 .footer-inner {
-  max-width: 880px;
+  max-width: 1500px;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  gap: 28px;
 }
-.footer-logo img {
-  height: 28px;
-  width: auto;
-  display: block;
+.footer-markline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Marcellus', Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
 }
+.footer-markline img { height: 14px; width: auto; opacity: 0.75; flex-shrink: 0; }
 .footer-address {
   font-size: 13px;
-  line-height: 1.6;
+  line-height: 1.7;
   color: rgba(255,255,255,0.5);
   text-align: center;
 }
-.footer-address a {
-  color: rgba(255,255,255,0.65);
-  text-decoration: none;
-}
+.footer-address a { color: rgba(255,255,255,0.65); text-decoration: none; }
 .footer-address a:hover { color: #fff; }
-.footer-socials {
-  display: flex;
-  gap: 16px;
-  align-items: center;
+.footer-credits {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
 }
-.footer-social {
-  color: rgba(255,255,255,0.5);
-  transition: color 0.18s;
-}
+.footer-socials { display: flex; gap: 18px; align-items: center; }
+.footer-social { color: rgba(255,255,255,0.5); transition: color 0.18s; }
 .footer-social:hover { color: #fff; }
 .footer-social svg { display: block; width: 18px; height: 18px; }
 
-/* ── RESPONSIVE ─────────────────────────────────── */
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .panel { position: relative; min-height: 0; }
+  .miniseries-intro .iw { opacity: 1; }
+  .oo-traveller { display: none; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 920px) {
+  .panel { grid-template-columns: 1fr; min-height: 0; position: relative; }
+  .panel:nth-child(even) .panel-media { order: 0; }
+  .panel-media { min-height: 300px; }
+  .miniseries-grid { grid-template-columns: 1fr; }
+  .miniseries-left { position: static; }
+}
 @media (max-width: 640px) {
   .nav { padding: 0 20px; }
-  .hero { padding: 48px 20px 40px; }
-  .workshops { padding: 0 20px 64px; }
-  .grid { grid-template-columns: 1fr; }
-  .miniseries { padding: 48px 20px 56px; }
-  .miniseries-header { flex-direction: column; gap: 12px; }
-  .classes-link { padding: 24px 20px; }
-  .footer { padding: 40px 20px; }
-  .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
-  .footer-address { text-align: left; }
+  .hero { padding: 110px 20px 64px; }
+  .hero-line { white-space: normal; }
+  .workshops { padding-top: 100px; }
+  .workshops-head { padding: 0 20px; margin-bottom: 56px; }
+  .panel-body { padding: 32px 22px 44px; }
+  .miniseries { padding: 100px 20px; }
+  .miniseries-item { flex-direction: column; }
+  .miniseries-photo-wrap { width: 100%; height: 200px; }
+  .miniseries-item-body { flex-direction: column; gap: 16px; padding: 24px 20px 26px; }
+  .miniseries-item-meta { align-items: flex-start; }
+  .classes-cta { padding: 110px 20px; }
+  .footer { padding: 48px 20px 44px; }
 }
 </style>
 </head>
 <body>
 
-<nav class="nav" aria-label="Site">
-  <a href="https://www.shoonyadance.com" class="nav-brand">Shoonya Dance Centre</a>
+<nav class="nav" id="nav" aria-label="Site">
+  <a href="https://www.shoonyadance.com" class="nav-brand">
+    <img src="../assets/shoonya-logo-script-purple.png" alt="Shoonya Dance Centre">
+  </a>
   <div class="nav-right">
     <a href="../" class="nav-lang">EN</a>
-    <a href="https://www.shoonyadance.com/classes" class="nav-cta">Wekelijkse lessen →</a>
+    <a href="https://schedule.shoonyadance.com" class="nav-cta">Wekelijkse lessen</a>
   </div>
 </nav>
 
-<header class="hero">
-  <p class="hero-eyebrow">Shoonya Dance Centre · Gent</p>
-  <h1>Workshops &amp;<br>Intensives</h1>
-  <p class="hero-lead">Verdiepend leren naast het wekelijkse lesrooster. Elke workshop wordt gegeven door een specialist — verwacht gerichte techniek, een kleine groep en ruimte om de diepte in te gaan.</p>
+<!-- ── HERO ── -->
+<header class="hero" id="hero">
+  <div class="hero-video" aria-hidden="true">
+    <img class="hero-poster" src="../assets/indian-dance.jpg" alt="">
+    <video id="hero-video-el" autoplay loop muted playsinline preload="auto" poster="../assets/indian-dance.jpg">
+      <source src="../assets/hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-overlay"></div>
+  </div>
+  <div class="oo-traveller" id="oo-traveller" aria-hidden="true">
+    <img src="../assets/shoonya-oo-mark-purple.png" alt="">
+  </div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Shoonya Dance Centre · Gent</p>
+    <h1 class="hero-title" id="hero-title">
+      <span class="hero-line">Workshops,</span>
+      <span class="hero-line">Intensives</span>
+      <span class="hero-line">&amp; Reeksen</span>
+    </h1>
+    <p class="hero-lead">Verdiepend leren naast het wekelijkse lesrooster. Elke workshop wordt gegeven door een specialist — verwacht gerichte techniek, een kleine groep en ruimte om de diepte in te gaan.</p>
+    <a href="#workshops" class="hero-cta">Bekijk komende workshops</a>
+  </div>
 </header>
 
-<section class="workshops" aria-label="Workshopaanbod">
-  <div class="grid">
+<!-- ── MARQUEE ── -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-chunk">Workshops · Intensives · Reeksen ·&nbsp;</span>
+    <span class="marquee-chunk">Workshops · Intensives · Reeksen ·&nbsp;</span>
+    <span class="marquee-chunk">Workshops · Intensives · Reeksen ·&nbsp;</span>
+    <span class="marquee-chunk">Workshops · Intensives · Reeksen ·&nbsp;</span>
+    <span class="marquee-chunk">Workshops · Intensives · Reeksen ·&nbsp;</span>
+    <span class="marquee-chunk">Workshops · Intensives · Reeksen ·&nbsp;</span>
+  </div>
+</div>
 
-    <!-- Indian Dance Summer Intensive — 26–29 augustus 2026 -->
-    <article class="card">
-      <div class="card-photo-wrap">
-        <img class="card-photo" src="../assets/indian-dance.jpg" alt="Indian Dance Summer Intensive" loading="lazy">
+<!-- ── WORKSHOPS — stacked panels ── -->
+<section class="workshops" id="workshops" aria-label="Workshop listings">
+  <div class="workshops-head">
+    <h2>Workshops <em>&amp;</em> Intensives</h2>
+    <p>Verdiepend leren naast het wekelijkse lesrooster.</p>
+  </div>
+
+  <div class="stack" id="stack">
+
+    <!-- Indian Dance Summer Intensive — 26–29 August 2026 — auto-hides 30 Aug -->
+    <article class="panel" id="card-idsi">
+      <div class="panel-media">
+        <img src="../assets/indian-dance.jpg" alt="Indian Dance Summer Intensive" loading="lazy" style="object-position: 65% center;">
         <span class="photo-credit">© Stijn Dejonckheere</span>
+        <div class="panel-date"><span class="d">26–29</span><span class="m">aug 2026</span></div>
       </div>
-      <div class="card-body">
-        <p class="card-date">26–29 augustus 2026</p>
-        <h2>Indian Dance Summer Intensive</h2>
-        <p class="card-teacher">met Swapnil Dagliya</p>
-        <p class="card-desc">Vier dagen. Vijf Indiase dansvormen — Bhangra, Terah Taali, Kalbeliya, Semi-Klassiek en BollyFolk. Open niveau, geen ervaring nodig.</p>
-        <div class="card-chips">
+      <div class="panel-body">
+        <h3>Indian Dance Summer Intensive</h3>
+        <p class="panel-teacher">met Swapnil Dagliya</p>
+        <p class="panel-desc">Vier dagen. Vijf Indiase dansvormen — Bhangra, Terah Taali, Kalbeliya, Semi-Klassiek en BollyFolk. Open niveau, geen ervaring nodig.</p>
+        <div class="panel-chips">
           <span class="chip">Alle niveaus</span>
           <span class="chip">4 dagen</span>
           <span class="chip">Indiase folk &amp; semi-klassiek</span>
         </div>
-        <a href="/indian-dance-summer-intensive/nl/" class="card-link">Alle details &amp; inschrijven</a>
+        <a href="/indian-dance-summer-intensive/nl/" class="panel-link">Alle details &amp; inschrijven</a>
       </div>
     </article>
 
-    <!-- Lindy Hop Bootcamp — 9 september 2026 -->
-    <article class="card">
-      <div class="card-photo-wrap">
-        <img class="card-photo" src="../assets/lindy-hop/hero.jpg" alt="Lindy Hop Bootcamp" loading="lazy">
+    <!-- Lindy Hop Bootcamp — 9 September 2026 — auto-hides 10 Sep -->
+    <article class="panel" id="card-lindy">
+      <div class="panel-media">
+        <img src="../assets/lindy-hop-hero.jpg" alt="Lindy Hop Bootcamp" loading="lazy" style="object-position: center 30%;">
         <span class="photo-credit">© Juls Sobrón / Upside Down</span>
+        <div class="panel-date"><span class="d">9</span><span class="m">sep 2026</span></div>
       </div>
-      <div class="card-body">
-        <p class="card-date">9 september 2026</p>
-        <h2>Lindy Hop Bootcamp</h2>
-        <p class="card-teacher">met Ann-Sofie Van Enis &amp; Sep Vermeersch</p>
-        <p class="card-desc">Verfris je Lindy Hop vocabulaire voor het nieuwe dansseizoen. Swing outs, partnered Charleston, tuck turns, change of places en nog veel meer swing dansmoves — 2,5 uur met Ann-Sofie en Sep.</p>
-        <div class="card-chips">
+      <div class="panel-body">
+        <h3>Lindy Hop Bootcamp</h3>
+        <p class="panel-teacher">met Ann-Sofie Van Enis &amp; Sep Vermeersch</p>
+        <p class="panel-desc">Verfris je Lindy Hop vocabulaire voor het nieuwe dansseizoen. Swing outs, partnered Charleston, tuck turns, change of places en nog veel meer swing dansmoves — 2,5 uur met Ann-Sofie en Sep.</p>
+        <div class="panel-chips">
           <span class="chip">Gevorderd</span>
           <span class="chip">1 avond</span>
           <span class="chip">Lindy Hop</span>
         </div>
-        <a href="/lindy-hop-bootcamp/nl/" class="card-link">Alle details &amp; inschrijven</a>
+        <a href="/lindy-hop-bootcamp/nl/" class="panel-link">Alle details &amp; inschrijven</a>
       </div>
     </article>
 
-    <!-- Round Trip to Cuba — 23–24 januari 2027 — date-gated tot 15 juni 2026 -->
-    <article class="card" id="card-rtc" hidden>
-      <img class="card-photo" src="../assets/trip-cuba/cd008a68-c142-4c98-ae10-6aaa75fc085b.JPG" alt="Round Trip to Cuba" loading="lazy">
-      <div class="card-body">
-        <p class="card-date">23–24 januari 2027</p>
-        <h2>Round Trip to Cuba</h2>
-        <p class="card-teacher">met Wilmer &amp; Maria</p>
-        <p class="card-desc">Een 2-daagse Cubaanse salsa weekendintensive. Zes masterclasses — Afrocuban, Rumba Cubana, Son Cubano, Salsa Cubana, Timba Cubana en Afrotimba Fusión.</p>
-        <div class="card-chips">
+    <!-- Round Trip to Cuba — 23–24 January 2027 — date-gated until 15 June 2026, auto-hides 25 Jan 2027 -->
+    <article class="panel" id="card-rtc" hidden>
+      <div class="panel-media">
+        <img src="../assets/trip-cuba.jpg" alt="Round Trip to Cuba" loading="lazy" style="object-position: center 30%;">
+        <div class="panel-date"><span class="d">23–24</span><span class="m">jan 2027</span></div>
+      </div>
+      <div class="panel-body">
+        <h3>Round Trip to Cuba</h3>
+        <p class="panel-teacher">met Wilmer &amp; Maria</p>
+        <p class="panel-desc">Een 2-daagse Cubaanse salsa weekendintensive. Zes masterclasses — Afrocuban, Rumba Cubana, Son Cubano, Salsa Cubana, Timba Cubana en Afrotimba Fusión.</p>
+        <div class="panel-chips">
           <span class="chip">Alle niveaus</span>
           <span class="chip">2 dagen</span>
           <span class="chip">Cubaanse Salsa</span>
         </div>
-        <a href="/round-trip-to-cuba/nl/" class="card-link">Alle details &amp; inschrijven</a>
+        <a href="/round-trip-to-cuba/nl/" class="panel-link">Alle details &amp; inschrijven</a>
       </div>
     </article>
 
   </div>
+
+  <p class="workshops-empty" id="workshops-empty" hidden>Meer workshops worden binnenkort aangekondigd. <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Schrijf je in op de nieuwsbrief</a> om het als eerste te horen.</p>
 </section>
 
-<!-- ── MINISERIES ─────────────────────────────────────────────── -->
-<section class="miniseries" aria-label="Miniseries">
-  <div class="miniseries-inner">
-    <div class="miniseries-header">
-      <h2>Miniseries</h2>
-      <p>Een miniseries is een korte cursus met één lesgever — meestal 5–10 sessies rond een specifieke stijl of techniek. Anders dan een wekelijkse les schrijf je in voor de volledige reeks en ga je dieper dan een losse les ooit toelaat.</p>
+<!-- ── MINISERIES — pinned split ── -->
+<section class="miniseries" id="miniseries" aria-label="Miniseries">
+  <div class="miniseries-grid">
+    <div class="miniseries-left">
+      <h2>Mini&shy;series</h2>
+      <p class="miniseries-intro" id="miniseries-intro">Een miniseries is een korte cursus met één lesgever — meestal 5–10 sessies rond een specifieke stijl of techniek. Anders dan een wekelijkse les schrijf je in voor de volledige reeks en ga je dieper dan een losse les ooit toelaat.</p>
+      <p class="miniseries-note">Meer reeksen worden in augustus aangekondigd. <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Schrijf je in op de nieuwsbrief</a> om het als eerste te horen.</p>
     </div>
-    <!-- Kalbeliya — auto-hides 11 juni 2026 -->
-    <article class="miniseries-item" id="miniseries-kalbeliya">
-      <div class="miniseries-photo-wrap">
-        <img class="miniseries-item-photo" src="../assets/kalbeliya.jpg" alt="Kalbeliya" loading="lazy">
-        <span class="photo-credit">© Stijn Dejonckheere</span>
-      </div>
-      <div class="miniseries-item-body">
-        <div class="miniseries-item-main">
-          <p class="miniseries-item-label">Eindigt 10 juni 2026 · Woensdagen 18:30–19:30</p>
-          <h3>Kalbeliya</h3>
-          <p class="miniseries-item-teacher">met Swapnil Dagliya</p>
-          <p class="miniseries-item-desc">De expressieve volksdans uit Rajasthan — vloeiende spins, weidse lijnen en sierlijke, kronkelende bewegingen met een zwierende rok. Laatste sessie deze woensdag.</p>
-        </div>
-        <div class="miniseries-item-meta">
-          <p class="miniseries-item-status">Inschrijving gesloten</p>
-        </div>
-      </div>
-    </article>
 
-    <!-- Oriental Flow — auto-hides 14 juni 2026 -->
-    <article class="miniseries-item" id="miniseries-of">
-      <img class="miniseries-item-photo" src="../assets/oriental-flow.jpg" alt="Oriental Flow met Nathalie El Ghoul" loading="lazy">
-      <div class="miniseries-item-body">
-        <div class="miniseries-item-main">
-          <p class="miniseries-item-label">Eindigt 13 juni 2026 · Zaterdagen 10:00–12:00</p>
-          <h3>Oriental Flow</h3>
-          <p class="miniseries-item-teacher">met Nathalie El Ghoul</p>
-          <p class="miniseries-item-desc">Een 5-weekse reeks op het kruispunt van hedendaagse dans, oriëntaalse techniek, yoga en somatische praktijk. Eén sessie resterend — 13 juni.</p>
-        </div>
-        <div class="miniseries-item-meta">
-          <p class="miniseries-item-status">Inschrijving gesloten</p>
-        </div>
-      </div>
-    </article>
+    <div class="miniseries-right">
 
-    <hr class="miniseries-divider" id="miniseries-divider">
+      <!-- Kalbeliya — auto-hides 11 June 2026 -->
+      <article class="miniseries-item" id="miniseries-kalbeliya">
+        <div class="miniseries-photo-wrap">
+          <img class="miniseries-item-photo" src="../assets/kalbeliya.jpg" alt="Kalbeliya" loading="lazy">
+          <span class="photo-credit">© Stijn Dejonckheere</span>
+        </div>
+        <div class="miniseries-item-body">
+          <div class="miniseries-item-main">
+            <p class="miniseries-item-label">Eindigt 10 juni 2026 · Woensdagen 18:30–19:30</p>
+            <h3>Kalbeliya</h3>
+            <p class="miniseries-item-teacher">met Swapnil Dagliya</p>
+            <p class="miniseries-item-desc">De expressieve volksdans uit Rajasthan — vloeiende spins, weidse lijnen en sierlijke, kronkelende bewegingen met een zwierende rok. Laatste sessie deze woensdag.</p>
+          </div>
+          <div class="miniseries-item-meta">
+            <p class="miniseries-item-status">Inschrijving gesloten</p>
+          </div>
+        </div>
+      </article>
 
-    <!-- Bhangra Starter Series — 16 sep – 7 okt 2026 -->
-    <article class="miniseries-item" id="miniseries-bhangra">
-      <div class="miniseries-photo-wrap">
-        <img class="miniseries-item-photo" src="../indian-dance-summer-intensive/img/bhangra.jpg" alt="Bhangra" loading="lazy" style="object-position: 65% top;">
-        <span class="photo-credit">© Stijn Dejonckheere</span>
-      </div>
-      <div class="miniseries-item-body">
-        <div class="miniseries-item-main">
-          <p class="miniseries-item-label">16 sep – 7 okt · Woensdagen 19:30–20:30 · 4 sessies</p>
-          <h3>Bhangra — Starter Series</h3>
-          <p class="miniseries-item-teacher">met Swapnil Dagliya</p>
-          <p class="miniseries-item-desc">Een 4-weekse beginnersserie. De oogstdans uit Punjab — vol energie, met krachtige schouderbeweging, grote sprongen en de onmiskenbare tik van de dholdrum. Sessies: 16 · 23 · 30 sep &amp; 7 okt. Sluit aan op Bhangra Niveau 2 in hetzelfde semester.</p>
-          <a class="miniseries-register-link" id="reg-bhangra" href="https://schedule.shoonyadance.com" target="_blank" rel="noopener">Inschrijven via het wekelijkse rooster →</a>
+      <!-- Oriental Flow — auto-hides 14 June 2026 -->
+      <article class="miniseries-item" id="miniseries-of">
+        <div class="miniseries-photo-wrap">
+          <img class="miniseries-item-photo" src="../assets/oriental-flow.jpg" alt="Oriental Flow with Nathalie El Ghoul" loading="lazy">
         </div>
-        <div class="miniseries-item-meta">
-          <p class="miniseries-item-status">Beginners welkom</p>
-          <p class="miniseries-item-status" id="status-bhangra">€50 · sep 2026</p>
+        <div class="miniseries-item-body">
+          <div class="miniseries-item-main">
+            <p class="miniseries-item-label">Eindigt 13 juni 2026 · Zaterdagen 10:00–12:00</p>
+            <h3>Oriental Flow</h3>
+            <p class="miniseries-item-teacher">met Nathalie El Ghoul</p>
+            <p class="miniseries-item-desc">Een 5-weekse reeks op het kruispunt van hedendaagse dans, oriëntaalse techniek, yoga en somatische praktijk. Eén sessie resterend — 13 juni. Gratis proefles bij de eerste sessie.</p>
+          </div>
+          <div class="miniseries-item-meta">
+            <p class="miniseries-item-status">Inschrijving gesloten</p>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <!-- Indian Semi-Classical Starter Series — 16 sep – 7 okt 2026 -->
-    <article class="miniseries-item" id="miniseries-isc">
-      <div class="miniseries-photo-wrap">
-        <img class="miniseries-item-photo" src="../indian-dance-summer-intensive/img/semiclassical.jpg" alt="Indian Semi-Classical" loading="lazy" style="object-position: center 30%;">
-        <span class="photo-credit">© Kattoo Hillewaere</span>
-      </div>
-      <div class="miniseries-item-body">
-        <div class="miniseries-item-main">
-          <p class="miniseries-item-label">16 sep – 7 okt · Woensdagen 20:30–21:45 · 4 sessies</p>
-          <h3>Indian Semi-Classical — Starter Series</h3>
-          <p class="miniseries-item-teacher">met Swapnil Dagliya</p>
-          <p class="miniseries-item-desc">Een 4-weekse beginnersserie. Houding, mudra's, oogexpressie en de gecontroleerde overgang tussen klassieke Indische dans en Bollywood-vertelling. Sessies: 16 · 23 · 30 sep &amp; 7 okt. Sluit aan op Semi-Classical Niveau 2 in hetzelfde semester.</p>
-          <a class="miniseries-register-link" id="reg-isc" href="https://schedule.shoonyadance.com" target="_blank" rel="noopener">Inschrijven via het wekelijkse rooster →</a>
-        </div>
-        <div class="miniseries-item-meta">
-          <p class="miniseries-item-status">Beginners welkom</p>
-          <p class="miniseries-item-status" id="status-isc">€58 · sep 2026</p>
-        </div>
-      </div>
-    </article>
+      <hr class="miniseries-divider" id="miniseries-divider">
 
-    <!-- Bachata Solo Style Miniserie — 8 okt – 17 dec 2026 -->
-    <article class="miniseries-item" id="miniseries-bachata-solo">
-      <div class="miniseries-photo-wrap">
-        <img class="miniseries-item-photo" src="../assets/bachata-solo/ioanna.jpg" alt="Bachata Solo Style met Ioanna" loading="lazy" style="object-position: center top;">
-      </div>
-      <div class="miniseries-item-body">
-        <div class="miniseries-item-main">
-          <p class="miniseries-item-label">8 okt – 17 dec 2026 · Donderdagen 19:00–20:00 · 10 sessies</p>
-          <h3>Bachata Solo Style — Miniserie</h3>
-          <p class="miniseries-item-teacher">met Ioanna</p>
-          <p class="miniseries-item-desc">Een 10-weekse miniserie rond solostyling — lichaamsbeweging, armstyling, voetenwerk en muzikaliteit, zonder partner nodig. Open voor alle niveaus en alle genders, oktober tot december.</p>
-          <a class="miniseries-register-link" id="reg-bachata-solo" href="https://www.shoonyadance.com/bachata-solo-style-gent" target="_blank" rel="noopener">Bekijk de Bachata Solo Style-pagina →</a>
+      <!-- Bhangra Starter Series — Sep 16 – Oct 7 2026 -->
+      <article class="miniseries-item" id="miniseries-bhangra">
+        <div class="miniseries-photo-wrap">
+          <img class="miniseries-item-photo" src="../assets/bhangra.jpg" alt="Bhangra" loading="lazy" style="object-position: 65% top;">
+          <span class="photo-credit">© Stijn Dejonckheere</span>
         </div>
-        <div class="miniseries-item-meta">
-          <p class="miniseries-item-status">Alle niveaus · geen partner</p>
-          <p class="miniseries-item-status" id="status-bachata-solo">€124 · okt 2026</p>
+        <div class="miniseries-item-body">
+          <div class="miniseries-item-main">
+            <p class="miniseries-item-label">16 sep – 7 okt · Woensdagen 19:30–20:30 · 4 sessies</p>
+            <h3>Bhangra — Starter Series</h3>
+            <p class="miniseries-item-teacher">met Swapnil Dagliya</p>
+            <p class="miniseries-item-desc">Een 4-weekse beginnersserie. De oogstdans uit Punjab — vol energie, met krachtige schouderbeweging, grote sprongen en de onmiskenbare tik van de dholdrum. Sessies: 16 · 23 · 30 sep &amp; 7 okt. Sluit aan op Bhangra Niveau 2 in hetzelfde semester.</p>
+            <a class="miniseries-register-link" id="reg-bhangra" href="https://www.shoonyadance.com/bhangra-danslessen-in-gent" target="_blank" rel="noopener">Bekijk de Bhangra-pagina →</a>
+          </div>
+          <div class="miniseries-item-meta">
+            <p class="miniseries-item-status">Beginners welkom</p>
+            <p class="miniseries-item-status" id="status-bhangra">€50 · sep 2026</p>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <!-- Bachata Choreo Minireeks — 10 nov – 15 dec 2026 -->
-    <article class="miniseries-item" id="miniseries-bachata-choreo">
-      <div class="miniseries-photo-wrap">
-        <img class="miniseries-item-photo" src="../assets/bachata-choreo/alex-lenka.jpg" alt="Bachata Choreo Minireeks — Alex Papaianopol &amp; Lenka Badriyah" loading="lazy" style="object-position: 55% 15%;">
-      </div>
-      <div class="miniseries-item-body">
-        <div class="miniseries-item-main">
-          <p class="miniseries-item-label">10 nov – 15 dec 2026 · Dinsdagen 21:00–22:00 · 6 sessies</p>
-          <h3>Bachata Choreo Minireeks</h3>
-          <p class="miniseries-item-teacher">met Alex Papaianopol &amp; Lenka Badriyah</p>
-          <p class="miniseries-item-desc">Een 6-weekse koppelchoreografie-reeks voor gevorderde bachatadansers (Intermediate &amp; Advanced). Bouw een volledige choreografie op van nul — bewegingskwaliteit, partnerdynamiek, muzikaliteit, styling en een volledige doorloop. Partner gedurende de hele reeks vereist.</p>
-          <a class="miniseries-register-link" id="reg-bachata-choreo" href="https://workshops.shoonyadance.com/bachata-choreo-minireeks/" target="_blank" rel="noopener">Volledige info →</a>
+      <!-- Indian Semi-Classical Starter Series — Sep 16 – Oct 7 2026 -->
+      <article class="miniseries-item" id="miniseries-isc">
+        <div class="miniseries-photo-wrap">
+          <img class="miniseries-item-photo" src="../assets/semiclassical.jpg" alt="Indian Semi-Classical" loading="lazy" style="object-position: center 30%;">
+          <span class="photo-credit">© Kattoo Hillewaere</span>
         </div>
-        <div class="miniseries-item-meta">
-          <p class="miniseries-item-status" id="status-bachata-choreo">Inschrijving open</p>
-          <p class="miniseries-item-status">€75 · nov 2026</p>
+        <div class="miniseries-item-body">
+          <div class="miniseries-item-main">
+            <p class="miniseries-item-label">16 sep – 7 okt · Woensdagen 20:30–21:45 · 4 sessies</p>
+            <h3>Indian Semi-Classical — Starter Series</h3>
+            <p class="miniseries-item-teacher">met Swapnil Dagliya</p>
+            <p class="miniseries-item-desc">Een 4-weekse beginnersserie. Houding, mudra's, oogexpressie en de gecontroleerde overgang tussen klassieke Indische dans en Bollywood-vertelling. Sessies: 16 · 23 · 30 sep &amp; 7 okt. Sluit aan op Semi-Classical Niveau 2 in hetzelfde semester.</p>
+            <a class="miniseries-register-link" id="reg-isc" href="https://www.shoonyadance.com/kathak-danslessen-in-gent" target="_blank" rel="noopener">Bekijk de Indian Semi-Classical-pagina →</a>
+          </div>
+          <div class="miniseries-item-meta">
+            <p class="miniseries-item-status">Beginners welkom</p>
+            <p class="miniseries-item-status" id="status-isc">€58 · sep 2026</p>
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
 
-    <p class="miniseries-note" style="margin-top:24px;">Meer reeksen worden in augustus aangekondigd. <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Schrijf je in op de nieuwsbrief</a> om het als eerste te horen.</p>
+      <!-- Bachata Solo Style Miniseries — 8 Oct – 17 Dec 2026 — auto-hides 18 Dec -->
+      <article class="miniseries-item" id="miniseries-bachata-solo">
+        <div class="miniseries-photo-wrap">
+          <img class="miniseries-item-photo" src="../assets/ioanna.jpg" alt="Bachata Solo Style with Ioanna" loading="lazy" style="object-position: center top;">
+        </div>
+        <div class="miniseries-item-body">
+          <div class="miniseries-item-main">
+            <p class="miniseries-item-label">8 okt – 17 dec 2026 · Donderdagen 19:00–20:00 · 10 sessies</p>
+            <h3>Bachata Solo Style — Miniseries</h3>
+            <p class="miniseries-item-teacher">met Ioanna</p>
+            <p class="miniseries-item-desc">Een 10-weekse miniserie rond solostyling — lichaamsbeweging, armstyling, voetenwerk en muzikaliteit, zonder partner nodig. Open voor alle niveaus en alle genders, oktober tot december.</p>
+            <a class="miniseries-register-link" id="reg-bachata-solo" href="https://www.shoonyadance.com/bachata-solo-style-gent" target="_blank" rel="noopener">Bekijk de Bachata Solo Style-pagina →</a>
+          </div>
+          <div class="miniseries-item-meta">
+            <p class="miniseries-item-status">Alle niveaus · geen partner</p>
+            <p class="miniseries-item-status" id="status-bachata-solo">€124 · okt 2026</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bachata Choreo Minireeks — 10 Nov – 15 Dec 2026 — auto-hides 16 Dec -->
+      <article class="miniseries-item" id="miniseries-bachata-choreo">
+        <div class="miniseries-photo-wrap">
+          <img class="miniseries-item-photo" src="../assets/alex-lenka.jpg" alt="Bachata Choreo Minireeks — Alex Papaianopol &amp; Lenka Badriyah" loading="lazy" style="object-position: 55% 15%;">
+          <span class="photo-credit">© Stijn Dejonckheere</span>
+        </div>
+        <div class="miniseries-item-body">
+          <div class="miniseries-item-main">
+            <p class="miniseries-item-label">10 nov – 15 dec 2026 · Dinsdagen 21:00–22:00 · 6 sessies</p>
+            <h3>Bachata Choreo Minireeks</h3>
+            <p class="miniseries-item-teacher">met Alex Papaianopol &amp; Lenka Badriyah</p>
+            <p class="miniseries-item-desc">Een 6-weekse koppelchoreografie-reeks voor gevorderde bachatadansers (Intermediate &amp; Advanced). Bouw een volledige choreografie op van nul — bewegingskwaliteit, partnerdynamiek, muzikaliteit, styling en een volledige doorloop. Partner gedurende de hele reeks vereist.</p>
+            <a class="miniseries-register-link" id="reg-bachata-choreo" href="/bachata-choreo-minireeks/">Volledige info →</a>
+          </div>
+          <div class="miniseries-item-meta">
+            <p class="miniseries-item-status" id="status-bachata-choreo">Inschrijving open</p>
+            <p class="miniseries-item-status">€75 · nov 2026</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
   </div>
 </section>
 
-<div class="classes-link">
-  <div class="classes-link-inner">
-    <span>Op zoek naar wekelijkse lessen?</span>
-    <a href="https://www.shoonyadance.com/classes" target="_blank" rel="noopener">Bekijk het volledige rooster op shoonyadance.com →</a>
+<!-- ── CLASSES CTA ── -->
+<section class="classes-cta">
+  <div class="oo-bg" aria-hidden="true">
+    <img src="../assets/shoonya-oo-mark-purple.png" alt="">
   </div>
-</div>
+  <p class="classes-cta-eyebrow">Op zoek naar wekelijkse lessen?</p>
+  <h2>Bekijk het volledige rooster<br>op shoonyadance.com</h2>
+  <a class="big" href="https://schedule.shoonyadance.com" target="_blank" rel="noopener">Wekelijks lesrooster</a>
+</section>
 
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-logo">
-      <a href="https://shoonyadance.com">
-        <img src="../assets/logos/shoonyadance/shoonya-logo-white-nobg.png" alt="Shoonya Dance Centre">
-      </a>
+    <div class="footer-markline">
+      <img src="../assets/shoonya-oo-mark-white.png" alt="">
+      Shoonya Dance Centre
+      <img src="../assets/shoonya-oo-mark-white.png" alt="">
     </div>
     <p class="footer-address">
       Stapelplein 41 · 9000 Gent · België<br>
@@ -829,29 +1061,137 @@ body {
   </div>
 </footer>
 
+<script src="../lib/gsap.min.js"></script>
+<script src="../lib/ScrollTrigger.min.js"></script>
 <script>
-  // Toon Round Trip to Cuba vanaf 15 juni 2026
+  // CDN fallback if the local copies are ever missing
+  if (!window.gsap) document.write('<script src="https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/gsap\/3.12.5\/gsap.min.js"><\/script><script src="https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/gsap\/3.12.5\/ScrollTrigger.min.js"><\/script>');
+</script>
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Nav: solid after leaving the hero
+  var nav = document.getElementById('nav');
+  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 40); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (!reduced && window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero type: word entrance, then a slow horizontal drift scrubbed to scroll
+    var lines = gsap.utils.toArray('.hero-line');
+    gsap.from(lines, {
+      yPercent: 60,
+      opacity: 0,
+      duration: 1.1,
+      ease: 'power3.out',
+      stagger: 0.12,
+      delay: 0.15
+    });
+    lines.forEach(function (line, i) {
+      gsap.to(line, {
+        xPercent: (i % 2 === 0 ? -4 : 4),
+        ease: 'none',
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.6 }
+      });
+    });
+
+    // oo-mark centerpiece: rotates continuously, travels down with scroll
+    // and dips behind the purple marquee band (band has higher z-index)
+    gsap.to('#oo-traveller img', { rotation: 360, duration: 60, ease: 'none', repeat: -1 });
+    gsap.fromTo('#oo-traveller', { opacity: 0 }, {
+      y: function () { return window.innerHeight * 0.9; },
+      opacity: 0.45,
+      ease: 'none',
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.4 }
+    });
+
+    // Workshops heading: rises in
+    gsap.from('.workshops-head', {
+      y: 60, opacity: 0, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.workshops-head', start: 'top 85%' }
+    });
+
+    // Stacked panels: as the next panel slides over, the previous scales down and dims
+    var panels = gsap.utils.toArray('.panel:not([hidden])');
+    panels.forEach(function (panel, i) {
+      if (i === panels.length - 1) return;
+      gsap.to(panel, {
+        scale: 0.94,
+        opacity: 0.35,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: panels[i + 1],
+          start: 'top bottom',
+          end: 'top top',
+          scrub: 0.4
+        }
+      });
+    });
+
+    // Panel photos: slow vertical parallax inside their frame
+    gsap.utils.toArray('.panel-media img').forEach(function (img) {
+      gsap.fromTo(img, { yPercent: -3 }, {
+        yPercent: 3,
+        ease: 'none',
+        scrollTrigger: { trigger: img.closest('.panel'), start: 'top bottom', end: 'bottom top', scrub: 0.5 }
+      });
+    });
+
+    // Miniseries intro: word-by-word opacity scrub
+    var intro = document.getElementById('miniseries-intro');
+    intro.innerHTML = intro.textContent.split(' ').map(function (w) {
+      return '<span class="iw">' + w + '</span>';
+    }).join(' ');
+    gsap.to('#miniseries-intro .iw', {
+      opacity: 1,
+      stagger: 0.04,
+      ease: 'none',
+      scrollTrigger: { trigger: '#miniseries-intro', start: 'top 80%', end: 'top 35%', scrub: 0.5 }
+    });
+
+    // Miniseries items: rise in with stagger
+    gsap.utils.toArray('.miniseries-item:not([hidden])').forEach(function (item) {
+      gsap.from(item, {
+        y: 56, opacity: 0, duration: 0.9, ease: 'power3.out',
+        scrollTrigger: { trigger: item, start: 'top 88%' }
+      });
+    });
+
+    // CTA band: oo-mark slow spin + heading rise
+    gsap.to('.classes-cta .oo-bg img', { rotation: -360, duration: 90, ease: 'none', repeat: -1 });
+    gsap.from('.classes-cta h2', {
+      y: 50, opacity: 0, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.classes-cta', start: 'top 75%' }
+    });
+  } else {
+    // Reduced motion or no GSAP: everything visible, no scroll effects
+    document.querySelectorAll('.miniseries-intro .iw').forEach(function (w) { w.style.opacity = 1; });
+  }
+
+  // Reduced motion: stop the hero video, leave the poster photo
+  if (reduced) {
+    var hv = document.getElementById('hero-video-el');
+    if (hv) { hv.removeAttribute('autoplay'); hv.pause(); hv.style.display = 'none'; }
+  }
+
+  // ── Date gating — identical rules to the live hub + redesign gates ──
   if (new Date() >= new Date('2026-06-15T00:00:00')) {
     var card = document.getElementById('card-rtc');
     if (card) card.removeAttribute('hidden');
   }
-
-  // Verberg Kalbeliya vanaf 11 juni 2026 (laatste sessie 10 juni)
   if (new Date() >= new Date('2026-06-11T00:00:00')) {
     var kal = document.getElementById('miniseries-kalbeliya');
     if (kal) kal.setAttribute('hidden', '');
   }
-
-  // Verberg Oriental Flow vanaf 14 juni 2026 (reeks eindigt 13 juni)
   if (new Date() >= new Date('2026-06-14T00:00:00')) {
     var of = document.getElementById('miniseries-of');
     if (of) of.setAttribute('hidden', '');
     var div = document.getElementById('miniseries-divider');
     if (div) div.setAttribute('hidden', '');
   }
-
-  // Bhangra + ISC Starter Series — 16 sep – 7 okt 2026
-  // Inschrijving sluit ~2 weken na start (30 sep); reeks eindigt 7 okt; verbergen 8 okt
   if (new Date() >= new Date('2026-09-30T00:00:00')) {
     var sb = document.getElementById('status-bhangra');
     if (sb) sb.textContent = 'Inschrijving gesloten';
@@ -868,6 +1208,34 @@ body {
     var isc = document.getElementById('miniseries-isc');
     if (isc) isc.setAttribute('hidden', '');
   }
+  if (new Date() >= new Date('2026-12-16T00:00:00')) {
+    var bch = document.getElementById('miniseries-bachata-choreo');
+    if (bch) bch.setAttribute('hidden', '');
+  }
+  if (new Date() >= new Date('2026-12-18T00:00:00')) {
+    var bso = document.getElementById('miniseries-bachata-solo');
+    if (bso) bso.setAttribute('hidden', '');
+  }
+  if (new Date() >= new Date('2026-08-30T00:00:00')) {
+    var idsi = document.getElementById('card-idsi');
+    if (idsi) idsi.setAttribute('hidden', '');
+  }
+  if (new Date() >= new Date('2026-09-10T00:00:00')) {
+    var lh = document.getElementById('card-lindy');
+    if (lh) lh.setAttribute('hidden', '');
+  }
+  if (new Date() >= new Date('2027-01-25T00:00:00')) {
+    var rtc2 = document.getElementById('card-rtc');
+    if (rtc2) rtc2.setAttribute('hidden', '');
+  }
+
+  // Empty state when every workshop is gated away
+  var visible = document.querySelectorAll('.panel:not([hidden])').length;
+  var empty = document.getElementById('workshops-empty');
+  if (empty && visible === 0) empty.removeAttribute('hidden');
+
+  if (window.ScrollTrigger) ScrollTrigger.refresh();
+})();
 </script>
 
 </body>
