@@ -381,6 +381,24 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
 @media (max-width:900px){ .intro-grid,.teach-cards,.more-grid{ grid-template-columns:1fr; } }
 @media (max-width:640px){ .hero-title{ white-space:normal; } .faq-item summary,.faq-answer{ padding-right:30px; } }
 </style>
+
+<style id="enhance-css">
+:root{ --dim: rgba(255,255,255,0.52); }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--purple); outline-offset:3px; }
+.regbar{ position:fixed; left:0; right:0; bottom:0; z-index:150; transform:translateY(120%); transition:transform .45s cubic-bezier(.22,1,.36,1); background:rgba(11,9,15,.93); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-top:1px solid rgba(255,255,255,.12); }
+.regbar.visible{ transform:translateY(0); }
+.regbar-inner{ max-width:1200px; margin:0 auto; padding:12px clamp(16px,4vw,40px); display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.regbar-info{ display:flex; align-items:baseline; gap:14px; min-width:0; }
+.regbar-title{ font-family:'Marcellus',Georgia,serif; font-size:clamp(14px,2vw,18px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.regbar-price{ font-family:'Inter',sans-serif; font-size:12px; letter-spacing:.04em; color:var(--purple); white-space:nowrap; }
+.regbar-actions{ display:flex; align-items:center; gap:18px; flex-shrink:0; }
+.regbar-id{ font-family:'Inter',sans-serif; font-size:11.5px; color:rgba(255,255,255,.62); text-decoration:none; white-space:nowrap; }
+.regbar-id:hover{ color:#fff; }
+.regbar-cta{ font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:#fff; background:var(--purple); padding:12px 24px; text-decoration:none; transition:background .2s,color .2s; }
+.regbar-cta:hover{ background:#fff; color:#000; }
+@media(max-width:600px){ .regbar-id{ display:none; } .regbar-inner{ padding:10px 16px; } .regbar-cta{ padding:10px 18px; } }
+@media (prefers-reduced-motion: reduce){ .regbar{ transition:none; } }
+</style>
 </head>
 <body>
 
@@ -644,5 +662,16 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
 })();
 </script>
 
+
+<div class="regbar" id="regbar" aria-hidden="true">
+  <div class="regbar-inner">
+    <div class="regbar-info"><span class="regbar-title">Lindy Hop Bootcamp</span><span class="regbar-price">€35</span></div>
+    <div class="regbar-actions">
+      <a class="regbar-id" href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Shoonya_ID/UrhOBSntgxQw9NmJAuwefjF4KDAAB8aam9rpDy0vxrbG92gjDyzbj6fzQQzsrMqEAk86BHC86TTtTM1eUsU1AVpjsGMH1wNDdnSy" target="_blank" rel="noopener">Need a Shoonya ID? Create one →</a>
+      <a class="regbar-cta" href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8" target="_blank" rel="noopener">Register</a>
+    </div>
+  </div>
+</div>
+<script>(function(){var b=document.getElementById('regbar');if(!b)return;var o=function(){var s=window.scrollY>window.innerHeight*0.85;b.classList.toggle('visible',s);b.setAttribute('aria-hidden',s?'false':'true');};window.addEventListener('scroll',o,{passive:true});o();})();</script>
 </body>
 </html>

@@ -248,7 +248,7 @@ body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:no
 /* HERO */
 .hero { position:relative; min-height:100svh; display:flex; align-items:flex-end; overflow:hidden; z-index:1; }
 .hero-media { position:absolute; inset:0; overflow:hidden; }
-.hero-media img { width:100%; height:100%; object-fit:cover; object-position:62% 25%; transform:scale(1.08); animation:drift 20s var(--ease-cine) forwards; }
+.hero-media video, .hero-media .hero-poster { position:absolute; inset:-6% 0; width:100%; height:112%; object-fit:cover; object-position:center 40%; will-change:transform; }
 @keyframes drift { to { transform:scale(1); } }
 .hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(11,9,15,0.95) 0%, rgba(11,9,15,0.42) 48%, rgba(11,9,15,0.32) 100%); }
 .hero-credit { position:absolute; bottom:14px; right:16px; z-index:2; font-family:'Inter',sans-serif; font-size:10px; color:rgba(255,255,255,0.5); letter-spacing:0.04em; }
@@ -391,7 +391,7 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:auto; }
-  .hero-media img { animation:none; transform:none; }
+  .hero-media video { display:none; }
   .hero-eyebrow,.hero-subtitle,.hero-actions,.hero-title .w { animation:none; opacity:1; transform:none; }
   .marquee-track { animation:none; }
   .reveal { opacity:1; transform:none; transition:none; }
@@ -407,6 +407,24 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
   .teach-text, .cta-box { position:static; }
 }
 @media (max-width:640px){ .hero-title{ white-space:normal; } .faq-item summary,.faq-a{ padding-right:30px; } .prog-table th:nth-child(3),.prog-table td:nth-child(3){ display:none; } }
+</style>
+
+<style id="enhance-css">
+:root{ --dim: rgba(255,255,255,0.52); }
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline:2px solid var(--purple); outline-offset:3px; }
+.regbar{ position:fixed; left:0; right:0; bottom:0; z-index:150; transform:translateY(120%); transition:transform .45s cubic-bezier(.22,1,.36,1); background:rgba(11,9,15,.93); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-top:1px solid rgba(255,255,255,.12); }
+.regbar.visible{ transform:translateY(0); }
+.regbar-inner{ max-width:1200px; margin:0 auto; padding:12px clamp(16px,4vw,40px); display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.regbar-info{ display:flex; align-items:baseline; gap:14px; min-width:0; }
+.regbar-title{ font-family:'Marcellus',Georgia,serif; font-size:clamp(14px,2vw,18px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.regbar-price{ font-family:'Inter',sans-serif; font-size:12px; letter-spacing:.04em; color:var(--purple); white-space:nowrap; }
+.regbar-actions{ display:flex; align-items:center; gap:18px; flex-shrink:0; }
+.regbar-id{ font-family:'Inter',sans-serif; font-size:11.5px; color:rgba(255,255,255,.62); text-decoration:none; white-space:nowrap; }
+.regbar-id:hover{ color:#fff; }
+.regbar-cta{ font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:#fff; background:var(--purple); padding:12px 24px; text-decoration:none; transition:background .2s,color .2s; }
+.regbar-cta:hover{ background:#fff; color:#000; }
+@media(max-width:600px){ .regbar-id{ display:none; } .regbar-inner{ padding:10px 16px; } .regbar-cta{ padding:10px 18px; } }
+@media (prefers-reduced-motion: reduce){ .regbar{ transition:none; } }
 </style>
 </head>
 <body>
@@ -429,9 +447,11 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <div class="hero-media"><img src="../img/tera-taali.jpg" alt="Swapnil Dagliya performing Terah Taali on stage — brass cymbals tied to the body"></div>
+  <div class="hero-media">
+    <img class="hero-poster" src="../img/tera-taali.jpg" alt="Swapnil Dagliya voert Terah Taali op">
+    <video id="hero-video-el" autoplay loop muted playsinline preload="auto" poster="../img/tera-taali.jpg"><source src="../hero-video.mp4" type="video/mp4"></video>
+  </div>
   <div class="hero-overlay"></div>
-  <span class="hero-credit">© Stijn Dejonckheere</span>
   <div class="hero-inner">
     <p class="hero-eyebrow eyebrow">Shoonya Dance Centre · Gent · 26–29 augustus 2026</p>
     <h1 class="hero-title" id="hero-title"><span class="l1">Vier dagen.</span> <span class="accent">Vijf</span> <span class="l2">vormen.</span></h1>
@@ -675,7 +695,7 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
 
   if (!reduced && window.gsap && window.ScrollTrigger && window.matchMedia('(min-width:901px)').matches) {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to('.hero-media img', { yPercent: 12, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:0.6 } });
+    gsap.to('.hero-media video, .hero-media .hero-poster', { yPercent: 10, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:0.6 } });
 
     // Sticky stacked session panels: previous scales down + dims as the next slides over it
     var panels = gsap.utils.toArray('.session');
@@ -692,8 +712,21 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
     });
     ScrollTrigger.refresh();
   }
+
+  if (reduced) { var hv=document.getElementById('hero-video-el'); if(hv){ hv.removeAttribute('autoplay'); hv.pause(); hv.style.display='none'; } }
 })();
 </script>
 
+
+<div class="regbar" id="regbar" aria-hidden="true">
+  <div class="regbar-inner">
+    <div class="regbar-info"><span class="regbar-title">Indian Dance Summer Intensive</span><span class="regbar-price">vanaf €30</span></div>
+    <div class="regbar-actions">
+      <a class="regbar-id" href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Shoonya_ID/UrhOBSntgxQw9NmJAuwefjF4KDAAB8aam9rpDy0vxrbG92gjDyzbj6fzQQzsrMqEAk86BHC86TTtTM1eUsU1AVpjsGMH1wNDdnSy" target="_blank" rel="noopener">Shoonya ID nodig? Maak er een aan →</a>
+      <a class="regbar-cta" href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8" target="_blank" rel="noopener">Inschrijven</a>
+    </div>
+  </div>
+</div>
+<script>(function(){var b=document.getElementById('regbar');if(!b)return;var o=function(){var s=window.scrollY>window.innerHeight*0.85;b.classList.toggle('visible',s);b.setAttribute('aria-hidden',s?'false':'true');};window.addEventListener('scroll',o,{passive:true});o();})();</script>
 </body>
 </html>
