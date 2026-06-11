@@ -399,7 +399,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 @media(max-width:600px){ .regbar-id{ display:none; } .regbar-inner{ padding:10px 16px; } .regbar-cta{ padding:10px 18px; } }
 @media (prefers-reduced-motion: reduce){ .regbar{ transition:none; } }
 </style>
-<style id="enh2-css">.ltr{display:inline-block;}</style>
+<style id="enh2-css">.ltr{display:inline-block;}.wd{display:inline-block;white-space:nowrap;}</style>
 </head>
 <body>
 
@@ -646,7 +646,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
 
   (function(){ var t=document.getElementById('hero-title'); if(!t) return;
-    t.querySelectorAll('.l1, .accent').forEach(function(seg){ seg.innerHTML=seg.textContent.split('').map(function(c){ return c===' '?' ':'<span class="ltr">'+c+'</span>'; }).join(''); });
+    t.querySelectorAll('.l1, .accent').forEach(function(seg){ seg.innerHTML=seg.textContent.split(' ').map(function(w){ return '<span class="wd">'+w.split('').map(function(c){ return '<span class="ltr">'+c+'</span>'; }).join('')+'</span>'; }).join(' '); });
     if(!reduced && window.gsap){ gsap.from(t.querySelectorAll('.ltr'),{ yPercent:120, opacity:0, duration:0.7, ease:'power3.out', stagger:0.028, delay:0.15 }); }
   })();
 
