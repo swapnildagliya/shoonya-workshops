@@ -230,7 +230,7 @@ body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:no
 /* HERO */
 .hero { position:relative; min-height:100svh; display:flex; align-items:flex-end; overflow:hidden; z-index:1; }
 .hero-media { position:absolute; inset:0; overflow:hidden; }
-.hero-media img { width:100%; height:100%; object-fit:cover; object-position:center 28%; transform:scale(1.08); animation:drift 20s var(--ease-cine) forwards; }
+.hero-media video, .hero-media .hero-poster { position:absolute; inset:-6% 0; width:100%; height:112%; object-fit:cover; object-position:center 22%; will-change:transform; }
 @keyframes drift { to { transform:scale(1); } }
 .hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(11,9,15,0.95) 0%, rgba(11,9,15,0.42) 48%, rgba(11,9,15,0.32) 100%); }
 .hero-inner { position:relative; z-index:2; width:100%; max-width:1200px; margin:0 auto; padding:0 clamp(20px,5vw,48px) clamp(56px,9vh,96px); }
@@ -373,7 +373,7 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:auto; }
-  .hero-media img { animation:none; transform:none; }
+  .hero-media video { display:none; }
   .hero-eyebrow,.hero-with,.hero-teachers,.hero-meta,.hero-actions,.hero-title .w { animation:none; opacity:1; transform:none; }
   .marquee-track { animation:none; }
   .reveal { opacity:1; transform:none; transition:none; }
@@ -402,7 +402,10 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <div class="hero-media"><img src="../assets/lindy-hop/hero.jpg" alt="Lindy Hop Bootcamp"></div>
+  <div class="hero-media">
+    <img class="hero-poster" src="../assets/lindy-hop/hero.jpg" alt="Lindy Hop Bootcamp">
+    <video id="hero-video-el" autoplay loop muted playsinline preload="auto" poster="../assets/lindy-hop/hero.jpg"><source src="hero-video.mp4" type="video/mp4"></video>
+  </div>
   <div class="hero-overlay"></div>
   <div class="hero-inner">
     <p class="hero-eyebrow eyebrow">1-Night Bootcamp · Lindy Hop</p>
@@ -634,8 +637,10 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
 
   if (!reduced && window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to('.hero-media img', { yPercent: 12, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:0.6 } });
+    gsap.to('.hero-media video, .hero-media .hero-poster', { yPercent: 10, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:0.6 } });
   }
+
+  if (reduced) { var hv=document.getElementById('hero-video-el'); if(hv){ hv.removeAttribute('autoplay'); hv.pause(); hv.style.display='none'; } }
 })();
 </script>
 
