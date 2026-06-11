@@ -192,1191 +192,207 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@300;400;500;600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
-
-/* ─── Reset & base ──────────────────────────────────────── */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:                #0B090F;
-  --bg-deep:           #100E14;
-  --accent:            #B564F7;
-  --accent-rgb:        181, 100, 247;
-  --accent-light:      #C97BFF;
-  --brand:             #B564F7;
-  --text:              #FFFFFF;
-  --text-muted:        rgba(255,255,255,0.60);
-  --text-dim:          rgba(255,255,255,0.50);
-  --text-atmospheric:  rgba(255,255,255,0.32);
-  --cream:             #F5F1EC;
-  --cream-mid:         #EDE8E1;
-  --dark-ink:          #160C1E;
-  --dark-ink-mid:      rgba(22,12,30,0.64);
-  --border-w:          rgba(255,255,255,0.09);
-  --border-c:          rgba(var(--accent-rgb),0.28);
-  --max:               1200px;
-  --gutter:            clamp(24px, 5vw, 80px);
+  --bg:#0B090F; --surface:#100E14; --text:#FFFFFF;
+  --muted:rgba(255,255,255,0.62); --dim:rgba(255,255,255,0.42);
+  --border-w:rgba(255,255,255,0.09); --border-m:rgba(255,255,255,0.22);
+  --purple:#B564F7;
+  --ease-cine:cubic-bezier(0.22,1,0.36,1);
 }
-
 html { scroll-behavior: smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-
-img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-
-/* ─── Utilities ─────────────────────────────────────────── */
-.container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-.section { padding: clamp(72px, 10vw, 140px) var(--gutter); max-width: var(--max); margin: 0 auto; }
-
-.eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 20px;
-}
-
-.serif { font-family: 'Playfair Display', serif; }
-
-/* ─── 1. Navigation ─────────────────────────────────────── */
-.nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 0 var(--gutter);
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(11,9,15,0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-w);
-}
-
-.nav-logo { display: flex; align-items: center; gap: 10px; }
-.nav-logo img { height: 28px; width: auto; opacity: 0.92; }
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 36px;
-  list-style: none;
-}
-
-.nav-links a {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  transition: color 0.2s;
-}
-
-.nav-links a:hover { color: var(--text); }
-
-.nav-lang {
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  color: var(--text-dim);
-  border: 1px solid rgba(255,255,255,0.15);
-  padding: 6px 12px;
-  border-radius: 100px;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.nav-lang:hover { color: var(--text-muted); border-color: rgba(255,255,255,0.3); }
-
-.nav-cta {
-  display: inline-block;
-  padding: 12px 22px;
-  background: var(--accent);
-  color: #FFFFFF;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border-radius: 100px;
-  transition: background 0.2s, transform 0.15s;
-}
-
-.nav-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-/* ─── 2. Hero ───────────────────────────────────────────── */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  background: var(--bg);
-}
-
-.hero-photo {
-  position: absolute;
-  inset: 0;
-  /* !! REPLACE with actual Lindy Hop hero image from Drive folder "Upside Down/General" !! */
-  background:
-    url('../assets/lindy-hop/hero.jpg')
-    center 20% / cover no-repeat;
-  background-color: #1a0f2e;
-  filter: brightness(0.68) contrast(1.08);
-}
-
-.hero-gradient {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to top,
-      rgba(11,9,15,1) 0%,
-      rgba(11,9,15,0.82) 28%,
-      rgba(11,9,15,0.30) 58%,
-      rgba(11,9,15,0) 80%),
-    linear-gradient(to right,
-      rgba(11,9,15,0.70) 0%,
-      rgba(11,9,15,0.25) 40%,
-      rgba(11,9,15,0) 65%);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 80px var(--gutter) 80px;
-  max-width: var(--max);
-  width: 100%;
-  margin: 0 auto;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px 5px;
-  border: 1px solid rgba(var(--accent-rgb),0.6);
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 32px;
-}
-
-.hero-badge-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-}
-
-.hero-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 500;
-  line-height: 0.88;
-  letter-spacing: -0.03em;
-  margin-bottom: 28px;
-  max-width: 620px;
-}
-
-.hero-title .line1 {
-  display: block;
-  font-size: clamp(44px, 7vw, 80px);
-  color: rgba(255,255,255,0.88);
-}
-
-.hero-title .line2 {
-  display: block;
-  font-size: clamp(68px, 11vw, 130px);
-  font-style: italic;
-  color: var(--accent);
-  margin-top: 4px;
-}
-
-.hero-with {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 8px;
-}
-
-.hero-teachers {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: clamp(22px, 3vw, 32px);
-  color: rgba(255,255,255,0.92);
-  margin-bottom: 36px;
-}
-
-.hero-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 40px;
-}
-
-.hero-meta-item {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.72);
-}
-
-.hero-meta-icon { width: 14px; height: 14px; opacity: 0.5; flex-shrink: 0; }
-.hero-meta-sep { color: var(--border-w); font-size: 18px; line-height: 1; }
-
-.hero-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.btn-primary {
-  display: inline-block;
-  padding: 16px 36px;
-  background: var(--accent);
-  color: #FFFFFF;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border-radius: 100px;
-  transition: background 0.2s, transform 0.15s;
-}
-
-.btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
-
-.btn-ghost {
-  display: inline-block;
-  padding: 15px 28px;
-  border: 1px solid rgba(255,255,255,0.22);
-  color: rgba(255,255,255,0.72);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  border-radius: 100px;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: var(--text); }
-
-.hero-scroll {
-  position: absolute;
-  bottom: 36px;
-  right: var(--gutter);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: 0.38;
-}
-
-.hero-scroll span {
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  writing-mode: vertical-lr;
-}
-
-.hero-scroll-line {
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(to bottom, #FFF 0%, transparent 100%);
-}
-
-/* ─── 3. Intro ──────────────────────────────────────────── */
-.intro {
-  background: var(--bg);
-  border-bottom: 1px solid var(--border-w);
-}
-
-.intro-inner {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 80px;
-  align-items: start;
-}
-
-.intro-lead {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(22px, 2.8vw, 34px);
-  font-weight: 400;
-  line-height: 1.4;
-  color: rgba(255,255,255,0.88);
-  margin-bottom: 28px;
-}
-
-.intro-body {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-}
-
-.intro-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px 5px;
-  border: 1px solid var(--border-c);
-  border-radius: 100px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-right: 10px;
-}
-
-.intro-stats {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding-top: 8px;
-}
-
-.stat-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border-w);
-  border-radius: 12px;
-  padding: 24px 28px;
-}
-
-.stat-number {
-  font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  font-weight: 500;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.stat-label {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-/* ─── 4. Programme ──────────────────────────────────────── */
-.programme-section { background: var(--bg-deep); }
-
-.programme-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 56px;
-}
-
-.programme-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 5vw, 60px);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-  color: rgba(255,255,255,0.88);
-}
-
-.programme-title em {
-  display: block;
-  font-style: italic;
-  color: var(--accent);
-}
-
-.programme-note {
-  font-size: 12px;
-  color: var(--text-dim);
-  letter-spacing: 0.06em;
-  max-width: 200px;
-  text-align: right;
-  line-height: 1.6;
-}
-
-/* Timeline */
-.timeline {
-  position: relative;
-  padding-left: 140px;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 100px;
-  top: 12px;
-  bottom: 12px;
-  width: 1px;
-  background: linear-gradient(to bottom,
-    rgba(var(--accent-rgb),0.4) 0%,
-    rgba(var(--accent-rgb),0.15) 100%);
-}
-
-.timeline-item {
-  position: relative;
-  padding: 20px 0 20px 40px;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.timeline-item:last-child { border-bottom: none; }
-
-.timeline-time {
-  position: absolute;
-  left: -140px;
-  top: 22px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--text-dim);
-  width: 100px;
-  text-align: right;
-}
-
-.timeline-dot {
-  position: absolute;
-  left: -6px;
-  top: 27px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--bg-deep);
-  border: 2px solid rgba(var(--accent-rgb),0.6);
-  flex-shrink: 0;
-}
-
-.timeline-item.highlight .timeline-dot {
-  background: var(--accent);
-  border-color: var(--accent);
-  box-shadow: 0 0 12px rgba(var(--accent-rgb),0.5);
-}
-
-.timeline-name {
-  font-size: 20px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.9);
-  line-height: 1.2;
-  margin-bottom: 6px;
-}
-
-.timeline-desc {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--text-muted);
-  line-height: 1.6;
-  max-width: 540px;
-}
-
-.timeline-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.timeline-tag {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: rgba(var(--accent-rgb),0.10);
-  border: 1px solid rgba(var(--accent-rgb),0.22);
-  border-radius: 100px;
-  padding: 3px 10px 2px;
-}
-
-.programme-note-box {
-  margin-top: 48px;
-  padding: 24px 28px;
-  background: rgba(var(--accent-rgb),0.06);
-  border: 1px solid rgba(var(--accent-rgb),0.20);
-  border-radius: 12px;
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  max-width: 620px;
-}
-
-.programme-note-icon {
-  width: 20px;
-  height: 20px;
-  color: var(--accent);
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.programme-note-text {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.72);
-}
-
-.programme-note-text strong {
-  color: rgba(255,255,255,0.88);
-  font-weight: 600;
-}
-
-/* ─── 5. Teachers ───────────────────────────────────────── */
-.teachers-section { background: var(--bg); overflow: hidden; }
-
-.teachers-header {
-  margin-bottom: 56px;
-}
-
-.teachers-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 5vw, 60px);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-  color: rgba(255,255,255,0.88);
-}
-
-.teachers-title em {
-  font-style: italic;
-  color: var(--accent);
-}
-
-.teachers-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-}
-
-.teacher-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border-w);
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.teacher-photo {
-  position: relative;
-  aspect-ratio: 3/4;
-  overflow: hidden;
-  background: #1a0f2e;
-}
-
-/* !! REPLACE with actual teacher photos — see Drive "Upside Down/Teachers" !! */
-.teacher-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 15%;
-  filter: brightness(0.85) contrast(1.05);
-}
-
-.teacher-photo-vignette {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom,
-    rgba(11,9,15,0) 60%,
-    rgba(11,9,15,0.7) 100%);
-}
-
-.teacher-body {
-  padding: 28px 28px 32px;
-}
-
-.teacher-role {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-
-.teacher-name {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 28px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.92);
-  line-height: 1.1;
-  margin-bottom: 16px;
-}
-
-.teacher-bio {
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--text-muted);
-}
-.teacher-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 14px;
-}
-.teacher-links a {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: var(--accent);
-  text-decoration: none;
-  opacity: 0.85;
-}
-.teacher-links a svg { width: 18px; height: 18px; flex-shrink: 0; }
-.teacher-links a:hover { opacity: 1; }
-.photo-credit { font-size: 10px; letter-spacing: 0.08em; color: var(--text-dim); margin-top: 12px; }
-.teachers-section .photo-credit { color: rgba(22,12,30,0.35); }
-
-/* ─── 6. Photo interlude ────────────────────────────────── */
-.photo-interlude {
-  position: relative;
-  height: clamp(320px, 45vw, 560px);
-  overflow: hidden;
-  background: #1a0f2e;
-}
-
-/* !! REPLACE with action photo from Drive "Upside Down/General" !! */
-.photo-interlude img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 35%;
-  filter: brightness(0.80) contrast(1.05) saturate(1.05);
-}
-
-.photo-interlude-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to bottom,
-      rgba(11,9,15,0.55) 0%,
-      rgba(11,9,15,0) 30%,
-      rgba(11,9,15,0) 65%,
-      rgba(11,9,15,0.65) 100%);
-}
-
-.photo-interlude-label {
-  position: absolute;
-  bottom: 36px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0 var(--gutter);
-  width: 100%;
-  max-width: var(--max);
-}
-
-.photo-caption {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: clamp(20px, 2.5vw, 28px);
-  color: rgba(255,255,255,0.82);
-  max-width: 560px;
-}
-
-/* ─── 7. Pricing ─────────────────────────────────────────── */
-.pricing-section { background: var(--cream); }
-.pricing-section .eyebrow { color: var(--dark-ink); opacity: 0.5; }
-
-.pricing-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  color: var(--dark-ink);
-  margin-bottom: 48px;
-}
-
-.pricing-card {
-  max-width: 560px;
-  background: var(--dark-ink);
-  border-radius: 20px;
-  padding: 48px 44px;
-  color: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.pricing-card-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.pricing-card-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.92);
-  line-height: 1.15;
-}
-
-.pricing-card-tag {
-  flex-shrink: 0;
-  padding: 5px 14px 4px;
-  background: var(--accent);
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #FFFFFF;
-}
-
-.pricing-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.pricing-amount {
-  font-family: 'Playfair Display', serif;
-  font-size: 72px;
-  font-weight: 500;
-  color: var(--accent);
-  line-height: 1;
-}
-
-.pricing-unit {
-  font-size: 16px;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
-}
-
-.pricing-divider {
-  height: 1px;
-  background: rgba(255,255,255,0.10);
-}
-
-.pricing-includes-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 14px;
-}
-
-.pricing-include-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-size: 14px;
-  color: rgba(255,255,255,0.65);
-  margin-bottom: 10px;
-  line-height: 1.5;
-}
-
-.pricing-include-dot {
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-  margin-top: 7px;
-}
-
-.pricing-footnote {
-  font-size: 12px;
-  color: rgba(255,255,255,0.36);
-  line-height: 1.6;
-  letter-spacing: 0.04em;
-}
-
-.pricing-cta {
-  display: block;
-  padding: 18px;
-  background: var(--accent);
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  border-radius: 12px;
-  transition: background 0.2s, transform 0.15s;
-}
-
-.pricing-cta:hover { background: var(--accent-light); transform: translateY(-2px); }
-
-/* ─── 8. CTA section ────────────────────────────────────── */
-.cta-section {
-  background: var(--bg-deep);
-  text-align: center;
-  padding: clamp(80px, 10vw, 140px) var(--gutter);
-}
-
-.cta-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 5vw, 56px);
-  font-weight: 500;
-  font-style: italic;
-  color: rgba(255,255,255,0.88);
-  max-width: 600px;
-  margin: 0 auto 16px;
-  line-height: 1.2;
-}
-
-.cta-sub {
-  font-size: 15px;
-  color: var(--text-muted);
-  max-width: 460px;
-  margin: 0 auto 40px;
-  line-height: 1.7;
-}
-
-.cta-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-.cta-contact {
-  font-size: 13px;
-  color: var(--text-dim);
-}
-
-.cta-contact a {
-  color: var(--text-muted);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color 0.2s;
-}
-
-.cta-contact a:hover { color: var(--text); }
-
-/* ─── 9. FAQ ─────────────────────────────────────────────── */
-.faq-section {
-  background: var(--bg);
-  border-top: 1px solid var(--border-w);
-}
-
-.faq-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 4.5vw, 52px);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  color: rgba(255,255,255,0.88);
-  margin-bottom: 56px;
-}
-
-.faq-list { max-width: 720px; }
-
-.faq-item { border-bottom: 1px solid var(--border-w); list-style: none; }
-.faq-item:first-child { border-top: 1px solid var(--border-w); }
-
-.faq-item summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 22px 0;
-  font-size: 16px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.82);
-  cursor: pointer;
-  list-style: none;
-  transition: color 0.2s;
-}
-
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item[open] summary { color: var(--text); }
-.faq-item summary:hover { color: var(--text); }
-
-.faq-item summary::after {
-  content: '+';
-  font-size: 20px;
-  font-weight: 300;
-  color: var(--accent);
-  flex-shrink: 0;
-  transition: transform 0.25s;
-}
-
-.faq-item[open] summary::after { transform: rotate(45deg); }
-
-.faq-answer {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--text-muted);
-  padding-bottom: 24px;
-  max-width: 620px;
-}
-
-/* ─── 10. Footer ────────────────────────────────────────── */
-.footer {
-  background: var(--bg);
-  border-top: 1px solid var(--border-w);
-  padding: 52px var(--gutter);
-}
-
-.footer-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-
-.footer-logo img { height: 26px; width: auto; opacity: 0.72; }
-
-.footer-centre { text-align: center; }
-
-.footer-address {
-  font-size: 12px;
-  color: var(--text-dim);
-  letter-spacing: 0.06em;
-  line-height: 1.8;
-}
-
-.footer-right { display: flex; align-items: center; gap: 20px; }
-
-.footer-socials { display: flex; align-items: center; gap: 16px; }
-
-.footer-social-link { color: var(--text-dim); transition: color 0.2s; }
-.footer-social-link:hover { color: var(--text-muted); }
-.footer-social-link svg { width: 18px; height: 18px; }
-
-.footer-site {
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* ─── Light sections (Teachers + FAQ) ──────────────────── */
-.teachers-section { background: var(--cream); }
-.teachers-section .eyebrow { color: var(--dark-ink); opacity: 0.5; }
-.teachers-section .teachers-title { color: var(--dark-ink); }
-.teachers-section .teacher-card { background: #FFFFFF; border-color: rgba(22,12,30,0.10); }
-.teachers-section .teacher-name { color: var(--dark-ink); }
-.teachers-section .teacher-bio { color: rgba(22,12,30,0.60); }
-
-.faq-section { background: var(--cream); border-top-color: rgba(22,12,30,0.10); }
-.faq-section .eyebrow { color: var(--dark-ink); opacity: 0.5; }
-.faq-section .faq-title { color: var(--dark-ink); }
-.faq-section .faq-item { border-color: rgba(22,12,30,0.10); }
-.faq-section .faq-item:first-child { border-top-color: rgba(22,12,30,0.10); }
-.faq-section .faq-item summary { color: rgba(22,12,30,0.75); }
-.faq-section .faq-item[open] summary,
-.faq-section .faq-item summary:hover { color: var(--dark-ink); }
-.faq-section .faq-answer { color: rgba(22,12,30,0.60); }
-
-.programme-section .timeline { padding-left: 32px; }
-.programme-section .timeline::before { left: 0; }
-.teachers-section .teacher-photo-vignette { display: none; }
-
-
-/* ─── Responsive ────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .intro-inner { grid-template-columns: 1fr; gap: 48px; }
-  .intro-stats { flex-direction: row; gap: 16px; }
-  .stat-card { flex: 1; }
-
-  .programme-header { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 40px; }
-  .programme-note { text-align: left; max-width: none; }
-
-  .teachers-grid { grid-template-columns: 1fr; }
-  .teacher-card { max-width: 440px; }
-
-  .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
-  .footer-centre { text-align: left; }
-}
-
-@media (max-width: 640px) {
-  .nav-links { display: none; }
-  .hero-content { padding-top: 96px; }
-  .hero-meta-sep { display: none; }
-  .hero-meta { gap: 8px; }
-
-  .timeline { padding-left: 100px; }
-  .timeline::before { left: 60px; }
-  .timeline-time { left: -100px; width: 60px; font-size: 11px; }
-
-  .pricing-card { padding: 32px 24px; }
-  .pricing-amount { font-size: 56px; }
-
-  .intro-stats { flex-direction: column; }
-}
-
-/* ─── Accessibility ─────────────────────────────────────── */
-.sr-only {
-  position: absolute;
-  width: 1px; height: 1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 3px;
-}
-
-.btn-primary:focus-visible,
-.btn-ghost:focus-visible,
-.nav-cta:focus-visible,
-.pricing-cta:focus-visible {
-  border-radius: 100px;
-}
-
-.faq-item summary:focus-visible {
-  border-radius: 0;
-  outline-offset: -2px;
-}
+body { font-family:'PT Serif',Georgia,serif; color:var(--text); background:var(--bg); -webkit-font-smoothing:antialiased; overflow-x:hidden; width:100%; max-width:100vw; }
+img { display:block; }
+.eyebrow { font-family:'Inter',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--purple); }
+body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:none; background: radial-gradient(ellipse 90% 60% at 75% -10%, rgba(181,100,247,0.09), transparent 60%), radial-gradient(ellipse 70% 50% at 5% 110%, rgba(181,100,247,0.05), transparent 60%); }
+
+.reveal { opacity:0; transform:translateY(26px); transition:opacity .8s var(--ease-cine), transform .8s var(--ease-cine); }
+.reveal.in { opacity:1; transform:none; }
+
+/* NAV */
+.nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:0 clamp(20px,5vw,48px); height:64px; display:flex; align-items:center; justify-content:space-between; background:transparent; border-bottom:1px solid transparent; transition:background .4s ease, border-color .4s ease; }
+.nav.scrolled { background:rgba(11,9,15,0.9); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom-color:var(--border-w); }
+.nav-logo img { height:40px; width:auto; }
+.nav-links { display:flex; gap:26px; list-style:none; }
+.nav-links a { font-family:'Inter',sans-serif; font-size:12px; letter-spacing:0.06em; color:var(--muted); text-decoration:none; transition:color .18s; }
+.nav-links a:hover { color:var(--text); }
+.nav-right { display:flex; align-items:center; gap:18px; }
+.nav-back, .nav-lang { font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--dim); text-decoration:none; transition:color .18s; }
+.nav-back:hover, .nav-lang:hover { color:var(--text); }
+.nav-cta { font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:var(--text); text-decoration:none; border:1px solid var(--border-m); padding:8px 18px; transition:background .18s,color .18s,border-color .18s; }
+.nav-cta:hover { background:#fff; color:#000; border-color:#fff; }
+@media (max-width:860px){ .nav-links{ display:none; } }
+
+/* HERO */
+.hero { position:relative; min-height:100svh; display:flex; align-items:flex-end; overflow:hidden; z-index:1; }
+.hero-media { position:absolute; inset:0; overflow:hidden; }
+.hero-media img { width:100%; height:100%; object-fit:cover; object-position:center 28%; transform:scale(1.08); animation:drift 20s var(--ease-cine) forwards; }
+@keyframes drift { to { transform:scale(1); } }
+.hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(11,9,15,0.95) 0%, rgba(11,9,15,0.42) 48%, rgba(11,9,15,0.32) 100%); }
+.hero-inner { position:relative; z-index:2; width:100%; max-width:1200px; margin:0 auto; padding:0 clamp(20px,5vw,48px) clamp(56px,9vh,96px); }
+.hero-eyebrow { margin-bottom:22px; opacity:0; animation:fadeup .9s var(--ease-cine) .2s forwards; }
+.hero-title { font-family:'Marcellus',Georgia,serif; font-weight:400; font-size:clamp(50px,10.5vw,140px); line-height:0.96; text-transform:uppercase; letter-spacing:0.01em; margin-bottom:24px; }
+.hero-title .w { display:inline-block; opacity:0; transform:translateY(.35em); animation:wordup .9s var(--ease-cine) forwards; }
+.hero-title .accent { color:var(--purple); }
+.hero-with { font-size:15px; font-style:italic; color:var(--muted); margin-bottom:2px; opacity:0; animation:fadeup .9s var(--ease-cine) .9s forwards; }
+.hero-teachers { font-family:'Marcellus',Georgia,serif; font-size:clamp(20px,2.6vw,28px); margin-bottom:28px; opacity:0; animation:fadeup .9s var(--ease-cine) 1s forwards; }
+.hero-teachers em { font-style:italic; color:var(--purple); font-family:'PT Serif',serif; font-size:0.78em; }
+.hero-meta { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:36px; opacity:0; animation:fadeup .9s var(--ease-cine) 1.1s forwards; }
+.hero-meta-item { display:inline-flex; align-items:center; gap:8px; font-family:'Inter',sans-serif; font-size:13px; color:rgba(255,255,255,0.8); }
+.hero-meta-icon { width:15px; height:15px; color:var(--purple); }
+.hero-meta-sep { color:var(--dim); }
+.hero-actions { display:flex; flex-wrap:wrap; gap:14px; opacity:0; animation:fadeup .9s var(--ease-cine) 1.2s forwards; }
+.btn-primary, .btn-ghost { font-family:'Inter',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none; padding:16px 32px; transition:background .22s,color .22s,border-color .22s; }
+.btn-primary { background:var(--purple); color:#fff; border:1px solid var(--purple); }
+.btn-primary:hover { background:#fff; color:#000; border-color:#fff; }
+.btn-ghost { color:var(--text); border:1px solid rgba(255,255,255,0.5); }
+.btn-ghost:hover { background:#fff; color:#000; border-color:#fff; }
+@keyframes fadeup { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:none;} }
+@keyframes wordup { from{opacity:0;transform:translateY(.35em);} to{opacity:1;transform:none;} }
+
+/* MARQUEE */
+.marquee { position:relative; z-index:5; background:var(--purple); color:#0B090F; overflow:hidden; padding:18px 0; }
+.marquee-track { display:flex; width:max-content; animation:marquee 30s linear infinite; }
+.marquee-chunk { font-family:'Marcellus',Georgia,serif; font-size:clamp(20px,2.6vw,32px); text-transform:uppercase; letter-spacing:0.05em; white-space:nowrap; padding-right:0.8em; }
+@keyframes marquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+/* SECTION SHELL */
+.wrap { max-width:1200px; margin:0 auto; padding:0 clamp(20px,5vw,48px); }
+section.block { position:relative; z-index:4; padding:clamp(80px,12vh,140px) 0; }
+section.block.deep { background:var(--surface); border-top:1px solid var(--border-w); }
+.sec-head { font-family:'Marcellus',Georgia,serif; font-weight:400; font-size:clamp(30px,5vw,60px); line-height:1.04; text-transform:uppercase; margin-top:14px; }
+.sec-head em { font-style:normal; color:var(--purple); }
+
+/* intro */
+.intro-grid { display:grid; grid-template-columns:1.4fr 1fr; gap:clamp(36px,5vw,80px); align-items:start; }
+.intro-lead { font-family:'Marcellus',Georgia,serif; font-size:clamp(24px,3.2vw,38px); line-height:1.18; margin:14px 0 26px; }
+.intro-body { font-size:17px; line-height:1.75; color:var(--muted); margin-bottom:18px; max-width:560px; }
+.intro-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+.intro-tag { font-family:'Inter',sans-serif; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--dim); border:0.5px solid var(--border-w); padding:8px 14px; }
+.stats { display:flex; flex-direction:column; gap:16px; }
+.stat-card { border:1px solid var(--border-w); background:var(--surface); padding:28px 30px; }
+.stat-number { font-family:'Marcellus',Georgia,serif; font-size:clamp(40px,5vw,58px); line-height:1; }
+.stat-label { font-family:'Inter',sans-serif; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-top:10px; }
+
+/* programme timeline */
+.prog-note { font-size:15px; color:var(--muted); margin-top:16px; }
+.timeline { margin-top:56px; }
+.timeline-item { position:relative; padding:0 0 28px 30px; border-left:1px solid var(--border-w); }
+.timeline-item:last-child { border-left-color:transparent; padding-bottom:0; }
+.timeline-dot { position:absolute; left:-5px; top:4px; width:9px; height:9px; background:var(--purple); }
+.timeline-name { font-family:'Marcellus',Georgia,serif; font-size:22px; }
+.timeline-desc { font-size:15px; line-height:1.7; color:var(--muted); margin-top:8px; max-width:620px; }
+.note-box { display:flex; gap:16px; align-items:flex-start; margin-top:40px; border:1px solid rgba(181,100,247,0.3); background:rgba(181,100,247,0.06); padding:22px 24px; }
+.note-icon { width:22px; height:22px; color:var(--purple); flex-shrink:0; margin-top:2px; }
+.note-text { font-size:15.5px; line-height:1.7; color:var(--muted); }
+.note-text strong { color:var(--text); font-weight:400; }
+
+/* teacher cards */
+.teach-cards { display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:52px; }
+.teach-card { border:1px solid var(--border-w); background:var(--bg); overflow:hidden; transition:border-color .3s; }
+.teach-card:hover { border-color:var(--border-m); }
+.teach-card-photo { position:relative; aspect-ratio:4/5; overflow:hidden; }
+.teach-card-photo img { width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease-cine); }
+.teach-card:hover .teach-card-photo img { transform:scale(1.04); }
+.teach-card-body { padding:30px 32px 34px; }
+.teach-role { font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--purple); margin-bottom:12px; }
+.teach-card-name { font-family:'Marcellus',Georgia,serif; font-size:clamp(26px,3vw,34px); line-height:1.04; text-transform:uppercase; margin-bottom:18px; }
+.teach-card-bio { font-size:15.5px; line-height:1.75; color:var(--muted); margin-bottom:20px; }
+.teach-links { display:flex; gap:14px; margin-bottom:16px; }
+.teach-links a { color:var(--dim); transition:color .18s; }
+.teach-links a:hover { color:var(--text); }
+.teach-links svg { width:18px; height:18px; display:block; }
+.teach-credit { font-family:'Inter',sans-serif; font-size:11px; color:var(--dim); letter-spacing:0.03em; }
+
+/* interlude (landscape — standard cover) */
+.interlude { position:relative; z-index:4; height:64vh; min-height:380px; overflow:hidden; }
+.interlude img { width:100%; height:100%; object-fit:cover; object-position:center 38%; }
+.interlude-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(11,9,15,0.78), rgba(11,9,15,0.12)); }
+.interlude-cap { position:absolute; bottom:26px; left:0; right:0; text-align:center; font-family:'Marcellus',Georgia,serif; font-size:clamp(20px,3vw,34px); text-transform:lowercase; color:rgba(255,255,255,0.92); letter-spacing:0.02em; }
+.interlude-credit { position:absolute; bottom:10px; right:12px; font-family:'Inter',sans-serif; font-size:10px; color:rgba(255,255,255,0.5); letter-spacing:0.04em; }
+
+/* pricing single card */
+.price-wrap { max-width:680px; margin:52px auto 0; }
+.price-card { border:1px solid var(--purple); background:linear-gradient(180deg, rgba(181,100,247,0.06), transparent); padding:clamp(30px,4vw,52px); }
+.price-card-head { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; }
+.price-card-name { font-family:'Marcellus',Georgia,serif; font-size:24px; line-height:1.2; }
+.price-card-tag { font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:#0B090F; background:var(--purple); padding:5px 11px; flex-shrink:0; }
+.price-row { display:flex; align-items:baseline; gap:12px; margin:24px 0; }
+.price-amount { font-family:'Marcellus',Georgia,serif; font-size:clamp(48px,6vw,68px); line-height:1; color:var(--purple); }
+.price-unit { font-size:14px; color:var(--dim); }
+.price-divider { height:1px; background:var(--border-w); margin:24px 0; }
+.price-label { font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--dim); margin-bottom:14px; }
+.price-item { display:flex; align-items:flex-start; gap:10px; font-size:15px; line-height:1.6; color:var(--muted); margin-bottom:10px; }
+.price-dot { width:5px; height:5px; background:var(--purple); margin-top:8px; flex-shrink:0; }
+.price-foot { font-size:13.5px; line-height:1.7; color:var(--dim); margin:22px 0; }
+.price-card .btn-primary { display:block; text-align:center; margin-top:8px; }
+
+/* CTA band */
+.cta-band { position:relative; z-index:4; background:#000; text-align:center; padding:clamp(90px,14vh,150px) clamp(20px,5vw,48px); }
+.cta-title { font-family:'Marcellus',Georgia,serif; font-weight:400; font-size:clamp(32px,5vw,64px); line-height:1.06; text-transform:uppercase; margin:22px 0 18px; }
+.cta-sub { font-size:17px; line-height:1.7; color:var(--muted); max-width:560px; margin:0 auto 38px; }
+.cta-actions { display:flex; flex-wrap:wrap; gap:14px; justify-content:center; }
+.cta-contact { margin-top:26px; font-size:14px; color:var(--dim); }
+.cta-contact a { color:var(--text); }
+
+/* FAQ */
+.faq-list { margin-top:48px; border-top:1px solid var(--border-w); }
+.faq-item { border-bottom:1px solid var(--border-w); }
+.faq-item summary { list-style:none; cursor:pointer; padding:24px 40px 24px 0; position:relative; font-family:'Marcellus',Georgia,serif; font-size:clamp(18px,2.2vw,23px); }
+.faq-item summary::-webkit-details-marker { display:none; }
+.faq-item summary::after { content:'+'; position:absolute; right:4px; top:22px; font-family:'Inter',sans-serif; font-size:24px; color:var(--purple); transition:transform .25s; }
+.faq-item[open] summary::after { content:'−'; }
+.faq-answer { padding:0 40px 26px 0; font-size:15.5px; line-height:1.75; color:var(--muted); }
+.faq-answer a { color:var(--purple); }
+
+/* more workshops */
+.more-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:40px; }
+.more-item { display:flex; align-items:center; justify-content:space-between; border:1px solid var(--border-w); background:var(--surface); padding:24px 28px; text-decoration:none; transition:border-color .2s; }
+.more-item:hover { border-color:var(--border-m); }
+.more-date { display:block; font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--purple); margin-bottom:6px; }
+.more-title { font-family:'Marcellus',Georgia,serif; font-size:19px; color:var(--text); }
+.more-arrow { color:var(--purple); font-size:20px; }
+.more-hub { display:inline-block; margin-top:28px; font-family:'Inter',sans-serif; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+.more-hub:hover { color:var(--text); }
+
+/* footer */
+.footer { position:relative; z-index:4; background:#000; padding:64px clamp(20px,5vw,48px) 56px; }
+.footer-inner { max-width:1200px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:26px; }
+.footer-markline { display:flex; align-items:center; gap:12px; font-family:'Marcellus',Georgia,serif; font-size:14px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.85); }
+.footer-markline img { height:14px; width:auto; opacity:0.75; }
+.footer-address { font-size:13px; line-height:1.7; color:rgba(255,255,255,0.5); text-align:center; }
+.footer-socials { display:flex; gap:18px; }
+.footer-social { color:rgba(255,255,255,0.5); transition:color .18s; }
+.footer-social:hover { color:#fff; }
+.footer-social svg { width:18px; height:18px; display:block; }
+.footer-site { font-family:'Inter',sans-serif; font-size:12px; letter-spacing:0.08em; color:var(--dim); }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-  }
+  html { scroll-behavior:auto; }
+  .hero-media img { animation:none; transform:none; }
+  .hero-eyebrow,.hero-with,.hero-teachers,.hero-meta,.hero-actions,.hero-title .w { animation:none; opacity:1; transform:none; }
+  .marquee-track { animation:none; }
+  .reveal { opacity:1; transform:none; transition:none; }
 }
-
-/* ── MORE WORKSHOPS ──────────────────────────────────── */
-.more-workshops {
-  border-top: 1px solid var(--border-w);
-  background: var(--bg-deep);
-  padding: 52px var(--gutter);
-}
-.more-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-}
-.more-label {
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 20px;
-}
-.more-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.more-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 20px 24px;
-  border: 1px solid var(--border-w);
-  text-decoration: none;
-  transition: border-color 0.18s, background 0.18s;
-}
-.more-item:hover {
-  border-color: rgba(255,255,255,0.22);
-  background: rgba(255,255,255,0.03);
-}
-.more-item-left { flex: 1; min-width: 0; }
-.more-date {
-  display: block;
-  font-size: 10px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 6px;
-}
-.more-title {
-  display: block;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 17px;
-  color: var(--text);
-}
-.more-arrow {
-  color: var(--text-dim);
-  font-size: 16px;
-  flex-shrink: 0;
-  transition: color 0.18s, transform 0.18s;
-}
-.more-item:hover .more-arrow {
-  color: var(--text);
-  transform: translateX(3px);
-}
-.more-hub {
-  display: inline-block;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  text-decoration: none;
-  transition: color 0.18s;
-}
-.more-hub:hover { color: var(--text); }
-.nav-back {
-  font-size: 11px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.18s;
-}
-.nav-back:hover { color: var(--text); }
-@media (max-width: 640px) {
-  .more-grid { grid-template-columns: 1fr; }
-  .nav-back { display: none; }
-}
-
+@media (max-width:900px){ .intro-grid,.teach-cards,.more-grid{ grid-template-columns:1fr; } }
+@media (max-width:640px){ .hero-title{ white-space:normal; } .faq-item summary,.faq-answer{ padding-right:30px; } }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     IMAGE CHECKLIST — download from Google Drive:
-     Folder: "Pictures / Upside Down"
-       General/ → hero.jpg + action.jpg (Lindy Hop action shots)
-       Teachers/ → ann-sofie.jpg + sep.jpg (teacher portraits)
-     Place in: deploy/assets/lindy-hop/
-     Also create og-image.jpg (1200×630) in this folder.
-═══════════════════════════════════════════ -->
-
-
-
-<!-- ═══════════════════════════════════════════
-     1. NAVIGATION
-═══════════════════════════════════════════ -->
-<nav class="nav" aria-label="Main navigation">
-  <a class="nav-logo" href="https://shoonyadance.com">
-    <img src="../assets/logos/shoonyadance/shoonya-logo-white-nobg.png" alt="Shoonya Dance Centre">
-  </a>
-
+<!-- NAV -->
+<nav class="nav" id="nav" aria-label="Main navigation">
+  <a class="nav-logo" href="https://shoonyadance.com"><img src="../assets/shoonya-logo-script-purple.png" alt="Shoonya Dance Centre"></a>
   <ul class="nav-links">
     <li><a href="#programme">Programme</a></li>
     <li><a href="#teachers">Teachers</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-
   <div class="nav-right">
     <a class="nav-back" href="https://workshops.shoonyadance.com/">← Workshops</a>
     <a class="nav-lang" href="./nl/">NL</a>
@@ -1384,417 +400,244 @@ a { color: inherit; text-decoration: none; }
   </div>
 </nav>
 
-
-<!-- ═══════════════════════════════════════════
-     2. HERO
-═══════════════════════════════════════════ -->
-<section class="hero" id="top">
-  <div class="hero-photo"></div>
-  <div class="hero-gradient"></div>
-
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      1-Night Bootcamp &nbsp;·&nbsp; Lindy Hop
-    </div>
-
-    <h1 class="hero-title">
-      <span class="line1">Lindy Hop</span>
-      <em class="line2">Bootcamp</em>
-    </h1>
-
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-media"><img src="../assets/lindy-hop/hero.jpg" alt="Lindy Hop Bootcamp"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow eyebrow">1-Night Bootcamp · Lindy Hop</p>
+    <h1 class="hero-title" id="hero-title"><span class="l1">Lindy Hop</span> <span class="accent">Bootcamp</span></h1>
     <p class="hero-with">with</p>
     <p class="hero-teachers">Ann-Sofie Van Enis &amp; Sep Vermeersch · <em>Upside Down</em></p>
-
     <div class="hero-meta">
-      <span class="hero-meta-item">
-        <svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        9 September 2026
-      </span>
+      <span class="hero-meta-item"><svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>9 September 2026</span>
       <span class="hero-meta-sep">·</span>
-      <span class="hero-meta-item">
-        <svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        18:45–21:15
-      </span>
+      <span class="hero-meta-item"><svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>18:45–21:15</span>
       <span class="hero-meta-sep">·</span>
-      <span class="hero-meta-item">
-        <svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Shoonya Dance Centre, Ghent
-      </span>
+      <span class="hero-meta-item"><svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Shoonya Dance Centre, Ghent</span>
       <span class="hero-meta-sep">·</span>
-      <span class="hero-meta-item">
-        <svg class="hero-meta-icon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="2" y="14" width="5" height="8" rx="0.5"/><rect x="9.5" y="9" width="5" height="13" rx="0.5"/><rect x="17" y="4" width="5" height="18" rx="0.5" opacity="0.3"/></svg>
-        Intermediate level
-      </span>
+      <span class="hero-meta-item"><svg class="hero-meta-icon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="2" y="14" width="5" height="8" rx="0.5"/><rect x="9.5" y="9" width="5" height="13" rx="0.5"/><rect x="17" y="4" width="5" height="18" rx="0.5" opacity="0.3"/></svg>Intermediate level</span>
     </div>
-
     <div class="hero-actions">
       <a class="btn-primary" href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8" target="_blank" rel="noopener">Register now — €35</a>
       <a class="btn-ghost" href="#programme">View programme</a>
     </div>
   </div>
+</header>
 
-  <div class="hero-scroll">
-    <div class="hero-scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════
-     3. INTRO / ABOUT
-═══════════════════════════════════════════ -->
-<section class="intro">
-  <div class="section">
-    <div class="intro-inner">
-      <div>
-        <p class="eyebrow">About this bootcamp</p>
-        <p class="intro-lead">Refresh your Lindy Hop vocabulary before the new season of dance classes.</p>
-        <p class="intro-body">
-          Together with Sep and Ann-Sofie, you'll drill swing outs, partnered Charleston,
-          tuck turns, change of places and many more swing dance moves — with special attention
-          for a comfortable connection, full body movement, clear rhythms and freedom in
-          improvisation. All while having fun!
-        </p>
-
-        <div>
-          <span class="intro-tag">Intermediate</span>
-          <span class="intro-tag">≈1 year Lindy Hop</span>
-        </div>
-      </div>
-
-      <div class="intro-stats">
-        <div class="stat-card">
-          <div class="stat-number">2.5h</div>
-          <div class="stat-label">Practice</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">40</div>
-          <div class="stat-label">Maximum spots</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════
-     4. PROGRAMME
-═══════════════════════════════════════════ -->
-<section class="programme-section" id="programme">
-  <div class="section">
-    <div class="programme-header">
-      <h2 class="programme-title">
-        Lindy Hop Bootcamp.
-        <em>9 September 2026.</em>
-      </h2>
-      <p class="programme-note">Wednesday 9 September 2026 · Studio Ananta</p>
-    </div>
-
-    <div class="timeline" style="margin-bottom:40px;">
-      <div class="timeline-item highlight">
-        <div class="timeline-dot"></div>
-        <div class="timeline-name">Arrival &amp; warm-up</div>
-      </div>
-      <div class="timeline-item highlight">
-        <div class="timeline-dot"></div>
-        <div class="timeline-name">Lindy Hop core moves revisited</div>
-        <p class="timeline-desc">Drill swing outs, partnered Charleston, tuck turns, change of places and many more swing dance moves — with special attention for a comfortable connection, full body movement, clear rhythms and freedom in improvisation.</p>
-      </div>
-      <div class="timeline-item highlight">
-        <div class="timeline-dot"></div>
-        <div class="timeline-name">Social practice floor</div>
-      </div>
-    </div>
-
-    <div class="programme-note-box">
-      <svg class="programme-note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <circle cx="12" cy="12" r="9"/>
-        <path d="M12 8v4M12 16h.01"/>
-      </svg>
-      <p class="programme-note-text">
-        <strong>Everybody leads, everybody follows.</strong>
-        This bootcamp uses an "everybody leads, everybody follows" approach.
-        If you want to stick to one role, that is also fine.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════
-     5. TEACHERS
-═══════════════════════════════════════════ -->
-<section class="teachers-section" id="teachers">
-  <div class="section">
-    <div class="teachers-header">
-      <p class="eyebrow">Upside Down</p>
-      <h2 class="teachers-title">Ann-Sofie<br>&amp; <em>Sep</em></h2>
-    </div>
-
-    <div class="teachers-grid">
-
-      <div class="teacher-card">
-        <div class="teacher-photo">
-          <!-- !! Add ann-sofie.jpg from Drive "Upside Down/Teachers" !! -->
-          <img src="../assets/lindy-hop/ann-sofie.jpg" alt="Ann-Sofie Van Enis — Lindy Hop teacher" loading="lazy" style="object-position: 30% 15%;">
-          <div class="teacher-photo-vignette"></div>
-        </div>
-        <div class="teacher-body">
-          <p class="teacher-role">Lindy Hop teacher</p>
-          <h3 class="teacher-name">Ann-Sofie<br>Van Enis</h3>
-          <p class="teacher-bio">
-            An eternal student, Ann-Sofie likes to delve into the history of jazz music
-            and dance, sharing her learning in each class. She introduces everyone to
-            musicality and personal expression in an approachable way. In addition to
-            teaching Lindy Hop and Solo Jazz, she organizes events and projects for
-            Upside Down.
-          </p>
-          <div class="teacher-links">
-            <a href="https://www.instagram.com/annsofievanenis/" target="_blank" rel="noopener" aria-label="Ann-Sofie on Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg>
-            </a>
-            <a href="https://plan-a.tips/dans/" target="_blank" rel="noopener" aria-label="Ann-Sofie's website">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </a>
-          </div>
-          <p class="photo-credit">Photo © Leyla Hesna</p>
-        </div>
-      </div>
-
-      <div class="teacher-card">
-        <div class="teacher-photo">
-          <!-- !! Add sep.jpg from Drive "Upside Down/Teachers" !! -->
-          <img src="../assets/lindy-hop/sep.jpg" alt="Sep Vermeersch — Lindy Hop teacher" loading="lazy">
-          <div class="teacher-photo-vignette"></div>
-        </div>
-        <div class="teacher-body">
-          <p class="teacher-role">Lindy Hop teacher</p>
-          <h3 class="teacher-name">Sep<br>Vermeersch</h3>
-          <p class="teacher-bio">
-            Sep is a Ghent-based dancer, active as a teacher, versatile artist, MC, DJ,
-            and artistic director at Upside Down. His excellent reputation reaches far
-            beyond Belgium's borders. Thanks to his great passion for the historical
-            background of swing and jazz dance cultures and an inexhaustible creativity,
-            he knows how to move young and old.
-          </p>
-          <div class="teacher-links">
-            <a href="https://www.instagram.com/sep.vermeersch/" target="_blank" rel="noopener" aria-label="Sep on Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg>
-            </a>
-            <a href="https://www.sepvermeersch.be" target="_blank" rel="noopener" aria-label="Sep's website">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </a>
-          </div>
-          <p class="photo-credit">Photo © Juls Sobron</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════
-     6. PHOTO INTERLUDE
-═══════════════════════════════════════════ -->
-<div class="photo-interlude">
-  <!-- !! Add action.jpg from Drive "Upside Down/General" !! -->
-  <img src="../assets/lindy-hop/action.jpg" alt="Lindy Hop dancing" loading="lazy">
-  <div class="photo-interlude-overlay"></div>
-  <div class="photo-interlude-label">
-    <p class="photo-caption">everybody leads, everybody follows</p>
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-chunk">Lindy Hop Bootcamp · 9 September 2026 · Upside Down ·&nbsp;</span>
+    <span class="marquee-chunk">Lindy Hop Bootcamp · 9 September 2026 · Upside Down ·&nbsp;</span>
+    <span class="marquee-chunk">Lindy Hop Bootcamp · 9 September 2026 · Upside Down ·&nbsp;</span>
+    <span class="marquee-chunk">Lindy Hop Bootcamp · 9 September 2026 · Upside Down ·&nbsp;</span>
+    <span class="marquee-chunk">Lindy Hop Bootcamp · 9 September 2026 · Upside Down ·&nbsp;</span>
+    <span class="marquee-chunk">Lindy Hop Bootcamp · 9 September 2026 · Upside Down ·&nbsp;</span>
   </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════
-     7. PRICING
-═══════════════════════════════════════════ -->
-<section class="pricing-section" id="pricing">
-  <div class="section">
-    <p class="eyebrow">Pricing</p>
-    <h2 class="pricing-title">Pricing</h2>
-
-    <div class="pricing-card">
-      <div class="pricing-card-header">
-        <p class="pricing-card-name">Lindy Hop Bootcamp<br>9 September 2026</p>
-        <span class="pricing-card-tag">Intermediate</span>
+<!-- INTRO + STATS -->
+<section class="block">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div class="reveal">
+        <p class="eyebrow">About this bootcamp</p>
+        <p class="intro-lead">Refresh your Lindy Hop vocabulary before the new season of dance classes.</p>
+        <p class="intro-body">Together with Sep and Ann-Sofie, you'll drill swing outs, partnered Charleston, tuck turns, change of places and many more swing dance moves — with special attention for a comfortable connection, full body movement, clear rhythms and freedom in improvisation. All while having fun!</p>
+        <div class="intro-tags"><span class="intro-tag">Intermediate</span><span class="intro-tag">≈1 year Lindy Hop</span></div>
       </div>
-
-      <div class="pricing-price-row">
-        <span class="pricing-amount">€35</span>
-        <span class="pricing-unit">per person</span>
+      <div class="stats reveal">
+        <div class="stat-card"><div class="stat-number">2.5h</div><div class="stat-label">Practice</div></div>
+        <div class="stat-card"><div class="stat-number">40</div><div class="stat-label">Maximum spots</div></div>
       </div>
-      <div class="pricing-divider"></div>
-
-      <div>
-        <p class="pricing-includes-label">What's included</p>
-        <div class="pricing-include-item"><span class="pricing-include-dot"></span> 2.5 hours of structured Lindy Hop drilling</div>
-        <div class="pricing-include-item"><span class="pricing-include-dot"></span> Swing outs, partnered Charleston, tuck turns, change of places and more</div>
-        <div class="pricing-include-item"><span class="pricing-include-dot"></span> Both lead &amp; follow roles included</div>
-        <div class="pricing-include-item"><span class="pricing-include-dot"></span> Studio Ananta, Shoonya Dance Centre, Ghent</div>
-      </div>
-
-      <div class="pricing-divider"></div>
-
-      <div>
-        <p class="pricing-includes-label">What to bring</p>
-        <div class="pricing-include-item"><span class="pricing-include-dot"></span> Comfortable clothes</div>
-        <div class="pricing-include-item"><span class="pricing-include-dot"></span> Dance shoes or shoes with a smooth sole</div>
-        <div class="pricing-include-item"><span class="pricing-include-dot"></span> A bottle of water and a towel</div>
-      </div>
-
-      <p class="pricing-footnote">
-        A Shoonya ID is required to register. Don't have one? Create yours free at shoonyadance.com.<br>
-        Minimum 10 participants for the session to run. Maximum 40.
-      </p>
-
-      <a class="pricing-cta" href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8" target="_blank" rel="noopener">
-        Register now — €35
-      </a>
     </div>
-
   </div>
 </section>
 
+<!-- PROGRAMME -->
+<section class="block deep" id="programme">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">The evening</p>
+      <h2 class="sec-head">Lindy Hop Bootcamp. <em>9 September 2026.</em></h2>
+      <p class="prog-note">Wednesday 9 September 2026 · Studio Ananta</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-name">Arrival &amp; warm-up</div></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-name">Lindy Hop core moves revisited</div><p class="timeline-desc">Drill swing outs, partnered Charleston, tuck turns, change of places and many more swing dance moves — with special attention for a comfortable connection, full body movement, clear rhythms and freedom in improvisation.</p></div>
+      <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-name">Social practice floor</div></div>
+    </div>
+    <div class="note-box reveal">
+      <svg class="note-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>
+      <p class="note-text"><strong>Everybody leads, everybody follows.</strong> This bootcamp uses an "everybody leads, everybody follows" approach. If you want to stick to one role, that is also fine.</p>
+    </div>
+  </div>
+</section>
 
+<!-- TEACHERS -->
+<section class="block" id="teachers">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Upside Down</p>
+      <h2 class="sec-head">Ann-Sofie <em>&amp; Sep</em></h2>
+    </div>
+    <div class="teach-cards">
+      <div class="teach-card reveal">
+        <div class="teach-card-photo"><img src="../assets/lindy-hop/ann-sofie.jpg" alt="Ann-Sofie Van Enis — Lindy Hop teacher" loading="lazy" style="object-position:40% 15%;"></div>
+        <div class="teach-card-body">
+          <p class="teach-role">Lindy Hop teacher</p>
+          <h3 class="teach-card-name">Ann-Sofie<br>Van Enis</h3>
+          <p class="teach-card-bio">An eternal student, Ann-Sofie likes to delve into the history of jazz music and dance, sharing her learning in each class. She introduces everyone to musicality and personal expression in an approachable way. In addition to teaching Lindy Hop and Solo Jazz, she organizes events and projects for Upside Down.</p>
+          <div class="teach-links">
+            <a href="https://www.instagram.com/annsofievanenis/" target="_blank" rel="noopener" aria-label="Ann-Sofie on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://plan-a.tips/dans/" target="_blank" rel="noopener" aria-label="Ann-Sofie's website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
+          </div>
+          <p class="teach-credit">Photo © Leyla Hesna</p>
+        </div>
+      </div>
+      <div class="teach-card reveal">
+        <div class="teach-card-photo"><img src="../assets/lindy-hop/sep.jpg" alt="Sep Vermeersch — Lindy Hop teacher" loading="lazy" style="object-position:center 18%;"></div>
+        <div class="teach-card-body">
+          <p class="teach-role">Lindy Hop teacher</p>
+          <h3 class="teach-card-name">Sep<br>Vermeersch</h3>
+          <p class="teach-card-bio">Sep is a Ghent-based dancer, active as a teacher, versatile artist, MC, DJ, and artistic director at Upside Down. His excellent reputation reaches far beyond Belgium's borders. Thanks to his great passion for the historical background of swing and jazz dance cultures and an inexhaustible creativity, he knows how to move young and old.</p>
+          <div class="teach-links">
+            <a href="https://www.instagram.com/sep.vermeersch/" target="_blank" rel="noopener" aria-label="Sep on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg></a>
+            <a href="https://www.sepvermeersch.be" target="_blank" rel="noopener" aria-label="Sep's website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
+          </div>
+          <p class="teach-credit">Photo © Juls Sobron</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- INTERLUDE -->
+<div class="interlude">
+  <img src="../assets/lindy-hop/action.jpg" alt="Lindy Hop dancing" loading="lazy">
+  <div class="interlude-overlay"></div>
+  <p class="interlude-cap">everybody leads, everybody follows</p>
+  <span class="interlude-credit">© Juls Sobrón / Upside Down</span>
+</div>
 
-<!-- ═══════════════════════════════════════════
-     8. REGISTER CTA
-═══════════════════════════════════════════ -->
-<section class="cta-section" id="register">
-  <p class="eyebrow" style="color:var(--accent); margin-bottom:24px;">Register</p>
+<!-- PRICING -->
+<section class="block deep" id="pricing">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Pricing</p>
+      <h2 class="sec-head">Pricing</h2>
+    </div>
+    <div class="price-wrap reveal">
+      <div class="price-card">
+        <div class="price-card-head">
+          <p class="price-card-name">Lindy Hop Bootcamp<br>9 September 2026</p>
+          <span class="price-card-tag">Intermediate</span>
+        </div>
+        <div class="price-row"><span class="price-amount">€35</span><span class="price-unit">per person</span></div>
+        <div class="price-divider"></div>
+        <div>
+          <p class="price-label">What's included</p>
+          <div class="price-item"><span class="price-dot"></span> 2.5 hours of structured Lindy Hop drilling</div>
+          <div class="price-item"><span class="price-dot"></span> Swing outs, partnered Charleston, tuck turns, change of places and more</div>
+          <div class="price-item"><span class="price-dot"></span> Both lead &amp; follow roles included</div>
+          <div class="price-item"><span class="price-dot"></span> Studio Ananta, Shoonya Dance Centre, Ghent</div>
+        </div>
+        <div class="price-divider"></div>
+        <div>
+          <p class="price-label">What to bring</p>
+          <div class="price-item"><span class="price-dot"></span> Comfortable clothes</div>
+          <div class="price-item"><span class="price-dot"></span> Dance shoes or shoes with a smooth sole</div>
+          <div class="price-item"><span class="price-dot"></span> A bottle of water and a towel</div>
+        </div>
+        <p class="price-foot">A Shoonya ID is required to register. Don't have one? Create yours free at shoonyadance.com.<br>Minimum 10 participants for the session to run. Maximum 40.</p>
+        <a class="btn-primary" href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8" target="_blank" rel="noopener">Register now — €35</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTER CTA -->
+<section class="cta-band" id="register">
+  <p class="eyebrow">Register</p>
   <h2 class="cta-title">Secure your place for 9 September</h2>
-  <p class="cta-sub">
-    Maximum 40 spots. You'll need a Shoonya ID to register — create one free if you don't have it yet.
-  </p>
-
+  <p class="cta-sub">Maximum 40 spots. You'll need a Shoonya ID to register — create one free if you don't have it yet.</p>
   <div class="cta-actions">
     <a class="btn-primary" href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8" target="_blank" rel="noopener">Register — €35</a>
     <a class="btn-ghost" href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Shoonya_ID/UrhOBSntgxQw9NmJAuwefjF4KDAAB8aam9rpDy0vxrbG92gjDyzbj6fzQQzsrMqEAk86BHC86TTtTM1eUsU1AVpjsGMH1wNDdnSy" target="_blank" rel="noopener">Create a Shoonya ID first</a>
   </div>
-
   <p class="cta-contact">Questions? <a href="https://shoonyadance.com/contact">Contact us at shoonyadance.com/contact</a></p>
 </section>
 
-
-<!-- ═══════════════════════════════════════════
-     9. FAQ  (AEO — structured for AI answer engines)
-═══════════════════════════════════════════ -->
-<section class="faq-section" id="faq">
-  <div class="section">
-    <p class="eyebrow">Common questions</p>
-    <h2 class="faq-title">FAQ</h2>
-
-    <div class="faq-list">
-
-      <details class="faq-item">
-        <summary>What is the Lindy Hop bootcamp at Shoonya?</summary>
-        <p class="faq-answer">A 2.5-hour Lindy Hop bootcamp on Wednesday 9 September 2026 (18:45–21:15) at Shoonya Dance Centre, Ghent — to refresh your vocabulary before the new season of dance classes. Taught by Ann-Sofie Van Enis and Sep Vermeersch. Drill swing outs, partnered Charleston, tuck turns, change of places and many more swing dance moves. Intermediate level. €35.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>What level do I need for this Lindy Hop bootcamp?</summary>
-        <p class="faq-answer">Intermediate — minimum 1 year of Lindy Hop experience, or having completed the Beginners series at Shoonya. The session assumes you already recognise what a swing out and basic Charleston look like. The aim is to refine and deepen those moves, not to introduce them for the first time.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Do I need a dance partner to attend?</summary>
-        <p class="faq-answer">No partner required. The bootcamp runs on a "everybody leads, everybody follows" basis — you'll practice both roles and rotate partners throughout. Come alone, come as a couple, come with a friend — everyone is welcome as an individual.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>What does "everybody leads, everybody follows" mean?</summary>
-        <p class="faq-answer">No one is assigned a fixed lead or follow role for the session. Every participant practices both roles. If you want to stick to one role, that is also fine.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>What moves will we drill?</summary>
-        <p class="faq-answer">Swing outs, partnered Charleston, tuck turns, change of places and many more swing dance moves — with special attention for a comfortable connection, full body movement, clear rhythms and freedom in improvisation.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Where is the bootcamp in Ghent?</summary>
-        <p class="faq-answer">Studio Ananta, inside Shoonya Dance Centre at Stapelplein 41, 9000 Ghent (Gent), Belgium. Studio Ananta consists of two adjoining studios — Ananta 1 (80m²) and Ananta 2 (60m²) — giving 140 square metres of dance floor for this bootcamp. More at shoonyadance.com.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>How much does it cost and what's included?</summary>
-        <p class="faq-answer">€35 per person. Covers the full 2.5-hour session. A Shoonya ID is required to register — free to create at shoonyadance.com. Minimum 10 participants for the session to run. Maximum 40.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>How do I register?</summary>
-        <p class="faq-answer">Use the Register button on this page. You'll need a Shoonya ID first — it's free and takes two minutes to create. If you're attending with a partner, each person needs their own Shoonya ID. For questions visit <a href="https://shoonyadance.com/contact" style="color:var(--accent);">shoonyadance.com/contact</a>.</p>
-      </details>
-
+<!-- FAQ -->
+<section class="block deep" id="faq">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Common questions</p>
+      <h2 class="sec-head">FAQ</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item"><summary>What is the Lindy Hop bootcamp at Shoonya?</summary><p class="faq-answer">A 2.5-hour Lindy Hop bootcamp on Wednesday 9 September 2026 (18:45–21:15) at Shoonya Dance Centre, Ghent — to refresh your vocabulary before the new season of dance classes. Taught by Ann-Sofie Van Enis and Sep Vermeersch. Drill swing outs, partnered Charleston, tuck turns, change of places and many more swing dance moves. Intermediate level. €35.</p></details>
+      <details class="faq-item"><summary>What level do I need for this Lindy Hop bootcamp?</summary><p class="faq-answer">Intermediate — minimum 1 year of Lindy Hop experience, or having completed the Beginners series at Shoonya. The session assumes you already recognise what a swing out and basic Charleston look like. The aim is to refine and deepen those moves, not to introduce them for the first time.</p></details>
+      <details class="faq-item"><summary>Do I need a dance partner to attend?</summary><p class="faq-answer">No partner required. The bootcamp runs on a "everybody leads, everybody follows" basis — you'll practice both roles and rotate partners throughout. Come alone, come as a couple, come with a friend — everyone is welcome as an individual.</p></details>
+      <details class="faq-item"><summary>What does "everybody leads, everybody follows" mean?</summary><p class="faq-answer">No one is assigned a fixed lead or follow role for the session. Every participant practices both roles. If you want to stick to one role, that is also fine.</p></details>
+      <details class="faq-item"><summary>What moves will we drill?</summary><p class="faq-answer">Swing outs, partnered Charleston, tuck turns, change of places and many more swing dance moves — with special attention for a comfortable connection, full body movement, clear rhythms and freedom in improvisation.</p></details>
+      <details class="faq-item"><summary>Where is the bootcamp in Ghent?</summary><p class="faq-answer">Studio Ananta, inside Shoonya Dance Centre at Stapelplein 41, 9000 Ghent (Gent), Belgium. Studio Ananta consists of two adjoining studios — Ananta 1 (80m²) and Ananta 2 (60m²) — giving 140 square metres of dance floor for this bootcamp. More at shoonyadance.com.</p></details>
+      <details class="faq-item"><summary>How much does it cost and what's included?</summary><p class="faq-answer">€35 per person. Covers the full 2.5-hour session. A Shoonya ID is required to register — free to create at shoonyadance.com. Minimum 10 participants for the session to run. Maximum 40.</p></details>
+      <details class="faq-item"><summary>How do I register?</summary><p class="faq-answer">Use the Register button on this page. You'll need a Shoonya ID first — it's free and takes two minutes to create. If you're attending with a partner, each person needs their own Shoonya ID. For questions visit <a href="https://shoonyadance.com/contact">shoonyadance.com/contact</a>.</p></details>
     </div>
   </div>
 </section>
 
-<section class="more-workshops" aria-label="More workshops at Shoonya">
-  <div class="more-inner">
-    <p class="more-label">More at Shoonya</p>
+<!-- MORE WORKSHOPS -->
+<section class="block" aria-label="More workshops at Shoonya">
+  <div class="wrap reveal">
+    <p class="eyebrow">More at Shoonya</p>
     <div class="more-grid">
-      <a class="more-item" href="https://workshops.shoonyadance.com/indian-dance-summer-intensive/">
-        <span class="more-item-left">
-          <span class="more-date">26–29 Aug 2026</span>
-          <span class="more-title">Indian Dance Summer Intensive</span>
-        </span>
-        <span class="more-arrow">→</span>
-      </a>
-      <a class="more-item" href="https://workshops.shoonyadance.com/round-trip-to-cuba/">
-        <span class="more-item-left">
-          <span class="more-date">23–24 Jan 2027</span>
-          <span class="more-title">Round Trip to Cuba</span>
-        </span>
-        <span class="more-arrow">→</span>
-      </a>
+      <a class="more-item" href="https://workshops.shoonyadance.com/indian-dance-summer-intensive/"><span><span class="more-date">26–29 Aug 2026</span><span class="more-title">Indian Dance Summer Intensive</span></span><span class="more-arrow">→</span></a>
+      <a class="more-item" href="https://workshops.shoonyadance.com/round-trip-to-cuba/"><span><span class="more-date">23–24 Jan 2027</span><span class="more-title">Round Trip to Cuba</span></span><span class="more-arrow">→</span></a>
     </div>
     <a class="more-hub" href="https://workshops.shoonyadance.com/">← All workshops</a>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════
-     10. FOOTER
-═══════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-logo">
-      <a href="https://shoonyadance.com">
-        <img src="../assets/logos/shoonyadance/shoonya-logo-white-nobg.png" alt="Shoonya Dance Centre">
-      </a>
+    <div class="footer-markline"><img src="../assets/shoonya-oo-mark-white.png" alt="">Shoonya Dance Centre<img src="../assets/shoonya-oo-mark-white.png" alt=""></div>
+    <p class="footer-address">Stapelplein 41 · 9000 Gent · Belgium</p>
+    <div class="footer-socials">
+      <a class="footer-social" href="https://instagram.com/shoonyadance" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg></a>
+      <a class="footer-social" href="https://facebook.com/shoonyadance" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l.5-4H13V7.5c0-1.1.3-1.9 2-1.9h2V2.1c-.4 0-1.5-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V10H6.5v4H10v8h3z"/></svg></a>
     </div>
-
-    <div class="footer-centre">
-      <p class="footer-address">
-        Shoonya Dance Centre<br>
-        Stapelplein 41 · 9000 Gent · Belgium
-      </p>
-    </div>
-
-    <div class="footer-right">
-      <div class="footer-socials">
-        <a class="footer-social-link" href="https://instagram.com/shoonyadance" aria-label="Instagram" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/>
-          </svg>
-        </a>
-        <a class="footer-social-link" href="https://facebook.com/shoonyadance" aria-label="Facebook" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13 22v-8h3l.5-4H13V7.5c0-1.1.3-1.9 2-1.9h2V2.1c-.4 0-1.5-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V10H6.5v4H10v8h3z"/>
-          </svg>
-        </a>
-      </div>
-      <span class="footer-site">shoonyadance.com</span>
-    </div>
+    <span class="footer-site">shoonyadance.com</span>
   </div>
 </footer>
+
+<script src="../lib/gsap.min.js"></script>
+<script src="../lib/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 40); };
+  window.addEventListener('scroll', onScroll, { passive:true }); onScroll();
+
+  var l1 = document.querySelector('.hero-title .l1');
+  if (l1) { l1.innerHTML = l1.textContent.split(' ').map(function(w,i){ return '<span class="w" style="animation-delay:'+(0.35+i*0.1)+'s">'+w+'</span>'; }).join(' '); }
+  var acc = document.querySelector('.hero-title .accent');
+  if (acc) { acc.classList.add('w'); acc.style.animationDelay = '0.65s'; }
+
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || reduced) { els.forEach(function(e){ e.classList.add('in'); }); }
+  else { var io = new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin:'0px 0px -80px 0px' }); els.forEach(function(e){ io.observe(e); }); }
+
+  if (!reduced && window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to('.hero-media img', { yPercent: 12, ease:'none', scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:0.6 } });
+  }
+})();
+</script>
 
 </body>
 </html>

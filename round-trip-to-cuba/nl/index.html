@@ -202,1141 +202,309 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@300;400;500;600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-
-/* ─── Reset & base ──────────────────────────────────────── */
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:                #0B090F;
-  --bg-deep:           #100E14;
-  --accent:            #B25A2A;
-  --accent-rgb:        178, 90, 42;
-  --accent-light:      #C96E3C;
-  --brand:             #B564F7;
-  --text:              #FFFFFF;
-  --text-muted:        rgba(255,255,255,0.60);
-  --text-dim:          rgba(255,255,255,0.50);   /* functional secondary labels — WCAG AA */
-  --text-atmospheric:  rgba(255,255,255,0.32);   /* decorative only — scroll, dividers */
-  --cream:             #F5F1EC;
-  --cream-mid:         #EDE8E1;
-  --dark-ink:          #1C1008;
-  --dark-ink-mid:      rgba(28,16,8,0.64);
-  --border-w:          rgba(255,255,255,0.09);
-  --border-c:          rgba(var(--accent-rgb),0.28);
-  --max:               1200px;
-  --gutter:            clamp(24px, 5vw, 80px);
+  --bg:        #0B090F;
+  --surface:   #100E14;
+  --text:      #FFFFFF;
+  --muted:     rgba(255,255,255,0.62);
+  --dim:       rgba(255,255,255,0.42);
+  --border-w:  rgba(255,255,255,0.09);
+  --border-m:  rgba(255,255,255,0.22);
+  --purple:    #B564F7;
+  --cuba:      #C96E3C;          /* Cuban warmth — workshop signature hue only */
+  --ease-cine: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html { scroll-behavior: smooth; }
-
 body {
-  background: var(--bg);
+  font-family: 'PT Serif', Georgia, serif;
   color: var(--text);
-  font-family: 'Inter', sans-serif;
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
-
-img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-
-.container { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-.section { padding: clamp(72px, 10vw, 140px) var(--gutter); max-width: var(--max); margin: 0 auto; }
-
+img { display: block; }
 .eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 20px;
-}
-
-.serif { font-family: 'Playfair Display', serif; }
-
-/* ─── Passkey gate ──────────────────────────────────────── */
-#passgate {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-
-.pg-card {
-  max-width: 460px;
-  width: 100%;
-  text-align: center;
-}
-
-.pg-logo {
-  height: 30px;
-  width: auto;
-  margin: 0 auto 44px;
-  opacity: 0.80;
-}
-
-.pg-eyebrow {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 16px;
-}
-
-.pg-title {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 34px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.88);
-  margin-bottom: 16px;
-  line-height: 1.1;
-}
-
-.pg-desc {
-  font-size: 14px;
-  color: var(--text-muted);
-  line-height: 1.75;
-  margin-bottom: 40px;
-  max-width: 360px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#pg-form {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 14px;
-}
-
-.pg-input {
-  flex: 1;
-  padding: 14px 18px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 8px;
   font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  color: var(--text);
-  outline: none;
-  transition: border-color 0.2s;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--purple);
 }
 
-.pg-input::placeholder { color: var(--text-dim); }
-.pg-input:focus { border-color: var(--accent); }
-
-.pg-input.shake {
-  animation: pgshake 0.4s ease;
-  border-color: #e05050;
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 60% at 75% -10%, rgba(181,100,247,0.08), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 5% 110%, rgba(201,110,60,0.06), transparent 60%);
 }
 
-@keyframes pgshake {
-  0%, 100% { transform: translateX(0); }
-  20%       { transform: translateX(-8px); }
-  40%       { transform: translateX(8px); }
-  60%       { transform: translateX(-5px); }
-  80%       { transform: translateX(5px); }
-}
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease-cine), transform .8s var(--ease-cine); }
+.reveal.in { opacity: 1; transform: none; }
 
-.pg-btn {
-  padding: 14px 28px;
-  background: var(--accent);
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-
-.pg-btn:hover { background: var(--accent-light); }
-
-.pg-error {
-  display: none;
-  font-size: 12px;
-  color: #e05050;
-  margin-bottom: 10px;
-  min-height: 18px;
-}
-
-.pg-hint {
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 0.06em;
-  margin-top: 6px;
-}
-
-/* ─── Navigation ────────────────────────────────────────── */
+/* ── NAV ── */
 .nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 0 var(--gutter);
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(11,9,15,0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-w);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 0 clamp(20px,5vw,48px); height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: transparent; border-bottom: 1px solid transparent;
+  transition: background .4s ease, border-color .4s ease;
 }
-
-.nav-logo { display: flex; align-items: center; gap: 10px; }
-
-.nav-logo img { height: 28px; width: auto; opacity: 0.92; }
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 36px;
-  list-style: none;
-}
-
+.nav.scrolled { background: rgba(11,9,15,0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom-color: var(--border-w); }
+.nav-logo img { height: 40px; width: auto; }
+.nav-links { display: flex; gap: 26px; list-style: none; }
 .nav-links a {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  transition: color 0.2s;
+  font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.06em;
+  color: var(--muted); text-decoration: none; transition: color .18s;
 }
-
 .nav-links a:hover { color: var(--text); }
-
+.nav-right { display: flex; align-items: center; gap: 18px; }
+.nav-back, .nav-lang {
+  font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color .18s;
+}
+.nav-back:hover, .nav-lang:hover { color: var(--text); }
 .nav-cta {
-  display: inline-block;
-  padding: 14px 22px;
-  background: var(--accent);
-  color: #FFFFFF;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  border-radius: 100px;
-  transition: background 0.2s, transform 0.15s;
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text);
+  text-decoration: none; border: 1px solid var(--border-m); padding: 8px 18px;
+  transition: background .18s, color .18s, border-color .18s;
 }
+.nav-cta:hover { background: #fff; color: #000; border-color: #fff; }
+@media (max-width: 860px) { .nav-links { display: none; } }
 
-.nav-cta:hover { background: var(--accent-light); transform: translateY(-1px); }
-
-.nav-right { display: flex; align-items: center; gap: 20px; }
-.nav-lang {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  transition: color 0.2s;
-}
-.nav-lang:hover { color: var(--text); }
-
-/* ─── Hero ──────────────────────────────────────────────── */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  background: var(--bg);
-}
-
-.hero-photo {
-  position: absolute;
-  inset: 0;
-  background:
-    url('../../assets/trip-cuba/cd008a68-c142-4c98-ae10-6aaa75fc085b.JPG')
-    center 15% / cover no-repeat;
-  filter: brightness(0.72) contrast(1.06);
-}
-
-.hero-gradient {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to top,
-      rgba(11,9,15,1) 0%,
-      rgba(11,9,15,0.82) 28%,
-      rgba(11,9,15,0.30) 58%,
-      rgba(11,9,15,0) 80%),
-    linear-gradient(to right,
-      rgba(11,9,15,0.70) 0%,
-      rgba(11,9,15,0.25) 40%,
-      rgba(11,9,15,0) 65%);
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  padding: 80px var(--gutter) 80px;
-  max-width: var(--max);
-  width: 100%;
-  margin: 0 auto;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px 5px;
-  border: 1px solid rgba(var(--accent-rgb),0.6);
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 32px;
-}
-
-.hero-badge-dot {
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex-shrink: 0;
-}
-
+/* ── HERO ── */
+.hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; z-index: 1; }
+.hero-media { position: absolute; inset: 0; overflow: hidden; }
+.hero-media video, .hero-media .hero-poster { position:absolute; inset:-6% 0; width:100%; height:112%; object-fit:cover; object-position:center 45%; will-change:transform; }
+.hero-media .hero-poster { object-position:center 15%; }
+@keyframes drift { to { transform: scale(1); } }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,9,15,0.95) 0%, rgba(11,9,15,0.4) 48%, rgba(11,9,15,0.32) 100%); }
+.hero-inner { position: relative; z-index: 2; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px,5vw,48px) clamp(56px,9vh,96px); }
+.hero-eyebrow { margin-bottom: 22px; opacity: 0; animation: fadeup .9s var(--ease-cine) .2s forwards; }
 .hero-title {
-  font-family: 'Playfair Display', serif;
-  font-weight: 500;
-  line-height: 0.88;
-  letter-spacing: -0.03em;
-  margin-bottom: 28px;
-  max-width: 560px;
-}
-
-.hero-title .line1 {
-  display: block;
-  font-size: clamp(44px, 7vw, 80px);
-  color: rgba(255,255,255,0.88);
-}
-
-.hero-title .line2 {
-  display: block;
-  font-size: clamp(68px, 11vw, 130px);
-  font-style: italic;
-  color: var(--accent);
-  margin-top: 4px;
-}
-
-.hero-with {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 8px;
-}
-
-.hero-teachers {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: clamp(22px, 3vw, 32px);
-  color: rgba(255,255,255,0.92);
-  margin-bottom: 36px;
-}
-
-.hero-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 40px;
-}
-
-.hero-meta-item {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.72);
-}
-
-.hero-meta-icon { width: 14px; height: 14px; opacity: 0.5; flex-shrink: 0; }
-.hero-meta-sep { color: var(--border-w); font-size: 18px; line-height: 1; }
-
-.hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-
-.btn-primary {
-  display: inline-block;
-  padding: 16px 36px;
-  background: var(--accent);
-  color: #FFFFFF;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border-radius: 100px;
-  transition: background 0.2s, transform 0.15s;
-}
-
-.btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
-
-.btn-ghost {
-  display: inline-block;
-  padding: 15px 28px;
-  border: 1px solid rgba(255,255,255,0.22);
-  color: rgba(255,255,255,0.72);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  border-radius: 100px;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: var(--text); }
-
-.hero-scroll {
-  position: absolute;
-  bottom: 36px;
-  right: var(--gutter);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  opacity: 0.38;
-}
-
-.hero-scroll span {
-  font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  writing-mode: vertical-lr;
-}
-
-.hero-scroll-line {
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(to bottom, #FFF 0%, transparent 100%);
-}
-
-/* ─── Intro ─────────────────────────────────────────────── */
-.intro { background: var(--bg); border-bottom: 1px solid var(--border-w); }
-
-.intro-inner {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 80px;
-  align-items: start;
-}
-
-.intro-lead {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(22px, 2.8vw, 34px);
-  font-weight: 400;
-  line-height: 1.4;
-  color: rgba(255,255,255,0.88);
-  margin-bottom: 28px;
-}
-
-.intro-body {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--text-muted);
-  margin-bottom: 20px;
-}
-
-.intro-levels {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px 5px;
-  border: 1px solid var(--border-c);
-  border-radius: 100px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.intro-stats { display: flex; flex-direction: column; gap: 24px; padding-top: 8px; }
-
-.stat-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border-w);
-  border-radius: 12px;
-  padding: 24px 28px;
-}
-
-.stat-number {
-  font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  font-weight: 500;
-  color: var(--accent);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.stat-label {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-/* ─── Programme ─────────────────────────────────────────── */
-.programme-section { background: var(--bg-deep); }
-
-.programme-header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 56px;
-}
-
-.programme-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 5vw, 60px);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-  color: rgba(255,255,255,0.88);
-}
-
-.programme-title em { display: block; font-style: italic; color: var(--accent); }
-
-.programme-note {
-  font-size: 12px;
-  color: var(--text-dim);
-  letter-spacing: 0.06em;
-  max-width: 200px;
-  text-align: right;
-  line-height: 1.6;
-}
-
-.programme-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-  background: var(--border-w);
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 2px;
-}
-
-.day-column { background: var(--bg); padding: 40px 36px; }
-
-.day-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border-w);
-}
-
-.day-number {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: rgba(var(--accent-rgb),0.10);
-  border: 1px solid rgba(var(--accent-rgb),0.22);
-  border-radius: 100px;
-  padding: 4px 12px 3px;
-  flex-shrink: 0;
-}
-
-.day-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.88);
-}
-
-.day-date { font-size: 12px; color: var(--text-dim); letter-spacing: 0.08em; margin-top: 2px; }
-
-.session {
-  display: grid;
-  grid-template-columns: 96px 1fr;
-  gap: 16px;
-  align-items: start;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.session:last-child { border-bottom: none; }
-
-.session-time {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--text-dim);
-  padding-top: 2px;
-  white-space: nowrap;
-}
-
-.session-name {
-  font-size: 18px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.9);
-  line-height: 1.2;
-}
-
-.session-name span {
-  display: block;
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--text-dim);
-  letter-spacing: 0.06em;
-  margin-top: 4px;
-}
-
-.social-night-band { background: var(--bg-deep); border-radius: 0 0 16px 16px; }
-
-.social-night-inner {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--bg);
-  display: grid;
-  grid-template-columns: 1fr 400px;
-  gap: 0;
-  border: 1px solid rgba(255,255,255,0.07);
-}
-
-.social-night-photo { position: relative; overflow: hidden; min-height: 340px; }
-
-.social-night-photo img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 15%;
-  filter: brightness(0.75) saturate(0.92);
-}
-
-.social-night-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(11,9,15,0) 0%, rgba(11,9,15,0.65) 100%);
-}
-
-.social-night-content {
-  padding: 52px 48px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-}
-
-.social-night-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-.social-night-tag::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 1px;
-  background: var(--accent);
-}
-
-.social-night-title {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 36px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.92);
-  line-height: 1.1;
-}
-
-.social-night-body { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
-
-.social-night-price { display: flex; align-items: baseline; gap: 8px; margin-top: 4px; }
-
-.social-night-price .amount {
-  font-family: 'Playfair Display', serif;
-  font-size: 44px;
-  font-weight: 500;
-  color: var(--text);
-  line-height: 1;
-}
-
-.social-night-price .amount-label { font-size: 12px; letter-spacing: 0.08em; color: var(--text-dim); }
-
-/* ─── Teachers ──────────────────────────────────────────── */
-.teachers-section { background: var(--bg); overflow: hidden; }
-
-.teachers-inner {
-  display: grid;
-  grid-template-columns: 1fr 440px;
-  gap: 80px;
-  align-items: center;
-}
-
-.teachers-names {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: clamp(42px, 6vw, 72px);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  color: rgba(255,255,255,0.92);
-  margin-bottom: 8px;
-}
-
-.teachers-subtitle {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 36px;
-}
-
-.teacher-rule { width: 40px; height: 2px; background: var(--accent); margin-bottom: 32px; }
-
-.teachers-bio {
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.8;
-  color: var(--text-muted);
-  margin-bottom: 40px;
-}
-
-.teachers-credentials { display: flex; flex-direction: column; gap: 14px; }
-
-.credential { display: flex; align-items: flex-start; gap: 12px; }
-
-.credential-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--accent);
-  margin-top: 8px;
-  flex-shrink: 0;
-}
-
-.credential-text {
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.teachers-photo-wrap { position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 2/3; }
-
-.teachers-photo-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 20%;
-  filter: brightness(0.85) contrast(1.05);
-}
-
-.teachers-photo-vignette {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to bottom,
-      rgba(11,9,15,0.3) 0%,
-      rgba(11,9,15,0) 20%,
-      rgba(11,9,15,0) 75%,
-      rgba(11,9,15,0.55) 100%);
-}
-
-/* ─── Photo interlude ───────────────────────────────────── */
-.photo-interlude {
-  position: relative;
-  height: clamp(380px, 50vw, 620px);
-  overflow: hidden;
-  background: var(--bg);
-}
-
-.photo-interlude img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 35%;
-  filter: brightness(0.80) contrast(1.05) saturate(1.05);
-}
-
-.photo-interlude-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to bottom,
-      rgba(11,9,15,0.55) 0%,
-      rgba(11,9,15,0) 30%,
-      rgba(11,9,15,0) 65%,
-      rgba(11,9,15,0.65) 100%);
-}
-
-.photo-interlude-label {
-  position: absolute;
-  bottom: 36px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0 var(--gutter);
-  width: 100%;
-  max-width: var(--max);
-}
-
-.photo-caption {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: clamp(20px, 2.5vw, 28px);
-  color: rgba(255,255,255,0.82);
-  max-width: 560px;
-}
-
-/* ─── Pricing ───────────────────────────────────────────── */
-.pricing-section { background: var(--cream); }
-.pricing-section .eyebrow { color: var(--accent); }
-
-.pricing-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  color: var(--dark-ink);
-  margin-bottom: 56px;
-}
-
-.pricing-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.pass-card { border-radius: 16px; padding: 44px 40px; display: flex; flex-direction: column; }
-
-.pass-card.featured { background: var(--dark-ink); color: #FFFFFF; }
-
-.pass-card.featured .pass-tag {
-  display: inline-block;
-  padding: 5px 14px 4px;
-  background: var(--accent);
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  margin-bottom: 32px;
-  align-self: flex-start;
-}
-
-.pass-card.featured .pass-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 32px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.92);
-  margin-bottom: 8px;
-}
-
-.pass-card.featured .pass-desc {
-  font-size: 14px;
-  color: rgba(255,255,255,0.48);
-  line-height: 1.6;
-  margin-bottom: 40px;
-}
-
-.pass-prices { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
-
-.price-tier {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 22px;
-  border-radius: 10px;
-}
-
-.price-tier.earlybird { background: rgba(var(--accent-rgb),0.14); border: 1px solid var(--border-c); }
-.price-tier.regular   { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); }
-
-.tier-name { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; color: rgba(255,255,255,0.88); }
-.tier-note { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
-
-.tier-price { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 500; line-height: 1; }
-.price-tier.earlybird .tier-price { color: var(--accent-light); }
-.price-tier.regular   .tier-price { color: rgba(255,255,255,0.72); }
-
-.pass-includes { margin-top: auto; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.08); }
-
-.pass-includes-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  margin-bottom: 14px;
-}
-
-.include-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.56); margin-bottom: 8px; }
-.include-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-
-.secondary-cards { display: flex; flex-direction: column; gap: 16px; }
-
-.pass-card.secondary { background: var(--cream-mid); flex: 1; }
-
-.pass-card.secondary .pass-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  font-weight: 500;
-  color: var(--dark-ink);
-  margin-bottom: 6px;
-}
-
-.pass-card.secondary .pass-desc {
-  font-size: 13px;
-  color: var(--dark-ink-mid);
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
-
-.secondary-price-row { display: flex; align-items: baseline; gap: 6px; }
-
-.secondary-amount { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 500; color: var(--dark-ink); line-height: 1; }
-.secondary-unit   { font-size: 12px; font-weight: 500; letter-spacing: 0.06em; color: var(--dark-ink-mid); }
-
-.secondary-badge {
-  display: inline-block;
-  margin-top: 14px;
-  padding: 4px 12px 3px;
-  background: rgba(var(--accent-rgb),0.10);
-  border: 1px solid rgba(var(--accent-rgb),0.22);
-  border-radius: 100px;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-/* ─── CTA ───────────────────────────────────────────────── */
-.cta-section {
-  background: var(--bg-deep);
-  text-align: center;
-  padding: clamp(80px, 10vw, 140px) var(--gutter);
-}
-
-.cta-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 5vw, 56px);
-  font-weight: 500;
-  font-style: italic;
-  color: rgba(255,255,255,0.88);
-  max-width: 600px;
-  margin: 0 auto 16px;
-  line-height: 1.2;
-}
-
-.cta-sub { font-size: 15px; color: var(--text-muted); max-width: 440px; margin: 0 auto 40px; line-height: 1.7; }
-
-.cta-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.cta-contact { font-size: 13px; color: var(--text-dim); }
-
-.cta-contact a { color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
-.cta-contact a:hover { color: var(--text); }
-
-/* ─── FAQ ────────────────────────────────────────────────── */
-.faq-section { background: var(--bg); border-top: 1px solid var(--border-w); }
-
-.faq-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(32px, 4.5vw, 52px);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  color: rgba(255,255,255,0.88);
-  margin-bottom: 56px;
-}
-
-.faq-list { max-width: 720px; }
-
-.faq-item { border-bottom: 1px solid var(--border-w); list-style: none; }
-.faq-item:first-child { border-top: 1px solid var(--border-w); }
-
-.faq-item summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 22px 0;
-  font-size: 16px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.82);
-  cursor: pointer;
-  list-style: none;
-  transition: color 0.2s;
-}
-
+  font-family: 'Marcellus', Georgia, serif; font-weight: 400;
+  font-size: clamp(52px, 11vw, 150px); line-height: 0.96;
+  text-transform: uppercase; letter-spacing: 0.01em; margin-bottom: 24px;
+}
+.hero-title .w { display: inline-block; opacity: 0; transform: translateY(.35em); animation: wordup .9s var(--ease-cine) forwards; }
+.hero-title .cuba { color: var(--cuba); }
+.hero-with { font-size: 15px; font-style: italic; color: var(--muted); margin-bottom: 2px; opacity: 0; animation: fadeup .9s var(--ease-cine) .9s forwards; }
+.hero-teachers { font-family: 'Marcellus', Georgia, serif; font-size: clamp(22px,3vw,30px); margin-bottom: 28px; opacity: 0; animation: fadeup .9s var(--ease-cine) 1s forwards; }
+.hero-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 36px; opacity: 0; animation: fadeup .9s var(--ease-cine) 1.1s forwards; }
+.hero-meta-item { display: inline-flex; align-items: center; gap: 8px; font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.8); }
+.hero-meta-icon { width: 15px; height: 15px; color: var(--cuba); }
+.hero-meta-sep { color: var(--dim); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; opacity: 0; animation: fadeup .9s var(--ease-cine) 1.2s forwards; }
+.btn-primary, .btn-ghost {
+  font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
+  padding: 16px 32px; transition: background .22s, color .22s, border-color .22s;
+}
+.btn-primary { background: var(--purple); color: #fff; border: 1px solid var(--purple); }
+.btn-primary:hover { background: #fff; color: #000; border-color: #fff; }
+.btn-ghost { color: var(--text); border: 1px solid rgba(255,255,255,0.5); }
+.btn-ghost:hover { background: #fff; color: #000; border-color: #fff; }
+@keyframes fadeup { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@keyframes wordup { from { opacity: 0; transform: translateY(.35em); } to { opacity: 1; transform: none; } }
+
+/* ── MARQUEE ── */
+.marquee { position: relative; z-index: 5; background: var(--purple); color: #0B090F; overflow: hidden; padding: 18px 0; }
+.marquee-track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
+.marquee-chunk { font-family: 'Marcellus', Georgia, serif; font-size: clamp(20px,2.6vw,32px); text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap; padding-right: 0.8em; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── SECTION SHELL ── */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px,5vw,48px); }
+section.block { position: relative; z-index: 4; padding: clamp(80px,12vh,140px) 0; }
+section.block.deep { background: var(--surface); border-top: 1px solid var(--border-w); }
+.sec-head { font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: clamp(30px,5vw,60px); line-height: 1.04; text-transform: uppercase; margin-top: 14px; }
+.sec-head em { font-style: normal; color: var(--cuba); }
+
+/* intro */
+.intro-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(36px,5vw,80px); align-items: start; }
+.intro-lead { font-family: 'Marcellus', Georgia, serif; font-size: clamp(24px,3.2vw,38px); line-height: 1.18; margin: 14px 0 26px; }
+.intro-body { font-size: 17px; line-height: 1.75; color: var(--muted); margin-bottom: 18px; max-width: 560px; }
+.intro-levels { display: inline-block; margin-top: 10px; font-family: 'Inter',sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); border: 0.5px solid var(--border-w); padding: 8px 14px; }
+.stats { display: flex; flex-direction: column; gap: 16px; }
+.stat-card { border: 1px solid var(--border-w); background: var(--surface); padding: 28px 30px; }
+.stat-number { font-family: 'Marcellus', Georgia, serif; font-size: clamp(40px,5vw,58px); line-height: 1; }
+.stat-label { font-family: 'Inter',sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+
+/* programme */
+.prog-note { font-size: 15px; color: var(--muted); margin-top: 16px; }
+.prog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px,4vw,56px); margin-top: 56px; }
+.day-head { display: flex; align-items: baseline; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--border-w); margin-bottom: 8px; }
+.day-num { font-family: 'Inter',sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cuba); }
+.day-name { font-family: 'Marcellus', Georgia, serif; font-size: 26px; }
+.day-date { font-family: 'Inter',sans-serif; font-size: 12px; color: var(--dim); margin-top: 2px; }
+.session { display: grid; grid-template-columns: 110px 1fr; gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--border-w); }
+.session-time { font-family: 'Inter',sans-serif; font-size: 13px; color: var(--muted); padding-top: 3px; }
+.session-name { font-family: 'Marcellus', Georgia, serif; font-size: 20px; }
+.session-name span { display: block; font-family: 'PT Serif', serif; font-size: 14.5px; line-height: 1.6; color: var(--muted); margin-top: 6px; }
+
+/* social night band */
+.social-band { margin-top: 64px; border: 1px solid var(--border-w); background: var(--bg); display: grid; grid-template-columns: 1fr 1.2fr; overflow: hidden; }
+.social-photo { position: relative; min-height: 320px; overflow: hidden; }
+.social-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.social-content { padding: clamp(32px,4vw,56px); display: flex; flex-direction: column; justify-content: center; }
+.social-tag { font-family: 'Inter',sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cuba); margin-bottom: 12px; }
+.social-title { font-family: 'Marcellus', Georgia, serif; font-size: clamp(30px,4vw,46px); margin-bottom: 16px; }
+.social-body { font-size: 16px; line-height: 1.7; color: var(--muted); margin-bottom: 22px; }
+.social-price { display: flex; align-items: baseline; gap: 12px; }
+.social-price .amount { font-family: 'Marcellus', Georgia, serif; font-size: 32px; color: var(--cuba); }
+.social-price .amount-label { font-size: 13px; color: var(--dim); }
+
+/* teachers — pinned split */
+.teach-grid { display: grid; grid-template-columns: 1fr 0.85fr; gap: clamp(40px,5vw,80px); align-items: start; }
+.teach-left { position: sticky; top: 100px; }
+.teach-names { font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: clamp(44px,6vw,84px); line-height: 0.98; text-transform: uppercase; margin: 14px 0 14px; }
+.teach-sub { font-family: 'Inter',sans-serif; font-size: 13px; letter-spacing: 0.06em; color: var(--cuba); margin-bottom: 26px; }
+.teach-bio { font-size: 17px; line-height: 1.8; color: var(--muted); margin-bottom: 28px; }
+.creds { display: flex; flex-direction: column; gap: 14px; }
+.cred { display: flex; gap: 12px; align-items: flex-start; }
+.cred-dot { width: 6px; height: 6px; background: var(--cuba); margin-top: 9px; flex-shrink: 0; }
+.cred-text { font-size: 15px; line-height: 1.65; color: var(--muted); }
+.teach-photo { position: relative; overflow: hidden; border: 1px solid var(--border-w); }
+.teach-photo img { width: 100%; height: auto; display: block; }
+.photo-credit { position: absolute; bottom: 8px; right: 10px; font-family: 'Inter',sans-serif; font-size: 10px; color: rgba(255,255,255,0.55); letter-spacing: 0.04em; text-shadow: 0 1px 4px rgba(0,0,0,0.85); pointer-events: none; }
+
+/* photo interlude — full photo shown sharp + centered over a blurred fill (no crop) */
+.interlude { position: relative; z-index: 4; height: 80vh; min-height: 460px; overflow: hidden; background: #0B090F; display: flex; align-items: center; justify-content: center; }
+.interlude-blur { position: absolute; inset: 0; }
+.interlude-blur img { width: 100%; height: 100%; object-fit: cover; filter: blur(30px) brightness(0.42); transform: scale(1.18); }
+.interlude-fg { position: relative; height: 100%; padding: 6vh 0; }
+.interlude-fg img { height: 100%; width: auto; max-width: 92vw; object-fit: contain; }
+.interlude-cap { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-family: 'Inter',sans-serif; font-size: 12px; letter-spacing: 0.04em; color: rgba(255,255,255,0.65); text-shadow: 0 1px 6px rgba(0,0,0,0.9); }
+
+/* why credentials full */
+.why-creds { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 40px; margin-top: 40px; }
+
+/* pricing */
+.price-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; margin-top: 56px; }
+.pass-card { border: 1px solid var(--border-w); background: var(--bg); padding: clamp(28px,3vw,44px); display: flex; flex-direction: column; }
+.pass-card.featured { border-color: var(--purple); background: linear-gradient(180deg, rgba(181,100,247,0.06), transparent); }
+.pass-tag { align-self: flex-start; font-family: 'Inter',sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #0B090F; background: var(--purple); padding: 5px 11px; margin-bottom: 18px; }
+.pass-name { font-family: 'Marcellus', Georgia, serif; font-size: 26px; margin-bottom: 10px; }
+.pass-desc { font-size: 15px; line-height: 1.65; color: var(--muted); margin-bottom: 24px; }
+.price-tier { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-top: 1px solid var(--border-w); }
+.tier-name { font-family: 'Inter',sans-serif; font-size: 14px; font-weight: 500; }
+.tier-note { font-family: 'Inter',sans-serif; font-size: 11.5px; color: var(--dim); margin-top: 3px; }
+.tier-price { font-family: 'Marcellus', Georgia, serif; font-size: 30px; }
+.price-tier.earlybird .tier-price { color: var(--purple); }
+.pass-includes { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border-w); }
+.pass-includes-label { font-family: 'Inter',sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 14px; }
+.include-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.6; color: var(--muted); margin-bottom: 10px; }
+.include-dot { width: 5px; height: 5px; background: var(--purple); margin-top: 8px; flex-shrink: 0; }
+.secondary-cards { display: flex; flex-direction: column; gap: 24px; }
+.pass-card.secondary { background: var(--surface); }
+.secondary-price-row { display: flex; align-items: baseline; gap: 10px; margin-top: auto; }
+.secondary-amount { font-family: 'Marcellus', Georgia, serif; font-size: 30px; }
+.secondary-unit { font-size: 13px; color: var(--dim); }
+.secondary-badge { display: inline-block; margin-top: 14px; font-family: 'Inter',sans-serif; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--dim); border: 0.5px solid var(--border-w); padding: 6px 11px; align-self: flex-start; }
+
+/* CTA band */
+.cta-band { position: relative; z-index: 4; background: #000; text-align: center; padding: clamp(90px,14vh,150px) clamp(20px,5vw,48px); }
+.cta-title { font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: clamp(32px,5vw,64px); line-height: 1.06; text-transform: uppercase; margin: 22px 0 18px; }
+.cta-sub { font-size: 17px; line-height: 1.7; color: var(--muted); max-width: 560px; margin: 0 auto 38px; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.cta-contact { margin-top: 26px; font-size: 14px; color: var(--dim); }
+.cta-contact a { color: var(--text); }
+
+/* FAQ */
+.faq-list { margin-top: 48px; border-top: 1px solid var(--border-w); }
+.faq-item { border-bottom: 1px solid var(--border-w); }
+.faq-item summary { list-style: none; cursor: pointer; padding: 24px 40px 24px 0; position: relative; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px,2.2vw,23px); }
 .faq-item summary::-webkit-details-marker { display: none; }
-.faq-item[open] summary { color: var(--text); }
-.faq-item summary:hover { color: var(--text); }
+.faq-item summary::after { content: '+'; position: absolute; right: 4px; top: 22px; font-family: 'Inter',sans-serif; font-size: 24px; color: var(--purple); transition: transform .25s; }
+.faq-item[open] summary::after { content: '−'; }
+.faq-answer { padding: 0 40px 26px 0; font-size: 15.5px; line-height: 1.75; color: var(--muted); }
+.faq-answer a { color: var(--purple); }
 
-.faq-item summary::after {
-  content: '+';
-  font-size: 20px;
-  font-weight: 300;
-  color: var(--accent);
-  flex-shrink: 0;
-  transition: transform 0.25s;
-}
+/* more workshops */
+.more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+.more-item { display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--border-w); background: var(--surface); padding: 24px 28px; text-decoration: none; transition: border-color .2s; }
+.more-item:hover { border-color: var(--border-m); }
+.more-date { display: block; font-family: 'Inter',sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cuba); margin-bottom: 6px; }
+.more-title { font-family: 'Marcellus', Georgia, serif; font-size: 19px; color: var(--text); }
+.more-arrow { color: var(--purple); font-size: 20px; }
+.more-hub { display: inline-block; margin-top: 28px; font-family: 'Inter',sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+.more-hub:hover { color: var(--text); }
 
-.faq-item[open] summary::after { transform: rotate(45deg); }
+/* footer */
+.footer { position: relative; z-index: 4; background: #000; padding: 64px clamp(20px,5vw,48px) 56px; }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 26px; }
+.footer-markline { display: flex; align-items: center; gap: 12px; font-family: 'Marcellus', Georgia, serif; font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.85); }
+.footer-markline img { height: 14px; width: auto; opacity: 0.75; }
+.footer-address { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.5); text-align: center; }
+.footer-socials { display: flex; gap: 18px; }
+.footer-social { color: rgba(255,255,255,0.5); transition: color .18s; }
+.footer-social:hover { color: #fff; }
+.footer-social svg { width: 18px; height: 18px; display: block; }
+.footer-site { font-family: 'Inter',sans-serif; font-size: 12px; letter-spacing: 0.08em; color: var(--dim); }
 
-.faq-answer {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.75;
-  color: var(--text-muted);
-  padding-bottom: 24px;
-  max-width: 620px;
-}
+/* passkey gate */
+#passgate { position: fixed; inset: 0; z-index: 999; background: rgba(11,9,15,0.97); display: flex; align-items: center; justify-content: center; padding: 24px; }
+.pg-card { max-width: 420px; text-align: center; }
+.pg-logo { height: 40px; width: auto; margin: 0 auto 28px; opacity: 0.9; }
+.pg-eyebrow { font-family: 'Inter',sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cuba); margin-bottom: 16px; }
+.pg-title { font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: 46px; line-height: 1; text-transform: uppercase; margin-bottom: 22px; }
+.pg-title em { font-style: normal; color: var(--cuba); }
+.pg-desc { font-size: 15px; line-height: 1.6; color: var(--muted); margin-bottom: 26px; }
+.pg-error { display: none; font-family: 'Inter',sans-serif; font-size: 13px; color: #e06c5a; margin-bottom: 14px; }
+.pg-input { width: 100%; background: transparent; border: 1px solid var(--border-m); color: #fff; font-family: 'Inter',sans-serif; font-size: 15px; padding: 14px 16px; margin-bottom: 12px; text-align: center; }
+.pg-input:focus { outline: none; border-color: var(--cuba); }
+.pg-btn { width: 100%; background: var(--purple); color: #fff; border: none; font-family: 'Inter',sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 15px; cursor: pointer; }
+.pg-hint { margin-top: 18px; font-size: 12.5px; color: var(--dim); }
+.pg-input.shake { animation: shake .4s; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
-/* ─── Footer ────────────────────────────────────────────── */
-.footer { background: var(--bg); border-top: 1px solid var(--border-w); padding: 52px var(--gutter); }
-
-.footer-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-
-.footer-logo img { height: 26px; width: auto; opacity: 0.72; }
-.footer-centre { text-align: center; }
-.footer-address { font-size: 12px; color: var(--text-dim); letter-spacing: 0.06em; line-height: 1.8; }
-.footer-right { display: flex; align-items: center; gap: 20px; }
-.footer-socials { display: flex; align-items: center; gap: 16px; }
-.footer-social-link { color: var(--text-dim); transition: color 0.2s; }
-.footer-social-link:hover { color: var(--text-muted); }
-.footer-social-link svg { width: 18px; height: 18px; }
-.footer-site { font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; }
-
-/* ─── Responsive ────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .intro-inner { grid-template-columns: 1fr; gap: 48px; }
-  .intro-stats { flex-direction: row; gap: 16px; }
-  .stat-card { flex: 1; }
-  .teachers-inner { grid-template-columns: 1fr; gap: 48px; }
-  .teachers-photo-wrap { max-width: 340px; aspect-ratio: 3/4; }
-  .pricing-grid { grid-template-columns: 1fr; }
-  .social-night-inner { grid-template-columns: 1fr; }
-  .social-night-photo { min-height: 260px; }
-  .social-night-overlay { background: linear-gradient(to bottom, rgba(11,9,15,0) 0%, rgba(11,9,15,0.65) 100%); }
-  .programme-header { flex-direction: column; align-items: flex-start; gap: 12px; margin-bottom: 40px; }
-  .programme-note { text-align: left; max-width: none; }
-}
-
-@media (max-width: 640px) {
-  .nav-links { display: none; }
-  .hero-content { padding-top: 96px; }
-  .programme-grid { grid-template-columns: 1fr; }
-  .day-column { padding: 28px 20px; }
-  .session { grid-template-columns: 80px 1fr; }
-  .pass-card { padding: 32px 24px; }
-  .pricing-title { margin-bottom: 36px; }
-  .hero-meta-sep { display: none; }
-  .hero-meta { gap: 8px; }
-  .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
-  .footer-centre { text-align: left; }
-  .intro-stats { flex-direction: column; }
-  #pg-form { flex-direction: column; }
-  .pg-btn { width: 100%; }
-}
-
-/* ─── Accessibility ─────────────────────────────────────── */
-.sr-only {
-  position: absolute;
-  width: 1px; height: 1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-}
-
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 3px;
-}
-
-.btn-primary:focus-visible,
-.btn-ghost:focus-visible,
-.nav-cta:focus-visible,
-.pg-btn:focus-visible {
-  border-radius: 100px;
-}
-
-.faq-item summary:focus-visible {
-  border-radius: 0;
-  outline-offset: -2px;
-}
-
+/* reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-  }
+  html { scroll-behavior: auto; }
+  .hero-media video { display: none; }
+  .hero-eyebrow,.hero-with,.hero-teachers,.hero-meta,.hero-actions,.hero-title .w { animation: none; opacity: 1; transform: none; }
+  .marquee-track { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .teach-left { position: static; }
 }
 
+/* responsive */
+@media (max-width: 900px) {
+  .intro-grid, .prog-grid, .social-band, .teach-grid, .why-creds, .price-grid, .more-grid { grid-template-columns: 1fr; }
+  .teach-left { position: static; }
+  .social-photo { min-height: 240px; }
+}
+@media (max-width: 640px) {
+  .hero-title { white-space: normal; }
+  .session { grid-template-columns: 90px 1fr; gap: 12px; }
+  .faq-item summary, .faq-answer { padding-right: 30px; }
+}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     PASSKEY GATE
-     Actief tot middernacht 14 juni 2026.
-     Wachtwoord: havana41
-═══════════════════════════════════════════ -->
+<!-- PASSKEY GATE — active until midnight 14 June 2026 · passphrase: havana41 -->
 <script>
 (function () {
-  var PASS       = 'havana41';
-  var UNLOCK_KEY = 'rtc_2027_unlocked';
-  var LOCK_UNTIL = new Date('2026-06-15T00:00:00');
-
+  var PASS='havana41', UNLOCK_KEY='rtc_2027_unlocked', LOCK_UNTIL=new Date('2026-06-15T00:00:00');
   if (new Date() >= LOCK_UNTIL) return;
   if (localStorage.getItem(UNLOCK_KEY) === '1') return;
-
-  var overlay = document.createElement('div');
-  overlay.id = 'passgate';
-  overlay.innerHTML = [
+  var overlay=document.createElement('div'); overlay.id='passgate';
+  overlay.innerHTML=[
     '<div class="pg-card">',
     '  <img class="pg-logo" src="../../assets/logos/shoonyadance/shoonya-logo-white-nobg.png" alt="Shoonya Dance Centre">',
-    '  <p class="pg-eyebrow">Weekendintensief &nbsp;·&nbsp; Januari 2027</p>',
+    '  <p class="pg-eyebrow">Weekend Intensive &nbsp;·&nbsp; January 2027</p>',
     '  <h2 class="pg-title">Round Trip to<br><em>Cuba</em></h2>',
-    '  <p class="pg-desc">Deze pagina is momenteel alleen beschikbaar voor Shoonya-leden en vroege inschrijvers.<br>Voer de toegangscode in om verder te gaan.</p>',
-    '  <p class="pg-error" id="pg-error">Onjuiste toegangscode. Probeer opnieuw.</p>',
+    '  <p class="pg-desc">This page is currently open to Shoonya members and early registrants only.<br>Enter the passphrase to continue.</p>',
+    '  <p class="pg-error" id="pg-error">Incorrect passphrase. Try again.</p>',
     '  <form id="pg-form" autocomplete="off">',
     '    <label for="pg-input" class="sr-only">Toegangscode</label>',
     '    <input id="pg-input" class="pg-input" type="password" placeholder="Toegangscode" autocomplete="off">',
@@ -1345,394 +513,190 @@ a { color: inherit; text-decoration: none; }
     '  <p class="pg-hint">Hint: je kent deze studio.</p>',
     '</div>'
   ].join('');
-
-  document.documentElement.style.overflow = 'hidden';
-
-  document.addEventListener('DOMContentLoaded', function () {
-    document.body.prepend(overlay);
-    var input = document.getElementById('pg-input');
-    if (input) input.focus();
-  });
-
-  document.addEventListener('submit', function (e) {
-    if (e.target.id !== 'pg-form') return;
-    e.preventDefault();
-
-    var input = document.getElementById('pg-input');
-    var error = document.getElementById('pg-error');
-    var val   = (input.value || '').trim().toLowerCase();
-
-    if (val === PASS.toLowerCase()) {
-      localStorage.setItem(UNLOCK_KEY, '1');
-      document.documentElement.style.overflow = '';
-      overlay.style.transition = 'opacity 0.5s ease';
-      overlay.style.opacity    = '0';
-      setTimeout(function () { overlay.remove(); }, 520);
-    } else {
-      error.style.display = 'block';
-      input.classList.remove('shake');
-      void input.offsetWidth;
-      input.classList.add('shake');
-      input.value = '';
-      input.focus();
-    }
+  document.documentElement.style.overflow='hidden';
+  document.addEventListener('DOMContentLoaded', function(){ document.body.prepend(overlay); var i=document.getElementById('pg-input'); if(i) i.focus(); });
+  document.addEventListener('submit', function(e){
+    if (e.target.id!=='pg-form') return; e.preventDefault();
+    var input=document.getElementById('pg-input'), error=document.getElementById('pg-error'), val=(input.value||'').trim().toLowerCase();
+    if (val===PASS.toLowerCase()) {
+      localStorage.setItem(UNLOCK_KEY,'1'); document.documentElement.style.overflow='';
+      overlay.style.transition='opacity .5s ease'; overlay.style.opacity='0'; setTimeout(function(){overlay.remove();},520);
+    } else { error.style.display='block'; input.classList.remove('shake'); void input.offsetWidth; input.classList.add('shake'); input.value=''; input.focus(); }
   });
 }());
 </script>
 
-
-<!-- ═══════════════════════════════════════════
-     NAVIGATIE
-═══════════════════════════════════════════ -->
-<nav class="nav" aria-label="Hoofdnavigatie">
+<!-- NAV -->
+<nav class="nav" id="nav" aria-label="Main navigation">
   <a class="nav-logo" href="https://shoonyadance.com">
-    <img src="../../assets/logos/shoonyadance/shoonya-logo-white-nobg.png" alt="Shoonya Dance Centre">
+    <img src="../../assets/shoonya-logo-script-purple.png" alt="Shoonya Dance Centre">
   </a>
-
   <ul class="nav-links">
     <li><a href="#programme">Programma</a></li>
     <li><a href="#teachers">Leraren</a></li>
     <li><a href="#pricing">Prijzen</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-
   <div class="nav-right">
+    <a class="nav-back" href="https://workshops.shoonyadance.com/nl/">← Workshops</a>
     <a class="nav-lang" href="../" hreflang="en" lang="en" aria-label="English version">EN</a>
     <a class="nav-cta" href="#register">Inschrijven</a>
   </div>
 </nav>
 
-
-<!-- ═══════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════ -->
-<section class="hero" id="top">
-  <div class="hero-photo"></div>
-  <div class="hero-gradient"></div>
-
-  <div class="hero-content">
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      Weekendintensief &nbsp;·&nbsp; Cubaanse Salsa
-    </div>
-
-    <h1 class="hero-title">
-      <span class="line1">Round Trip to</span>
-      <em class="line2">Cuba</em>
-    </h1>
-
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-media">
+    <img class="hero-poster" src="../../assets/trip-cuba/cd008a68-c142-4c98-ae10-6aaa75fc085b.JPG" alt="Round Trip to Cuba">
+    <video id="hero-video-el" autoplay loop muted playsinline preload="auto" poster="../../assets/trip-cuba/cd008a68-c142-4c98-ae10-6aaa75fc085b.JPG">
+      <source src="../hero-video.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow eyebrow">Weekendintensief · Cubaanse Salsa</p>
+    <h1 class="hero-title" id="hero-title"><span class="l1">Round Trip to</span> <span class="cuba">Cuba</span></h1>
     <p class="hero-with">met</p>
     <p class="hero-teachers">Wilmer &amp; Maria</p>
-
     <div class="hero-meta">
-      <span class="hero-meta-item">
-        <svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-        23–24 januari 2027
-      </span>
+      <span class="hero-meta-item"><svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>23–24 januari 2027</span>
       <span class="hero-meta-sep">·</span>
-      <span class="hero-meta-item">
-        <svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-        6 meesterklassen
-      </span>
+      <span class="hero-meta-item"><svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>6 meesterklassen</span>
       <span class="hero-meta-sep">·</span>
-      <span class="hero-meta-item">
-        <svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Studio Art Deco, Gent
-      </span>
+      <span class="hero-meta-item"><svg class="hero-meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Studio Art Deco, Gent</span>
       <span class="hero-meta-sep">·</span>
       <span class="hero-meta-item">Alle niveaus welkom</span>
     </div>
-
     <div class="hero-actions">
       <a class="btn-primary" href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8" target="_blank" rel="noopener">Schrijf je in — vanaf €110</a>
       <a class="btn-ghost" href="#programme">Bekijk het programma</a>
     </div>
   </div>
+</header>
 
-  <div class="hero-scroll">
-    <div class="hero-scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════
-     OVER DIT INTENSIEF
-═══════════════════════════════════════════ -->
-<section class="intro">
-  <div class="section">
-    <div class="intro-inner">
-      <div>
-        <p class="eyebrow">Over dit intensief</p>
-        <p class="intro-lead">Zes klassen. Twee dagen. Een diepe duik in de ziel van de Cubaanse dans.</p>
-        <p class="intro-body">
-          Dit weekendintensief neemt je mee door het volledige spectrum van de Cubaanse beweging —
-          van de gegronde ritmes van de Son Cubano tot de elektrische energie van de Afrotimba Fusión.
-          Begeleid door Wilmer &amp; Maria, een van de meest gerespecteerde Cubaanse Salsa-duo's op
-          het internationale podium, bouwt elke sessie voort op de vorige.
-        </p>
-        <p class="intro-body">
-          Georganiseerd in Studio Art Deco in Shoonya Dance Centre, Gents huis van werelddans.
-          Sluit het weekend af met een sociaal dansfeest op zaterdagavond vanaf 21:00.
-        </p>
-        <span class="intro-levels">Alle niveaus welkom — Beginner · Intermediate · Gevorderd</span>
-      </div>
-
-      <div class="intro-stats">
-        <div class="stat-card">
-          <div class="stat-number">6</div>
-          <div class="stat-label">Meesterklassen</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">2</div>
-          <div class="stat-label">Volle dagen Cubaanse dans</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-number">€110</div>
-          <div class="stat-label">Vroegboekprijs vanaf</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════
-     PROGRAMMA
-═══════════════════════════════════════════ -->
-<section class="programme-section" id="programme">
-  <div class="section">
-    <div class="programme-header">
-      <h2 class="programme-title">
-        Het volledige
-        <em>programma</em>
-      </h2>
-      <p class="programme-note">Elke les duurt 60 minuten met 15 minuten pauze tussen de sessies.</p>
-    </div>
-
-    <div class="programme-grid">
-      <!-- Zaterdag -->
-      <div class="day-column">
-        <div class="day-header">
-          <span class="day-number">Dag 1</span>
-          <div>
-            <div class="day-name">Zaterdag</div>
-            <div class="day-date">23 januari 2027</div>
-          </div>
-        </div>
-
-        <div class="session">
-          <span class="session-time">15:00–16:00</span>
-          <div>
-            <div class="session-name">Afrocuban
-              <span>West-Afrikaanse wortels van de Cubaanse beweging — ritme, lichaamsisolatie, gegronde energie</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="session">
-          <span class="session-time">16:15–17:15</span>
-          <div>
-            <div class="session-name">Rumba Cubana
-              <span>Het hart van de Cubaanse dans — improvisatie, flirtation, conversatie</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="session">
-          <span class="session-time">17:30–18:30</span>
-          <div>
-            <div class="session-name">Son Cubano
-              <span>Het origineel — elegant parendansen, de basis waaruit de Cubaanse Salsa groeide</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Zondag -->
-      <div class="day-column">
-        <div class="day-header">
-          <span class="day-number">Dag 2</span>
-          <div>
-            <div class="day-name">Zondag</div>
-            <div class="day-date">24 januari 2027</div>
-          </div>
-        </div>
-
-        <div class="session">
-          <span class="session-time">12:00–13:00</span>
-          <div>
-            <div class="session-name">Salsa Cubana
-              <span>Casino — de cirkel, de bochten, de musicaliteit van de Cubaanse Salsa in zijn zuiverste vorm</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="session">
-          <span class="session-time">13:15–14:15</span>
-          <div>
-            <div class="session-name">Timba Cubana
-              <span>Hoogenergetische hedendaagse Cubaanse dans — syncope, voetenwerk, improvisatie</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="session">
-          <span class="session-time">14:30–15:30</span>
-          <div>
-            <div class="session-name">Afrotimba Fusión
-              <span>Waar Afro-Cubaanse wortels de elektrische energie van Timba ontmoeten — het handelsmerk van Wilmer &amp; Maria</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sociale Avond -->
-    <div class="social-night-band">
-      <div class="social-night-inner">
-        <div class="social-night-photo">
-          <img src="../../assets/trip-cuba/IMG_6679.JPG" alt="Wilmer & Maria dansen" loading="lazy">
-          <div class="social-night-overlay"></div>
-        </div>
-
-        <div class="social-night-content">
-          <span class="social-night-tag">Zaterdagavond</span>
-          <h3 class="social-night-title">+ Sociale Avond</h3>
-          <p class="social-night-body">
-            Na een volledige dag leren, dansen we samen.
-            Kom op zaterdagavond naar de sociale avond met een fantastische lokale DJ die authentieke Cubaanse muziek draait.
-          </p>
-          <div class="social-night-price">
-            <span class="amount">€10</span>
-            <span class="amount-label">schrijf vooraf in · beperkt aan de deur</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════
-     LERAREN
-═══════════════════════════════════════════ -->
-<section class="teachers-section" id="teachers">
-  <div class="section">
-    <div class="teachers-inner">
-      <div class="teachers-content">
-        <p class="eyebrow">Jouw leraren</p>
-
-        <h2 class="teachers-names">
-          Wilmer<br>&amp; Maria
-        </h2>
-        <p class="teachers-subtitle">Cuba · Italië · De grootste Salsa-podia ter wereld</p>
-
-        <div class="teacher-rule"></div>
-
-        <p class="teachers-bio">
-          Wilmer &amp; Maria zijn een uniek en iconisch dansduo in de Salsa-wereld. Ze combineren
-          hun opleiding in Afro-rumba, ballet, hedendaagse dans en Cubaanse volksdansen —
-          beiden afgestudeerd aan Cubaanse dansacademies. Ze vertrokken in 2002 van Cuba
-          naar Italië, wat hen lanceerde als een van de beste Cubaanse Salsa-artiestenkoppels en
-          hen op het podium bracht van sommige van de grootste Salsa-festivals ter wereld. Van
-          Cubaanse Salsa-routines en Cubaanse volksdans (Orishas) tot Afro-hedendaagse voorstellingen
-          — ze doen het allemaal.
-        </p>
-
-        <div class="teachers-credentials">
-          <div class="credential">
-            <span class="credential-dot"></span>
-            <span class="credential-text">Opgeleid aan Cubaanse dansacademies in Afro-rumba, ballet, hedendaagse dans en volksdansen</span>
-          </div>
-          <div class="credential">
-            <span class="credential-dot"></span>
-            <span class="credential-text">Verhuisd naar Italië in 2002 — Salsa-hoofdstad van Europa — waar hun internationale carrière lanceerde</span>
-          </div>
-          <div class="credential">
-            <span class="credential-dot"></span>
-            <span class="credential-text">Festivalkunstenaars op enkele van de grootste Salsa-congressen ter wereld</span>
-          </div>
-          <div class="credential">
-            <span class="credential-dot"></span>
-            <span class="credential-text">Repertoire: Cubaanse Salsa, Cubaanse volksdans (orishas) en Afro-hedendaagse voorstellingen</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="teachers-photo-wrap">
-        <img src="../../assets/trip-cuba/IMG_5154.JPG" alt="Wilmer & Maria" loading="lazy">
-        <div class="teachers-photo-vignette"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════
-     FOTO-INTERMEZZO
-═══════════════════════════════════════════ -->
-<div class="photo-interlude">
-  <img src="../../assets/trip-cuba/IMG_5158.JPG" alt="Wilmer & Maria dansen" loading="lazy">
-  <div class="photo-interlude-overlay"></div>
-  <div class="photo-interlude-label">
-    <p class="photo-caption">Wilmer &amp; Maria — Round Trip to Cuba, Shoonya Dance Centre Gent</p>
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-chunk">Round Trip to Cuba · Cubaanse Salsa · 23–24 jan 2027 ·&nbsp;</span>
+    <span class="marquee-chunk">Round Trip to Cuba · Cubaanse Salsa · 23–24 jan 2027 ·&nbsp;</span>
+    <span class="marquee-chunk">Round Trip to Cuba · Cubaanse Salsa · 23–24 jan 2027 ·&nbsp;</span>
+    <span class="marquee-chunk">Round Trip to Cuba · Cubaanse Salsa · 23–24 jan 2027 ·&nbsp;</span>
+    <span class="marquee-chunk">Round Trip to Cuba · Cubaanse Salsa · 23–24 jan 2027 ·&nbsp;</span>
+    <span class="marquee-chunk">Round Trip to Cuba · Cubaanse Salsa · 23–24 jan 2027 ·&nbsp;</span>
   </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════
-     WAAROM DIT WEEKEND
-═══════════════════════════════════════════ -->
-<section style="background:var(--bg-deep);">
-  <div class="section">
-    <p class="eyebrow">Waarom dit weekend anders is</p>
-    <div class="teachers-credentials" style="margin-top:32px;">
-      <div class="credential"><span class="credential-dot"></span><span class="credential-text">Echt kleine groep — beperkte plaatsen zodat je echte aandacht krijgt</span></div>
-      <div class="credential"><span class="credential-dot"></span><span class="credential-text">Wereldklasse docenten met diepe Cubaanse roots en jaren internationale ervaring</span></div>
-      <div class="credential"><span class="credential-dot"></span><span class="credential-text">Een gestructureerd programma — geen willekeurige workshops aan elkaar geplakt</span></div>
-      <div class="credential"><span class="credential-dot"></span><span class="credential-text">Een open, niet-competitieve sfeer</span></div>
-      <div class="credential"><span class="credential-dot"></span><span class="credential-text">In het hart van Gent, een van de mooiste steden van België</span></div>
+<!-- INTRO + STATS -->
+<section class="block">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div class="reveal">
+        <p class="eyebrow">Over dit intensief</p>
+        <p class="intro-lead">Zes klassen. Twee dagen. Een diepe duik in de ziel van de Cubaanse dans.</p>
+        <p class="intro-body">Dit weekendintensief neemt je mee door het volledige spectrum van de Cubaanse beweging — van de gegronde ritmes van de Son Cubano tot de elektrische energie van de Afrotimba Fusión. Begeleid door Wilmer &amp; Maria, een van de meest gerespecteerde Cubaanse Salsa-duo's op het internationale podium, bouwt elke sessie voort op de vorige.</p>
+        <p class="intro-body">Georganiseerd in Studio Art Deco in Shoonya Dance Centre, Gents huis van werelddans. Sluit het weekend af met een sociaal dansfeest op zaterdagavond vanaf 21:00.</p>
+        <span class="intro-levels">Alle niveaus welkom — Beginner · Intermediate · Gevorderd</span>
+      </div>
+      <div class="stats reveal">
+        <div class="stat-card"><div class="stat-number">6</div><div class="stat-label">Meesterklassen</div></div>
+        <div class="stat-card"><div class="stat-number">2</div><div class="stat-label">Volle dagen Cubaanse dans</div></div>
+        <div class="stat-card"><div class="stat-number">€110</div><div class="stat-label">Vroegboekprijs vanaf</div></div>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- PROGRAMME -->
+<section class="block deep" id="programme">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Het weekend</p>
+      <h2 class="sec-head">Het volledige <em>programma</em></h2>
+      <p class="prog-note">Elke les duurt 60 minuten met 15 minuten pauze tussen de sessies.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="reveal">
+        <div class="day-head"><span class="day-num">Dag 1</span><div><div class="day-name">Zaterdag</div><div class="day-date">23 januari 2027</div></div></div>
+        <div class="session"><span class="session-time">15:00–16:00</span><div class="session-name">Afrocuban<span>West-Afrikaanse wortels van de Cubaanse beweging — ritme, lichaamsisolatie, gegronde energie</span></div></div>
+        <div class="session"><span class="session-time">16:15–17:15</span><div class="session-name">Rumba Cubana<span>Het hart van de Cubaanse dans — improvisatie, flirtation, conversatie</span></div></div>
+        <div class="session"><span class="session-time">17:30–18:30</span><div class="session-name">Son Cubano<span>Het origineel — elegant parendansen, de basis waaruit de Cubaanse Salsa groeide</span></div></div>
+      </div>
+      <div class="reveal">
+        <div class="day-head"><span class="day-num">Dag 2</span><div><div class="day-name">Zondag</div><div class="day-date">24 januari 2027</div></div></div>
+        <div class="session"><span class="session-time">12:00–13:00</span><div class="session-name">Salsa Cubana<span>Casino — de cirkel, de bochten, de musicaliteit van de Cubaanse Salsa in zijn zuiverste vorm</span></div></div>
+        <div class="session"><span class="session-time">13:15–14:15</span><div class="session-name">Timba Cubana<span>Hoogenergetische hedendaagse Cubaanse dans — syncope, voetenwerk, improvisatie</span></div></div>
+        <div class="session"><span class="session-time">14:30–15:30</span><div class="session-name">Afrotimba Fusión<span>Waar Afro-Cubaanse wortels de elektrische energie van Timba ontmoeten — het handelsmerk van Wilmer &amp; Maria</span></div></div>
+      </div>
+    </div>
 
-<!-- ═══════════════════════════════════════════
-     PRIJZEN
-═══════════════════════════════════════════ -->
-<section class="pricing-section" id="pricing">
-  <div class="section">
-    <p class="eyebrow">Prijzen &amp; passen</p>
-    <h2 class="pricing-title">Kies<br>jouw pas</h2>
+    <div class="social-band reveal">
+      <div class="social-photo"><img src="../../assets/trip-cuba/IMG_6679.JPG" alt="Wilmer &amp; Maria dancing" loading="lazy"><span class="photo-credit">© Nathadread Pictures</span></div>
+      <div class="social-content">
+        <span class="social-tag">Zaterdagavond</span>
+        <h3 class="social-title">+ Sociale Avond</h3>
+        <p class="social-body">Na een volledige dag leren, dansen we samen. Kom op zaterdagavond naar de sociale avond met een fantastische lokale DJ die authentieke Cubaanse muziek draait.</p>
+        <div class="social-price"><span class="amount">€10</span><span class="amount-label">schrijf vooraf in · beperkt aan de deur</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="pricing-grid">
+<!-- TEACHERS -->
+<section class="block" id="teachers">
+  <div class="wrap">
+    <div class="teach-grid">
+      <div class="teach-left reveal">
+        <p class="eyebrow">Jouw leraren</p>
+        <h2 class="teach-names">Wilmer<br>&amp; Maria</h2>
+        <p class="teach-sub">Cuba · Italië · De grootste Salsa-podia ter wereld</p>
+        <p class="teach-bio">Wilmer &amp; Maria zijn een uniek en iconisch dansduo in de Salsa-wereld. Ze combineren hun opleiding in Afro-rumba, ballet, hedendaagse dans en Cubaanse volksdansen — beiden afgestudeerd aan Cubaanse dansacademies. Ze vertrokken in 2002 van Cuba naar Italië, wat hen lanceerde als een van de beste Cubaanse Salsa-artiestenkoppels en hen op het podium bracht van sommige van de grootste Salsa-festivals ter wereld. Van Cubaanse Salsa-routines en Cubaanse volksdans (Orishas) tot Afro-hedendaagse voorstellingen — ze doen het allemaal.</p>
+        <div class="creds">
+          <div class="cred"><span class="cred-dot"></span><span class="cred-text">Opgeleid aan Cubaanse dansacademies in Afro-rumba, ballet, hedendaagse dans en volksdansen</span></div>
+          <div class="cred"><span class="cred-dot"></span><span class="cred-text">Verhuisd naar Italië in 2002 — Salsa-hoofdstad van Europa — waar hun internationale carrière lanceerde</span></div>
+          <div class="cred"><span class="cred-dot"></span><span class="cred-text">Festivalkunstenaars op enkele van de grootste Salsa-congressen ter wereld</span></div>
+          <div class="cred"><span class="cred-dot"></span><span class="cred-text">Repertoire: Cubaanse Salsa, Cubaanse volksdans (orishas) en Afro-hedendaagse voorstellingen</span></div>
+        </div>
+      </div>
+      <div class="teach-photo reveal"><img src="../../assets/trip-cuba/IMG_3814.JPG" alt="Wilmer &amp; Maria" loading="lazy"><span class="photo-credit">© Nathadread Pictures</span></div>
+    </div>
+  </div>
+</section>
 
-      <!-- UITGELICHT: Weekendpas -->
-      <div class="pass-card featured">
+<!-- PHOTO INTERLUDE -->
+<div class="interlude">
+  <div class="interlude-blur"><img src="../../assets/trip-cuba/a3f6a203-2fad-44da-a9ab-540cb0be061c.JPG" alt="" loading="lazy"></div>
+  <div class="interlude-fg"><img src="../../assets/trip-cuba/a3f6a203-2fad-44da-a9ab-540cb0be061c.JPG" alt="Wilmer &amp; Maria dancing" loading="lazy"></div>
+  <p class="interlude-cap">Wilmer &amp; Maria — Round Trip to Cuba, Shoonya Dance Centre Gent</p>
+</div>
+
+<!-- WHY THIS WEEKEND -->
+<section class="block deep">
+  <div class="wrap reveal">
+    <p class="eyebrow">Waarom dit weekend anders is</p>
+    <div class="why-creds">
+      <div class="cred"><span class="cred-dot"></span><span class="cred-text">Echt kleine groep — beperkte plaatsen zodat je echte aandacht krijgt</span></div>
+      <div class="cred"><span class="cred-dot"></span><span class="cred-text">Wereldklasse docenten met diepe Cubaanse roots en jaren internationale ervaring</span></div>
+      <div class="cred"><span class="cred-dot"></span><span class="cred-text">Een gestructureerd programma — geen willekeurige workshops aan elkaar geplakt</span></div>
+      <div class="cred"><span class="cred-dot"></span><span class="cred-text">Een open, niet-competitieve sfeer</span></div>
+      <div class="cred"><span class="cred-dot"></span><span class="cred-text">In het hart van Gent, een van de mooiste steden van België</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="block" id="pricing">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Prijzen &amp; passen</p>
+      <h2 class="sec-head">Kies jouw pas</h2>
+    </div>
+    <div class="price-grid">
+      <div class="pass-card featured reveal">
         <span class="pass-tag">Meest populair</span>
         <p class="pass-name">Volledig Weekendpas</p>
-        <p class="pass-desc">
-          Beide dagen. Alle zes meesterklassen. Toegang tot de sociale avond op zaterdag.
-        </p>
-
-        <div class="pass-prices">
-          <div class="price-tier earlybird">
-            <div class="tier-left">
-              <div class="tier-name">Early Bird</div>
-              <div class="tier-note">Beperkte plekken · Of tot 31 juli 2026</div>
-            </div>
-            <div class="tier-price">€110</div>
-          </div>
-          <div class="price-tier regular">
-            <div class="tier-left">
-              <div class="tier-name">Volle Prijs</div>
-              <div class="tier-note">Na sluiting early bird</div>
-            </div>
-            <div class="tier-price">€130</div>
-          </div>
-        </div>
-
+        <p class="pass-desc">Beide dagen. Alle zes meesterklassen. Toegang tot de sociale avond op zaterdag.</p>
+        <div class="price-tier earlybird"><div class="tier-left"><div class="tier-name">Early Bird</div><div class="tier-note">Beperkte plekken · Of tot 31 juli 2026</div></div><div class="tier-price">€110</div></div>
+        <div class="price-tier regular"><div class="tier-left"><div class="tier-name">Volle Prijs</div><div class="tier-note">Na sluiting early bird</div></div><div class="tier-price">€130</div></div>
         <div class="pass-includes">
           <div class="pass-includes-label">Inbegrepen</div>
           <div class="include-item"><span class="include-dot"></span> 6 meesterklassen over 2 dagen</div>
@@ -1740,153 +704,130 @@ a { color: inherit; text-decoration: none; }
           <div class="include-item"><span class="include-dot"></span> Toegang tot zaterdag sociale avond</div>
         </div>
       </div>
-
-      <!-- Bijkomende passen -->
       <div class="secondary-cards">
-
-        <div class="pass-card secondary">
+        <div class="pass-card secondary reveal">
           <p class="pass-name">Dagpas</p>
-          <p class="pass-desc">
-            Kun je niet het hele weekend? Doe een dag mee en volg toch alle drie de sessies.
-          </p>
-          <div class="secondary-price-row">
-            <span class="secondary-amount">€75</span>
-            <span class="secondary-unit">per dag</span>
-          </div>
+          <p class="pass-desc">Kun je niet het hele weekend? Doe een dag mee en volg toch alle drie de sessies.</p>
+          <div class="secondary-price-row"><span class="secondary-amount">€75</span><span class="secondary-unit">per dag</span></div>
           <span class="secondary-badge">Beschikbaar vanaf 1 augustus · afhankelijk van beschikbaarheid</span>
         </div>
-
-        <div class="pass-card secondary">
+        <div class="pass-card secondary reveal">
           <p class="pass-name">Alleen Sociale Avond</p>
-          <p class="pass-desc">
-            Doe je niet mee aan de workshops? Het sociale dansfeest op zaterdag is voor iedereen open.
-            Schrijf vooraf in om je plek te garanderen — ook beperkt aantal plaatsen aan de deur.
-          </p>
-          <div class="secondary-price-row">
-            <span class="secondary-amount">€10</span>
-            <span class="secondary-unit">vooraf inschrijven</span>
-          </div>
+          <p class="pass-desc">Doe je niet mee aan de workshops? Het sociale dansfeest op zaterdag is voor iedereen open. Schrijf vooraf in om je plek te garanderen — ook beperkt aantal plaatsen aan de deur.</p>
+          <div class="secondary-price-row"><span class="secondary-amount">€10</span><span class="secondary-unit">vooraf inschrijven</span></div>
           <span class="secondary-badge">Zaterdag · Vanaf 21:00</span>
         </div>
-
       </div>
     </div>
-
+    <div id="member-price-note" class="reveal" style="margin-top:28px; padding:16px 20px; border:1px solid rgba(181,100,247,0.35); background:rgba(181,100,247,0.08);">
+      <p style="font-family:'Inter',sans-serif; color:var(--purple); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">Ben je momenteel ingeschreven bij Shoonya?</p>
+      <p style="color:var(--muted); font-size:14px; line-height:1.6; margin:0;">Jouw prijs is <strong style="color:var(--text);">€90</strong> — automatisch toegepast in het inschrijvingssysteem wanneer je je Shoonya ID gebruikt.</p>
+    </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════════
-     INSCHRIJVEN CTA
-═══════════════════════════════════════════ -->
-<section class="cta-section" id="register">
-  <p class="eyebrow" style="color:var(--accent); margin-bottom:24px;">Klaar om te dansen?</p>
+<!-- REGISTER CTA -->
+<section class="cta-band" id="register">
+  <p class="eyebrow" style="color:var(--cuba);">Klaar om te dansen?</p>
   <h2 class="cta-title">Reserveer je plek voor de early-bird sluit</h2>
-  <p class="cta-sub">
-    Beperkte plekken aan €110 — schrijf je nu in om de early-bird prijs te garanderen voor 31 juli 2026.
-  </p>
-
+  <p class="cta-sub">Beperkte plekken aan €110 — schrijf je nu in om de early-bird prijs te garanderen voor 31 juli 2026.</p>
   <div class="cta-actions">
     <a class="btn-primary" href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8" target="_blank" rel="noopener">Schrijf je in — Early Bird €110</a>
-    <a class="btn-ghost" href="mailto:info@shoonyadance.com">Stel een vraag</a>
+    <a class="btn-ghost" href="https://www.shoonyadance.com/contact">Stel een vraag</a>
   </div>
-
-  <p class="cta-contact">Vragen? Schrijf naar ons op <a href="mailto:info@shoonyadance.com">info@shoonyadance.com</a></p>
+  <p class="cta-contact">Vragen? <a href="https://www.shoonyadance.com/contact">Contacteer ons</a></p>
 </section>
 
-
-<!-- ═══════════════════════════════════════════
-     FAQ  (AEO — gestructureerd voor AI-zoekmachines)
-═══════════════════════════════════════════ -->
-<section class="faq-section" id="faq">
-  <div class="section">
-    <p class="eyebrow">Veelgestelde vragen</p>
-    <h2 class="faq-title">FAQ</h2>
-
-    <div class="faq-list">
-
-      <details class="faq-item">
-        <summary>Wat is Round Trip to Cuba?</summary>
-        <p class="faq-answer">Een 2-daags Cubaans Salsa-weekendintensief op Shoonya Dance Centre in Gent, op 23–24 januari 2027. Gegeven door het internationaal befaamde duo Wilmer &amp; Maria, met zes 60-minuten meesterklassen over Afrocuban, Rumba Cubana, Son Cubano, Salsa Cubana, Timba Cubana en Afrotimba Fusión.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Voor welk niveau is dit intensief?</summary>
-        <p class="faq-answer">Alle niveaus zijn welkom — beginner, intermediate en gevorderd. Het programma is opgebouwd zodat elke deelnemer iets zinvols meeneemt, ongeacht hoe lang je al danst. Als je op muziek kunt bewegen, ben je welkom.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wie zijn Wilmer &amp; Maria?</summary>
-        <p class="faq-answer">Wilmer &amp; Maria zijn een Cubaans dansduo, opgeleid aan Cubaanse dansacademies in Afro-rumba, ballet, hedendaagse dans en volksdansen. Ze verhuisden in 2002 van Cuba naar Italië en traden sindsdien op op de grootste Salsa-congressen ter wereld. Hun repertoire omvat Cubaanse Salsa, Cubaanse volksdans (orishas) en Afro-hedendaagse voorstellingen.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wat is het verschil tussen early bird en volle prijs?</summary>
-        <p class="faq-answer">De early-bird prijs is €110 voor het volledige weekendpas — beschikbaar voor een beperkt aantal plaatsen of tot 31 juli 2026, afhankelijk van wat het eerst bereikt wordt. Daarna is de volle prijs €130. Beide geven toegang tot de sociale avond op zaterdag.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Wat is de Sociale Avond?</summary>
-        <p class="faq-answer">Na de drie meesterklassen op zaterdag organiseert Shoonya een open sociale dansvloer vanaf 21:00. Weekendpashouders zijn inbegrepen. Anderen kunnen vooraf inschrijven voor €10 — ook beperkt aantal plaatsen beschikbaar aan de deur.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Kan ik slechts één dag deelnemen?</summary>
-        <p class="faq-answer">Ja — dagpassen van €75 per dag zijn beschikbaar vanaf 1 augustus 2026, afhankelijk van de beschikbaarheid. Als je je plek voor beide dagen wil garanderen, is het volledige weekendpas de beste keuze.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Waar vindt het intensief precies plaats?</summary>
-        <p class="faq-answer">Studio Art Deco, binnen Shoonya Dance Centre op Stapelplein 41, 9000 Gent, België. Studio Art Deco is de grootste en best uitgeruste zaal van Shoonya. Meer info op shoonyadance.com.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Hoe schrijf ik me in?</summary>
-        <p class="faq-answer">Iedereen die zich inschrijft heeft een Shoonya ID nodig — ook je danspartner als je als koppel deelneemt. Heb je nog geen Shoonya ID? <a href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Shoonya_ID/UrhOBSntgxQw9NmJAuwefjF4KDAAB8aam9rpDy0vxrbG92gjDyzbj6fzQQzsrMqEAk86BHC86TTtTM1eUsU1AVpjsGMH1wNDdnSy" target="_blank" rel="noopener">Maak hier eerst je Shoonya ID aan</a>, en gebruik daarna de inschrijfknop op deze pagina. Vragen? Mail naar info@shoonyadance.com.</p>
-      </details>
-
+<!-- FAQ -->
+<section class="block deep" id="faq">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Veelgestelde vragen</p>
+      <h2 class="sec-head">FAQ</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details class="faq-item"><summary>Wat is Round Trip to Cuba?</summary><p class="faq-answer">Een 2-daags Cubaans Salsa-weekendintensief op Shoonya Dance Centre in Gent, op 23–24 januari 2027. Gegeven door het internationaal befaamde duo Wilmer &amp; Maria, met zes 60-minuten meesterklassen over Afrocuban, Rumba Cubana, Son Cubano, Salsa Cubana, Timba Cubana en Afrotimba Fusión.</p></details>
+      <details class="faq-item"><summary>Voor welk niveau is dit intensief?</summary><p class="faq-answer">Alle niveaus zijn welkom — beginner, intermediate en gevorderd. Het programma is opgebouwd zodat elke deelnemer iets zinvols meeneemt, ongeacht hoe lang je al danst. Als je op muziek kunt bewegen, ben je welkom.</p></details>
+      <details class="faq-item"><summary>Wie zijn Wilmer &amp; Maria?</summary><p class="faq-answer">Wilmer &amp; Maria zijn een Cubaans dansduo, opgeleid aan Cubaanse dansacademies in Afro-rumba, ballet, hedendaagse dans en volksdansen. Ze verhuisden in 2002 van Cuba naar Italië en traden sindsdien op op de grootste Salsa-congressen ter wereld. Hun repertoire omvat Cubaanse Salsa, Cubaanse volksdans (orishas) en Afro-hedendaagse voorstellingen.</p></details>
+      <details class="faq-item"><summary>Wat is het verschil tussen early bird en volle prijs?</summary><p class="faq-answer">De early-bird prijs is €110 voor het volledige weekendpas — beschikbaar voor een beperkt aantal plaatsen of tot 31 juli 2026, afhankelijk van wat het eerst bereikt wordt. Daarna is de volle prijs €130. Beide geven toegang tot de sociale avond op zaterdag.</p></details>
+      <details class="faq-item"><summary>Wat is de Sociale Avond?</summary><p class="faq-answer">Na de drie meesterklassen op zaterdag organiseert Shoonya een open sociale dansvloer vanaf 21:00. Weekendpashouders zijn inbegrepen. Anderen kunnen vooraf inschrijven voor €10 — ook beperkt aantal plaatsen beschikbaar aan de deur.</p></details>
+      <details class="faq-item"><summary>Kan ik slechts één dag deelnemen?</summary><p class="faq-answer">Ja — dagpassen van €75 per dag zijn beschikbaar vanaf 1 augustus 2026, afhankelijk van de beschikbaarheid. Als je je plek voor beide dagen wil garanderen, is het volledige weekendpas de beste keuze.</p></details>
+      <details class="faq-item"><summary>Waar vindt het intensief precies plaats?</summary><p class="faq-answer">Studio Art Deco, binnen Shoonya Dance Centre op Stapelplein 41, 9000 Gent, België. Studio Art Deco is de grootste en best uitgeruste zaal van Shoonya. Meer info op shoonyadance.com.</p></details>
+      <details class="faq-item"><summary>Hoe schrijf ik me in?</summary><p class="faq-answer">Iedereen die zich inschrijft heeft een Shoonya ID nodig — ook je danspartner als je als koppel deelneemt. Heb je nog geen Shoonya ID? <a href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Shoonya_ID/UrhOBSntgxQw9NmJAuwefjF4KDAAB8aam9rpDy0vxrbG92gjDyzbj6fzQQzsrMqEAk86BHC86TTtTM1eUsU1AVpjsGMH1wNDdnSy" target="_blank" rel="noopener">Maak hier eerst je Shoonya ID aan</a>, en gebruik daarna de inschrijfknop op deze pagina. Vragen? <a href="https://www.shoonyadance.com/contact" target="_blank" rel="noopener">Contacteer ons</a>.</p></details>
     </div>
   </div>
 </section>
 
+<!-- MORE WORKSHOPS -->
+<section class="block" aria-label="More workshops at Shoonya">
+  <div class="wrap reveal">
+    <p class="eyebrow">Meer bij Shoonya</p>
+    <div class="more-grid">
+      <a class="more-item" href="https://workshops.shoonyadance.com/indian-dance-summer-intensive/"><span><span class="more-date">26–29 aug 2026</span><span class="more-title">Indian Dance Summer Intensive</span></span><span class="more-arrow">→</span></a>
+      <a class="more-item" href="https://workshops.shoonyadance.com/lindy-hop-bootcamp/"><span><span class="more-date">9 sep 2026</span><span class="more-title">Lindy Hop Bootcamp</span></span><span class="more-arrow">→</span></a>
+    </div>
+    <a class="more-hub" href="https://workshops.shoonyadance.com/">← Alle workshops</a>
+  </div>
+</section>
 
-<!-- ═══════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-logo">
-      <a href="https://shoonyadance.com">
-        <img src="../../assets/logos/shoonyadance/shoonya-logo-white-nobg.png" alt="Shoonya Dance Centre">
-      </a>
+    <div class="footer-markline">
+      <img src="../../assets/shoonya-oo-mark-white.png" alt="">
+      Shoonya Dance Centre
+      <img src="../../assets/shoonya-oo-mark-white.png" alt="">
     </div>
-
-    <div class="footer-centre">
-      <p class="footer-address">
-        Shoonya Dance Centre<br>
-        Stapelplein 41 · 9000 Gent · België
-      </p>
+    <p class="footer-address">Stapelplein 41 · 9000 Gent · België</p>
+    <div class="footer-socials">
+      <a class="footer-social" href="https://instagram.com/shoonyadance" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg></a>
+      <a class="footer-social" href="https://facebook.com/shoonyadance" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l.5-4H13V7.5c0-1.1.3-1.9 2-1.9h2V2.1c-.4 0-1.5-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V10H6.5v4H10v8h3z"/></svg></a>
     </div>
-
-    <div class="footer-right">
-      <div class="footer-socials">
-        <a class="footer-social-link" href="https://instagram.com/shoonyadance" aria-label="Instagram" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/>
-          </svg>
-        </a>
-        <a class="footer-social-link" href="https://facebook.com/shoonyadance" aria-label="Facebook" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13 22v-8h3l.5-4H13V7.5c0-1.1.3-1.9 2-1.9h2V2.1c-.4 0-1.5-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V10H6.5v4H10v8h3z"/>
-          </svg>
-        </a>
-      </div>
-      <span class="footer-site">shoonyadance.com</span>
-    </div>
+    <span class="footer-site">shoonyadance.com</span>
   </div>
 </footer>
+
+<script src="../../lib/gsap.min.js"></script>
+<script src="../../lib/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var nav = document.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 40); };
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // hero headline word reveal
+  var l1 = document.querySelector('.hero-title .l1');
+  if (l1) { l1.innerHTML = l1.textContent.split(' ').map(function(w,i){ return '<span class="w" style="animation-delay:'+(0.35+i*0.1)+'s">'+w+'</span>'; }).join(' '); }
+  var cuba = document.querySelector('.hero-title .cuba');
+  if (cuba) { cuba.classList.add('w'); cuba.style.animationDelay = '0.75s'; }
+
+  // reveals
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window) || reduced) { els.forEach(function(e){ e.classList.add('in'); }); }
+  else {
+    var io = new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -80px 0px' });
+    els.forEach(function(e){ io.observe(e); });
+  }
+
+  if (!reduced && window.gsap && window.ScrollTrigger) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to('.hero-media video, .hero-media .hero-poster', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.6 } });
+  }
+
+  // Reduced motion: stop the hero video, leave the poster photo
+  if (reduced) {
+    var hv = document.getElementById('hero-video-el');
+    if (hv) { hv.removeAttribute('autoplay'); hv.pause(); hv.style.display = 'none'; }
+  }
+
+  // hide Shoonya member price note when page goes public (15 June)
+  if (new Date() >= new Date('2026-06-15T00:00:00')) {
+    var mpn = document.getElementById('member-price-note');
+    if (mpn) mpn.setAttribute('hidden', '');
+  }
+})();
+</script>
 
 </body>
 </html>
