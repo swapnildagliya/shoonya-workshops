@@ -373,9 +373,10 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
 .teach-bio p { font-size:16px; line-height:1.8; color:var(--muted); margin-bottom:16px; }
 .teach-bio strong { color:var(--text); font-weight:400; }
 .teach-quote { font-family:'Playfair Display',Georgia,serif; font-style:italic; font-size:18px; line-height:1.6; color:rgba(255,255,255,0.75); border-left:2px solid var(--red); padding-left:20px; margin:20px 0; }
-.teach-links { display:flex; gap:16px; margin-top:24px; flex-wrap:wrap; }
-.teach-link { font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); text-decoration:none; border:0.5px solid var(--border-w); padding:8px 16px; transition:color .18s, border-color .18s; }
-.teach-link:hover { color:var(--text); border-color:var(--border-m); }
+.teach-links { display:flex; gap:18px; margin-top:26px; align-items:center; }
+.teach-link { color:var(--muted); text-decoration:none; display:inline-flex; transition:color .18s; }
+.teach-link:hover { color:var(--text); }
+.teach-link svg { width:20px; height:20px; display:block; }
 
 /* FAQ */
 .faq-list { margin-top:44px; border-top:1px solid var(--border-w); }
@@ -744,8 +745,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:2px solid
           <p>Van bij de eerste stappen ligt de focus op een sterke techniek en juiste houding. Tegelijkertijd moedigt Liz haar leerlingen aan om hun eigen persoonlijke stijl en expressie te ontdekken, met veel aandacht voor muzikaliteit en gevoel.</p>
         </div>
         <div class="teach-links">
-          <a class="teach-link" href="https://www.instagram.com/laliz.flamenco/" target="_blank" rel="noopener" aria-label="La Liz op Instagram">Instagram</a>
-          <a class="teach-link" href="https://www.facebook.com/lalizdanceworks" target="_blank" rel="noopener" aria-label="La Liz op Facebook">Facebook</a>
+          <a class="teach-link" href="https://www.instagram.com/laliz.flamenco/" target="_blank" rel="noopener" aria-label="La Liz op Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/></svg></a>
+          <a class="teach-link" href="https://www.facebook.com/lalizdanceworks" target="_blank" rel="noopener" aria-label="La Liz op Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
         </div>
       </div>
     </div>
