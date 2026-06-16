@@ -83,4 +83,24 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://workshops.shoonyadance.com/gentse-feesten-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/gentse-feesten-2026/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://workshops.shoonyadance.com/gentse-feesten-2026/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://workshops.shoonyadance.com/gentse-feesten-2026/"/>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://workshops.shoonyadance.com/gentse-feesten-2026/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/gentse-feesten-2026/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://workshops.shoonyadance.com/gentse-feesten-2026/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://workshops.shoonyadance.com/gentse-feesten-2026/"/>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
