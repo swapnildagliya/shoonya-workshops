@@ -53,7 +53,7 @@
         "url": "https://workshops.shoonyadance.com/indian-dance-summer-intensive/",
         "location": {
           "@type": "Place",
-          "name": "Shoonya Dance Centre — Studio Art Deco",
+          "name": "Shoonya Dance Centre — Studio Aakash",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "Stapelplein 41",
@@ -229,7 +229,7 @@
             "name": "Where is Shoonya Dance Centre and how do I get there?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Shoonya Dance Centre is located at Stapelplein 41, 9000 Gent (Ghent), Belgium. The studio — Studio Art Deco — is a 10-minute walk from Gent-Sint-Pieters station. Paid street parking is available nearby."
+              "text": "Shoonya Dance Centre is located at Stapelplein 41, 9000 Gent (Ghent), Belgium. The studio — Studio Aakash — is a 10-minute walk from Gent-Dampoort station. Paid street parking is available nearby."
             }
           }
         ]
@@ -389,7 +389,8 @@ section.block.deep { background:var(--surface); border-top:1px solid var(--borde
 .price-row-name { font-family:'Marcellus',Georgia,serif; font-size:19px; }
 .price-row-detail { display:block; font-family:'PT Serif',serif; font-size:13.5px; color:var(--dim); margin-top:5px; }
 .price-save { display:inline-block; margin-top:8px; font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--saffron); border:0.5px solid rgba(232,133,60,0.4); padding:3px 8px; }
-.price-row-amt { font-family:'Marcellus',Georgia,serif; font-size:26px; flex-shrink:0; }
+.price-row-amt { font-family:'Marcellus',Georgia,serif; font-size:26px; flex-shrink:0; text-align:right; }
+.price-member { display:block; font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--purple); margin-top:6px; white-space:nowrap; }
 .price-notes { font-size:13.5px; line-height:1.7; color:var(--dim); margin-top:24px; }
 .price-notes a { color:var(--saffron); }
 .cta-box { border:1px solid var(--border-w); background:var(--surface); padding:clamp(28px,3vw,40px); position:sticky; top:100px; }
@@ -665,13 +666,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
     <div class="pricing-grid">
       <div class="reveal">
         <div class="price-rows">
-          <div class="price-row"><div class="price-row-name">Single evening session<span class="price-row-detail">Wed · Thu · Fri · 3 hours each</span></div><div class="price-row-amt">€40</div></div>
-          <div class="price-row"><div class="price-row-name">Terah Taali<span class="price-row-detail">Sat morning · 2 hours · limited spots</span></div><div class="price-row-amt">€35</div></div>
-          <div class="price-row"><div class="price-row-name">Kalbeliya<span class="price-row-detail">Sat afternoon · 2 hours</span></div><div class="price-row-amt">€30</div></div>
-          <div class="price-row"><div class="price-row-name">Saturday day pass<span class="price-row-detail">Terah Taali + Kalbeliya</span></div><div class="price-row-amt">€60</div></div>
-          <div class="price-row highlight"><div class="price-row-name">Full 4-day summer pass<span class="price-row-detail">All 5 sessions · 13 hours total</span><span class="price-save">Saves €35</span></div><div class="price-row-amt">€150</div></div>
+          <div class="price-row"><div class="price-row-name">Single evening session<span class="price-row-detail">Wed · Thu · Fri · 3 hours each</span></div><div class="price-row-amt">€40<span class="price-member">Members €36</span></div></div>
+          <div class="price-row"><div class="price-row-name">Terah Taali<span class="price-row-detail">Sat morning · 2 hours · limited spots</span></div><div class="price-row-amt">€35<span class="price-member">Members €31.50</span></div></div>
+          <div class="price-row"><div class="price-row-name">Kalbeliya<span class="price-row-detail">Sat afternoon · 2 hours</span></div><div class="price-row-amt">€30<span class="price-member">Members €27</span></div></div>
+          <div class="price-row"><div class="price-row-name">Saturday day pass<span class="price-row-detail">Terah Taali + Kalbeliya</span></div><div class="price-row-amt">€60<span class="price-member">Members €55</span></div></div>
+          <div class="price-row highlight"><div class="price-row-name">Full 4-day summer pass<span class="price-row-detail">All 5 sessions · 13 hours total</span><span class="price-save">Saves €35</span></div><div class="price-row-amt">€150<span class="price-member">Members €140</span></div></div>
         </div>
-        <p class="price-notes">Registered Shoonya students receive a checkout discount.<br>All tickets are non-refundable. Questions? <a href="https://www.shoonyadance.com/contact">Contact us</a></p>
+        <p class="price-notes">“Members” = registered Shoonya students; the member price applies automatically at checkout.<br>All tickets are non-refundable. Questions? <a href="https://www.shoonyadance.com/contact">Contact us</a></p>
       </div>
       <div class="reveal">
         <div class="cta-box">
@@ -722,7 +723,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
       <details class="faq-item"><summary>What is Kalbeliya dance?</summary><div class="faq-a">Kalbeliya is a traditional folk dance from Rajasthan, India, created by the nomadic Kalbeliya tribe — historically snake handlers in the Thar Desert. The dance is characterised by fluid spine articulations, hip isolations and fast floor-level spins in flowing black skirts embellished with mirror-work. It was brought to international prominence by dancer Gulabo Sapera and is recognised as Intangible Cultural Heritage by UNESCO.</div></details>
       <details class="faq-item"><summary>What is Terah Taali?</summary><div class="faq-a">Terah Taali means "thirteen beats." It is a seated folk dance from Rajasthan performed by women of the Kamada tribe. The dancer plays 13 small brass cymbals (manjiras) tied to the wrists, elbows, arms and knees, creating a complete percussion performance while dancing. It has deep devotional roots connected to the folk deity Baba Ramdevji.</div></details>
       <details class="faq-item"><summary>What does "open level" mean in practice?</summary><div class="faq-a">Open level means no pre-qualification, no audition, and no assumed vocabulary. Swapnil builds technique from the floor up — so complete beginners gain a real foundation, and experienced dancers gain precision in forms they may not have studied before. The sessions are appropriate for both.</div></details>
-      <details class="faq-item"><summary>Where is Shoonya Dance Centre?</summary><div class="faq-a">Shoonya Dance Centre — Studio Art Deco — is at <strong>Stapelplein 41, 9000 Gent, Belgium</strong>. A 10-minute walk from Gent-Sint-Pieters station. Paid street parking is available nearby. Questions? <a href="https://www.shoonyadance.com/contact">Contact us</a></div></details>
+      <details class="faq-item"><summary>Where is Shoonya Dance Centre?</summary><div class="faq-a">Shoonya Dance Centre — Studio Aakash — is at <strong>Stapelplein 41, 9000 Gent, Belgium</strong>. A 10-minute walk from Gent-Dampoort station. Paid street parking is available nearby. Questions? <a href="https://www.shoonyadance.com/contact">Contact us</a></div></details>
     </div>
   </div>
 </section>
