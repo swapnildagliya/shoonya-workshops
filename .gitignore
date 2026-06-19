@@ -1,5 +1,9 @@
-# Build scripts / artifacts (not served)
+# Build scripts / artifacts (not served — render tooling, output goes to exports/)
 lindy-hop-bootcamp/render-og.mjs
+**/render-web.mjs
+**/render-og.mjs
+website-featured.html
+**/website-featured.html
 _build/
 
 # OS + editor junk
