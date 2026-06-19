@@ -1,2 +1,11 @@
+# Build scripts / artifacts (not served)
 lindy-hop-bootcamp/render-og.mjs
 _build/
+
+# OS + editor junk
+.DS_Store
+**/.DS_Store
+
+# Local backups + render output (keep out of the deployed site)
+*.bak.*
+exports/
