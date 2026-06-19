@@ -1179,45 +1179,6 @@ body::before {
 
     <div class="miniseries-right">
 
-      <!-- Kalbeliya — auto-hides 11 June 2026 -->
-      <article class="miniseries-item" id="miniseries-kalbeliya">
-        <div class="miniseries-photo-wrap">
-          <img class="miniseries-item-photo" src="../assets/kalbeliya.jpg" alt="Kalbeliya" loading="lazy">
-          <span class="photo-credit">© Stijn Dejonckheere</span>
-        </div>
-        <div class="miniseries-item-body">
-          <div class="miniseries-item-main">
-            <p class="miniseries-item-label">Eindigt 10 juni 2026 · Woensdagen 18:30–19:30</p>
-            <h3>Kalbeliya</h3>
-            <p class="miniseries-item-teacher">met Swapnil Dagliya</p>
-            <p class="miniseries-item-desc">De expressieve volksdans uit Rajasthan — vloeiende spins, weidse lijnen en sierlijke, kronkelende bewegingen met een zwierende rok. Laatste sessie deze woensdag.</p>
-          </div>
-          <div class="miniseries-item-meta">
-            <p class="miniseries-item-status">Inschrijving gesloten</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Oriental Flow — auto-hides 14 June 2026 -->
-      <article class="miniseries-item" id="miniseries-of">
-        <div class="miniseries-photo-wrap">
-          <img class="miniseries-item-photo" src="../assets/oriental-flow.jpg" alt="Oriental Flow with Nathalie El Ghoul" loading="lazy">
-        </div>
-        <div class="miniseries-item-body">
-          <div class="miniseries-item-main">
-            <p class="miniseries-item-label">Eindigt 13 juni 2026 · Zaterdagen 10:00–12:00</p>
-            <h3>Oriental Flow</h3>
-            <p class="miniseries-item-teacher">met Nathalie El Ghoul</p>
-            <p class="miniseries-item-desc">Een 5-weekse reeks op het kruispunt van hedendaagse dans, oriëntaalse techniek, yoga en somatische praktijk. Eén sessie resterend — 13 juni. Gratis proefles bij de eerste sessie.</p>
-          </div>
-          <div class="miniseries-item-meta">
-            <p class="miniseries-item-status">Inschrijving gesloten</p>
-          </div>
-        </div>
-      </article>
-
-      <hr class="miniseries-divider" id="miniseries-divider">
-
       <!-- Bhangra Starter Series — Sep 16 – Oct 7 2026 -->
       <article class="miniseries-item" id="miniseries-bhangra">
         <div class="miniseries-photo-wrap">
@@ -1463,16 +1424,6 @@ body::before {
   if (new Date() >= new Date('2026-06-15T00:00:00')) {
     var card = document.getElementById('card-rtc');
     if (card) card.removeAttribute('hidden');
-  }
-  if (new Date() >= new Date('2026-06-11T00:00:00')) {
-    var kal = document.getElementById('miniseries-kalbeliya');
-    if (kal) kal.setAttribute('hidden', '');
-  }
-  if (new Date() >= new Date('2026-06-14T00:00:00')) {
-    var of = document.getElementById('miniseries-of');
-    if (of) of.setAttribute('hidden', '');
-    var div = document.getElementById('miniseries-divider');
-    if (div) div.setAttribute('hidden', '');
   }
   if (new Date() >= new Date('2026-09-30T00:00:00')) {
     var sb = document.getElementById('status-bhangra');
