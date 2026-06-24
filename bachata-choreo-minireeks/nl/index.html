@@ -207,6 +207,9 @@
   --accent:            #F25A4C;
   --accent-rgb:        242, 90, 76;
   --accent-light:      #F47265;
+  /* Emil interaction easings — strong ease-out for UI/press; no bounce (D-037) */
+  --ease-out:          cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out:       cubic-bezier(0.77, 0, 0.175, 1);
   --brand:             #B564F7;
   --text:              #FFFFFF;
   --text-muted:        rgba(255,255,255,0.60);
@@ -297,10 +300,11 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
   border-radius: 100px;
   border: 1px solid rgba(var(--accent-rgb),0.35);
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s, border-color 0.2s, transform 0.16s var(--ease-out);
 }
 
 .nav-cta:hover { background: rgba(242,90,76,0.28); border-color: rgba(var(--accent-rgb),0.6); }
+.nav-cta:active { transform: scale(0.97); }
 
 .nav-right {
   display: flex;
@@ -500,10 +504,11 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.08em;
   border-radius: 100px;
   border: 1px solid rgba(255,255,255,0.18);
-  transition: color 0.2s, border-color 0.2s;
+  transition: color 0.2s, border-color 0.2s, transform 0.16s var(--ease-out);
 }
 
 .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.40); }
+.btn-ghost:active { transform: scale(0.97); }
 
 .btn-primary {
   display: inline-block;
@@ -515,10 +520,11 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   border-radius: 100px;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.2s, transform 0.16s var(--ease-out);
 }
 
-.btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+@media (hover:hover) and (pointer:fine){ .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); } }
+.btn-primary:active { transform: scale(0.97); }
 
 .hero-scroll {
   position: absolute;
@@ -948,6 +954,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -960,13 +967,16 @@ a { color: inherit; text-decoration: none; }
 }
 
 .pricing-card-tag {
-  flex-shrink: 0;
+  flex-shrink: 1;
+  max-width: 100%;
   padding: 5px 14px 4px;
   background: var(--accent);
   border-radius: 100px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.18em;
+  line-height: 1.35;
+  text-align: center;
   text-transform: uppercase;
   color: #FFFFFF;
 }
@@ -1179,7 +1189,8 @@ a { color: inherit; text-decoration: none; }
 .faq-item { border-bottom: 1px solid var(--border-w); list-style: none; }
 .faq-item:first-child { border-top: 1px solid var(--border-w); }
 
-.faq-item summary {
+.faq-q {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1187,26 +1198,34 @@ a { color: inherit; text-decoration: none; }
   padding: 22px 0;
   font-size: 16px;
   font-weight: 500;
+  font-family: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
   color: rgba(255,255,255,0.82);
   cursor: pointer;
-  list-style: none;
-  transition: color 0.2s;
+  transition: color 0.2s, transform 0.16s var(--ease-out);
 }
 
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item[open] summary { color: var(--text); }
-.faq-item summary:hover { color: var(--text); }
+.faq-item[data-open="1"] .faq-q { color: var(--text); }
+.faq-q:hover { color: var(--text); }
+.faq-q:active { transform: scale(0.995); }
 
-.faq-item summary::after {
+.faq-q .sgn {
   content: '+';
   font-size: 20px;
   font-weight: 300;
   color: var(--accent);
   flex-shrink: 0;
-  transition: transform 0.25s;
+  line-height: 1;
+  transition: transform 0.3s var(--ease-out);
 }
 
-.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item[data-open="1"] .faq-q .sgn { transform: rotate(45deg); }
+
+.faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s var(--ease-out); }
+.faq-item[data-open="1"] .faq-a { grid-template-rows: 1fr; }
+.faq-a > div { overflow: hidden; }
 
 .faq-answer {
   font-size: 15px;
@@ -1295,9 +1314,10 @@ a { color: inherit; text-decoration: none; }
   padding: 20px 24px;
   border: 1px solid var(--border-w);
   text-decoration: none;
-  transition: border-color 0.18s, background 0.18s;
+  transition: border-color 0.18s, background 0.18s, transform 0.16s var(--ease-out);
 }
 
+.more-item:active { transform: scale(0.99); }
 .more-item:hover {
   border-color: rgba(255,255,255,0.22);
   background: rgba(255,255,255,0.03);
@@ -1399,7 +1419,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 100px;
 }
 
-.faq-item summary:focus-visible {
+.faq-q:focus-visible {
   border-radius: 0;
   outline-offset: -2px;
 }
@@ -1796,45 +1816,21 @@ a { color: inherit; text-decoration: none; }
 
     <div class="faq-list">
 
-      <details class="faq-item">
-        <summary>Wat is de Bachata Choreo Minireeks?</summary>
-        <p class="faq-answer">Een reeks van 6 bachata-choreografielessen bij Shoonya Dance Centre in Gent. Gegeven door Alex Papaianopol en Lenka Badriyah, elke dinsdag van 10 november tot 15 december 2026 (21:00–22:00). Een levendige mix van bachata, ballroom en buikdans samengebracht in één gedurfde choreografie. Intermediair en Gevorderd niveau. Partner vereist. €75 (Shoonya-leden €67,50).</p>
-      </details>
+      <div class="faq-item" data-open="1"><button class="faq-q" aria-expanded="true"><span>Wat is de Bachata Choreo Minireeks?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Een reeks van 6 bachata-choreografielessen bij Shoonya Dance Centre in Gent. Gegeven door Alex Papaianopol en Lenka Badriyah, elke dinsdag van 10 november tot 15 december 2026 (21:00–22:00). Een levendige mix van bachata, ballroom en buikdans samengebracht in één gedurfde choreografie. Intermediair en Gevorderd niveau. Partner vereist. €75 (Shoonya-leden €67,50).</p></div></div></div>
 
-      <details class="faq-item">
-        <summary>Welk niveau heb ik nodig?</summary>
-        <p class="faq-answer">Intermediair en Gevorderd. Ervaring met bachata is vereist.</p>
-      </details>
+      <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Welk niveau heb ik nodig?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Intermediair en Gevorderd. Ervaring met bachata is vereist.</p></div></div></div>
 
-      <details class="faq-item">
-        <summary>Heb ik een partner nodig?</summary>
-        <p class="faq-answer">Ja — je sluit je aan met een danspartner en schrijft je samen in. Nog op zoek naar een danspartner? Post in het <a href="https://www.facebook.com/groups/1405926722822445" target="_blank" rel="noopener">Shoonya Dance Forum</a> — onze community is goed in het leggen van die verbindingen.</p>
-      </details>
+      <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Heb ik een partner nodig?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Ja — je sluit je aan met een danspartner en schrijft je samen in. Nog op zoek naar een danspartner? Post in het <a href="https://www.facebook.com/groups/1405926722822445" target="_blank" rel="noopener">Shoonya Dance Forum</a> — onze community is goed in het leggen van die verbindingen.</p></div></div></div>
 
-      <details class="faq-item">
-        <summary>Wat ga ik leren?</summary>
-        <p class="faq-answer">Je bouwt een volledige bachata-koppelchoreografie op over 6 opeenvolgende lessen met Alex en Lenka. Elke les bouwt verder op de vorige — alle 6 bijwonen maakt deel uit van het format.</p>
-      </details>
+      <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Wat ga ik leren?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Je bouwt een volledige bachata-koppelchoreografie op over 6 opeenvolgende lessen met Alex en Lenka. Elke les bouwt verder op de vorige — alle 6 bijwonen maakt deel uit van het format.</p></div></div></div>
 
-      <details class="faq-item">
-        <summary>Wat zijn de exacte data?</summary>
-        <p class="faq-answer">Zes opeenvolgende dinsdagen: 10 november, 17 november, 24 november, 1 december, 8 december en 15 december 2026. Alle lessen lopen van 21:00 tot 22:00 bij Shoonya Dance Centre, Gent.</p>
-      </details>
+      <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Wat zijn de exacte data?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Zes opeenvolgende dinsdagen: 10 november, 17 november, 24 november, 1 december, 8 december en 15 december 2026. Alle lessen lopen van 21:00 tot 22:00 bij Shoonya Dance Centre, Gent.</p></div></div></div>
 
-      <details class="faq-item">
-        <summary>Waar vindt de reeks plaats?</summary>
-        <p class="faq-answer">Shoonya Dance Centre, Stapelplein 41, 9000 Gent, België. Meer info op <a href="https://shoonyadance.com" target="_blank" rel="noopener" style="color:var(--accent);">shoonyadance.com</a>.</p>
-      </details>
+      <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Waar vindt de reeks plaats?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Shoonya Dance Centre, Stapelplein 41, 9000 Gent, België. Meer info op <a href="https://shoonyadance.com" target="_blank" rel="noopener" style="color:var(--accent);">shoonyadance.com</a>.</p></div></div></div>
 
-      <details class="faq-item">
-        <summary>Hoeveel kost het?</summary>
-        <p class="faq-answer">€75 voor de volledige reeks van 6 lessen. Shoonya-leden betalen €67,50 (10% korting). Je schrijft je in voor de volledige reeks — individuele lessen kunnen niet apart geboekt worden.</p>
-      </details>
+      <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Hoeveel kost het?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">€75 voor de volledige reeks van 6 lessen. Shoonya-leden betalen €67,50 (10% korting). Je schrijft je in voor de volledige reeks — individuele lessen kunnen niet apart geboekt worden.</p></div></div></div>
 
-      <details class="faq-item">
-        <summary>Hoe schrijf ik me in?</summary>
-        <p class="faq-answer">Gebruik de knop 'Schrijf je in' op deze pagina. Je hebt een Shoonya ID nodig om je in te schrijven — gratis aan te maken op shoonyadance.com. Beide partners hebben elk een eigen Shoonya ID nodig. Vragen? <a href="https://shoonyadance.com/contact" style="color:var(--accent);">shoonyadance.com/contact</a>.</p>
-      </details>
+      <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Hoe schrijf ik me in?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Gebruik de knop 'Schrijf je in' op deze pagina. Je hebt een Shoonya ID nodig om je in te schrijven — gratis aan te maken op shoonyadance.com. Beide partners hebben elk een eigen Shoonya ID nodig. Vragen? <a href="https://shoonyadance.com/contact" style="color:var(--accent);">shoonyadance.com/contact</a>.</p></div></div></div>
 
     </div>
   </div>
@@ -1902,5 +1898,9 @@ a { color: inherit; text-decoration: none; }
   </div>
 </footer>
 
+<script>
+/* FAQ accordion — height-eased toggle (replaces native <details>) */
+(function(){[].forEach.call(document.querySelectorAll('.faq-q'),function(b){b.addEventListener('click',function(){var f=b.closest('.faq-item'),open=f.getAttribute('data-open')==='1';f.setAttribute('data-open',open?'0':'1');b.setAttribute('aria-expanded',open?'false':'true');});});})();
+</script>
 </body>
 </html>

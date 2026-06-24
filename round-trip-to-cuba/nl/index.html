@@ -225,6 +225,9 @@
   --purple:    #B564F7;
   --cuba:      #C96E3C;          /* Cuban warmth — workshop signature hue only */
   --ease-cine: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Emil interaction easings — strong ease-out for UI/press; no bounce (D-037) */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 html { scroll-behavior: smooth; }
@@ -282,9 +285,10 @@ body::before {
   font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--text);
   text-decoration: none; border: 1px solid var(--border-m); padding: 8px 18px;
-  transition: background .18s, color .18s, border-color .18s;
+  transition: background .18s, color .18s, border-color .18s, transform .16s var(--ease-out);
 }
 .nav-cta:hover { background: #fff; color: #000; border-color: #fff; }
+.nav-cta:active { transform: scale(0.97); }
 @media (max-width: 860px) { .nav-links { display: none; } }
 
 /* ── HERO ── */
@@ -313,12 +317,13 @@ body::before {
 .btn-primary, .btn-ghost {
   font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500;
   letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
-  padding: 16px 32px; transition: background .22s, color .22s, border-color .22s;
+  padding: 16px 32px; transition: background .22s, color .22s, border-color .22s, transform .16s var(--ease-out);
 }
 .btn-primary { background: var(--purple); color: #fff; border: 1px solid var(--purple); }
 .btn-primary:hover { background: #fff; color: #000; border-color: #fff; }
 .btn-ghost { color: var(--text); border: 1px solid rgba(255,255,255,0.5); }
 .btn-ghost:hover { background: #fff; color: #000; border-color: #fff; }
+.btn-primary:active, .btn-ghost:active { transform: scale(0.97); }
 @keyframes fadeup { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
 @keyframes wordup { from { opacity: 0; transform: translateY(.35em); } to { opacity: 1; transform: none; } }
 
@@ -425,20 +430,24 @@ section.block.deep { background: var(--surface); border-top: 1px solid var(--bor
 .cta-contact { margin-top: 26px; font-size: 14px; color: var(--dim); }
 .cta-contact a { color: var(--text); }
 
-/* FAQ */
+/* FAQ — animated accordion (height-eased, rotating sign) */
 .faq-list { margin-top: 48px; border-top: 1px solid var(--border-w); }
-.faq-item { border-bottom: 1px solid var(--border-w); }
-.faq-item summary { list-style: none; cursor: pointer; padding: 24px 40px 24px 0; position: relative; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px,2.2vw,23px); }
-.faq-item summary::-webkit-details-marker { display: none; }
-.faq-item summary::after { content: '+'; position: absolute; right: 4px; top: 22px; font-family: 'Inter',sans-serif; font-size: 24px; color: var(--purple); transition: transform .25s; }
-.faq-item[open] summary::after { content: '−'; }
+.faq { border-bottom: 1px solid var(--border-w); }
+.faq-q { width: 100%; text-align: left; background: none; border: 0; color: var(--text); cursor: pointer; display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: 24px 4px 24px 0; font-family: 'Marcellus', Georgia, serif; font-size: clamp(18px,2.2vw,23px); transition: transform .16s var(--ease-out); }
+.faq-q:active { transform: scale(0.995); }
+.faq-q .sgn { color: var(--purple); font-size: 24px; line-height: 1; flex-shrink: 0; transition: transform .3s var(--ease-out); }
+.faq[data-open="1"] .sgn { transform: rotate(45deg); }
+.faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s var(--ease-out); }
+.faq[data-open="1"] .faq-a { grid-template-rows: 1fr; }
+.faq-a > div { overflow: hidden; }
 .faq-answer { padding: 0 40px 26px 0; font-size: 15.5px; line-height: 1.75; color: var(--muted); }
 .faq-answer a { color: var(--purple); }
 
 /* more workshops */
 .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
-.more-item { display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--border-w); background: var(--surface); padding: 24px 28px; text-decoration: none; transition: border-color .2s; }
+.more-item { display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--border-w); background: var(--surface); padding: 24px 28px; text-decoration: none; transition: border-color .2s, transform .16s var(--ease-out); }
 .more-item:hover { border-color: var(--border-m); }
+.more-item:active { transform: scale(0.99); }
 .more-date { display: block; font-family: 'Inter',sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cuba); margin-bottom: 6px; }
 .more-title { font-family: 'Marcellus', Georgia, serif; font-size: 19px; color: var(--text); }
 .more-arrow { color: var(--purple); font-size: 20px; }
@@ -482,6 +491,8 @@ section.block.deep { background: var(--surface); border-top: 1px solid var(--bor
   .marquee-track { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .teach-left { position: static; }
+  .faq-a, .faq-q, .faq-q .sgn { transition: none; }
+  .btn-primary:active, .btn-ghost:active, .nav-cta:active, .regbar-cta:active, .more-item:active, .faq-q:active { transform: none; }
 }
 
 /* responsive */
@@ -493,7 +504,7 @@ section.block.deep { background: var(--surface); border-top: 1px solid var(--bor
 @media (max-width: 640px) {
   .hero-title { white-space: normal; }
   .session { grid-template-columns: 90px 1fr; gap: 12px; }
-  .faq-item summary, .faq-answer { padding-right: 30px; }
+  .faq-q, .faq-answer { padding-right: 30px; }
 }
 </style>
 
@@ -509,8 +520,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .regbar-actions{ display:flex; align-items:center; gap:18px; flex-shrink:0; }
 .regbar-id{ font-family:'Inter',sans-serif; font-size:11.5px; color:rgba(255,255,255,.62); text-decoration:none; white-space:nowrap; }
 .regbar-id:hover{ color:#fff; }
-.regbar-cta{ font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:#fff; background:var(--purple); padding:12px 24px; text-decoration:none; transition:background .2s,color .2s; }
+.regbar-cta{ font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:#fff; background:var(--purple); padding:12px 24px; text-decoration:none; transition:background .2s,color .2s,transform .16s var(--ease-out); }
 .regbar-cta:hover{ background:#fff; color:#000; }
+.regbar-cta:active{ transform:scale(0.97); }
 @media(max-width:600px){ .regbar-id{ display:none; } .regbar-inner{ padding:10px 16px; } .regbar-cta{ padding:10px 18px; } }
 @media (prefers-reduced-motion: reduce){ .regbar{ transition:none; } }
 </style>
@@ -778,15 +790,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
       <h2 class="sec-head">FAQ</h2>
     </div>
     <div class="faq-list reveal">
-      <details class="faq-item"><summary>Wat is Round Trip to Cuba?</summary><p class="faq-answer">Een 2-daags Cubaans Salsa-weekendintensief op Shoonya Dance Centre in Gent, op 23–24 januari 2027. Gegeven door het internationaal befaamde duo Wilmer &amp; Maria, met zes 60-minuten meesterklassen over Afrocuban, Rumba Cubana, Son Cubano, Salsa Cubana, Timba Cubana en Afrotimba Fusión.</p></details>
-      <details class="faq-item"><summary>Voor welk niveau is dit intensief?</summary><p class="faq-answer">Alle niveaus zijn welkom — beginner, intermediate en gevorderd. Het programma is opgebouwd zodat elke deelnemer iets zinvols meeneemt, ongeacht hoe lang je al danst. Als je op muziek kunt bewegen, ben je welkom.</p></details>
-      <details class="faq-item"><summary>Moet ik me met een danspartner inschrijven?</summary><p class="faq-answer"><strong>Ja — inschrijven met een danspartner is verplicht.</strong> Schrijf je samen met je danspartner in, één leader en één follower. We houden dit verplicht om de balans in de zaal te bewaken: zonder die regel zitten workshops vol followers en te weinig leaders, wat het oefenen en wisselen voor iedereen beperkt. Elke persoon heeft nog steeds een eigen Shoonya ID nodig. Op zoek naar een partner? <a href="https://www.facebook.com/groups/1405926722822445" target="_blank" rel="noopener">Word lid van het Shoonya Dance Forum →</a></p></details>
-      <details class="faq-item"><summary>Wie zijn Wilmer &amp; Maria?</summary><p class="faq-answer">Wilmer &amp; Maria zijn een Cubaans dansduo, opgeleid aan Cubaanse dansacademies in Afro-rumba, ballet, hedendaagse dans en volksdansen. Ze verhuisden in 2002 van Cuba naar Italië en traden sindsdien op op de grootste Salsa-congressen ter wereld. Hun repertoire omvat Cubaanse Salsa, Cubaanse volksdans (orishas) en Afro-hedendaagse voorstellingen.</p></details>
-      <details class="faq-item"><summary>Wat is het verschil tussen early bird en volle prijs?</summary><p class="faq-answer">De early-bird prijs is €110 voor het volledige weekendpas — beschikbaar voor een beperkt aantal plaatsen of tot 31 juli 2026, afhankelijk van wat het eerst bereikt wordt. Daarna is de volle prijs €130. Beide geven toegang tot de sociale avond op zaterdag.</p></details>
-      <details class="faq-item"><summary>Wat is de Sociale Avond?</summary><p class="faq-answer">Na de drie meesterklassen op zaterdag organiseert Shoonya een open sociale dansvloer vanaf 21:00. Weekendpashouders zijn inbegrepen. Anderen kunnen vooraf inschrijven voor €10 — ook beperkt aantal plaatsen beschikbaar aan de deur.</p></details>
-      <details class="faq-item"><summary>Kan ik slechts één dag deelnemen?</summary><p class="faq-answer">Ja — dagpassen van €75 per dag zijn beschikbaar vanaf 1 augustus 2026, afhankelijk van de beschikbaarheid. Als je je plek voor beide dagen wil garanderen, is het volledige weekendpas de beste keuze.</p></details>
-      <details class="faq-item"><summary>Waar vindt het intensief precies plaats?</summary><p class="faq-answer">Studio Art Deco, binnen Shoonya Dance Centre op Stapelplein 41, 9000 Gent, België. Studio Art Deco is de grootste en best uitgeruste zaal van Shoonya. Meer info op shoonyadance.com.</p></details>
-      <details class="faq-item"><summary>Hoe schrijf ik me in?</summary><p class="faq-answer">Iedereen die zich inschrijft heeft een Shoonya ID nodig — ook je danspartner als je als koppel deelneemt. Heb je nog geen Shoonya ID? <a href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Shoonya_ID/UrhOBSntgxQw9NmJAuwefjF4KDAAB8aam9rpDy0vxrbG92gjDyzbj6fzQQzsrMqEAk86BHC86TTtTM1eUsU1AVpjsGMH1wNDdnSy" target="_blank" rel="noopener">Maak hier eerst je Shoonya ID aan</a>, en gebruik daarna de inschrijfknop op deze pagina. Vragen? <a href="https://www.shoonyadance.com/contact" target="_blank" rel="noopener">Contacteer ons</a>.</p></details>
+      <div class="faq" data-open="1"><button class="faq-q" aria-expanded="true"><span>Wat is Round Trip to Cuba?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Een 2-daags Cubaans Salsa-weekendintensief op Shoonya Dance Centre in Gent, op 23–24 januari 2027. Gegeven door het internationaal befaamde duo Wilmer &amp; Maria, met zes 60-minuten meesterklassen over Afrocuban, Rumba Cubana, Son Cubano, Salsa Cubana, Timba Cubana en Afrotimba Fusión.</p></div></div></div>
+      <div class="faq" data-open="0"><button class="faq-q" aria-expanded="false"><span>Voor welk niveau is dit intensief?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Alle niveaus zijn welkom — beginner, intermediate en gevorderd. Het programma is opgebouwd zodat elke deelnemer iets zinvols meeneemt, ongeacht hoe lang je al danst. Als je op muziek kunt bewegen, ben je welkom.</p></div></div></div>
+      <div class="faq" data-open="0"><button class="faq-q" aria-expanded="false"><span>Moet ik me met een danspartner inschrijven?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer"><strong>Ja — inschrijven met een danspartner is verplicht.</strong> Schrijf je samen met je danspartner in, één leader en één follower. We houden dit verplicht om de balans in de zaal te bewaken: zonder die regel zitten workshops vol followers en te weinig leaders, wat het oefenen en wisselen voor iedereen beperkt. Elke persoon heeft nog steeds een eigen Shoonya ID nodig. Op zoek naar een partner? <a href="https://www.facebook.com/groups/1405926722822445" target="_blank" rel="noopener">Word lid van het Shoonya Dance Forum →</a></p></div></div></div>
+      <div class="faq" data-open="0"><button class="faq-q" aria-expanded="false"><span>Wie zijn Wilmer &amp; Maria?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Wilmer &amp; Maria zijn een Cubaans dansduo, opgeleid aan Cubaanse dansacademies in Afro-rumba, ballet, hedendaagse dans en volksdansen. Ze verhuisden in 2002 van Cuba naar Italië en traden sindsdien op op de grootste Salsa-congressen ter wereld. Hun repertoire omvat Cubaanse Salsa, Cubaanse volksdans (orishas) en Afro-hedendaagse voorstellingen.</p></div></div></div>
+      <div class="faq" data-open="0"><button class="faq-q" aria-expanded="false"><span>Wat is het verschil tussen early bird en volle prijs?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">De early-bird prijs is €110 voor het volledige weekendpas — beschikbaar voor een beperkt aantal plaatsen of tot 31 juli 2026, afhankelijk van wat het eerst bereikt wordt. Daarna is de volle prijs €130. Beide geven toegang tot de sociale avond op zaterdag.</p></div></div></div>
+      <div class="faq" data-open="0"><button class="faq-q" aria-expanded="false"><span>Wat is de Sociale Avond?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Na de drie meesterklassen op zaterdag organiseert Shoonya een open sociale dansvloer vanaf 21:00. Weekendpashouders zijn inbegrepen. Anderen kunnen vooraf inschrijven voor €10 — ook beperkt aantal plaatsen beschikbaar aan de deur.</p></div></div></div>
+      <div class="faq" data-open="0"><button class="faq-q" aria-expanded="false"><span>Kan ik slechts één dag deelnemen?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Ja — dagpassen van €75 per dag zijn beschikbaar vanaf 1 augustus 2026, afhankelijk van de beschikbaarheid. Als je je plek voor beide dagen wil garanderen, is het volledige weekendpas de beste keuze.</p></div></div></div>
+      <div class="faq" data-open="0"><button class="faq-q" aria-expanded="false"><span>Waar vindt het intensief precies plaats?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Studio Art Deco, binnen Shoonya Dance Centre op Stapelplein 41, 9000 Gent, België. Studio Art Deco is de grootste en best uitgeruste zaal van Shoonya. Meer info op shoonyadance.com.</p></div></div></div>
+      <div class="faq" data-open="0"><button class="faq-q" aria-expanded="false"><span>Hoe schrijf ik me in?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Iedereen die zich inschrijft heeft een Shoonya ID nodig — ook je danspartner als je als koppel deelneemt. Heb je nog geen Shoonya ID? <a href="https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Shoonya_ID/UrhOBSntgxQw9NmJAuwefjF4KDAAB8aam9rpDy0vxrbG92gjDyzbj6fzQQzsrMqEAk86BHC86TTtTM1eUsU1AVpjsGMH1wNDdnSy" target="_blank" rel="noopener">Maak hier eerst je Shoonya ID aan</a>, en gebruik daarna de inschrijfknop op deze pagina. Vragen? <a href="https://www.shoonyadance.com/contact" target="_blank" rel="noopener">Contacteer ons</a>.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -872,28 +884,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
     </div>
   </div>
 </div>
-<script>(function(){var b=document.getElementById('regbar');if(!b)return;var o=function(){var s=window.scrollY>window.innerHeight*0.85;b.classList.toggle('visible',s);b.setAttribute('aria-hidden',s?'false':'true');};window.addEventListener('scroll',o,{passive:true});o();})();</script>
+<script>(function(){var b=document.getElementById('regbar');if(!b)return;var f=document.querySelector('.footer')||document.querySelector('footer');var o=function(){var atF=false;if(f){var ft=f.getBoundingClientRect().top+window.scrollY;atF=(window.scrollY+window.innerHeight)>=ft+8;}var s=window.scrollY>window.innerHeight*0.85&&!atF;b.classList.toggle('visible',s);b.setAttribute('aria-hidden',s?'false':'true');};window.addEventListener('scroll',o,{passive:true});window.addEventListener('resize',o,{passive:true});o();})();</script>
 
 <script>
-(function(){
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (window.matchMedia('(pointer:fine)').matches && !reduced){
-    document.querySelectorAll('.btn-primary,.btn-ghost,.regbar-cta,.nav-cta').forEach(function(b){
-      b.style.transition='transform .3s cubic-bezier(.22,1,.36,1)';
-      b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-(r.left+r.width/2))*0.3)+'px,'+((e.clientY-(r.top+r.height/2))*0.45)+'px)';});
-      b.addEventListener('mouseleave',function(){b.style.transform='';});
-    });
-  }
-  if (!window.gsap || !window.ScrollTrigger || reduced) return;
-  if (window.matchMedia('(min-width:901px)').matches){
-    var skewImgs = gsap.utils.toArray('img').filter(function(im){ return !im.closest('.hero') && !im.classList.contains('pg-logo') && !im.classList.contains('hero-poster') && im.closest('section,article,[class*=photo],[class*=card]'); });
-    if (skewImgs.length){
-      var skewTo = skewImgs.map(function(im){ return gsap.quickTo(im,'skewY',{ duration:0.5, ease:'power3' }); });
-      var clampS = gsap.utils.clamp(-2.5,2.5);
-      ScrollTrigger.create({ onUpdate:function(self){ var sk=clampS(self.getVelocity()/-700); skewTo.forEach(function(q){ q(sk); }); } });
-    }
-  }
-})();
+/* FAQ accordion — height-eased toggle (replaces native <details>) */
+(function(){[].forEach.call(document.querySelectorAll('.faq-q'),function(b){b.addEventListener('click',function(){var f=b.closest('.faq'),open=f.getAttribute('data-open')==='1';f.setAttribute('data-open',open?'0':'1');b.setAttribute('aria-expanded',open?'false':'true');});});})();
 </script>
 </body>
 </html>

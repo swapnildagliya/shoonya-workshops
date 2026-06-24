@@ -112,6 +112,9 @@
   --cream:#FBF4E6; --cream-2:#F4ECDA; --lime:#D8F24E;
   --muted:rgba(244,241,234,.62); --ink-muted:#6a5a78;
   --ease:cubic-bezier(.22,1,.36,1);
+  /* Emil interaction easings — strong ease-out for UI/press; no bounce (D-037) */
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --ease-in-out:cubic-bezier(0.77,0,0.175,1);
 }
 html{scroll-behavior:smooth;}
 body{font-family:'Inter',sans-serif;background:var(--purple);color:var(--cream);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
@@ -128,11 +131,12 @@ img{display:block;}
 .nav-links a:hover{color:var(--lime);}
 .nav-right{display:flex;align-items:center;gap:14px;}
 .nav-lang{font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--cream);text-decoration:none;opacity:.7;}
-.nav-cta{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--purple-deep);background:var(--cream);text-decoration:none;padding:10px 18px;border-radius:999px;transition:transform .15s,background .15s;}
-.nav-cta:hover{transform:translateY(-2px);background:var(--lime);}
+.nav-cta{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--purple-deep);background:var(--cream);text-decoration:none;padding:10px 18px;border-radius:999px;transition:transform .15s var(--ease-out),background .15s;}
+@media (hover:hover) and (pointer:fine){ .nav-cta:hover{transform:translateY(-2px);background:var(--lime);} }
+.nav-cta:active{transform:scale(0.97);}
 @media(max-width:840px){.nav-links{display:none;}}
 .hero{position:relative;min-height:100svh;overflow:hidden;padding:120px clamp(20px,4vw,52px) 0;}
-.hero-oo{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);width:min(125vw,1500px);opacity:.10;pointer-events:none;z-index:0;filter:brightness(0) invert(1);}
+.hero-oo{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);width:min(100vw,1500px);opacity:.10;pointer-events:none;z-index:0;filter:brightness(0) invert(1);}
 .hero-eyebrow{position:relative;z-index:5;text-align:center;font-size:14px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--cream);opacity:.85;}
 .hero-title{position:relative;z-index:5;text-align:center;font-weight:900;font-size:clamp(54px,12.5vw,184px);line-height:.86;letter-spacing:-.015em;margin-top:16px;}
 .hero-title .free{font-style:italic;color:var(--lime);}
@@ -153,10 +157,11 @@ img{display:block;}
 .actions{margin-top:26px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
 .btn{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;padding:16px 30px;border-radius:999px;transition:transform .15s,background .15s,color .15s;display:inline-flex;align-items:center;gap:9px;}
 .btn-primary{background:var(--cream);color:var(--purple-deep);}
-.btn-primary:hover{transform:translateY(-2px);background:var(--lime);}
+@media (hover:hover) and (pointer:fine){ .btn-primary:hover{transform:translateY(-2px);background:var(--lime);} }
 .btn-ghost{border:1.5px solid var(--cream);color:var(--cream);}
 .btn-ghost:hover{background:var(--cream);color:var(--purple-deep);}
-.marquee{position:relative;z-index:6;margin-top:54px;background:var(--lime);color:var(--ink);overflow:hidden;padding:13px 0;transform:rotate(-1.1deg) scale(1.04);}
+.btn-primary:active,.btn-ghost:active{transform:scale(0.97);}
+.marquee{position:relative;z-index:6;margin-top:54px;background:var(--lime);color:var(--ink);overflow:hidden;padding:13px 0;transform:none;}
 .mq-track{display:flex;width:max-content;animation:mq 28s linear infinite;}
 .mq{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(22px,3vw,40px);white-space:nowrap;padding-right:.5em;}
 @keyframes mq{to{transform:translateX(-50%);}}
@@ -165,8 +170,9 @@ img{display:block;}
 .lu-bar h2{font-size:clamp(34px,6vw,76px);line-height:.9;}
 .lu-bar h2 .it{font-family:'Fraunces',serif;font-style:italic;text-transform:none;font-weight:600;color:var(--lime);letter-spacing:-.01em;}
 .lu-filter{display:flex;gap:8px;flex-wrap:wrap;}
-.chip{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(244,241,234,.3);color:var(--cream);background:transparent;padding:9px 15px;border-radius:999px;cursor:pointer;transition:.15s;}
+.chip{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid rgba(244,241,234,.3);color:var(--cream);background:transparent;padding:9px 15px;border-radius:999px;cursor:pointer;transition:border-color .15s,background .15s,color .15s,transform .15s var(--ease-out);}
 .chip:hover{border-color:var(--cream);}
+.chip:active{transform:scale(0.96);}
 .chip.on{background:var(--lime);border-color:var(--lime);color:var(--ink);}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(244,241,234,.13);}
 .tile{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--ink);}
@@ -198,11 +204,16 @@ img{display:block;}
 .faq h2 .it{font-style:italic;color:var(--ink);}
 .faq-item{border-top:1.5px solid rgba(11,11,13,.16);}
 .faq-item:last-child{border-bottom:1.5px solid rgba(11,11,13,.16);}
-.faq-item summary{list-style:none;cursor:pointer;padding:22px 44px 22px 0;position:relative;font-family:'Fraunces',serif;font-weight:600;font-size:clamp(18px,2.2vw,24px);color:var(--ink);}
-.faq-item summary::-webkit-details-marker{display:none;}
-.faq-item summary::after{content:'+';position:absolute;right:4px;top:20px;font-size:26px;color:var(--purple-deep);transition:transform .2s;}
-.faq-item[open] summary::after{content:'−';}
-.faq-a{padding:0 44px 24px 0;font-size:15.5px;line-height:1.7;color:#4a3c56;}
+.faq-q{width:100%;text-align:left;background:none;border:0;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:22px 4px 22px 0;font-family:'Fraunces',serif;font-weight:600;font-size:clamp(18px,2.2vw,24px);color:var(--ink);transition:transform .16s var(--ease-out);}
+.faq-q:active{transform:scale(0.995);}
+.faq-q .sgn{font-size:26px;line-height:1;color:var(--purple-deep);flex-shrink:0;transition:transform .3s var(--ease-out);}
+.faq-item[data-open="1"] .sgn{transform:rotate(45deg);}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease-out);}
+.faq-item[data-open="1"] .faq-a{grid-template-rows:1fr;}
+.faq-a>div{overflow:hidden;}
+.faq-answer{padding:0 44px 24px 0;font-size:15.5px;line-height:1.7;color:#4a3c56;}
+.faq-answer a{color:var(--purple-deep);}
+:where(a,button,summary):focus-visible{outline:2px solid currentColor;outline-offset:3px;}
 .cta{background:var(--purple-deep);text-align:center;padding:clamp(80px,13vh,150px) clamp(20px,5vw,48px);}
 .cta-oo{height:30px;width:auto;opacity:.6;filter:brightness(0) invert(1);margin:0 auto 22px;}
 .cta h2{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(36px,6vw,84px);line-height:.94;margin-bottom:16px;}
@@ -219,7 +230,7 @@ img{display:block;}
 .footer-soc a:hover{color:var(--cream);}
 .footer-soc svg{width:18px;height:18px;display:block;}
 .footer-site{font-size:12px;letter-spacing:.08em;color:rgba(244,241,234,.4);margin-top:20px;}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.mq-track{animation:none;}.reveal{opacity:1;transform:none;transition:none;}.sticker video{display:none;}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}.mq-track{animation:none;}.reveal{opacity:1;transform:none;transition:none;}.sticker video{display:none;}.faq-a,.faq-q,.faq-q .sgn{transition:none;}.nav-cta:active,.btn-primary:active,.btn-ghost:active,.chip:active,.faq-q:active{transform:none;}}
 @media(max-width:840px){.grid{grid-template-columns:repeat(2,1fr);}.prac-grid{grid-template-columns:1fr;}}
 @media(max-width:480px){.grid{grid-template-columns:1fr;}}
 </style>
@@ -321,12 +332,12 @@ img{display:block;}
 <section class="faq" id="faq">
   <div class="faq-wrap">
     <h2 class="fr reveal">Voor je <span class="it">komt</span></h2>
-    <details class="faq-item"><summary>Moet ik me inschrijven?</summary><div class="faq-a">Geen inschrijving nodig. Alle twaalf workshops zijn gratis en vrij toegankelijk — kom gewoon een paar minuten voor de start en doe mee.</div></details>
-    <details class="faq-item"><summary>Hoeveel kost het?</summary><div class="faq-a">Niets. Elke workshop is volledig gratis, als deel van Shoonya's programma op de Gentse Feesten 2026.</div></details>
-    <details class="faq-item"><summary>Welk niveau heb ik nodig?</summary><div class="faq-a">Alle niveaus zijn welkom, ook absolute beginners. Elke workshop is een laagdrempelige kennismaking waar iedereen kan meedoen.</div></details>
-    <details class="faq-item"><summary>Waar vinden ze precies plaats?</summary><div class="faq-a">In en rond het Baudelopark in Gent — op het Het Bal-podium, aan de Salsabar en in het park zelf. Het juiste podium staat bij elke workshop in de line-up.</div></details>
-    <details class="faq-item"><summary>Heb ik een danspartner nodig?</summary><div class="faq-a">Nee. Kom alleen of met vrienden — bij partnerdansen zoals Kizomba en Lindy Hop wisselen de dansers, zodat iedereen kan meedoen.</div></details>
-    <details class="faq-item"><summary>Kan ik naar één workshop komen?</summary><div class="faq-a">Ja. Spring binnen bij één workshop die in je agenda past, of kom er zoveel als je wil tijdens het festival.</div></details>
+    <div class="faq-item" data-open="1"><button class="faq-q" aria-expanded="true"><span>Moet ik me inschrijven?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Geen inschrijving nodig. Alle twaalf workshops zijn gratis en vrij toegankelijk — kom gewoon een paar minuten voor de start en doe mee.</p></div></div></div>
+    <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Hoeveel kost het?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Niets. Elke workshop is volledig gratis, als deel van Shoonya's programma op de Gentse Feesten 2026.</p></div></div></div>
+    <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Welk niveau heb ik nodig?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Alle niveaus zijn welkom, ook absolute beginners. Elke workshop is een laagdrempelige kennismaking waar iedereen kan meedoen.</p></div></div></div>
+    <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Waar vinden ze precies plaats?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">In en rond het Baudelopark in Gent — op het Het Bal-podium, aan de Salsabar en in het park zelf. Het juiste podium staat bij elke workshop in de line-up.</p></div></div></div>
+    <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Heb ik een danspartner nodig?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Nee. Kom alleen of met vrienden — bij partnerdansen zoals Kizomba en Lindy Hop wisselen de dansers, zodat iedereen kan meedoen.</p></div></div></div>
+    <div class="faq-item" data-open="0"><button class="faq-q" aria-expanded="false"><span>Kan ik naar één workshop komen?</span><span class="sgn">+</span></button><div class="faq-a"><div><p class="faq-answer">Ja. Spring binnen bij één workshop die in je agenda past, of kom er zoveel als je wil tijdens het festival.</p></div></div></div>
   </div>
 </section>
 
@@ -360,6 +371,9 @@ filter.addEventListener('click',e=>{const btn=e.target.closest('.chip');if(!btn)
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>reduce?el.classList.add('in'):io.observe(el));
+
+// FAQ accordion — height-eased toggle (replaces native <details>)
+document.querySelectorAll('.faq-q').forEach(b=>b.addEventListener('click',()=>{const f=b.closest('.faq-item'),open=f.getAttribute('data-open')==='1';f.setAttribute('data-open',open?'0':'1');b.setAttribute('aria-expanded',open?'false':'true');}));
 </script>
 </body>
 </html>
