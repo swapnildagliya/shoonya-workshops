@@ -201,7 +201,7 @@
 
   /* Pricing */
   .pricing{background:var(--bone)}
-  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:740px;margin:0 auto}
   .price-card{background:var(--white);border:1px solid var(--hair);padding:34px 28px;display:flex;flex-direction:column}
   .price-card.feat{background:var(--ink);color:var(--white);border-color:var(--ink)}
   .price-card .tier{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);font-weight:700}
@@ -218,8 +218,8 @@
   .faq details{border-bottom:1px solid var(--hair);padding:6px 0}
   .faq summary{list-style:none;cursor:pointer;padding:18px 0;font-family:'Marcellus',serif;font-size:1.22rem;display:flex;justify-content:space-between;align-items:center;gap:16px}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";color:var(--purple);font-size:1.5rem;font-family:'PT Serif',serif}
-  .faq details[open] summary::after{content:"\2212"}
+  .faq summary::after{content:"+";color:var(--purple);font-size:1.5rem;font-family:'PT Serif',serif;line-height:1}
+  .faq details[open] summary::after{transform:rotate(45deg)}
   .faq .ans{padding:0 0 22px;color:var(--ink-soft);max-width:62ch}
 
   /* CTA band */
@@ -405,12 +405,6 @@
         <span class="sub">all three evenings</span>
         <p class="desc">The complete intensive — three evenings of classical and contemporary work.</p>
       </div>
-      <div class="price-card rv">
-        <span class="tier">Member</span>
-        <span class="amt">€95</span>
-        <span class="sub">full pass, Shoonya members</span>
-        <p class="desc">For dancers registered in a Shoonya course this season.</p>
-      </div>
     </div>
     <p class="price-foot rv">Capacity is limited to 20 dancers. A Shoonya ID is required to register — it takes a minute to create if you don't have one yet.</p>
   </div>
@@ -426,7 +420,7 @@
     <div class="faq rv">
       <details><summary>Who is this intensive for?</summary><div class="ans">Intermediate and advanced dancers. It's pitched at professional and semi-professional dancers, and strong advanced amateurs are very welcome.</div></details>
       <details><summary>What should I bring?</summary><div class="ans">Ballet shoes for the ballet work and socks for the contemporary work — whatever you're used to. Comfortable clothing and a bottle of water.</div></details>
-      <details><summary>Can I join just one evening?</summary><div class="ans">Yes. Take a single evening as a drop-in for €40, or the full three-evening pass for €105 (€95 for Shoonya members).</div></details>
+      <details><summary>Can I join just one evening?</summary><div class="ans">Yes. Take a single evening as a drop-in for €40, or the full three-evening pass for €105.</div></details>
       <details><summary>Do I need a partner?</summary><div class="ans">No — you can register on your own.</div></details>
       <details><summary>Where does it take place?</summary><div class="ans">Studio Aakash at Shoonya Dance Centre, Stapelplein 41, 9000 Ghent — about a 10-minute walk from Gent-Dampoort station.</div></details>
       <details><summary>How do I register?</summary><div class="ans">Every dancer needs a Shoonya ID. Create one in a minute, then complete the workshop registration form — both are linked in the Register section below. Questions? <a href="https://www.shoonyadance.com/contact">Contact us</a>.</div></details>
