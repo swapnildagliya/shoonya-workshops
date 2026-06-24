@@ -152,7 +152,9 @@
 
   /* Hero */
   .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--black)}
-  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:grayscale(100%) contrast(1.04);opacity:.82}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%;filter:grayscale(100%) contrast(1.04);opacity:.82}
+  /* mobile: no vertical crop room, so focal-zoom onto his face (settle anim off here) */
+  @media(max-width:760px){.hero img{animation:none;transform:scale(1.4);transform-origin:50% 24%}}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.05) 38%,rgba(0,0,0,.78) 100%)}
   .hero-in{position:relative;z-index:2;color:var(--white);width:100%;padding:0 32px 64px}
   .hero .eyebrow{color:#E7D2FF}
@@ -244,7 +246,7 @@
   /* hero load-in (one-time) */
   @keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   @keyframes heroSettle{from{transform:scale(1.05)}to{transform:scale(1)}}
-  .hero img{animation:heroSettle 1300ms var(--ease-out) both}
+  @media(min-width:761px){.hero img{animation:heroSettle 1300ms var(--ease-out) both}}
   .hero .eyebrow,.hero h1,.hero .meta,.hero-cta{animation:riseIn var(--dur-reveal) var(--ease-out) both}
   .hero .eyebrow{animation-delay:60ms}
   .hero h1{animation-delay:150ms}
