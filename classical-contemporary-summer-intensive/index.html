@@ -154,7 +154,7 @@
   .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--black)}
   .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%;filter:grayscale(100%) contrast(1.04);opacity:.82}
   .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.05) 38%,rgba(0,0,0,.78) 100%)}
-  .hero-in{position:relative;z-index:2;color:var(--white);padding:0 0 64px}
+  .hero-in{position:relative;z-index:2;color:var(--white);width:100%;padding:0 32px 64px}
   .hero .eyebrow{color:#E7D2FF}
   .hero h1{color:var(--white);font-size:clamp(2.6rem,7vw,5.4rem);margin:14px 0 18px;max-width:14ch}
   .hero .meta{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:.95rem;letter-spacing:.02em;color:rgba(255,255,255,.9)}
@@ -201,7 +201,7 @@
 
   /* Pricing */
   .pricing{background:var(--bone)}
-  .price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:740px;margin:0 auto}
+  .price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:740px}
   .price-card{background:var(--white);border:1px solid var(--hair);padding:34px 28px;display:flex;flex-direction:column}
   .price-card.feat{background:var(--ink);color:var(--white);border-color:var(--ink)}
   .price-card .tier{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--purple);font-weight:700}
