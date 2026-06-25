@@ -144,6 +144,16 @@
   <url>
     <loc>https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/"/>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/nl/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/"/>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -153,6 +163,16 @@
   <url>
     <loc>https://workshops.shoonyadance.com/exploring-the-kizomba-universe/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/exploring-the-kizomba-universe/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://workshops.shoonyadance.com/exploring-the-kizomba-universe/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://workshops.shoonyadance.com/exploring-the-kizomba-universe/"/>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://workshops.shoonyadance.com/exploring-the-kizomba-universe/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/exploring-the-kizomba-universe/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://workshops.shoonyadance.com/exploring-the-kizomba-universe/nl/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://workshops.shoonyadance.com/exploring-the-kizomba-universe/"/>
     <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
