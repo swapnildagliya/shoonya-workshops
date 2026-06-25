@@ -211,9 +211,15 @@ img { display: block; }
   max-width: 460px;
   margin-top: 48px;
 }
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  margin-top: 36px;
+}
 .hero-cta {
   display: inline-block;
-  margin-top: 36px;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
   font-weight: 500;
@@ -227,6 +233,19 @@ img { display: block; }
 }
 .hero-cta:hover { background: var(--purple); border-color: var(--purple); color: #fff; }
 .hero-cta:active { transform: scale(0.97); }
+.hero-cta-ghost {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-dark-muted);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.hero-cta-ghost:hover { color: var(--on-dark); }
+.hero-cta-ghost::after { content: ' →'; }
 
 /* ── MARQUEE ── */
 .marquee {
@@ -845,7 +864,10 @@ img { display: block; }
       <span class="hero-line">&amp; Series</span>
     </h1>
     <p class="hero-lead">Concentrated learning outside the weekly schedule. Each workshop is taught by a specialist — expect focused technique, a small group, and space to go deep.</p>
-    <a href="#bento" class="hero-cta">See what's coming up</a>
+    <div class="hero-ctas">
+      <a href="#bento" class="hero-cta">See what's coming up</a>
+      <a href="#miniseries" class="hero-cta-ghost">Miniseries</a>
+    </div>
   </div>
 </header>
 
