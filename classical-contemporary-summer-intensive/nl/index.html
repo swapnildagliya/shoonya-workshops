@@ -201,6 +201,19 @@
   .gallery .credit-blk{font-size:.62rem;color:var(--ink-soft);margin-top:6px}
   @media(max-width:860px){.teacher-grid{grid-template-columns:1fr;gap:32px}}
 
+  /* Tono in motion */
+  .motion{background:var(--ink);color:var(--white)}
+  .motion .sec-head{margin-bottom:32px}
+  .motion .eyebrow{color:#E7D2FF}
+  .motion .lead{color:rgba(255,255,255,.74);margin-top:18px}
+  .motion video{display:block;width:100%;background:var(--black);object-fit:cover}
+  .motion video:focus-visible{outline:2px solid var(--purple);outline-offset:4px}
+  .motion-feature video{aspect-ratio:16/9}
+  .motion-support{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:720px;margin-top:20px}
+  .motion-support video{aspect-ratio:9/16}
+  .motion-card figcaption{font-size:.78rem;letter-spacing:.04em;color:rgba(255,255,255,.68);margin-top:9px}
+  @media(max-width:680px){.motion-support{grid-template-columns:1fr 1fr;gap:12px}.motion-card figcaption{font-size:.72rem}}
+
   /* Pricing */
   .pricing{background:var(--bone)}
   .price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:740px}
@@ -383,6 +396,40 @@
           <figure><img src="../assets/rehearsal.jpg" alt="Tono Ferriol tijdens een repetitie."><figcaption class="credit-blk">© Koen De Clerck / Kodec Photography</figcaption></figure>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- TONO IN BEWEGING -->
+<section class="motion" aria-labelledby="motion-title">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Tono in beweging</p>
+      <h2 id="motion-title">Bekijk het werk op het podium.</h2>
+      <p class="lead">Een blik op Tono's podium- en partnerwerk in klassieke en hedendaagse settings.</p>
+    </div>
+    <figure class="motion-card motion-feature rv">
+      <video controls playsinline preload="none" poster="../assets/videos/tono-stage-solo-poster.jpg" aria-label="Tono Ferriol voert een hedendaagse solo uit op het podium">
+        <source src="../assets/videos/tono-stage-solo.mp4" type="video/mp4">
+        Je browser ondersteunt geen HTML-video.
+      </video>
+      <figcaption>Hedendaags podiumwerk</figcaption>
+    </figure>
+    <div class="motion-support">
+      <figure class="motion-card rv">
+        <video controls playsinline preload="none" poster="../assets/videos/tono-partnering-01-poster.jpg" aria-label="Tono Ferriol voert een partnersequentie uit">
+          <source src="../assets/videos/tono-partnering-01.mp4" type="video/mp4">
+          Je browser ondersteunt geen HTML-video.
+        </video>
+        <figcaption>Partnerstudie I</figcaption>
+      </figure>
+      <figure class="motion-card rv">
+        <video controls playsinline preload="none" poster="../assets/videos/tono-partnering-02-poster.jpg" aria-label="Tono Ferriol in een hedendaagse ensemblevoorstelling">
+          <source src="../assets/videos/tono-partnering-02.mp4" type="video/mp4">
+          Je browser ondersteunt geen HTML-video.
+        </video>
+        <figcaption>Partnerstudie II</figcaption>
+      </figure>
     </div>
   </div>
 </section>

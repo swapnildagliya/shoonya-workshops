@@ -201,6 +201,19 @@
   .gallery .credit-blk{font-size:.62rem;color:var(--ink-soft);margin-top:6px}
   @media(max-width:860px){.teacher-grid{grid-template-columns:1fr;gap:32px}}
 
+  /* Tono in motion */
+  .motion{background:var(--ink);color:var(--white)}
+  .motion .sec-head{margin-bottom:32px}
+  .motion .eyebrow{color:#E7D2FF}
+  .motion .lead{color:rgba(255,255,255,.74);margin-top:18px}
+  .motion video{display:block;width:100%;background:var(--black);object-fit:cover}
+  .motion video:focus-visible{outline:2px solid var(--purple);outline-offset:4px}
+  .motion-feature video{aspect-ratio:16/9}
+  .motion-support{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:720px;margin-top:20px}
+  .motion-support video{aspect-ratio:9/16}
+  .motion-card figcaption{font-size:.78rem;letter-spacing:.04em;color:rgba(255,255,255,.68);margin-top:9px}
+  @media(max-width:680px){.motion-support{grid-template-columns:1fr 1fr;gap:12px}.motion-card figcaption{font-size:.72rem}}
+
   /* Pricing */
   .pricing{background:var(--bone)}
   .price-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:740px}
@@ -383,6 +396,40 @@
           <figure><img src="assets/rehearsal.jpg" alt="Tono Ferriol in rehearsal."><figcaption class="credit-blk">© Koen De Clerck / Kodec Photography</figcaption></figure>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- TONO IN MOTION -->
+<section class="motion" aria-labelledby="motion-title">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Tono in motion</p>
+      <h2 id="motion-title">See the work on stage.</h2>
+      <p class="lead">A glimpse of Tono's performance and partnering work across classical and contemporary settings.</p>
+    </div>
+    <figure class="motion-card motion-feature rv">
+      <video controls playsinline preload="none" poster="assets/videos/tono-stage-solo-poster.jpg" aria-label="Tono Ferriol performing a contemporary solo on stage">
+        <source src="assets/videos/tono-stage-solo.mp4" type="video/mp4">
+        Your browser does not support HTML video.
+      </video>
+      <figcaption>Contemporary stage work</figcaption>
+    </figure>
+    <div class="motion-support">
+      <figure class="motion-card rv">
+        <video controls playsinline preload="none" poster="assets/videos/tono-partnering-01-poster.jpg" aria-label="Tono Ferriol performing a partnering sequence">
+          <source src="assets/videos/tono-partnering-01.mp4" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+        <figcaption>Partnering study I</figcaption>
+      </figure>
+      <figure class="motion-card rv">
+        <video controls playsinline preload="none" poster="assets/videos/tono-partnering-02-poster.jpg" aria-label="Tono Ferriol in a contemporary ensemble performance">
+          <source src="assets/videos/tono-partnering-02.mp4" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+        <figcaption>Partnering study II</figcaption>
+      </figure>
     </div>
   </div>
 </section>
