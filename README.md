@@ -1,5 +1,11 @@
 # workshops.shoonyadance.com — GitHub Pages repo
 
+> **Status:** ACTIVE  
+> **Authority:** deploy workflow note only; `WEBPAGES.md` and deploy scripts win on page requirements  
+> **Scope:** workshops.shoonyadance.com GitHub Pages setup and deployment  
+> **Last reviewed:** 2026-06-26  
+> **Superseded by:** n/a
+
 This folder is the root of the GitHub Pages site for `workshops.shoonyadance.com`.
 
 ## First-time setup

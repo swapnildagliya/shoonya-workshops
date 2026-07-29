@@ -1240,6 +1240,12 @@ img { display: block; }
     visible.forEach(function (cell, i) {
       if (i < SLOTS.length) cell.classList.add('slot-' + i);
     });
+    /* Reorder DOM nodes to match — mobile collapses to grid-row:auto,
+       which falls back to source order, so pin order must be physical too */
+    var grid = g('bento-grid');
+    if (grid) {
+      visible.forEach(function (cell) { grid.appendChild(cell); });
+    }
   }
   assignSlots();
 
