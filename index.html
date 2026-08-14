@@ -99,6 +99,11 @@ img { display: block; }
 .nav-brand img { height: 46px; width: auto; }
 .nav-right { display: flex; align-items: center; gap: 22px; }
 .nav-lang {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   letter-spacing: 0.12em;
@@ -109,6 +114,9 @@ img { display: block; }
 }
 .nav-lang:hover { color: var(--on-dark); }
 .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   font-weight: 500;
@@ -456,7 +464,9 @@ img { display: block; }
 .bento-cell[data-pinned] { outline: 1px solid rgba(181,100,247,0.40); outline-offset: -1px; }
 
 .bento-cta-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: 'Inter', sans-serif;
   font-size: 10px;
   font-weight: 500;
@@ -469,6 +479,7 @@ img { display: block; }
   transition: color 0.2s, border-color 0.2s;
 }
 .bento-cta-link:hover { color: var(--purple); border-color: var(--purple); }
+.miniseries-register-link { display:inline-flex; align-items:center; min-height:44px; }
 
 /* Bento empty + offseason */
 .bento-workshops-empty {
@@ -620,6 +631,9 @@ img { display: block; }
   margin-bottom: 18px;
 }
 .miniseries-register-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   font-weight: 500;
@@ -632,6 +646,7 @@ img { display: block; }
   transition: border-color 0.2s;
 }
 .miniseries-register-link:hover { border-color: var(--purple); }
+.hero-cta-ghost { display:inline-flex; align-items:center; min-height:44px; }
 .miniseries-item-meta {
   flex-shrink: 0;
   text-align: right;
@@ -744,11 +759,15 @@ img { display: block; }
   text-align: center;
   line-height: 1.7;
 }
-.footer-address a { color: inherit; text-decoration: none; }
+.footer-address a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
 .footer-address a:hover { color: var(--purple); }
 .footer-socials { display: flex; gap: 24px; }
 .footer-social {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   color: rgba(247,244,238,0.42);
   transition: color 0.2s;
   text-decoration: none;

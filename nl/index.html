@@ -109,8 +109,7 @@
 </script>
 
 <!-- Schema: Events -->
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -137,6 +136,11 @@
       "organizer": {
         "@type": "Organization",
         "name": "Shoonya Dance Centre",
+        "url": "https://www.shoonyadance.com"
+      },
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Shoonya Dance Centre docenten",
         "url": "https://www.shoonyadance.com"
       }
     },
@@ -165,6 +169,11 @@
         "@type": "Organization",
         "name": "Shoonya Dance Centre",
         "url": "https://www.shoonyadance.com"
+      },
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Shoonya Dance Centre docenten",
+        "url": "https://www.shoonyadance.com"
       }
     },
     {
@@ -192,6 +201,11 @@
         "@type": "Organization",
         "name": "Shoonya Dance Centre",
         "url": "https://www.shoonyadance.com"
+      },
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Shoonya Dance Centre docenten",
+        "url": "https://www.shoonyadance.com"
       }
     },
     {
@@ -218,6 +232,11 @@
       "organizer": {
         "@type": "Organization",
         "name": "Shoonya Dance Centre",
+        "url": "https://www.shoonyadance.com"
+      },
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Shoonya Dance Centre docenten",
         "url": "https://www.shoonyadance.com"
       }
     },
@@ -254,6 +273,11 @@
         "availability": "https://schema.org/InStock",
         "url": "https://www.shoonyadance.com/bhangra-danslessen-in-gent",
         "validFrom": "2026-06-10"
+      },
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Shoonya Dance Centre docenten",
+        "url": "https://www.shoonyadance.com"
       }
     },
     {
@@ -289,6 +313,11 @@
         "availability": "https://schema.org/InStock",
         "url": "https://www.shoonyadance.com/kathak-danslessen-in-gent",
         "validFrom": "2026-06-10"
+      },
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Shoonya Dance Centre docenten",
+        "url": "https://www.shoonyadance.com"
       }
     },
     {
@@ -324,6 +353,11 @@
         "availability": "https://schema.org/InStock",
         "url": "https://www.shoonyadance.com/bachata-solo-style-gent",
         "validFrom": "2026-06-10"
+      },
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Shoonya Dance Centre docenten",
+        "url": "https://www.shoonyadance.com"
       }
     },
     {
@@ -359,11 +393,15 @@
         "availability": "https://schema.org/InStock",
         "url": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/",
         "validFrom": "2026-06-10"
+      },
+      "performer": {
+        "@type": "PerformingGroup",
+        "name": "Shoonya Dance Centre docenten",
+        "url": "https://www.shoonyadance.com"
       }
     }
   ]
-}
-</script>
+}</script>
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -437,6 +475,11 @@ body::before {
 .nav-brand img { height: 46px; width: auto; }
 .nav-right { display: flex; align-items: center; gap: 22px; }
 .nav-lang {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   letter-spacing: 0.12em;
@@ -447,6 +490,9 @@ body::before {
 }
 .nav-lang:hover { color: var(--on-dark); }
 .nav-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   font-weight: 500;
@@ -993,7 +1039,7 @@ body::before {
   color: rgba(255,255,255,0.5);
   text-align: center;
 }
-.footer-address a { color: rgba(255,255,255,0.65); text-decoration: none; }
+.footer-address a { color: rgba(255,255,255,0.65); text-decoration: none; display:inline-flex; align-items:center; min-height:44px; }
 .footer-address a:hover { color: #fff; }
 .footer-credits {
   font-family: 'Inter', sans-serif;
@@ -1003,7 +1049,8 @@ body::before {
   text-align: center;
 }
 .footer-socials { display: flex; gap: 18px; align-items: center; }
-.footer-social { color: rgba(255,255,255,0.5); transition: color 0.18s; }
+.footer-social { color: rgba(255,255,255,0.5); transition: color 0.18s; display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; }
+.miniseries-note a, .workshops-empty a, .miniseries-register-link { display:inline-flex; align-items:center; min-height:44px; }
 .footer-social:hover { color: #fff; }
 .footer-social svg { display: block; width: 18px; height: 18px; }
 
