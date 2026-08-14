@@ -1214,6 +1214,44 @@ body::before {
       </div>
     </article>
 
+    <!-- Kizomba Beginner Bootcamp Series — Oct · Nov · Jan -->
+    <article class="panel" id="card-kiz-beginner">
+      <div class="panel-media">
+        <img src="../kizomba-beginner-bootcamp-series/assets/sonja-beginner.jpg" alt="Kizomba Beginner Bootcamp Series" loading="lazy" style="object-position: 58% 18%;">
+        <div class="panel-date"><span class="d">okt</span><span class="m">t.e.m. jan</span></div>
+      </div>
+      <div class="panel-body">
+        <h3>Kizomba Beginner Bootcamp Series</h3>
+        <p class="panel-teacher">met Sonja KikiZomba</p>
+        <p class="panel-desc">Een start-hier traject over drie zaterdagmiddagen — open voor absolute beginners en dansers die een heldere Kizomba-basis willen opbouwen.</p>
+        <div class="panel-chips">
+          <span class="chip">Beginner</span>
+          <span class="chip">3 zaterdagen</span>
+          <span class="chip">Kizomba</span>
+        </div>
+        <a href="/kizomba-beginner-bootcamp-series/nl/" class="panel-link">Alle details &amp; inschrijven</a>
+      </div>
+    </article>
+
+    <!-- Exploring the Kizomba Universe — Oct · Nov · Jan -->
+    <article class="panel" id="card-kiz-universe">
+      <div class="panel-media">
+        <img src="../exploring-the-kizomba-universe/assets/sonja-universe.jpg" alt="Exploring the Kizomba Universe" loading="lazy" style="object-position: 66% 35%;">
+        <div class="panel-date"><span class="d">okt</span><span class="m">t.e.m. jan</span></div>
+      </div>
+      <div class="panel-body">
+        <h3>Exploring the Kizomba Universe</h3>
+        <p class="panel-teacher">met Sonja KikiZomba</p>
+        <p class="panel-desc">Drie zaterdagmiddagen waarin je de muzikale werelden rond Kizomba verkent. Open niveau in het algemeen — de Semba-module vraagt wat Kizomba-ervaring.</p>
+        <div class="panel-chips">
+          <span class="chip">Open niveau</span>
+          <span class="chip">3 zaterdagen</span>
+          <span class="chip">Kizomba</span>
+        </div>
+        <a href="/exploring-the-kizomba-universe/nl/" class="panel-link">Alle details &amp; inschrijven</a>
+      </div>
+    </article>
+
     <!-- Round Trip to Cuba — 23–24 January 2027 — date-gated until 15 June 2026, auto-hides 25 Jan 2027 -->
     <article class="panel" id="card-rtc" hidden>
       <div class="panel-media">
@@ -1323,7 +1361,7 @@ body::before {
             <h3>Bachata Choreo Minireeks</h3>
             <p class="miniseries-item-teacher">met Alex Papaianopol &amp; Lenka Badriyah</p>
             <p class="miniseries-item-desc">Een 6-weekse koppelchoreografie-reeks voor gevorderde bachatadansers (Intermediate &amp; Advanced). Bouw een volledige choreografie op van nul — bewegingskwaliteit, partnerdynamiek, muzikaliteit, styling en een volledige doorloop. Partner gedurende de hele reeks vereist.</p>
-            <a class="miniseries-register-link" id="reg-bachata-choreo" href="/bachata-choreo-minireeks/">Volledige info →</a>
+            <a class="miniseries-register-link" id="reg-bachata-choreo" href="/bachata-choreo-minireeks/nl/">Volledige info →</a>
           </div>
           <div class="miniseries-item-meta">
             <p class="miniseries-item-status" id="status-bachata-choreo">Inschrijving open</p>
@@ -1534,6 +1572,12 @@ body::before {
   if (new Date() >= new Date('2027-01-25T00:00:00')) {
     var rtc2 = document.getElementById('card-rtc');
     if (rtc2) rtc2.setAttribute('hidden', '');
+  }
+  if (new Date() >= new Date('2027-01-24T00:00:00')) {
+    var kizu = document.getElementById('card-kiz-universe');
+    if (kizu) kizu.setAttribute('hidden', '');
+    var kizb = document.getElementById('card-kiz-beginner');
+    if (kizb) kizb.setAttribute('hidden', '');
   }
 
   // Empty state when every workshop is gated away

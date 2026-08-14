@@ -78,19 +78,10 @@
     },
     {
       "@type": "Offer",
-      "name": "Volledig Weekendpas",
-      "price": "130",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock",
-      "url": "https://creatorapp.zohopublic.eu/developer_shoonyadance/shoonya-dance-studio/form-perma/Workshop_Registration_Form/uOO7GVYHQEJn5dSVDz7z1nTXXeEfD0AZ4PJvtQJ0ZbMRum3tBX30zxQHC02n9b3bvTO6ORFDsVCfS4bJQF1VOZdBMZquYuPb4xx8"
-    },
-    {
-      "@type": "Offer",
       "name": "Dagpas",
       "price": "75",
       "priceCurrency": "EUR",
-      "availability": "https://schema.org/PreOrder",
-      "validFrom": "2026-08-01T00:00:00+02:00"
+      "availability": "https://schema.org/InStock"
     }
   ],
   "image": "https://workshops.shoonyadance.com/round-trip-to-cuba/og-image.jpg",
@@ -468,19 +459,6 @@ section.block.deep { background: var(--surface); border-top: 1px solid var(--bor
 .footer-site { font-family: 'Inter',sans-serif; font-size: 12px; letter-spacing: 0.08em; color: var(--dim); }
 
 /* passkey gate */
-#passgate { position: fixed; inset: 0; z-index: 999; background: rgba(11,9,15,0.97); display: flex; align-items: center; justify-content: center; padding: 24px; }
-.pg-card { max-width: 420px; text-align: center; }
-.pg-logo { height: 40px; width: auto; margin: 0 auto 28px; opacity: 0.9; }
-.pg-eyebrow { font-family: 'Inter',sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cuba); margin-bottom: 16px; }
-.pg-title { font-family: 'Marcellus', Georgia, serif; font-weight: 400; font-size: 46px; line-height: 1; text-transform: uppercase; margin-bottom: 22px; }
-.pg-title em { font-style: normal; color: var(--cuba); }
-.pg-desc { font-size: 15px; line-height: 1.6; color: var(--muted); margin-bottom: 26px; }
-.pg-error { display: none; font-family: 'Inter',sans-serif; font-size: 13px; color: #e06c5a; margin-bottom: 14px; }
-.pg-input { width: 100%; background: transparent; border: 1px solid var(--border-m); color: #fff; font-family: 'Inter',sans-serif; font-size: 15px; padding: 14px 16px; margin-bottom: 12px; text-align: center; }
-.pg-input:focus { outline: none; border-color: var(--cuba); }
-.pg-btn { width: 100%; background: var(--purple); color: #fff; border: none; font-family: 'Inter',sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 15px; cursor: pointer; }
-.pg-hint { margin-top: 18px; font-size: 12.5px; color: var(--dim); }
-.pg-input.shake { animation: shake .4s; }
 @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
 
@@ -531,40 +509,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 </head>
 <body>
 
-<!-- PASSKEY GATE — active until midnight 14 June 2026 · passphrase: havana41 -->
-<script>
-(function () {
-  var PASS='havana41', UNLOCK_KEY='rtc_2027_unlocked', LOCK_UNTIL=new Date('2026-06-15T00:00:00');
-  if (new Date() >= LOCK_UNTIL) return;
-  if (localStorage.getItem(UNLOCK_KEY) === '1') return;
-  var overlay=document.createElement('div'); overlay.id='passgate';
-  overlay.innerHTML=[
-    '<div class="pg-card">',
-    '  <img class="pg-logo" src="../../assets/logos/shoonyadance/shoonya-logo-white-nobg.png" alt="Shoonya Dance Centre">',
-    '  <p class="pg-eyebrow">Weekend Intensive &nbsp;·&nbsp; January 2027</p>',
-    '  <h2 class="pg-title">Round Trip to<br><em>Cuba</em></h2>',
-    '  <p class="pg-desc">This page is currently open to registered Shoonya students and invited guests only.<br>Enter the passphrase to continue.</p>',
-    '  <p class="pg-error" id="pg-error">Incorrect passphrase. Try again.</p>',
-    '  <form id="pg-form" autocomplete="off">',
-    '    <label for="pg-input" class="sr-only">Toegangscode</label>',
-    '    <input id="pg-input" class="pg-input" type="password" placeholder="Toegangscode" autocomplete="off">',
-    '    <button class="pg-btn" type="submit">Verder</button>',
-    '  </form>',
-    '  <p class="pg-hint">Hint: je kent deze studio.</p>',
-    '</div>'
-  ].join('');
-  document.documentElement.style.overflow='hidden';
-  document.addEventListener('DOMContentLoaded', function(){ document.body.prepend(overlay); var i=document.getElementById('pg-input'); if(i) i.focus(); });
-  document.addEventListener('submit', function(e){
-    if (e.target.id!=='pg-form') return; e.preventDefault();
-    var input=document.getElementById('pg-input'), error=document.getElementById('pg-error'), val=(input.value||'').trim().toLowerCase();
-    if (val===PASS.toLowerCase()) {
-      localStorage.setItem(UNLOCK_KEY,'1'); document.documentElement.style.overflow='';
-      overlay.style.transition='opacity .5s ease'; overlay.style.opacity='0'; setTimeout(function(){overlay.remove();},520);
-    } else { error.style.display='block'; input.classList.remove('shake'); void input.offsetWidth; input.classList.add('shake'); input.value=''; input.focus(); }
-  });
-}());
-</script>
 
 <!-- NAV -->
 <nav class="nav" id="nav" aria-label="Main navigation">
@@ -759,10 +703,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
         </div>
       </div>
     </div>
-    <div id="member-price-note" class="reveal" style="margin-top:28px; padding:16px 20px; border:1px solid rgba(181,100,247,0.35); background:rgba(181,100,247,0.08);">
-      <p style="font-family:'Inter',sans-serif; color:var(--purple); font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px;">Ben je momenteel ingeschreven bij Shoonya?</p>
-      <p style="color:var(--muted); font-size:14px; line-height:1.6; margin:0;">Jouw studententarief wordt automatisch toegepast in het inschrijvingssysteem wanneer je je Shoonya ID gebruikt.</p>
-    </div>
   </div>
 </section>
 
@@ -868,11 +808,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
     if (hv) { hv.removeAttribute('autoplay'); hv.pause(); hv.style.display = 'none'; }
   }
 
-  // hide Shoonya member price note when page goes public (15 June)
-  if (new Date() >= new Date('2026-06-15T00:00:00')) {
-    var mpn = document.getElementById('member-price-note');
-    if (mpn) mpn.setAttribute('hidden', '');
-  }
 })();
 </script>
 
