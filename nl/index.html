@@ -408,6 +408,13 @@
 }</script>
 
 <style>
+/* Skip link — first tabbable, visible only on focus. Added 2026-09-05: the page
+   had 36 tabbable elements and no way to bypass the nav. */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:9999;padding:12px 20px;
+  background:#000;color:#fff;font-family:'Inter',sans-serif;font-size:14px;
+  letter-spacing:.04em;text-decoration:none}
+.skip-link:focus{left:8px;top:8px;outline:2px solid #fff;outline-offset:2px}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -1103,6 +1110,7 @@ body::before {
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Naar de inhoud</a>
 
 <nav class="nav" id="nav" aria-label="Site">
   <a href="https://www.shoonyadance.com" class="nav-brand">
@@ -1113,6 +1121,8 @@ body::before {
     <a href="https://schedule.shoonyadance.com" class="nav-cta">Wekelijkse lessen</a>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- ── HERO ── -->
 <header class="hero" id="hero">
@@ -1387,6 +1397,8 @@ body::before {
   <h2>Bekijk het volledige rooster<br>op shoonyadance.com</h2>
   <a class="big" href="https://schedule.shoonyadance.com" target="_blank" rel="noopener">Wekelijks lesrooster</a>
 </section>
+
+</main>
 
 <footer class="footer">
   <div class="footer-inner">

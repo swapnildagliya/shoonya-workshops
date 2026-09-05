@@ -141,6 +141,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@300;400;500;600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
+/* Skip link — first tabbable, visible only on focus. Added 2026-09-05: the page
+   had 36 tabbable elements and no way to bypass the nav. */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:9999;padding:12px 20px;
+  background:#000;color:#fff;font-family:'Inter',sans-serif;font-size:14px;
+  letter-spacing:.04em;text-decoration:none}
+.skip-link:focus{left:8px;top:8px;outline:2px solid #fff;outline-offset:2px}
+
 :root{
   --bone:#F4F1EB; --card:#FBFAF7; --ink:#15131A; --ink-2:#5C5860; --ink-3:#8A858E;
   --hair:rgba(21,19,26,.13); --hair-2:rgba(21,19,26,.22);
@@ -349,6 +356,7 @@ footer{ background:var(--bone); padding:56px 0; border-top:1px solid var(--hair)
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Naar de inhoud</a>
 
 <nav class="nav" id="nav">
   <a class="brand" href="https://www.shoonyadance.com">Shoonya<b>.</b></a>
@@ -358,6 +366,8 @@ footer{ background:var(--bone); padding:56px 0; border-top:1px solid var(--hair)
     <a class="btn btn-primary" data-reg style="padding:11px 22px; font-size:11px;">Inschrijven</a>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- HERO -->
 <header class="hero">
@@ -477,6 +487,8 @@ footer{ background:var(--bone); padding:56px 0; border-top:1px solid var(--hair)
     <a class="more-hub" href="https://workshops.shoonyadance.com/">← Alle workshops</a>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="wrap foot">

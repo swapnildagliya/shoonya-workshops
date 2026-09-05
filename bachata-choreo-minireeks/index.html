@@ -206,6 +206,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+/* Skip link — first tabbable, visible only on focus. Added 2026-09-05: the page
+   had 36 tabbable elements and no way to bypass the nav. */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:9999;padding:12px 20px;
+  background:#000;color:#fff;font-family:'Inter',sans-serif;font-size:14px;
+  letter-spacing:.04em;text-decoration:none}
+.skip-link:focus{left:8px;top:8px;outline:2px solid #fff;outline-offset:2px}
+
 
 /* ─── Reset & base ──────────────────────────────────────── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -506,12 +513,13 @@ a { color: inherit; text-decoration: none; }
 
 .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: var(--text); }
 .btn-ghost:active { transform: scale(0.97); }
-
+  /* D-057: black is the subordinate-label tone on a vibrant ground. White here was
+     3.3-3.4:1 against the vibrant — below WCAG AA 4.5:1 for a label under 24px. */
 .btn-primary {
   display: inline-block;
   padding: 16px 36px;
   background: var(--accent);
-  color: #FFFFFF;
+  color: #000000;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -1456,6 +1464,7 @@ a { color: inherit; text-decoration: none; }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 
 <!-- ═══════════════════════════════════════════
@@ -1479,6 +1488,8 @@ a { color: inherit; text-decoration: none; }
     <a class="nav-cta" href="https://links.shoonyadance.com/go/workshop/" target="_blank" rel="noopener">Register now</a>
   </div>
 </nav>
+
+<main id="main">
 
 
 <!-- ═══════════════════════════════════════════
@@ -1884,6 +1895,8 @@ a { color: inherit; text-decoration: none; }
 <!-- ═══════════════════════════════════════════
      10. FOOTER
 ═══════════════════════════════════════════ -->
+</main>
+
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-logo">

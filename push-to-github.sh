@@ -21,6 +21,14 @@ if [ -z "$SKIP_CHECKS" ]; then
     echo "    (Emergency override: SKIP_CHECKS=1 bash push-to-github.sh)"
     exit 1
   fi
+
+  echo "→ Checking every call-to-action meets WCAG AA..."
+  if ! node "$(dirname "$0")/checks/audit-cta-contrast.mjs"; then
+    echo ""
+    echo "  ✕ Deploy stopped. A CTA is below 4.5:1 — see D-057 for which tone to use."
+    echo "    (Emergency override: SKIP_CHECKS=1 bash push-to-github.sh)"
+    exit 1
+  fi
 fi
 
 

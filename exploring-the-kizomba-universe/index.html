@@ -255,6 +255,13 @@
 }</script>
 
 <style>
+/* Skip link — first tabbable, visible only on focus. Added 2026-09-05: the page
+   had 36 tabbable elements and no way to bypass the nav. */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:9999;padding:12px 20px;
+  background:#000;color:#fff;font-family:'Inter',sans-serif;font-size:14px;
+  letter-spacing:.04em;text-decoration:none}
+.skip-link:focus{left:8px;top:8px;outline:2px solid #fff;outline-offset:2px}
+
   :root{
     --bone:#F4F1EB; --ink:#1A1A1A; --ink-soft:#4A4A4A; --hair:rgba(26,26,26,.16);
     --purple:#B564F7; --white:#fff; --black:#000;
@@ -429,6 +436,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <header class="nav">
@@ -441,6 +449,8 @@
       <a href="#faq">FAQ</a>
       <a class="btn" href="#register">Register</a>
     </nav>
+
+<main id="main">
   </div>
 </header>
 
@@ -598,6 +608,8 @@
 </section>
 
 <!-- FOOTER -->
+</main>
+
 <footer>
   <div class="wrap">
     <div class="foot-mark">

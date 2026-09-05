@@ -42,6 +42,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@300;400;500;600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
+/* Skip link — first tabbable, visible only on focus. Added 2026-09-05: the page
+   had 36 tabbable elements and no way to bypass the nav. */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:9999;padding:12px 20px;
+  background:#000;color:#fff;font-family:'Inter',sans-serif;font-size:14px;
+  letter-spacing:.04em;text-decoration:none}
+.skip-link:focus{left:8px;top:8px;outline:2px solid #fff;outline-offset:2px}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -851,6 +858,7 @@ img { display: block; }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ── NAV ── -->
 <nav class="nav" id="nav" aria-label="Site">
@@ -862,6 +870,8 @@ img { display: block; }
     <a href="https://schedule.shoonyadance.com" class="nav-cta">Weekly classes</a>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- ── HERO ── -->
 <header class="hero" id="hero">
@@ -1151,6 +1161,8 @@ img { display: block; }
   <h2>See the full schedule<br>at shoonyadance.com</h2>
   <a class="big" href="https://schedule.shoonyadance.com" target="_blank" rel="noopener">Weekly class schedule</a>
 </section>
+
+</main>
 
 <footer class="footer">
   <div class="footer-inner">

@@ -204,6 +204,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@300;400;500;600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
+/* Skip link — first tabbable, visible only on focus. Added 2026-09-05: the page
+   had 36 tabbable elements and no way to bypass the nav. */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:9999;padding:12px 20px;
+  background:#000;color:#fff;font-family:'Inter',sans-serif;font-size:14px;
+  letter-spacing:.04em;text-decoration:none}
+.skip-link:focus{left:8px;top:8px;outline:2px solid #fff;outline-offset:2px}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -263,7 +270,9 @@ body::before { content:''; position:fixed; inset:0; z-index:0; pointer-events:no
 .hero-actions { display:flex; flex-wrap:wrap; gap:14px; opacity:0; animation:fadeup .9s var(--ease-cine) 1.2s forwards; }
 .btn-primary, .btn-ghost { font-family:'Inter',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none; padding:16px 32px; transition:background .22s,color .22s,border-color .22s,transform .16s var(--ease-out); }
 .btn-primary:active, .btn-ghost:active { transform:scale(0.97); }
-.btn-primary { background:var(--purple); color:#fff; border:1px solid var(--purple); }
+  /* D-057: black is the subordinate-label tone on a vibrant ground. White here was
+     3.3-3.4:1 against the vibrant — below WCAG AA 4.5:1 for a label under 24px. */
+.btn-primary { background:var(--purple); color:#000000; border:1px solid var(--purple); }
 .btn-primary:hover { background:#fff; color:#000; border-color:#fff; }
 .btn-ghost { color:var(--on-dark); border:1px solid rgba(255,255,255,0.5); }
 .btn-ghost:hover { background:#fff; color:#000; border-color:#fff; }
@@ -418,7 +427,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .regbar-actions{ display:flex; align-items:center; gap:18px; flex-shrink:0; }
 .regbar-id{ font-family:'Inter',sans-serif; font-size:11.5px; color:rgba(255,255,255,.62); text-decoration:none; white-space:nowrap; }
 .regbar-id:hover{ color:#fff; }
-.regbar-cta{ font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:#fff; background:var(--purple); padding:12px 24px; text-decoration:none; transition:background .2s,color .2s,transform .16s var(--ease-out); }
+  /* D-057: black is the subordinate-label tone on a vibrant ground. White here was
+     3.3-3.4:1 against the vibrant — below WCAG AA 4.5:1 for a label under 24px. */
+.regbar-cta{ font-family:'Inter',sans-serif; font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:#000000; background:var(--purple); padding:12px 24px; text-decoration:none; transition:background .2s,color .2s,transform .16s var(--ease-out); }
 .regbar-cta:hover{ background:#fff; color:#000; }
 .regbar-cta:active{ transform:scale(0.97); }
 @media(max-width:600px){ .regbar-id{ display:none; } .regbar-inner{ padding:10px 16px; } .regbar-cta{ padding:10px 18px; } }
@@ -427,6 +438,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 <style id="enh2-css">.ltr{display:inline-block;}.wd{display:inline-block;white-space:nowrap;}</style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <nav class="nav" id="nav" aria-label="Main navigation">
@@ -443,6 +455,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
     <a class="nav-cta" href="#register">Register</a>
   </div>
 </nav>
+
+<main id="main">
 
 <!-- HERO -->
 <header class="hero" id="top">
@@ -668,6 +682,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 </script>
 
 <!-- FOOTER -->
+</main>
+
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-markline"><img src="../assets/shoonya-oo-mark-white.png" alt="">Shoonya Dance Centre<img src="../assets/shoonya-oo-mark-white.png" alt=""></div>
@@ -691,7 +707,17 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 
   (function(){ var t=document.getElementById('hero-title'); if(!t) return;
     t.querySelectorAll('.l1, .accent').forEach(function(seg){ seg.innerHTML=seg.textContent.split(' ').map(function(w){ return '<span class="wd">'+w.split('').map(function(c){ return '<span class="ltr">'+c+'</span>'; }).join('')+'</span>'; }).join(' '); });
-    if(!reduced && window.gsap){ gsap.from(t.querySelectorAll('.ltr'),{ yPercent:120, opacity:0, duration:0.7, ease:'power3.out', stagger:0.028, delay:0.15 }); }
+    if(!reduced && window.gsap){
+      /* fromTo, not from: `from` leaves the letters wherever an interrupted tween
+         stops, and on 2026-09-05 this hero was caught at 375px with the workshop's
+         own name sitting at opacity 0.02-0.17 four seconds after load. clearProps
+         plus a belt-and-braces timeout guarantee the resting state is reached even
+         if the timeline is killed mid-flight (a resize during load will do it). */
+      var ltrs = t.querySelectorAll('.ltr');
+      gsap.fromTo(ltrs, { yPercent:120, opacity:0 },
+        { yPercent:0, opacity:1, duration:0.7, ease:'power3.out', stagger:0.028, delay:0.15, clearProps:'opacity,transform' });
+      setTimeout(function(){ ltrs.forEach(function(l){ l.style.opacity=''; l.style.transform=''; }); }, 2500);
+    }
   })();
 
   var els = document.querySelectorAll('.reveal');
