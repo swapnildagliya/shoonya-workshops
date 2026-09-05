@@ -446,6 +446,7 @@ section.block.deep { background: var(--surface); border-top: 1px solid var(--bor
 /* more workshops */
 .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
 .more-item { display: flex; align-items: center; justify-content: space-between; border: 1px solid var(--border-w); background: var(--surface); padding: 24px 28px; text-decoration: none; transition: border-color .2s, transform .16s var(--ease-out); }
+.more-item[hidden] { display: none; }
 .more-item:hover { border-color: var(--border-m); }
 .more-item:active { transform: scale(0.99); }
 .more-date { display: block; font-family: 'Inter',sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cuba); margin-bottom: 6px; }
@@ -757,13 +758,31 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 <section class="block" aria-label="More workshops at Shoonya">
   <div class="wrap reveal">
     <p class="eyebrow">More at Shoonya</p>
-    <div class="more-grid">
-      <a class="more-item" href="https://workshops.shoonyadance.com/indian-dance-summer-intensive/"><span><span class="more-date">26–29 Aug 2026</span><span class="more-title">Indian Dance Summer Intensive</span></span><span class="more-arrow">→</span></a>
-      <a class="more-item" href="https://workshops.shoonyadance.com/lindy-hop-bootcamp/"><span><span class="more-date">9 Sep 2026</span><span class="more-title">Lindy Hop Bootcamp</span></span><span class="more-arrow">→</span></a>
+    <div class="more-grid" id="more-grid">
+      <a class="more-item" id="more-lindy" data-until="2026-09-10" href="https://workshops.shoonyadance.com/lindy-hop-bootcamp/"><span><span class="more-date">9 Sep 2026</span><span class="more-title">Lindy Hop Bootcamp</span></span><span class="more-arrow">→</span></a>
+      <a class="more-item" id="more-kiz-beginner" data-until="2027-01-24" href="https://workshops.shoonyadance.com/kizomba-beginner-bootcamp-series/"><span><span class="more-date">Oct · Nov · Jan</span><span class="more-title">Kizomba Beginner Bootcamp Series</span></span><span class="more-arrow">→</span></a>
+      <a class="more-item" id="more-kiz-universe" data-until="2027-01-24" href="https://workshops.shoonyadance.com/exploring-the-kizomba-universe/" hidden><span><span class="more-date">Oct · Nov · Jan</span><span class="more-title">Exploring the Kizomba Universe</span></span><span class="more-arrow">→</span></a>
+      <a class="more-item" id="more-bachata" data-until="2026-12-16" href="https://workshops.shoonyadance.com/bachata-choreo-minireeks/" hidden><span><span class="more-date">10 Nov – 15 Dec 2026</span><span class="more-title">Bachata Choreo Minireeks</span></span><span class="more-arrow">→</span></a>
     </div>
     <a class="more-hub" href="https://workshops.shoonyadance.com/">← All workshops</a>
   </div>
 </section>
+<script>
+/* More-at-Shoonya: self-pruning. Each item carries data-until; expired items go,
+   and at most two remain. Ships with today's correct pair already visible, so the
+   block is right with JS off too. Mirrors the hub gate in /index.html. */
+(function () {
+  var grid = document.getElementById('more-grid');
+  if (!grid) return;
+  var now = new Date();
+  var live = [].filter.call(grid.querySelectorAll('.more-item'), function (a) {
+    return now < new Date(a.getAttribute('data-until') + 'T00:00:00');
+  });
+  [].forEach.call(grid.querySelectorAll('.more-item'), function (a) { a.setAttribute('hidden', ''); });
+  live.slice(0, 2).forEach(function (a) { a.removeAttribute('hidden'); });
+  if (!live.length) grid.setAttribute('hidden', '');
+})();
+</script>
 
 <!-- FOOTER -->
 <footer class="footer">
