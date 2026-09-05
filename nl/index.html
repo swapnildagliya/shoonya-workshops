@@ -1432,6 +1432,29 @@ body::before {
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  /* ── Date gating ──────────────────────────────────────────────────────────
+     Mirrors the EN hub's gate one-for-one (D-029). This page shipped with NO
+     gate at all: it was still promoting the Indian Dance and Flamenco summer
+     intensives after they ended on 29 Aug 2026, and `card-rtc` was hard-hidden
+     with nothing to ever reveal it, so Dutch visitors never saw Round Trip to
+     Cuba while EN had shown it since 15 June. Dates match /index.html exactly —
+     change both together. */
+  function g(id) { return document.getElementById(id); }
+  function hide(id) { var e = g(id); if (e) e.setAttribute('hidden', ''); }
+  function show(id) { var e = g(id); if (e) e.removeAttribute('hidden'); }
+  function after(dateStr) { return new Date() >= new Date(dateStr); }
+
+  if (after('2026-06-15T00:00:00'))  { show('card-rtc'); }
+
+  if (after('2026-08-30T00:00:00'))  { hide('card-idsi'); hide('card-flamenco'); }
+  if (after('2026-09-10T00:00:00'))  { hide('card-lindy'); }
+  if (after('2027-01-24T00:00:00'))  { hide('card-kiz-beginner'); hide('card-kiz-universe'); }
+  if (after('2027-01-25T00:00:00'))  { hide('card-rtc'); }
+
+  if (after('2026-10-08T00:00:00'))  { hide('miniseries-bhangra'); hide('miniseries-isc'); }
+  if (after('2026-12-16T00:00:00'))  { hide('miniseries-bachata-choreo'); }
+  if (after('2026-12-18T00:00:00'))  { hide('miniseries-bachata-solo'); }
+
   if (!reduced && window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
 

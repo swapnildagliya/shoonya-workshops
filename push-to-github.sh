@@ -6,6 +6,24 @@ BRANCH="main"
 
 echo "── Shoonya Workshops · GitHub Pages deploy ──"
 
+# ── Pre-deploy gate ───────────────────────────────────────────────────────────
+# On 2026-09-05 the Round Trip to Cuba page was still promoting the Indian Dance
+# Summer Intensive six days after it ended, the Dutch hub had no date gate at all,
+# and four other pages carried the same dead link. Nothing looked, so nothing
+# caught it. This looks, every deploy.
+#
+# Override for a genuine emergency:  SKIP_CHECKS=1 bash push-to-github.sh
+if [ -z "$SKIP_CHECKS" ]; then
+  echo "→ Checking for links to finished events..."
+  if ! node "$(dirname "$0")/checks/audit-expired-links.mjs"; then
+    echo ""
+    echo "  ✕ Deploy stopped. Gate or remove the links above, then run this again."
+    echo "    (Emergency override: SKIP_CHECKS=1 bash push-to-github.sh)"
+    exit 1
+  fi
+fi
+
+
 # Init repo if not already one
 if [ ! -d ".git" ]; then
   echo "→ Initialising git repo..."
