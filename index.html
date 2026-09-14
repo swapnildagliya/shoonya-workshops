@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Workshops, Intensives &amp; Series — Shoonya Dance Centre Ghent</title>
-<meta name="description" content="All upcoming workshops, intensives and short series at Shoonya Dance Centre in Ghent. Lindy Hop, Kizomba bootcamps, Cuban salsa, Bhangra and Indian Semi-Classical starter series and more.">
+<meta name="description" content="All upcoming workshops, intensives and short series at Shoonya Dance Centre in Ghent. Kizomba bootcamps, Cuban salsa, Bhangra and Indian Semi-Classical starter series and more.">
 <link rel="canonical" href="https://workshops.shoonyadance.com/">
 <link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/">
 <link rel="alternate" hreflang="nl" href="https://workshops.shoonyadance.com/nl/">
@@ -47,18 +47,12 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "url": "https://workshops.shoonyadance.com/lindy-hop-bootcamp/",
-      "name": "Lindy Hop Bootcamp"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "url": "https://workshops.shoonyadance.com/round-trip-to-cuba/",
       "name": "Round Trip to Cuba — Cuban Salsa Weekend Intensive"
     },
     {
       "@type": "ListItem",
-      "position": 3,
+      "position": 2,
       "url": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/",
       "name": "Bachata Choreo Minireeks"
     }
@@ -103,38 +97,6 @@
 {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "Event",
-      "name": "Lindy Hop Bootcamp",
-      "startDate": "2026-09-09",
-      "endDate": "2026-09-09",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "location": {
-        "@type": "Place",
-        "name": "Shoonya Dance Centre",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Stapelplein 41",
-          "addressLocality": "Ghent",
-          "postalCode": "9000",
-          "addressCountry": "BE"
-        }
-      },
-      "image": "https://workshops.shoonyadance.com/og-image.jpg",
-      "url": "https://workshops.shoonyadance.com/lindy-hop-bootcamp/",
-      "description": "Refresh your Lindy Hop vocabulary before the new season. Swing outs, partnered Charleston, tuck turns, change of places and many more swing dance moves — 2.5 hours with Ann-Sofie and Sep.",
-      "organizer": {
-        "@type": "Organization",
-        "name": "Shoonya Dance Centre",
-        "url": "https://www.shoonyadance.com"
-      },
-      "performer": {
-        "@type": "PerformingGroup",
-        "name": "Shoonya Dance Centre teachers",
-        "url": "https://www.shoonyadance.com"
-      }
-    },
     {
       "@type": "Event",
       "name": "Round Trip to Cuba — Cuban Salsa Weekend Intensive",
@@ -626,6 +588,18 @@ img { display: block; }
   .bento-grid.count-4 .bento-cell.slot-3 { grid-column: 3/5; grid-row: 2/3; }
 
   .bento-grid.count-6 .bento-cell.slot-5 { grid-column: 1/5; grid-row: 3/4; }
+
+  /* Collapse the row TRACKS too. The 2026-09-07 count-N fix retiled the columns
+     but left `grid-template-rows: 390px 350px 290px` standing at every count,
+     so counts 1-5 rendered a 248px empty band under the last card (measured
+     2026-09-14 at count-4 and count-3, both 1046px tall with the last cell
+     ending at 798). Rows used: counts 1-2 fill row 1 only; counts 3-5 fill
+     rows 1-2; counts 6-7 need all three. */
+  .bento-grid.count-1,
+  .bento-grid.count-2 { grid-template-rows: 390px; }
+  .bento-grid.count-3,
+  .bento-grid.count-4,
+  .bento-grid.count-5 { grid-template-rows: 390px 350px; }
 }
 
 /* Photo */
@@ -1202,29 +1176,11 @@ img { display: block; }
 
     <div class="bento-header">
       <p class="bento-eyebrow">Workshops &amp; Intensives</p>
-      <p class="bento-count" id="bento-count">4 upcoming</p>
+      <p class="bento-count" id="bento-count">3 upcoming</p>
     </div>
 
     <div class="bento-grid" id="bento-grid">
 
-      <!-- Lindy Hop -->
-      <a class="bento-cell" id="btc-lindy" data-event="lindy" href="/lindy-hop-bootcamp/" aria-label="Lindy Hop Bootcamp">
-        <span class="bento-pin">Featured</span>
-        <img class="bento-img"
-             src="assets/lindy-hop-hero.jpg"
-             alt="Lindy Hop Bootcamp"
-             style="object-position: center 30%;">
-        <div class="bento-overlay"></div>
-        <div class="bento-body">
-          <p class="bento-date">9 Sep 2026</p>
-          <h3 class="bento-title">Lindy Hop Bootcamp</h3>
-          <p class="bento-teacher">with Ann-Sofie &amp; Sep</p>
-          <div class="bento-reveal">
-            <p class="bento-excerpt">Refresh your Lindy Hop vocabulary before the new season. Swing outs, partnered Charleston, tuck turns, change of places and many more swing dance moves — 2.5 hours with Ann-Sofie and Sep.</p>
-            <span class="bento-cta-link">Details &amp; register →</span>
-          </div>
-        </div>
-      </a>
 
       <!-- Kizomba Beginner -->
       <a class="bento-cell" id="btc-kiz-beginner" data-event="kiz-beginner" href="/kizomba-beginner-bootcamp-series/" aria-label="Kizomba Beginner Bootcamp Series">
@@ -1462,7 +1418,6 @@ img { display: block; }
   /* ── Date gating — bento cells ── */
   if (after('2026-06-15T00:00:00')) { show('btc-cuba'); }
 
-  if (after('2026-09-10T00:00:00'))  { hide('btc-lindy'); }
   if (after('2027-01-24T00:00:00'))  { hide('btc-kiz-beginner'); hide('btc-kiz-universe'); }
   if (after('2027-01-25T00:00:00'))  { hide('btc-cuba'); }
 

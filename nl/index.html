@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Workshops &amp; Intensives — Shoonya Dance Centre Gent</title>
-<meta name="description" content="Alle komende workshops en dansintensives bij Shoonya Dance Centre in Gent. Lindy Hop, Kizomba bootcamps, Cubaanse salsa, Bhangra en Indian Semi-Classical starterreeksen en meer.">
+<meta name="description" content="Alle komende workshops en dansintensives bij Shoonya Dance Centre in Gent. Kizomba bootcamps, Cubaanse salsa, Bhangra en Indian Semi-Classical starterreeksen en meer.">
 <link rel="canonical" href="https://workshops.shoonyadance.com/nl/">
 <link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/">
 <link rel="alternate" hreflang="nl" href="https://workshops.shoonyadance.com/nl/">
@@ -52,18 +52,12 @@
     {
       "@type": "ListItem",
       "position": 1,
-      "url": "https://workshops.shoonyadance.com/lindy-hop-bootcamp/nl/",
-      "name": "Lindy Hop Bootcamp"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
       "url": "https://workshops.shoonyadance.com/round-trip-to-cuba/nl/",
       "name": "Round Trip to Cuba — Cuban Salsa Weekend Intensive"
     },
     {
       "@type": "ListItem",
-      "position": 3,
+      "position": 2,
       "url": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/nl/",
       "name": "Bachata Choreo Minireeks"
     }
@@ -104,38 +98,6 @@
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "Event",
-      "name": "Lindy Hop Bootcamp",
-      "startDate": "2026-09-09",
-      "endDate": "2026-09-09",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "location": {
-        "@type": "Place",
-        "name": "Shoonya Dance Centre",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Stapelplein 41",
-          "addressLocality": "Gent",
-          "postalCode": "9000",
-          "addressCountry": "BE"
-        }
-      },
-      "image": "https://workshops.shoonyadance.com/og-image.jpg",
-      "url": "https://workshops.shoonyadance.com/lindy-hop-bootcamp/",
-      "description": "Een Lindy Hop opfriscursus van 2,5 uur met Ann-Sofie Van Enis en Sep Vermeersch.",
-      "organizer": {
-        "@type": "Organization",
-        "name": "Shoonya Dance Centre",
-        "url": "https://www.shoonyadance.com"
-      },
-      "performer": {
-        "@type": "PerformingGroup",
-        "name": "Shoonya Dance Centre docenten",
-        "url": "https://www.shoonyadance.com"
-      }
-    },
     {
       "@type": "Event",
       "name": "Round Trip to Cuba — Cuban Salsa Weekend Intensive",
@@ -1094,25 +1056,6 @@ body::before {
 
   <div class="stack" id="stack">
 
-    <!-- Lindy Hop Bootcamp — 9 September 2026 — auto-hides 10 Sep -->
-    <article class="panel" id="card-lindy">
-      <div class="panel-media">
-        <img src="../assets/lindy-hop-hero.jpg" alt="Lindy Hop Bootcamp" loading="lazy" style="object-position: center 30%;">
-        <span class="photo-credit">© Juls Sobrón / Upside Down</span>
-        <div class="panel-date"><span class="d">9</span><span class="m">sep 2026</span></div>
-      </div>
-      <div class="panel-body">
-        <h3>Lindy Hop Bootcamp</h3>
-        <p class="panel-teacher">met Ann-Sofie Van Enis &amp; Sep Vermeersch</p>
-        <p class="panel-desc">Verfris je Lindy Hop vocabulaire voor het nieuwe dansseizoen. Swing outs, partnered Charleston, tuck turns, change of places en nog veel meer swing dansmoves — 2,5 uur met Ann-Sofie en Sep.</p>
-        <div class="panel-chips">
-          <span class="chip">Gevorderd</span>
-          <span class="chip">1 avond</span>
-          <span class="chip">Lindy Hop</span>
-        </div>
-        <a href="/lindy-hop-bootcamp/nl/" class="panel-link">Alle details &amp; inschrijven</a>
-      </div>
-    </article>
 
     <!-- Kizomba Beginner Bootcamp Series — Oct · Nov · Jan -->
     <article class="panel" id="card-kiz-beginner">
@@ -1344,7 +1287,6 @@ body::before {
 
   if (after('2026-06-15T00:00:00'))  { show('card-rtc'); }
 
-  if (after('2026-09-10T00:00:00'))  { hide('card-lindy'); }
   if (after('2027-01-24T00:00:00'))  { hide('card-kiz-beginner'); hide('card-kiz-universe'); }
   if (after('2027-01-25T00:00:00'))  { hide('card-rtc'); }
 
@@ -1480,10 +1422,6 @@ body::before {
   if (new Date() >= new Date('2026-12-18T00:00:00')) {
     var bso = document.getElementById('miniseries-bachata-solo');
     if (bso) bso.setAttribute('hidden', '');
-  }
-  if (new Date() >= new Date('2026-09-10T00:00:00')) {
-    var lh = document.getElementById('card-lindy');
-    if (lh) lh.setAttribute('hidden', '');
   }
   if (new Date() >= new Date('2027-01-25T00:00:00')) {
     var rtc2 = document.getElementById('card-rtc');
