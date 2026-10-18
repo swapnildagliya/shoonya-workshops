@@ -1,0 +1,62 @@
+{
+  "event": {
+    "slug": "sevillanas-refresh",
+    "name": "Sevillanas Refresh",
+    "name_nl": null,
+    "from_date": "2027-02-20",
+    "to_date": "2027-02-21"
+  },
+  "sessions": [
+    {
+      "serial": "SR-1",
+      "name": "Coplas 1 & 2",
+      "name_nl": null,
+      "date": "2027-02-20",
+      "start": "10:00",
+      "end": "12:00",
+      "price": 30,
+      "member_price": 27,
+      "partner_compulsory": false,
+      "available": true,
+      "occurrences": 1,
+      "early_bird_price": null,
+      "early_bird_until": null,
+      "status": "open"
+    },
+    {
+      "serial": "SR-2",
+      "name": "Coplas 3 & 4",
+      "name_nl": null,
+      "date": "2027-02-21",
+      "start": "10:00",
+      "end": "12:00",
+      "price": 30,
+      "member_price": 27,
+      "partner_compulsory": false,
+      "available": true,
+      "occurrences": 1,
+      "early_bird_price": null,
+      "early_bird_until": null,
+      "status": "open"
+    }
+  ],
+  "passes": [
+    {
+      "key": null,
+      "name": "Both days pass",
+      "name_nl": null,
+      "covered": [
+        "SR-1",
+        "SR-2"
+      ],
+      "price": 55,
+      "member_price": 49.5,
+      "available": true
+    }
+  ],
+  "builder": {
+    "enabled": true,
+    "reason": null
+  },
+  "currency": "EUR"
+}
