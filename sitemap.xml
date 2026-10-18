@@ -179,4 +179,22 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://workshops.shoonyadance.com/flamenco-technique/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/flamenco-technique/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://workshops.shoonyadance.com/flamenco-technique/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://workshops.shoonyadance.com/flamenco-technique/"/>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://workshops.shoonyadance.com/flamenco-technique/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://workshops.shoonyadance.com/flamenco-technique/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://workshops.shoonyadance.com/flamenco-technique/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://workshops.shoonyadance.com/flamenco-technique/"/>
+    <lastmod>2026-10-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

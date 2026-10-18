@@ -55,6 +55,33 @@
       "position": 2,
       "url": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/",
       "name": "Bachata Choreo Minireeks"
+    },
+    {
+      "@type": "Event",
+      "name": "Flamenco Technique with La Liz — monthly Saturday workshop",
+      "startDate": "2026-11-21T10:00:00+01:00",
+      "endDate": "2027-01-16T12:00:00+01:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Shoonya Dance Centre",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Stapelplein 41",
+          "addressLocality": "Ghent",
+          "postalCode": "9000",
+          "addressCountry": "BE"
+        }
+      },
+      "image": "https://workshops.shoonyadance.com/flamenco-technique/og-image.jpg",
+      "url": "https://workshops.shoonyadance.com/flamenco-technique/",
+      "description": "This monthly intensive workshop serves as a deep complement to your regular classes. Open to flamenco dancers of all levels.",
+      "organizer": {
+        "@type": "Organization",
+        "name": "Shoonya Dance Centre",
+        "url": "https://www.shoonyadance.com"
+      }
     }
   ]
 }
@@ -1118,6 +1145,24 @@ img { display: block; }
     <div class="bento-grid" id="bento-grid">
 
 
+      <!-- Flamenco Technique — Sat 21 Nov · 19 Dec · 16 Jan -->
+      <a class="bento-cell" id="btc-flamenco-technique" data-event="flamenco-technique" href="/flamenco-technique/" aria-label="Flamenco Technique with La Liz">
+        <img class="bento-img"
+             src="flamenco-technique/img/hero.jpg"
+             alt="La Liz dancing flamenco"
+             style="object-position: 50% 20%;">
+        <div class="bento-overlay"></div>
+        <div class="bento-body">
+          <p class="bento-date">Nov · Dec · Jan</p>
+          <h3 class="bento-title">Flamenco Technique</h3>
+          <p class="bento-teacher">with La Liz</p>
+          <div class="bento-reveal">
+            <p class="bento-excerpt">This monthly intensive workshop serves as a deep complement to your regular classes. Open to flamenco dancers of all levels.</p>
+            <span class="bento-cta-link">Details &amp; register →</span>
+          </div>
+        </div>
+      </a>
+
       <!-- Kizomba Beginner -->
       <a class="bento-cell" id="btc-kiz-beginner" data-event="kiz-beginner" href="/kizomba-beginner-bootcamp-series/" aria-label="Kizomba Beginner Bootcamp Series">
         <span class="bento-pin">Featured</span>
@@ -1314,6 +1359,7 @@ img { display: block; }
   /* ── Date gating — bento cells ── */
   if (after('2026-06-15T00:00:00')) { show('btc-cuba'); }
 
+  if (after('2027-01-17T00:00:00'))  { hide('btc-flamenco-technique'); }
   if (after('2027-01-24T00:00:00'))  { hide('btc-kiz-beginner'); hide('btc-kiz-universe'); }
   if (after('2027-01-25T00:00:00'))  { hide('btc-cuba'); }
 

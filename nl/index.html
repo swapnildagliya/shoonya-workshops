@@ -60,6 +60,33 @@
       "position": 2,
       "url": "https://workshops.shoonyadance.com/bachata-choreo-minireeks/nl/",
       "name": "Bachata Choreo Minireeks"
+    },
+    {
+      "@type": "Event",
+      "name": "Flamenco Technique with La Liz — monthly Saturday workshop",
+      "startDate": "2026-11-21T10:00:00+01:00",
+      "endDate": "2027-01-16T12:00:00+01:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Shoonya Dance Centre",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Stapelplein 41",
+          "addressLocality": "Ghent",
+          "postalCode": "9000",
+          "addressCountry": "BE"
+        }
+      },
+      "image": "https://workshops.shoonyadance.com/flamenco-technique/og-image.jpg",
+      "url": "https://workshops.shoonyadance.com/flamenco-technique/",
+      "description": "This monthly intensive workshop serves as a deep complement to your regular classes. Open to flamenco dancers of all levels.",
+      "organizer": {
+        "@type": "Organization",
+        "name": "Shoonya Dance Centre",
+        "url": "https://www.shoonyadance.com"
+      }
     }
   ]
 }
@@ -977,6 +1004,25 @@ body::before {
   <div class="stack" id="stack">
 
 
+    <!-- Flamenco Technique — za 21 nov · 19 dec · 16 jan -->
+    <article class="panel" id="card-flamenco-technique">
+      <div class="panel-media">
+        <img src="../flamenco-technique/img/hero.jpg" alt="La Liz danst flamenco" loading="lazy" style="object-position: 50% 20%;">
+        <div class="panel-date"><span class="d">nov</span><span class="m">t.e.m. jan</span></div>
+      </div>
+      <div class="panel-body">
+        <h3>Flamenco Technique</h3>
+        <p class="panel-teacher">met La Liz</p>
+        <p class="panel-desc">Deze maandelijkse intensieve workshop is een diepgaande aanvulling op de reguliere lessen.</p>
+        <div class="panel-chips">
+          <span class="chip">Alle niveaus</span>
+          <span class="chip">3 zaterdagen</span>
+          <span class="chip">Flamenco</span>
+        </div>
+        <a href="/flamenco-technique/nl/" class="panel-link">Alle details &amp; inschrijven</a>
+      </div>
+    </article>
+
     <!-- Kizomba Beginner Bootcamp Series — Oct · Nov · Jan -->
     <article class="panel" id="card-kiz-beginner">
       <div class="panel-media">
@@ -1167,6 +1213,7 @@ body::before {
 
   if (after('2026-06-15T00:00:00'))  { show('card-rtc'); }
 
+  if (after('2027-01-17T00:00:00'))  { hide('card-flamenco-technique'); }
   if (after('2027-01-24T00:00:00'))  { hide('card-kiz-beginner'); hide('card-kiz-universe'); }
   if (after('2027-01-25T00:00:00'))  { hide('card-rtc'); }
 
