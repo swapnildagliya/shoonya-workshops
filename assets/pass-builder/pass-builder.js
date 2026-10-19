@@ -5,7 +5,7 @@
    and mounts only the summary where the div sits. Default mode (no data-mode) builds its own card list and is unchanged.
    The block never computes a price: it shows what the app's quote endpoint returns.
    Inline mode (rev 6): optional Shoonya ID field (raw string sent as shoonya_id, never a member flag), whole-row selection, quick-pick pass chips,
-   one Register inside the summary (same tab). Default mode is the older card list + drawer + toasts.
+   one Register inside the summary (same tab). Optional data-chips="names": pass chips use the pass name, not Saturday/Sunday/Whole weekend. Default mode is the older card list + drawer + toasts.
    If the catalogue cannot be loaded (no JS, failed fetch, 404, >6 s) the page's static price table stays untouched. */
 (function () {
   'use strict';
@@ -503,6 +503,8 @@
       var i = passes.indexOf(x), t = tableRows.length === sessions.length + passes.length ? tableRows[sessions.length + i] : null;
       return (LANG === 'nl' && !x.p.name_nl && t) ? t.textContent.trim() : nm(x.p);
     }
+    // optional data-chips="names": chips carry the pass's own name (page language) instead of Saturday/Sunday/Whole weekend (events that are not a weekend, e.g. three separate Saturdays)
+    if (host.getAttribute('data-chips') === 'names') passes.forEach(function (x) { x.label = passName(x); });
     function appliedName(ap) {
       var cov = (ap.covered || []).slice().sort().join(), hit = passes.filter(function (x) { return x.covered.slice().sort().join() === cov; })[0];
       return hit ? passName(hit) : nm(ap);
