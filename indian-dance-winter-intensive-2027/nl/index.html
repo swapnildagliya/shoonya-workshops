@@ -538,6 +538,7 @@ footer{ background:var(--bone); padding:56px 0; border-top:1px solid var(--hair)
   .regbar{ transform:none; display:none; }
 }
 </style>
+<link rel="stylesheet" href="/assets/pass-builder/pass-builder.css">
 </head>
 <body>
 <a class="skip-link" href="#main">Naar de inhoud</a>
@@ -580,6 +581,7 @@ footer{ background:var(--bone); padding:56px 0; border-top:1px solid var(--hair)
     <div class="reveal">
       <div class="prog-head"><span class="t">Dag · Vorm</span><span class="t">Prijs</span></div>
       <div id="progList"></div>
+      <div class="pass-builder" data-mode="inline" data-taught="en" data-rows="#progList" data-event="indian-dance-winter-intensive-2027" data-api="https://tickets.shoonyadance.com" data-app="https://tickets.shoonyadance.com"></div>
     </div>
   </div>
 </section>
@@ -615,10 +617,11 @@ footer{ background:var(--bone); padding:56px 0; border-top:1px solid var(--hair)
         <div class="price-row"><div><span class="nm">Bhangra &amp; Jhoomar</span><span class="det">vr-avond · 3 uur</span></div><div class="amt">€40<span class="mem">Leden €36</span></div></div>
         <div class="price-row"><div><span class="nm">Indiaas Semi-Classical</span><span class="det">za-ochtend · 3 uur</span></div><div class="amt">€40<span class="mem">Leden €36</span></div></div>
         <div class="price-row"><div><span class="nm">Group Choreography</span><span class="det">za-middag · 3 uur · enige ervaring nodig</span></div><div class="amt">€40<span class="mem">Leden €36</span></div></div>
-        <div class="price-row"><div><span class="nm">Garba &amp; Dandiya Raas</span><span class="det">zo-ochtend · 2,5 uur</span></div><div class="amt">€35<span class="mem">Leden €31.50</span></div></div>
-        <div class="price-row"><div><span class="nm">Khoriya</span><span class="det">zo-middag · 2,5 uur</span></div><div class="amt">€35<span class="mem">Leden €31.50</span></div></div>
+        <div class="price-row"><div><span class="nm">Garba &amp; Dandiya Raas</span><span class="det">zo-ochtend · 2,5 uur</span></div><div class="amt">€35<span class="mem">Leden €31,50</span></div></div>
+        <div class="price-row"><div><span class="nm">Khoriya</span><span class="det">zo-middag · 2,5 uur</span></div><div class="amt">€35<span class="mem">Leden €31,50</span></div></div>
         <div class="price-row"><div><span class="nm">Zaterdag-dagpas</span><span class="det">Semi-Classical + Group Choreography · 6 uur</span><span class="save">Bespaar €5</span></div><div class="amt">€75<span class="mem">Leden €67</span></div></div>
         <div class="price-row"><div><span class="nm">Zondag-dagpas</span><span class="det">Garba &amp; Dandiya Raas + Khoriya · 5 uur · beide open niveau</span><span class="save">Bespaar €5</span></div><div class="amt">€65<span class="mem">Leden €58</span></div></div>
+        <div class="price-row"><div><span class="nm">Zaterdag- + zondag-dagpas</span><span class="det">Semi-Classical, Group Choreography, Garba &amp; Dandiya Raas + Khoriya · 11 uur</span></div><div class="amt">€140<span class="mem">Leden €125</span></div></div>
         <div class="price-row full"><div><span class="nm">Volledige 3-daagse winterpas</span><span class="det">Alle 5 sessies · 14 uur</span><span class="save">Bespaar €30</span></div><div class="amt">€160<span class="mem">Leden €141</span></div></div>
         <p class="price-notes">Ledenprijzen gelden voor wie ingeschreven is voor een semestercursus bij Shoonya — het voorjaarssemester start op 15 februari, en wie zich daarvoor inschrijft krijgt deze prijzen. Alle tickets zijn niet terugbetaalbaar. Vragen? <a href="https://www.shoonyadance.com/contact">Contacteer ons</a>.</p>
       </div>
@@ -765,5 +768,6 @@ footer{ background:var(--bone); padding:56px 0; border-top:1px solid var(--hair)
   } else { $$('#heroTitle .w,.fade').forEach(function(e){ e.style.opacity=1; e.style.transform='none'; }); }
 })();
 </script>
+<script defer src="/assets/pass-builder/pass-builder.js"></script>
 </body>
 </html>
