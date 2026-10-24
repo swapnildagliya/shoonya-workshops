@@ -474,6 +474,18 @@ section{ padding:clamp(72px,10vh,128px) 0; position:relative; }
 .teach-tags span{ font-family:'Inter',sans-serif; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-2); border:1px solid var(--hair); padding:6px 12px; }
 @media(max-width:880px){ .teach{ grid-template-columns:1fr; } }
 
+/* ON STAGE — three frames under the bio (D-032 face-safe crops; credits per frame) */
+.stage{ grid-column:1/-1; display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,2.5vw,32px); margin-top:0; }
+.stage figure{ margin:0; }
+.stage .frame{ aspect-ratio:4/5; border:1px solid var(--hair); }
+.stage .cap{ display:flex; justify-content:space-between; gap:12px; font-family:'Inter',sans-serif; font-size:11px; color:var(--ink-3); margin-top:10px; }
+@media(max-width:880px){
+  .stage{ display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+    margin-inline:calc(-1 * clamp(24px,5vw,64px)); padding-inline:clamp(24px,5vw,64px); }
+  .stage::-webkit-scrollbar{ display:none; }
+  .stage figure{ flex:0 0 68vw; scroll-snap-align:start; }
+}
+
 /* FAQ */
 .faq-list{ margin-top:36px; border-top:1px solid var(--ink); }
 .faq{ border-bottom:1px solid var(--hair); }
@@ -584,6 +596,7 @@ footer{ background:var(--bone); padding:56px 0; border-top:1px solid var(--hair)
       <div class="pass-builder" data-mode="inline" data-taught="en" data-rows="#progList" data-event="indian-dance-winter-intensive-2027" data-api="https://tickets.shoonyadance.com" data-app="https://tickets.shoonyadance.com"></div>
     </div>
   </div>
+
 </section>
 
 <!-- TEACHER -->
@@ -602,7 +615,12 @@ footer{ background:var(--bone); padding:56px 0; border-top:1px solid var(--hair)
       </div>
       <div class="teach-tags"><span>Bhangra</span><span>Jhoomar</span><span>Garba</span><span>Khoriya</span><span>Semi-Classical</span><span>Kathak</span></div>
     </div>
-  </div>
+  <div class="stage reveal" aria-label="Swapnil Dagliya on stage">
+      <figure><div class="media frame tactile"><img src="../img/stage-de-ingang-arms.jpg" alt="Swapnil Dagliya danst solo in De Ingang, Gent, juni 2026" loading="lazy"></div><figcaption class="cap"><span>Solo · De Ingang, Gent 2026</span><span>© Rudy Carlier</span></figcaption></figure>
+      <figure><div class="media frame tactile"><img src="../img/stage-gentse-feesten-20.jpg" alt="Swapnil Dagliya danst met het publiek op de Gentse Feesten 2026" loading="lazy"></div><figcaption class="cap"><span>Met het publiek · Gentse Feesten 2026</span><span>© Stijn Dejonckheere</span></figcaption></figure>
+      <figure><div class="media frame tactile"><img src="../img/stage-de-ingang-kneel.jpg" alt="Swapnil Dagliya danst solo in De Ingang, Gent, juni 2026" loading="lazy"></div><figcaption class="cap"><span>Solo · De Ingang, Gent 2026</span><span>© Rudy Carlier</span></figcaption></figure>
+    </div>
+    </div>
 </section>
 
 <!-- PRICING -->
@@ -709,7 +727,7 @@ footer{ background:var(--bone); padding:56px 0; border-top:1px solid var(--hair)
     ['za · 23 jan','Indiaas Semi-Classical','Techniek · teentaal','€40','semi-classical.jpg','50% 25%',null,"Waar ritme devotie wordt — het lichaam stil en gracieus, het hele verhaal gedragen door de ogen en de handen, op de teentaal.",'10:00–13:00'],
     ['za · 23 jan','Group Choreography','Natarang Ubha · Maharashtra','€40','group-choreography.jpg','50% 40%','Ervaring nodig',"Leer een choreografie — en leer hoe je er een bouwt. Formaties, dynamiek, structuur, en wat een stuk boeiend houdt van de eerste tel tot de laatste. Op Natarang Ubha, een folkfusion uit Maharashtra. Enige danservaring nodig.",'14:00–17:00'],
     ['zo · 24 jan','Garba &amp; Dandiya Raas','Gujarat · Navratri','€35','garba-circle.jpg','50% 45%',null,"De Navratri-cirkeldans uit Gujarat — licht voetenwerk, zachte klappen en de gezamenlijke stroom van de cirkel. Niet alleen choreografie: waar het vandaan komt, wat de muziek betekent en hoe je het samen danst. Dan komen de stokken. Twee cirkels draaien tegen elkaar in en de dandiya slaan op de tel — de zwaarden van de godin, en haar strijd, gedanst. Stokken worden voorzien.",'10:00–12:30'],
-    ['zo · 24 jan','Khoriya','Haryana · choreografie','€35','khoriya.jpg','50% 25%',null,"De feestdans van de vrouwen van Haryana — stevig, geaard voetenwerk, zwaaiende armen en de vreugde van het dorpsplein. De sessie is open niveau en voor iedereen toegankelijk.",'13:30–16:00']
+    ['zo · 24 jan','Khoriya','Haryana · choreografie','€35','khoriya-card.jpg','50% 22%',null,"De feestdans van de vrouwen van Haryana — stevig, geaard voetenwerk, zwaaiende armen en de vreugde van het dorpsplein. De sessie is open niveau en voor iedereen toegankelijk.",'13:30–16:00']
   ];
   var list=$('#progList');
   SESS.forEach(function(s,i){
