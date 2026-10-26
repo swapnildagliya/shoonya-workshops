@@ -14,7 +14,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Workshops &amp; Intensives — Shoonya Dance Centre Gent">
-<meta property="og:description" content="Verdiepend leren naast het wekelijkse lesrooster. Klassiek, hedendaags, Indiase dans, swing, Cubaanse salsa en meer bij Shoonya Dance Centre.">
+<meta property="og:description" content="Verdiepend leren naast het wekelijkse lesrooster. Klassiek, hedendaags, Indische dans, swing, Cubaanse salsa en meer bij Shoonya Dance Centre.">
 <meta property="og:url" content="https://workshops.shoonyadance.com/nl/">
 <meta property="og:site_name" content="Shoonya Dance Centre">
 <meta property="og:locale" content="nl_BE">
@@ -27,7 +27,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Workshops &amp; Intensives — Shoonya Dance Centre Gent">
-<meta name="twitter:description" content="Verdiepend leren naast het wekelijkse lesrooster. Klassiek, hedendaags, Indiase dans, swing, Cubaanse salsa en meer in Gent.">
+<meta name="twitter:description" content="Verdiepend leren naast het wekelijkse lesrooster. Klassiek, hedendaags, Indische dans, swing, Cubaanse salsa en meer in Gent.">
 <meta name="twitter:image" content="https://workshops.shoonyadance.com/og-image.jpg">
 
 <!-- Favicons -->
@@ -239,21 +239,19 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:        #F4F1EB;   /* bone foundation (D-071) */
-  --surface:   #FBFAF7;   /* white card / elevated */
-  --text:      #15131A;   /* ink */
+  --bg:        #F4F1EB;
+  --surface:   #FBFAF7;
+  --text:      #15131A;
   --muted:     #5C5860;
   --dim:       #8A858E;
   --border-w:  rgba(21,19,26,0.12);
   --border-m:  rgba(21,19,26,0.22);
-  /* dark-ground constants for the hero + nav + footer (kept on dark) */
   --on-dark:        #F7F4EE;
   --on-dark-muted:  rgba(247,244,238,0.72);
   --on-dark-dim:    rgba(247,244,238,0.55);
   --on-dark-hair:   rgba(255,255,255,0.20);
   --purple:    #B564F7;
   --purple-deep: #7A36BC;
-  /* Emil interaction easings — strong ease-out for UI/press; no bounce (D-037) */
   --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
@@ -271,18 +269,6 @@ body {
 }
 
 img { display: block; }
-
-/* ambient grain + radial wash */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 90% 60% at 70% -10%, rgba(181,100,247,0.10), transparent 60%),
-    radial-gradient(ellipse 70% 50% at 10% 110%, rgba(181,100,247,0.06), transparent 60%);
-}
 
 /* ── NAV ── */
 .nav {
@@ -339,7 +325,7 @@ body::before {
 .nav-cta:hover { background: var(--on-dark); color: #15131A; border-color: var(--on-dark); }
 .nav-cta:active { transform: scale(0.97); }
 
-/* ── HERO — kinetic type + layered photo + oo centerpiece ── */
+/* ── HERO ── */
 .hero {
   position: relative;
   min-height: 100svh;
@@ -384,7 +370,6 @@ body::before {
 .hero-line:nth-child(2) { z-index: 3; margin-left: 0.08em; }
 .hero-line:nth-child(3) { z-index: 1; margin-left: 0.16em; color: var(--purple); }
 
-/* full-bleed looping video background behind the kinetic type */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -408,7 +393,6 @@ body::before {
     linear-gradient(to top, rgba(11,9,15,0.96) 0%, rgba(11,9,15,0.62) 45%, rgba(11,9,15,0.55) 100%);
 }
 
-/* the travelling oo-mark centerpiece — behind hero type, dips under the marquee band */
 .oo-traveller {
   position: absolute;
   top: 8vh;
@@ -416,7 +400,7 @@ body::before {
   width: clamp(260px, 34vw, 520px);
   margin-left: calc(clamp(260px, 34vw, 520px) / -2);
   z-index: 1;
-  opacity: 0; /* hidden at rest — fades in on scroll via GSAP */
+  opacity: 0;
   pointer-events: none;
   will-change: transform, opacity;
 }
@@ -429,9 +413,15 @@ body::before {
   max-width: 460px;
   margin-top: 48px;
 }
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px 32px;
+  margin-top: 36px;
+}
 .hero-cta {
   display: inline-block;
-  margin-top: 36px;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
   font-weight: 500;
@@ -445,8 +435,21 @@ body::before {
 }
 .hero-cta:hover { background: var(--purple); border-color: var(--purple); color: #fff; }
 .hero-cta:active { transform: scale(0.97); }
+.hero-cta-ghost {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-dark-muted);
+  text-decoration: none;
+  transition: color 0.18s;
+}
+.hero-cta-ghost:hover { color: var(--on-dark); }
+.hero-cta-ghost::after { content: ' →'; }
 
-/* ── MARQUEE — solid band the oo-mark dips behind ── */
+/* ── MARQUEE ── */
 .marquee {
   position: relative;
   z-index: 5;
@@ -454,8 +457,6 @@ body::before {
   color: #0B090F;
   overflow: hidden;
   padding: 22px 0;
-  border-top: 1px solid var(--purple);
-  border-bottom: 1px solid var(--purple);
 }
 .marquee-track {
   display: flex;
@@ -475,222 +476,334 @@ body::before {
   to   { transform: translateX(-50%); }
 }
 
-/* ── WORKSHOPS — sticky stacked panels ── */
-.workshops {
+/* ── BENTO SECTION ── */
+.bento-section {
   position: relative;
   z-index: 4;
-  padding: 160px 0 0;
+  background: #0B090F;
+  padding: 72px 48px 80px;
 }
-.workshops-head {
+.bento-section-inner {
   max-width: 1500px;
-  margin: 0 auto 90px;
-  padding: 0 48px;
+  margin: 0 auto;
 }
-.workshops-head h2 {
-  font-family: 'Marcellus', Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(36px, 6vw, 84px);
-  line-height: 1.04;
+.bento-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+.bento-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-}
-.workshops-head h2 em {
-  font-style: normal;
   color: var(--purple);
 }
-.workshops-head p {
-  margin-top: 22px;
-  font-size: 17px;
-  line-height: 1.7;
-  color: var(--muted);
-  max-width: 520px;
+.bento-count {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--on-dark-dim);
 }
 
-.stack { position: relative; }
-.panel[hidden] { display: none !important; }
-.panel {
-  position: sticky;
-  top: 0;
-  min-height: 100svh;
+/* The grid */
+.bento-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  background: var(--bg);
-  border-top: 1px solid var(--border-w);
-  overflow: hidden;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 390px 350px 290px;
+  gap: 8px;
 }
-.panel:nth-child(even) .panel-media { order: 2; }
-.panel-media {
+
+/* Cell base */
+.bento-cell {
   position: relative;
+  display: block;
   overflow: hidden;
-  min-height: 50vh;
+  text-decoration: none;
+  cursor: pointer;
+  background: #1a1720;
 }
-.panel-media img {
+.bento-cell[hidden] { display: none; }
+
+/* Cell grid positions — assigned by JS via slot-N classes */
+.bento-cell.slot-0 { grid-column: 1/3; grid-row: 1/3; } /* flagship 2×2 */
+.bento-cell.slot-1 { grid-column: 3/4; grid-row: 1/2; }
+.bento-cell.slot-2 { grid-column: 4/5; grid-row: 1/2; }
+.bento-cell.slot-3 { grid-column: 3/4; grid-row: 2/3; }
+.bento-cell.slot-4 { grid-column: 4/5; grid-row: 2/3; }
+.bento-cell.slot-5 { grid-column: 1/3; grid-row: 3/4; }
+.bento-cell.slot-6 { grid-column: 3/5; grid-row: 3/4; }
+
+/* Count-aware tiling — the 7-slot map above leaves a hole at any other count,
+   and cards leave constantly as dates pass. `count-N` is set by assignSlots().
+   Desktop only: the ≤1100px block below re-lays the grid in two columns. */
+@media (min-width: 1101px) {
+  .bento-grid.count-1 .bento-cell.slot-0 { grid-column: 1/5; grid-row: 1/2; }
+
+  .bento-grid.count-2 .bento-cell.slot-0 { grid-column: 1/3; grid-row: 1/2; }
+  .bento-grid.count-2 .bento-cell.slot-1 { grid-column: 3/5; grid-row: 1/2; }
+
+  .bento-grid.count-3 .bento-cell.slot-1 { grid-column: 3/5; grid-row: 1/2; }
+  .bento-grid.count-3 .bento-cell.slot-2 { grid-column: 3/5; grid-row: 2/3; }
+
+  .bento-grid.count-4 .bento-cell.slot-3 { grid-column: 3/5; grid-row: 2/3; }
+
+  .bento-grid.count-6 .bento-cell.slot-5 { grid-column: 1/5; grid-row: 3/4; }
+
+  /* Collapse the row TRACKS too. The 2026-09-07 count-N fix retiled the columns
+     but left `grid-template-rows: 390px 350px 290px` standing at every count,
+     so counts 1-5 rendered a 248px empty band under the last card (measured
+     2026-09-14 at count-4 and count-3, both 1046px tall with the last cell
+     ending at 798). Rows used: counts 1-2 fill row 1 only; counts 3-5 fill
+     rows 1-2; counts 6-7 need all three. */
+  .bento-grid.count-1,
+  .bento-grid.count-2 { grid-template-rows: 390px; }
+  .bento-grid.count-3,
+  .bento-grid.count-4,
+  .bento-grid.count-5 { grid-template-rows: 390px 350px; }
+}
+
+/* Photo */
+.bento-img {
   position: absolute;
-  inset: -5% 0;
+  inset: 0;
   width: 100%;
-  height: 110%;
+  height: 100%;
   object-fit: cover;
-  object-position: center center;
   will-change: transform;
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.panel-media .photo-credit {
+.bento-cell:hover .bento-img { transform: scale(1.04); }
+
+/* Overlay — gradient, bottom-heavy */
+.bento-overlay {
   position: absolute;
-  bottom: 10px; right: 12px;
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  color: rgba(255,255,255,0.55);
-  text-align: right;
-  letter-spacing: 0.04em;
-  pointer-events: none;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.85);
-  z-index: 2;
+  inset: 0;
+  background:
+    linear-gradient(to top,
+      rgba(11,9,15,0.95) 0%,
+      rgba(11,9,15,0.70) 28%,
+      rgba(11,9,15,0.30) 55%,
+      rgba(11,9,15,0.10) 100%);
+  transition: background 0.4s ease;
 }
-.panel-date {
+.bento-cell:hover .bento-overlay {
+  background:
+    linear-gradient(to top,
+      rgba(11,9,15,0.98) 0%,
+      rgba(11,9,15,0.78) 32%,
+      rgba(11,9,15,0.40) 60%,
+      rgba(11,9,15,0.18) 100%);
+}
+
+/* Body — anchored to bottom */
+.bento-body {
   position: absolute;
-  top: 24px;
-  right: 24px;
-  background: #fff;
-  color: #000;
-  padding: 12px 16px;
-  text-align: center;
-  min-width: 72px;
-  z-index: 2;
-}
-.panel-date .d {
-  display: block;
-  font-family: 'Marcellus', Georgia, serif;
-  font-size: 26px;
-  line-height: 1.1;
-  white-space: nowrap;
-}
-.panel-date .m {
-  display: block;
-  font-family: 'Inter', sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.6;
-  margin-top: 3px;
-  white-space: nowrap;
-}
-.panel-body {
+  inset: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: clamp(40px, 6vw, 110px);
+  justify-content: flex-end;
+  padding: 28px 28px 32px;
 }
-.panel-body h3 {
-  font-family: 'Marcellus', Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(32px, 4.2vw, 62px);
-  line-height: 1.06;
-  margin-bottom: 12px;
-}
-.panel-teacher {
-  font-size: 16px;
-  font-style: italic;
-  color: var(--muted);
-  margin-bottom: 26px;
-}
-.panel-desc {
-  font-size: 17px;
-  line-height: 1.75;
-  color: var(--muted);
-  margin-bottom: 28px;
-  max-width: 480px;
-}
-.panel-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
-.chip {
+.bento-cell.slot-0 .bento-body { padding: 36px 40px 48px; }
+
+.bento-date {
   font-family: 'Inter', sans-serif;
   font-size: 10px;
-  letter-spacing: 0.10em;
+  letter-spacing: 0.20em;
   text-transform: uppercase;
-  border: 0.5px solid var(--border-w);
-  padding: 5px 10px;
-  color: var(--dim);
+  color: var(--purple);
+  margin-bottom: 10px;
 }
-.panel-link {
-  align-self: flex-start;
+.bento-title {
+  font-family: 'Marcellus', Georgia, serif;
+  font-weight: 400;
+  color: var(--on-dark);
+  line-height: 1.12;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: clamp(14px, 1.5vw, 22px);
+}
+/* Slot-based title sizing — flagship gets the biggest type */
+.bento-cell.slot-0 .bento-title { font-size: clamp(22px, 2.6vw, 44px); }
+.bento-cell.slot-1 .bento-title,
+.bento-cell.slot-2 .bento-title { font-size: clamp(16px, 1.6vw, 24px); }
+.bento-cell.slot-5 .bento-title,
+.bento-cell.slot-6 .bento-title { font-size: clamp(16px, 1.7vw, 26px); }
+
+.bento-teacher {
+  font-family: 'PT Serif', Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--on-dark-muted);
+  margin-top: 6px;
+}
+.bento-cell.slot-0 .bento-teacher { font-size: 16px; margin-top: 8px; }
+
+/* Hover reveal */
+.bento-reveal {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    max-height 0.4s var(--ease-out),
+    opacity 0.35s ease,
+    transform 0.35s var(--ease-out);
+}
+.bento-cell:hover .bento-reveal {
+  max-height: 130px;
+  opacity: 1;
+  transform: translateY(0);
+}
+.bento-excerpt {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 13px;
+  color: var(--on-dark-dim);
+  line-height: 1.6;
+  margin-top: 12px;
+  margin-bottom: 16px;
+}
+.bento-cell.slot-0 .bento-excerpt { font-size: 15px; }
+
+/* ── PIN BADGE ── */
+.bento-pin {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  display: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  background: var(--purple);
+  color: #0B090F;
+  padding: 5px 12px;
+}
+.bento-cell[data-pinned] .bento-pin { display: block; }
+.bento-cell[data-pinned] { outline: 1px solid rgba(181,100,247,0.40); outline-offset: -1px; }
+
+.bento-cta-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--on-dark);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.bento-cta-link:hover { color: var(--purple); border-color: var(--purple); }
+.miniseries-register-link { display:inline-flex; align-items:center; min-height:44px; }
+
+/* Bento empty + offseason */
+.bento-workshops-empty {
+  padding: 80px 0 40px;
+  font-family: 'PT Serif', Georgia, serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--on-dark-dim);
+  text-align: center;
+}
+.bento-offseason {
+  padding: 120px 0;
+  text-align: center;
+}
+.bento-offseason h3 {
+  font-family: 'Marcellus', Georgia, serif;
+  font-size: clamp(32px, 5vw, 64px);
+  color: var(--on-dark);
+  text-transform: uppercase;
+  line-height: 1.06;
+  margin-bottom: 24px;
+}
+.bento-offseason p {
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 17px;
+  color: var(--on-dark-muted);
+  max-width: 440px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+.bento-offseason a {
+  display: inline-block;
   font-family: 'Inter', sans-serif;
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text);
-  border: 1px solid var(--border-m);
-  padding: 15px 30px;
+  color: var(--on-dark);
   text-decoration: none;
-  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.16s var(--ease-out);
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 14px 30px;
+  transition: background 0.22s, color 0.22s;
 }
-.panel-link:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
-.panel-link:active { transform: scale(0.97); }
+.bento-offseason a:hover { background: var(--purple); border-color: var(--purple); }
 
-.workshops-empty {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 0 48px 80px;
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--muted);
-}
-.workshops-empty a { color: var(--text); }
-
-/* ── MINISERIES — pinned title left, list scrolls right ── */
+/* ── MINISERIES ── */
 .miniseries {
   position: relative;
   z-index: 4;
   background: var(--bg);
-  border-top: 1px solid var(--border-w);
-  padding: 160px 48px;
+  padding: 120px 48px 140px;
 }
 .miniseries-grid {
   max-width: 1500px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 5fr 7fr;
-  gap: clamp(40px, 5vw, 100px);
+  grid-template-columns: 320px 1fr;
+  gap: 80px;
   align-items: start;
 }
-.miniseries-left { position: sticky; top: 110px; }
+.miniseries-left {
+  position: sticky;
+  top: 100px;
+}
 .miniseries-left h2 {
   font-family: 'Marcellus', Georgia, serif;
   font-weight: 400;
-  font-size: clamp(36px, 5.5vw, 76px);
+  font-size: clamp(40px, 5.5vw, 74px);
   line-height: 1.04;
   text-transform: uppercase;
-  margin-bottom: 30px;
+  color: var(--text);
+  margin-bottom: 24px;
 }
 .miniseries-intro {
-  font-size: 17px;
-  line-height: 1.8;
+  font-size: 16px;
   color: var(--muted);
-  max-width: 420px;
+  line-height: 1.75;
+  margin-bottom: 28px;
 }
-.miniseries-intro .iw { opacity: 0.12; }
 .miniseries-note {
-  margin-top: 34px;
-  font-size: 15px;
-  color: var(--muted);
-  line-height: 1.7;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
 }
-.miniseries-note a { color: var(--text); }
 
-.miniseries-item[hidden] { display: none !important; }
+.miniseries-right { display: flex; flex-direction: column; gap: 2px; }
+
 .miniseries-item {
-  border: 1px solid var(--border-w);
-  background: var(--surface);
-  margin-bottom: 24px;
   display: flex;
-  align-items: stretch;
   overflow: hidden;
-  transition: border-color 0.3s;
-  will-change: transform;
+  background: var(--surface);
+  border: 1px solid var(--border-w);
 }
-@media (hover: hover) and (pointer: fine) { .miniseries-item:hover { border-color: var(--border-m); } }
+.miniseries-item[hidden] { display: none; }
+
 .miniseries-photo-wrap {
-  width: 170px;
   flex-shrink: 0;
+  width: 180px;
   position: relative;
-  align-self: stretch;
   overflow: hidden;
 }
 .miniseries-item-photo {
@@ -699,152 +812,149 @@ body::before {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
-  transition: transform 0.7s var(--ease-out);
+  transition: transform 0.6s var(--ease-out);
 }
-@media (hover: hover) and (pointer: fine) { .miniseries-item:hover .miniseries-item-photo { transform: scale(1.05); } }
-.miniseries-photo-wrap .photo-credit {
-  position: absolute;
-  bottom: 8px; left: 8px; right: 8px;
-  font-family: 'Inter', sans-serif;
-  font-size: 9px;
-  color: rgba(255,255,255,0.55);
-  text-align: left;
-  letter-spacing: 0.04em;
-  pointer-events: none;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.85);
-}
+.miniseries-item:hover .miniseries-item-photo { transform: scale(1.04); }
+
 .miniseries-item-body {
   flex: 1;
-  min-width: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 30px 32px 26px;
+  gap: 20px;
+  padding: 28px 30px;
 }
-.miniseries-item-main { flex: 1; min-width: 0; }
+.miniseries-item-main { flex: 1; }
 .miniseries-item-label {
   font-family: 'Inter', sans-serif;
   font-size: 11px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--dim);
   margin-bottom: 10px;
 }
-.miniseries-item h3 {
+.miniseries-item-main h3 {
   font-family: 'Marcellus', Georgia, serif;
-  font-weight: 400;
-  font-size: 23px;
-  line-height: 1.2;
-  margin-bottom: 4px;
+  font-size: clamp(18px, 2vw, 26px);
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 6px;
 }
 .miniseries-item-teacher {
-  font-size: 14px;
   font-style: italic;
+  font-size: 14px;
   color: var(--muted);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 .miniseries-item-desc {
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 14px;
   color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 18px;
 }
+.miniseries-register-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--purple);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(181,100,247,0.4);
+  padding-bottom: 1px;
+  transition: border-color 0.2s;
+}
+.miniseries-register-link:hover { border-color: var(--purple); }
+.hero-cta-ghost { display:inline-flex; align-items:center; min-height:44px; }
 .miniseries-item-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 12px;
   flex-shrink: 0;
+  text-align: right;
 }
 .miniseries-item-status {
   font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--dim);
-  white-space: nowrap;
-}
-.miniseries-register-link {
-  display: inline-block;
-  margin-top: 16px;
-  font-family: 'Inter', sans-serif;
   font-size: 12px;
-  color: var(--purple);
-  text-decoration: none;
-  letter-spacing: 0.04em;
-  transition: opacity 0.18s;
-}
-.miniseries-register-link:hover { opacity: 0.65; }
-.miniseries-register-link[hidden] { display: none !important; }
-.miniseries-divider {
-  border: none;
-  border-top: 1px solid var(--border-w);
-  margin: 36px 0;
+  color: var(--muted);
+  line-height: 1.8;
 }
 
-/* ── CLASSES CTA — massive type band ── */
+.photo-credit {
+  position: absolute;
+  bottom: 8px;
+  right: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: rgba(247,244,238,0.5);
+  pointer-events: none;
+}
+
+/* ── CLASSES CTA ── */
 .classes-cta {
   position: relative;
-  z-index: 4;
-  border-top: 1px solid var(--border-w);
-  background: var(--bg);
-  padding: 180px 48px;
+  z-index: 3;
+  background: var(--surface);
+  padding: 140px 48px;
   text-align: center;
+  border-top: 1px solid var(--border-w);
   overflow: hidden;
 }
 .classes-cta .oo-bg {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: clamp(380px, 46vw, 700px);
-  transform: translate(-50%, -50%);
-  opacity: 0.10;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.045;
   pointer-events: none;
 }
-.classes-cta .oo-bg img { width: 100%; height: auto; }
+.classes-cta .oo-bg img { width: min(80vw, 640px); }
 .classes-cta-eyebrow {
   font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.24em;
+  font-size: 11px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--purple);
-  margin-bottom: 26px;
+  margin-bottom: 20px;
   position: relative;
+  z-index: 1;
 }
 .classes-cta h2 {
   font-family: 'Marcellus', Georgia, serif;
+  font-size: clamp(32px, 5.5vw, 72px);
   font-weight: 400;
-  font-size: clamp(34px, 5.5vw, 80px);
   line-height: 1.06;
   text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 44px;
   position: relative;
+  z-index: 1;
 }
 .classes-cta a.big {
   display: inline-block;
-  margin-top: 50px;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text);
   text-decoration: none;
-  border: 1px solid var(--border-m);
+  color: var(--on-dark);
+  background: var(--text);
   padding: 18px 40px;
-  transition: background 0.22s, color 0.22s, border-color 0.22s, transform 0.16s var(--ease-out);
   position: relative;
+  z-index: 1;
+  transition: background 0.22s, transform 0.16s var(--ease-out);
 }
-.classes-cta a.big:hover { background: var(--purple); border-color: var(--purple); color: #fff; }
+.classes-cta a.big:hover { background: var(--purple); }
 .classes-cta a.big:active { transform: scale(0.97); }
 
 /* ── FOOTER ── */
 .footer {
-  position: relative;
-  z-index: 4;
-  background: #000;
-  color: #fff;
-  padding: 64px 48px 56px;
+  background: #0B090F;
+  padding: 60px 48px 52px;
 }
 .footer-inner {
   max-width: 1500px;
@@ -852,45 +962,55 @@ body::before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  gap: 20px;
 }
 .footer-markline {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-family: 'Marcellus', Georgia, serif;
-  font-size: 14px;
-  letter-spacing: 0.16em;
+  gap: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.85);
+  color: rgba(247,244,238,0.55);
 }
-.footer-markline img { height: 14px; width: auto; opacity: 0.75; flex-shrink: 0; }
+.footer-markline img { width: 22px; height: auto; opacity: 0.6; }
 .footer-address {
-  font-size: 13px;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.5);
+  font-family: 'PT Serif', Georgia, serif;
+  font-size: 14px;
+  color: rgba(247,244,238,0.38);
   text-align: center;
+  line-height: 1.7;
 }
-.footer-address a { color: rgba(255,255,255,0.65); text-decoration: none; display:inline-flex; align-items:center; min-height:44px; }
-.footer-address a:hover { color: #fff; }
+.footer-address a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
+.footer-address a:hover { color: var(--purple); }
+.footer-socials { display: flex; gap: 24px; }
+.footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  color: rgba(247,244,238,0.42);
+  transition: color 0.2s;
+  text-decoration: none;
+}
+.footer-social:hover { color: var(--purple); }
+.footer-social svg { width: 20px; height: 20px; }
 .footer-credits {
   font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  color: rgba(255,255,255,0.35);
-  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247,244,238,0.22);
 }
-.footer-socials { display: flex; gap: 18px; align-items: center; }
-.footer-social { color: rgba(255,255,255,0.5); transition: color 0.18s; display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; }
-.miniseries-note a, .workshops-empty a, .miniseries-register-link { display:inline-flex; align-items:center; min-height:44px; }
-.footer-social:hover { color: #fff; }
-.footer-social svg { display: block; width: 18px; height: 18px; }
 
-/* ── KEYBOARD FOCUS — Emil: pressables must answer the keyboard too ── */
-.nav-cta:focus-visible, .hero-cta:focus-visible, .panel-link:focus-visible,
-.classes-cta a.big:focus-visible, .nav-lang:focus-visible,
-.miniseries-register-link:focus-visible, .footer-social:focus-visible,
-.miniseries-item a:focus-visible {
+/* ── ACCESSIBILITY ── */
+.bento-cell:focus-visible,
+.miniseries-register-link:focus-visible,
+.classes-cta a.big:focus-visible,
+.nav-cta:focus-visible,
+.nav-lang:focus-visible {
   outline: 2px solid var(--purple);
   outline-offset: 3px;
 }
@@ -898,41 +1018,69 @@ body::before {
 /* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
-  .panel { position: relative; min-height: 0; }
-  .miniseries-intro .iw { opacity: 1; }
   .oo-traveller { display: none; }
-  .nav-cta:active, .hero-cta:active, .panel-link:active,
-  .classes-cta a.big:active { transform: none; }
+  .bento-img { transition: none; }
+  .bento-cell:hover .bento-img { transform: none; }
+  .bento-reveal { transition: none; max-height: none; opacity: 1; transform: none; }
+  .nav-cta:active, .hero-cta:active, .classes-cta a.big:active { transform: none; }
 }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 920px) {
-  .panel { grid-template-columns: 1fr; min-height: 0; position: relative; }
-  .panel:nth-child(even) .panel-media { order: 0; }
-  .panel-media { min-height: 300px; }
-  .miniseries-grid { grid-template-columns: 1fr; }
+@media (max-width: 1100px) {
+  .bento-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .bento-cell.slot-0 { grid-column: 1/3; grid-row: 1/2; min-height: 420px; }
+  .bento-cell.slot-1 { grid-column: 1/2; grid-row: 2/3; min-height: 320px; }
+  .bento-cell.slot-2 { grid-column: 2/3; grid-row: 2/3; min-height: 320px; }
+  .bento-cell.slot-3 { grid-column: 1/2; grid-row: 3/4; min-height: 280px; }
+  .bento-cell.slot-4 { grid-column: 2/3; grid-row: 3/4; min-height: 280px; }
+  .bento-cell.slot-5 { grid-column: 1/2; grid-row: 4/5; min-height: 280px; }
+  .bento-cell.slot-6 { grid-column: 2/3; grid-row: 4/5; min-height: 280px; }
+  /* Count-aware tiling, two-column version — a lone cell in the last row spans it */
+  .bento-grid.count-2 .bento-cell.slot-1 { grid-column: 1/3; }
+  .bento-grid.count-4 .bento-cell.slot-3 { grid-column: 1/3; }
+  .bento-grid.count-6 .bento-cell.slot-5 { grid-column: 1/3; }
+  /* At tablet, slots 1-2 use medium sizing */
+  .bento-cell.slot-1 .bento-title,
+  .bento-cell.slot-2 .bento-title,
+  .bento-cell.slot-3 .bento-title,
+  .bento-cell.slot-4 .bento-title,
+  .bento-cell.slot-5 .bento-title,
+  .bento-cell.slot-6 .bento-title { font-size: clamp(16px, 2vw, 24px); }
+}
+@media (max-width: 960px) {
+  .miniseries-grid { grid-template-columns: 1fr; gap: 48px; }
   .miniseries-left { position: static; }
 }
 @media (max-width: 640px) {
   .nav { padding: 0 20px; }
   .hero { padding: 110px 20px 64px; }
   .hero-line { white-space: normal; }
-  .workshops { padding-top: 100px; }
-  .workshops-head { padding: 0 20px; margin-bottom: 56px; }
-  .panel-body { padding: 32px 22px 44px; }
+  .bento-section { padding: 56px 20px 64px; }
+  .bento-grid { grid-template-columns: 1fr; }
+  /* All slots collapse to single column */
+  .bento-cell { grid-column: 1/2 !important; grid-row: auto !important; min-height: 300px; }
+  .bento-cell.slot-0 { min-height: 460px; }
+  /* On mobile titles are smaller — slot-0 is the exception */
+  .bento-cell.slot-0 .bento-title { font-size: 20px; }
+  .bento-cell .bento-title { font-size: 16px; }
+  /* Always show reveal on mobile (no hover on touch) */
+  .bento-reveal { max-height: none !important; opacity: 1 !important; transform: none !important; }
   .miniseries { padding: 100px 20px; }
   .miniseries-item { flex-direction: column; }
   .miniseries-photo-wrap { width: 100%; height: 200px; }
   .miniseries-item-body { flex-direction: column; gap: 16px; padding: 24px 20px 26px; }
-  .miniseries-item-meta { align-items: flex-start; }
+  .miniseries-item-meta { align-items: flex-start; text-align: left; }
   .classes-cta { padding: 110px 20px; }
   .footer { padding: 48px 20px 44px; }
 }
+
+
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">Naar de inhoud</a>
 
+<!-- ── NAV ── -->
 <nav class="nav" id="nav" aria-label="Site">
   <a href="https://www.shoonyadance.com" class="nav-brand">
     <img src="../assets/shoonya-logo-script-purple.png" alt="Shoonya Dance Centre">
@@ -965,7 +1113,10 @@ body::before {
       <span class="hero-line">&amp; Reeksen</span>
     </h1>
     <p class="hero-lead">Verdiepend leren naast het wekelijkse lesrooster. Elke workshop wordt gegeven door een specialist — verwacht gerichte techniek, een kleine groep en ruimte om de diepte in te gaan.</p>
-    <a href="#workshops" class="hero-cta">Bekijk komende workshops</a>
+    <div class="hero-ctas">
+      <a href="#bento" class="hero-cta">Bekijk komende workshops</a>
+      <a href="#miniseries" class="hero-cta-ghost">Miniseries</a>
+    </div>
   </div>
 </header>
 
@@ -981,141 +1132,153 @@ body::before {
   </div>
 </div>
 
-<!-- ── WORKSHOPS — stacked panels ── -->
-<section class="workshops" id="workshops" aria-label="Workshop listings">
-  <div class="workshops-head">
-    <h2>Workshops <em>&amp;</em> Intensives</h2>
-    <p>Verdiepend leren naast het wekelijkse lesrooster.</p>
+<!-- ── BENTO — D3: asymmetric editorial grid ── -->
+<section class="bento-section" id="bento" aria-label="Komende workshops en intensives">
+  <div class="bento-section-inner">
+
+    <div class="bento-header">
+      <p class="bento-eyebrow">Workshops &amp; Intensives</p>
+      <p class="bento-count" id="bento-count">5 komende</p>
+    </div>
+
+    <div class="bento-grid" id="bento-grid">
+
+
+      <!-- Flamenco Technique — za 21 nov · 19 dec · 16 jan -->
+      <a class="bento-cell" id="btc-flamenco-technique" data-event="flamenco-technique" href="/flamenco-technique/nl/" aria-label="Flamenco Technique met La Liz">
+        <img class="bento-img"
+             src="../flamenco-technique/img/hero.jpg"
+             alt="La Liz danst flamenco"
+             style="object-position: 50% 20%;">
+        <div class="bento-overlay"></div>
+        <div class="bento-body">
+          <p class="bento-date">nov t.e.m. jan</p>
+          <h3 class="bento-title">Flamenco Technique</h3>
+          <p class="bento-teacher">met La Liz</p>
+          <div class="bento-reveal">
+            <p class="bento-excerpt">Deze maandelijkse intensieve workshop is een diepgaande aanvulling op de reguliere lessen. Open voor flamencodansers van alle niveaus.</p>
+            <span class="bento-cta-link">Alle details &amp; inschrijven →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Contemporary Dance Lab — zo 29 nov -->
+      <a class="bento-cell" id="btc-contemporary-dance-lab" data-event="contemporary-dance-lab" href="/contemporary-dance-lab/nl/" aria-label="Contemporary Dance Lab met Tono Ferriol">
+        <img class="bento-img"
+             src="../contemporary-dance-lab/img/card.jpg"
+             alt="Tono Ferriol danst op een donker podium"
+             style="object-position: 50% 30%;">
+        <div class="bento-overlay"></div>
+        <div class="bento-body">
+          <p class="bento-date">29 nov</p>
+          <h3 class="bento-title">Contemporary Dance Lab</h3>
+          <p class="bento-teacher">met Tono Ferriol</p>
+          <div class="bento-reveal">
+            <p class="bento-excerpt">Duik een ochtend lang in contemporary dans.</p>
+            <span class="bento-cta-link">Alle details &amp; inschrijven →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Indian Dance Winter Intensive — 22–24 jan 2027 -->
+      <a class="bento-cell" id="btc-indian-winter" data-event="indian-winter" href="/indian-dance-winter-intensive-2027/nl/" aria-label="Indian Dance Winter Intensive met Swapnil Dagliya">
+        <img class="bento-img"
+             src="../indian-dance-winter-intensive-2027/img/hero.jpg"
+             alt="Indian Dance Winter Intensive 2027"
+             style="object-position: 50% 30%;">
+        <div class="bento-overlay"></div>
+        <div class="bento-body">
+          <p class="bento-date">22 &ndash; 24 jan</p>
+          <h3 class="bento-title">Indian Dance Winter Intensive</h3>
+          <p class="bento-teacher">met Swapnil Dagliya</p>
+          <div class="bento-reveal">
+            <p class="bento-excerpt">Een winterweekend vol Indische dans: oogstfeest uit Punjab, de cirkel van Garba, de gratie van semi-klassiek.</p>
+            <span class="bento-cta-link">Alle details &amp; inschrijven →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Kizomba Beginner -->
+      <a class="bento-cell" id="btc-kiz-beginner" data-event="kiz-beginner" href="/kizomba-beginner-bootcamp-series/nl/" aria-label="Kizomba Beginner Bootcamp Series">
+        <span class="bento-pin">Uitgelicht</span>
+        <img class="bento-img"
+             src="../kizomba-beginner-bootcamp-series/assets/sonja-beginner.jpg"
+             alt="Kizomba Beginner Bootcamp Series"
+             style="object-position: 58% 18%;">
+        <div class="bento-overlay"></div>
+        <div class="bento-body">
+          <p class="bento-date">nov t.e.m. jan</p>
+          <h3 class="bento-title">Kizomba Beginner Bootcamp Series</h3>
+          <p class="bento-teacher">met Sonja KikiZomba</p>
+          <div class="bento-reveal">
+            <p class="bento-excerpt">Nog twee zaterdagmiddagen: 7 november en 23 januari. Voor absolute beginners en wie een heldere Kizomba-basis wil.</p>
+            <span class="bento-cta-link">Alle details &amp; inschrijven →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Kizomba Universe -->
+      <a class="bento-cell" id="btc-kiz-universe" data-event="kiz-universe" href="/exploring-the-kizomba-universe/nl/" aria-label="Exploring the Kizomba Universe">
+        <span class="bento-pin">Uitgelicht</span>
+        <img class="bento-img"
+             src="../exploring-the-kizomba-universe/assets/sonja-universe.jpg"
+             alt="Exploring the Kizomba Universe"
+             style="object-position: 66% 35%;">
+        <div class="bento-overlay"></div>
+        <div class="bento-body">
+          <p class="bento-date">nov t.e.m. jan</p>
+          <h3 class="bento-title">Exploring the Kizomba Universe</h3>
+          <p class="bento-teacher">met Sonja KikiZomba</p>
+          <div class="bento-reveal">
+            <p class="bento-excerpt">Twee modules: Tarraxinha (7 november) en Semba next level (23 januari). De Semba-module vraagt wat Kizomba-ervaring.</p>
+            <span class="bento-cta-link">Alle details &amp; inschrijven →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Cuba — pinned; verborgen tot 15 juni -->
+      <a class="bento-cell" id="btc-cuba" data-event="cuba" data-pinned="true" href="/round-trip-to-cuba/nl/" hidden aria-label="Round Trip to Cuba">
+        <span class="bento-pin">Uitgelicht</span>
+        <img class="bento-img"
+             src="../assets/trip-cuba.jpg"
+             alt="Round Trip to Cuba"
+             style="object-position: center 30%;">
+        <div class="bento-overlay"></div>
+        <div class="bento-body">
+          <p class="bento-date">23–24 jan 2027</p>
+          <h3 class="bento-title">Round Trip to Cuba</h3>
+          <p class="bento-teacher">met Wilmer &amp; Maria</p>
+          <div class="bento-reveal">
+            <p class="bento-excerpt">Een 2-daagse Cubaanse salsa weekendintensive. Zes masterclasses — Afrocuban, Rumba Cubana, Son Cubano, Salsa Cubana, Timba Cubana en Afrotimba Fusión.</p>
+            <span class="bento-cta-link">Alle details &amp; inschrijven →</span>
+          </div>
+        </div>
+      </a>
+
+    </div><!-- /bento-grid -->
+
+    <!-- Workshops empty state (all expired) -->
+    <p class="bento-workshops-empty" id="bento-workshops-empty" hidden>
+      Geen komende workshops — meer worden doorheen het seizoen aangekondigd.
+    </p>
+
+    <!-- Full offseason state (workshops AND miniseries gone) -->
+    <div class="bento-offseason" id="bento-offseason" hidden aria-live="polite">
+      <h3>Volgend seizoen<br>komt eraan</h3>
+      <p>Nieuwe workshops, intensives en reeksen worden doorheen het seizoen aangekondigd. Schrijf je in op de nieuwsbrief om het als eerste te horen.</p>
+      <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Schrijf je in op de nieuwsbrief</a>
+    </div>
+
   </div>
-
-  <div class="stack" id="stack">
-
-
-    <!-- Flamenco Technique — za 21 nov · 19 dec · 16 jan -->
-    <article class="panel" id="card-flamenco-technique">
-      <div class="panel-media">
-        <img src="../flamenco-technique/img/hero.jpg" alt="La Liz danst flamenco" loading="lazy" style="object-position: 50% 20%;">
-        <div class="panel-date"><span class="d">nov</span><span class="m">t.e.m. jan</span></div>
-      </div>
-      <div class="panel-body">
-        <h3>Flamenco Technique</h3>
-        <p class="panel-teacher">met La Liz</p>
-        <p class="panel-desc">Deze maandelijkse intensieve workshop is een diepgaande aanvulling op de reguliere lessen.</p>
-        <div class="panel-chips">
-          <span class="chip">Alle niveaus</span>
-          <span class="chip">3 zaterdagen</span>
-          <span class="chip">Flamenco</span>
-        </div>
-        <a href="/flamenco-technique/nl/" class="panel-link">Alle details &amp; inschrijven</a>
-      </div>
-    </article>
-
-    <!-- Contemporary Dance Lab — zo 29 nov -->
-    <article class="panel" id="card-contemporary-dance-lab">
-      <div class="panel-media">
-        <img src="../contemporary-dance-lab/img/card.jpg" alt="Tono Ferriol danst op een donker podium" loading="lazy" style="object-position: 50% 30%;">
-        <div class="panel-date"><span class="d">29</span><span class="m">nov</span></div>
-      </div>
-      <div class="panel-body">
-        <h3>Contemporary Dance Lab</h3>
-        <p class="panel-teacher">met Tono Ferriol</p>
-        <p class="panel-desc">Duik een ochtend lang in contemporary dans.</p>
-        <div class="panel-chips">
-          <span class="chip">Alle niveaus</span>
-          <span class="chip">2 uur</span>
-          <span class="chip">Contemporary</span>
-        </div>
-        <a href="/contemporary-dance-lab/nl/" class="panel-link">Alle details &amp; inschrijven</a>
-      </div>
-    </article>
-
-    <!-- Indian Dance Winter Intensive — 22–24 jan 2027 -->
-    <article class="panel" id="card-indian-winter">
-      <div class="panel-media">
-        <img src="../indian-dance-winter-intensive-2027/img/hero.jpg" alt="Indian Dance Winter Intensive 2027" loading="lazy" style="object-position: 50% 30%;">
-        <div class="panel-date"><span class="d">22&ndash;24</span><span class="m">jan</span></div>
-      </div>
-      <div class="panel-body">
-        <h3>Indian Dance Winter Intensive</h3>
-        <p class="panel-teacher">met Swapnil Dagliya</p>
-        <p class="panel-desc">Een winterweekend vol Indiase dans: oogstfeest uit Punjab, de cirkel van Garba, de gratie van semi-klassiek.</p>
-        <div class="panel-chips">
-          <span class="chip">3 dagen</span>
-          <span class="chip">Indiase dans</span>
-        </div>
-        <a href="/indian-dance-winter-intensive-2027/nl/" class="panel-link">Alle details &amp; inschrijven</a>
-      </div>
-    </article>
-
-    <!-- Kizomba Beginner Bootcamp Series — Oct · Nov · Jan -->
-    <article class="panel" id="card-kiz-beginner">
-      <div class="panel-media">
-        <img src="../kizomba-beginner-bootcamp-series/assets/sonja-beginner.jpg" alt="Kizomba Beginner Bootcamp Series" loading="lazy" style="object-position: 58% 18%;">
-        <div class="panel-date"><span class="d">nov</span><span class="m">t.e.m. jan</span></div>
-      </div>
-      <div class="panel-body">
-        <h3>Kizomba Beginner Bootcamp Series</h3>
-        <p class="panel-teacher">met Sonja KikiZomba</p>
-        <p class="panel-desc">Nog twee zaterdagmiddagen: 7 november en 23 januari — open voor absolute beginners en dansers die een heldere Kizomba-basis willen opbouwen.</p>
-        <div class="panel-chips">
-          <span class="chip">Beginner</span>
-          <span class="chip">2 zaterdagen</span>
-          <span class="chip">Kizomba</span>
-        </div>
-        <a href="/kizomba-beginner-bootcamp-series/nl/" class="panel-link">Alle details &amp; inschrijven</a>
-      </div>
-    </article>
-
-    <!-- Exploring the Kizomba Universe — Oct · Nov · Jan -->
-    <article class="panel" id="card-kiz-universe">
-      <div class="panel-media">
-        <img src="../exploring-the-kizomba-universe/assets/sonja-universe.jpg" alt="Exploring the Kizomba Universe" loading="lazy" style="object-position: 66% 35%;">
-        <div class="panel-date"><span class="d">nov</span><span class="m">t.e.m. jan</span></div>
-      </div>
-      <div class="panel-body">
-        <h3>Exploring the Kizomba Universe</h3>
-        <p class="panel-teacher">met Sonja KikiZomba</p>
-        <p class="panel-desc">Twee modules: Tarraxinha (7 november) en Semba next level (23 januari). De Semba-module vraagt wat Kizomba-ervaring.</p>
-        <div class="panel-chips">
-          <span class="chip">Open niveau</span>
-          <span class="chip">2 zaterdagen</span>
-          <span class="chip">Kizomba</span>
-        </div>
-        <a href="/exploring-the-kizomba-universe/nl/" class="panel-link">Alle details &amp; inschrijven</a>
-      </div>
-    </article>
-
-    <!-- Round Trip to Cuba — 23–24 January 2027 — date-gated until 15 June 2026, auto-hides 25 Jan 2027 -->
-    <article class="panel" id="card-rtc" hidden>
-      <div class="panel-media">
-        <img src="../assets/trip-cuba.jpg" alt="Round Trip to Cuba" loading="lazy" style="object-position: center 30%;">
-        <div class="panel-date"><span class="d">23–24</span><span class="m">jan 2027</span></div>
-      </div>
-      <div class="panel-body">
-        <h3>Round Trip to Cuba</h3>
-        <p class="panel-teacher">met Wilmer &amp; Maria</p>
-        <p class="panel-desc">Een 2-daagse Cubaanse salsa weekendintensive. Zes masterclasses — Afrocuban, Rumba Cubana, Son Cubano, Salsa Cubana, Timba Cubana en Afrotimba Fusión.</p>
-        <div class="panel-chips">
-          <span class="chip">Alle niveaus</span>
-          <span class="chip">2 dagen</span>
-          <span class="chip">Cubaanse Salsa</span>
-        </div>
-        <a href="/round-trip-to-cuba/nl/" class="panel-link">Alle details &amp; inschrijven</a>
-      </div>
-    </article>
-
-  </div>
-
-  <p class="workshops-empty" id="workshops-empty" hidden>Meer workshops worden binnenkort aangekondigd. <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Schrijf je in op de nieuwsbrief</a> om het als eerste te horen.</p>
 </section>
 
-<!-- ── MINISERIES — pinned split ── -->
+<!-- ── MINISERIES ── -->
 <section class="miniseries" id="miniseries" aria-label="Miniseries">
   <div class="miniseries-grid">
     <div class="miniseries-left">
       <h2>Mini&shy;series</h2>
       <p class="miniseries-intro" id="miniseries-intro">Een miniseries is een korte cursus met één lesgever — meestal 5–10 sessies rond een specifieke stijl of techniek. Anders dan een wekelijkse les schrijf je in voor de volledige reeks en ga je dieper dan een losse les ooit toelaat.</p>
-      <p class="miniseries-note">Meer reeksen worden doorheen het seizoen aangekondigd. <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Schrijf je in op de nieuwsbrief</a> om het als eerste te horen.</p>
+      <p class="miniseries-note">Meer reeksen worden doorheen het seizoen aangekondigd.</p>
     </div>
 
     <div class="miniseries-right">
@@ -1123,7 +1286,7 @@ body::before {
 
 
 
-      <!-- Bachata Choreo Minireeks — 10 Nov – 15 Dec 2026 — auto-hides 16 Dec -->
+      <!-- Bachata Choreo Minireeks -->
       <article class="miniseries-item" id="miniseries-bachata-choreo">
         <div class="miniseries-photo-wrap">
           <img class="miniseries-item-photo" src="../assets/alex-lenka.jpg" alt="Bachata Choreo Minireeks — Alex Papaianopol &amp; Lenka Badriyah" loading="lazy" style="object-position: 55% 15%;">
@@ -1135,10 +1298,10 @@ body::before {
             <h3>Bachata Choreo Minireeks</h3>
             <p class="miniseries-item-teacher">met Alex Papaianopol &amp; Lenka Badriyah</p>
             <p class="miniseries-item-desc">Een 6-weekse koppelchoreografie-reeks voor gevorderde bachatadansers (Intermediate &amp; Advanced). Bouw een volledige choreografie op van nul — bewegingskwaliteit, partnerdynamiek, muzikaliteit, styling en een volledige doorloop. Partner gedurende de hele reeks vereist.</p>
-            <a class="miniseries-register-link" id="reg-bachata-choreo" href="/bachata-choreo-minireeks/nl/">Volledige info →</a>
+            <a class="miniseries-register-link" href="/bachata-choreo-minireeks/nl/">Volledige info →</a>
           </div>
           <div class="miniseries-item-meta">
-            <p class="miniseries-item-status" id="status-bachata-choreo">Inschrijving open</p>
+            <p class="miniseries-item-status">Inschrijving open</p>
             <p class="miniseries-item-status">€75 · nov 2026</p>
           </div>
         </div>
@@ -1191,169 +1354,164 @@ body::before {
 <script src="../lib/gsap.min.js"></script>
 <script src="../lib/ScrollTrigger.min.js"></script>
 <script>
-  // CDN fallback if the local copies are ever missing
   if (!window.gsap) document.write('<script src="https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/gsap\/3.12.5\/gsap.min.js"><\/script><script src="https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/gsap\/3.12.5\/ScrollTrigger.min.js"><\/script>');
 </script>
 <script>
 (function () {
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Nav: solid after leaving the hero
-  var nav = document.getElementById('nav');
+  function g(id) { return document.getElementById(id); }
+  function hide(id) { var e = g(id); if (e) e.setAttribute('hidden', ''); }
+  function show(id) { var e = g(id); if (e) e.removeAttribute('hidden'); }
+  function now() { return new Date(); }
+  function after(dateStr) { return now() >= new Date(dateStr); }
+
+  /* ── Nav scroll state ── */
+  var nav = g('nav');
   var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 40); };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ── Date gating ──────────────────────────────────────────────────────────
-     Mirrors the EN hub's gate one-for-one (D-029). This page shipped with NO
-     gate at all: it was still promoting the Indian Dance and Flamenco summer
-     intensives after they ended on 29 Aug 2026, and `card-rtc` was hard-hidden
-     with nothing to ever reveal it, so Dutch visitors never saw Round Trip to
-     Cuba while EN had shown it since 15 June. Dates match /index.html exactly —
-     change both together. */
-  function g(id) { return document.getElementById(id); }
-  function hide(id) { var e = g(id); if (e) e.setAttribute('hidden', ''); }
-  function show(id) { var e = g(id); if (e) e.removeAttribute('hidden'); }
-  function after(dateStr) { return new Date() >= new Date(dateStr); }
+  /* ── Date gating — bento cells ── */
+  if (after('2026-06-15T00:00:00')) { show('btc-cuba'); }
 
-  if (after('2026-06-15T00:00:00'))  { show('card-rtc'); }
+  if (after('2027-01-17T00:00:00'))  { hide('btc-flamenco-technique'); }
+  if (after('2026-11-30T00:00:00'))  { hide('btc-contemporary-dance-lab'); }
+  if (after('2027-01-25T00:00:00'))  { hide('btc-indian-winter'); }
+  if (after('2027-01-24T00:00:00'))  { hide('btc-kiz-beginner'); hide('btc-kiz-universe'); }
+  if (after('2027-01-25T00:00:00'))  { hide('btc-cuba'); }
 
-  if (after('2027-01-17T00:00:00'))  { hide('card-flamenco-technique'); }
-  if (after('2026-11-30T00:00:00'))  { hide('card-contemporary-dance-lab'); }
-  if (after('2027-01-25T00:00:00'))  { hide('card-indian-winter'); }
-  if (after('2027-01-24T00:00:00'))  { hide('card-kiz-beginner'); hide('card-kiz-universe'); }
-  if (after('2027-01-25T00:00:00'))  { hide('card-rtc'); }
-
+  /* ── Date gating — miniseries ── */
   if (after('2026-12-16T00:00:00'))  { hide('miniseries-bachata-choreo'); }
 
+  /* ── Slot assignment — pinned cells get slot-0 (flagship) ── */
+  var SLOTS = [
+    { col: '1/3', row: '1/3' },  /* flagship 2×2 */
+    { col: '3/4', row: '1/2' },
+    { col: '4/5', row: '1/2' },
+    { col: '3/4', row: '2/3' },
+    { col: '4/5', row: '2/3' },
+    { col: '1/3', row: '3/4' },
+    { col: '3/5', row: '3/4' },
+  ];
+
+  function assignSlots() {
+    var allCells = Array.from(document.querySelectorAll('.bento-cell'));
+    /* Strip old slot classes */
+    allCells.forEach(function (c) {
+      c.className = c.className.replace(/\bslot-\d+\b/g, '').trim();
+    });
+    /* Visible cells: pinned first, then DOM order */
+    var visible = allCells.filter(function (c) { return !c.hidden; });
+    visible.sort(function (a, b) {
+      return (b.hasAttribute('data-pinned') ? 1 : 0) - (a.hasAttribute('data-pinned') ? 1 : 0);
+    });
+    visible.forEach(function (cell, i) {
+      if (i < SLOTS.length) cell.classList.add('slot-' + i);
+    });
+    /* Reorder DOM nodes to match — mobile collapses to grid-row:auto,
+       which falls back to source order, so pin order must be physical too */
+    var grid = g('bento-grid');
+    if (grid) {
+      visible.forEach(function (cell) { grid.appendChild(cell); });
+    }
+  }
+  assignSlots();
+
+  /* ── Bento: update count + empty state ── */
+  var bentoVisible = document.querySelectorAll('.bento-cell:not([hidden])').length;
+  var bentoCount = g('bento-count');
+  if (bentoCount) bentoCount.textContent = bentoVisible + ' komende';
+
+  /* Tell the CSS how many cells survived, so the grid tiles without a hole */
+  var bentoGrid = g('bento-grid');
+  if (bentoGrid) {
+    bentoGrid.className = bentoGrid.className.replace(/\bcount-\d+\b/g, '').trim();
+    bentoGrid.classList.add('count-' + bentoVisible);
+  }
+
+  if (bentoVisible === 0) {
+    hide('bento-grid');
+    show('bento-workshops-empty');
+  }
+
+  /* ── Miniseries: hide section when empty ── */
+  var miniseriesVisible = document.querySelectorAll('.miniseries-item:not([hidden])').length;
+  if (miniseriesVisible === 0) { hide('miniseries'); }
+
+  /* ── Full offseason state ── */
+  if (bentoVisible === 0 && miniseriesVisible === 0) {
+    hide('bento-workshops-empty');
+    show('bento-offseason');
+  }
+
+  /* ── Hero CTA: smooth scroll to bento ── */
+  var heroCta = document.querySelector('.hero-cta[href="#bento"]');
+  if (heroCta) {
+    heroCta.addEventListener('click', function (e) {
+      e.preventDefault();
+      var target = g('bento');
+      if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset, behavior: 'smooth' });
+    });
+  }
+
+  /* ── Reduced motion: stop video ── */
+  if (reduced) {
+    var hv = g('hero-video-el');
+    if (hv) { hv.removeAttribute('autoplay'); hv.pause(); hv.style.display = 'none'; }
+  }
+
+  /* ── GSAP animations ── */
   if (!reduced && window.gsap && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero type: word entrance, then a slow horizontal drift scrubbed to scroll
+    /* Hero title entrance */
     var lines = gsap.utils.toArray('.hero-line');
-    gsap.from(lines, {
-      yPercent: 60,
-      opacity: 0,
-      duration: 1.1,
-      ease: 'power3.out',
-      stagger: 0.12,
-      delay: 0.15
-    });
+    gsap.from(lines, { yPercent: 60, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.12, delay: 0.15 });
     lines.forEach(function (line, i) {
       gsap.to(line, {
-        xPercent: (i % 2 === 0 ? -4 : 4),
-        ease: 'none',
+        xPercent: (i % 2 === 0 ? -4 : 4), ease: 'none',
         scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.6 }
       });
     });
 
-    // oo-mark centerpiece: rotates continuously, travels down with scroll
-    // and dips behind the purple marquee band (band has higher z-index)
+    /* oo-mark traveller */
     gsap.to('#oo-traveller img', { rotation: 360, duration: 60, ease: 'none', repeat: -1 });
     gsap.fromTo('#oo-traveller', { opacity: 0 }, {
-      y: function () { return window.innerHeight * 0.9; },
-      opacity: 0.45,
-      ease: 'none',
+      y: function () { return window.innerHeight * 0.9; }, opacity: 0.45, ease: 'none',
       scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.4 }
     });
 
-    // Workshops heading: rises in
-    gsap.from('.workshops-head', {
-      y: 60, opacity: 0, duration: 1, ease: 'power3.out',
-      scrollTrigger: { trigger: '.workshops-head', start: 'top 85%' }
-    });
-
-    // Stacked panels: as the next panel slides over, the previous scales down and dims
-    var panels = gsap.utils.toArray('.panel:not([hidden])');
-    panels.forEach(function (panel, i) {
-      if (i === panels.length - 1) return;
-      gsap.to(panel, {
-        scale: 0.94,
-        opacity: 0.35,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: panels[i + 1],
-          start: 'top bottom',
-          end: 'top top',
-          scrub: 0.4
-        }
+    /* Bento: cells stagger in */
+    var visibleCells = gsap.utils.toArray('.bento-cell:not([hidden])');
+    if (visibleCells.length > 0) {
+      gsap.from(visibleCells, {
+        y: 50, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.06,
+        scrollTrigger: { trigger: '#bento-grid', start: 'top 85%' }
       });
-    });
+    }
 
-    // Panel photos: slow vertical parallax inside their frame
-    gsap.utils.toArray('.panel-media img').forEach(function (img) {
-      gsap.fromTo(img, { yPercent: -3 }, {
-        yPercent: 3,
-        ease: 'none',
-        scrollTrigger: { trigger: img.closest('.panel'), start: 'top bottom', end: 'bottom top', scrub: 0.5 }
+    /* Flagship (slot-0): subtle parallax on scroll, whoever that is */
+    var flagship = document.querySelector('.bento-cell.slot-0');
+    var flagshipImg = flagship ? flagship.querySelector('.bento-img') : null;
+    if (flagship && flagshipImg) {
+      gsap.to(flagshipImg, {
+        yPercent: -8, ease: 'none',
+        scrollTrigger: { trigger: flagship, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
       });
-    });
+    }
 
-    // Miniseries intro: word-by-word opacity scrub
-    var intro = document.getElementById('miniseries-intro');
-    intro.innerHTML = intro.textContent.split(' ').map(function (w) {
-      return '<span class="iw">' + w + '</span>';
-    }).join(' ');
-    gsap.to('#miniseries-intro .iw', {
-      opacity: 1,
-      stagger: 0.04,
-      ease: 'none',
-      scrollTrigger: { trigger: '#miniseries-intro', start: 'top 80%', end: 'top 35%', scrub: 0.5 }
-    });
-
-    // Miniseries items: rise in with stagger
-    gsap.utils.toArray('.miniseries-item:not([hidden])').forEach(function (item) {
-      gsap.from(item, {
-        y: 56, opacity: 0, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: item, start: 'top 88%' }
+    /* Miniseries items stagger */
+    var mItems = gsap.utils.toArray('.miniseries-item:not([hidden])');
+    if (mItems.length > 0) {
+      gsap.from(mItems, {
+        y: 40, opacity: 0, duration: 0.7, ease: 'power3.out', stagger: 0.1,
+        scrollTrigger: { trigger: '.miniseries-right', start: 'top 85%' }
       });
-    });
-
-    // CTA band: oo-mark slow spin + heading rise
-    gsap.to('.classes-cta .oo-bg img', { rotation: -360, duration: 90, ease: 'none', repeat: -1 });
-    gsap.from('.classes-cta h2', {
-      y: 50, opacity: 0, duration: 1, ease: 'power3.out',
-      scrollTrigger: { trigger: '.classes-cta', start: 'top 75%' }
-    });
-  } else {
-    // Reduced motion or no GSAP: everything visible, no scroll effects
-    document.querySelectorAll('.miniseries-intro .iw').forEach(function (w) { w.style.opacity = 1; });
+    }
   }
 
-  // Reduced motion: stop the hero video, leave the poster photo
-  if (reduced) {
-    var hv = document.getElementById('hero-video-el');
-    if (hv) { hv.removeAttribute('autoplay'); hv.pause(); hv.style.display = 'none'; }
-  }
-
-  // ── Date gating — identical rules to the live hub + redesign gates ──
-  if (new Date() >= new Date('2026-06-15T00:00:00')) {
-    var card = document.getElementById('card-rtc');
-    if (card) card.removeAttribute('hidden');
-  }
-  if (new Date() >= new Date('2026-12-16T00:00:00')) {
-    var bch = document.getElementById('miniseries-bachata-choreo');
-    if (bch) bch.setAttribute('hidden', '');
-  }
-  if (new Date() >= new Date('2027-01-25T00:00:00')) {
-    var rtc2 = document.getElementById('card-rtc');
-    if (rtc2) rtc2.setAttribute('hidden', '');
-  }
-  if (new Date() >= new Date('2027-01-24T00:00:00')) {
-    var kizu = document.getElementById('card-kiz-universe');
-    if (kizu) kizu.setAttribute('hidden', '');
-    var kizb = document.getElementById('card-kiz-beginner');
-    if (kizb) kizb.setAttribute('hidden', '');
-  }
-
-  // Empty state when every workshop is gated away
-  var visible = document.querySelectorAll('.panel:not([hidden])').length;
-  var empty = document.getElementById('workshops-empty');
-  if (empty && visible === 0) empty.removeAttribute('hidden');
-
-  if (window.ScrollTrigger) ScrollTrigger.refresh();
 })();
 </script>
-
 </body>
 </html>
