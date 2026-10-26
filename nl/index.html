@@ -87,6 +87,33 @@
         "name": "Shoonya Dance Centre",
         "url": "https://www.shoonyadance.com"
       }
+    },
+    {
+      "@type": "Event",
+      "name": "Contemporary Dance Lab with Tono Ferriol — workshop",
+      "startDate": "2026-11-29T11:00:00+01:00",
+      "endDate": "2026-11-29T13:00:00+01:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "Shoonya Dance Centre",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Stapelplein 41",
+          "addressLocality": "Ghent",
+          "postalCode": "9000",
+          "addressCountry": "BE"
+        }
+      },
+      "image": "https://workshops.shoonyadance.com/contemporary-dance-lab/og-image.jpg",
+      "url": "https://workshops.shoonyadance.com/contemporary-dance-lab/",
+      "description": "Spend a morning immersing yourself in contemporary dance. Open level, no prior experience required.",
+      "organizer": {
+        "@type": "Organization",
+        "name": "Shoonya Dance Centre",
+        "url": "https://www.shoonyadance.com"
+      }
     }
   ]
 }
@@ -983,6 +1010,25 @@ body::before {
       </div>
     </article>
 
+    <!-- Contemporary Dance Lab — zo 29 nov -->
+    <article class="panel" id="card-contemporary-dance-lab">
+      <div class="panel-media">
+        <img src="../contemporary-dance-lab/img/hero.jpg" alt="Tono Ferriol danst op een donker podium" loading="lazy" style="object-position: 75% 30%;">
+        <div class="panel-date"><span class="d">29</span><span class="m">nov</span></div>
+      </div>
+      <div class="panel-body">
+        <h3>Contemporary Dance Lab</h3>
+        <p class="panel-teacher">met Tono Ferriol</p>
+        <p class="panel-desc">Duik een ochtend lang in contemporary dans.</p>
+        <div class="panel-chips">
+          <span class="chip">Alle niveaus</span>
+          <span class="chip">2 uur</span>
+          <span class="chip">Contemporary</span>
+        </div>
+        <a href="/contemporary-dance-lab/nl/" class="panel-link">Alle details &amp; inschrijven</a>
+      </div>
+    </article>
+
     <!-- Indian Dance Winter Intensive — 22–24 jan 2027 -->
     <article class="panel" id="card-indian-winter">
       <div class="panel-media">
@@ -1173,6 +1219,7 @@ body::before {
   if (after('2026-06-15T00:00:00'))  { show('card-rtc'); }
 
   if (after('2027-01-17T00:00:00'))  { hide('card-flamenco-technique'); }
+  if (after('2026-11-30T00:00:00'))  { hide('card-contemporary-dance-lab'); }
   if (after('2027-01-25T00:00:00'))  { hide('card-indian-winter'); }
   if (after('2027-01-24T00:00:00'))  { hide('card-kiz-beginner'); hide('card-kiz-universe'); }
   if (after('2027-01-25T00:00:00'))  { hide('card-rtc'); }
