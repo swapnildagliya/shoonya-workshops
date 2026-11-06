@@ -214,7 +214,7 @@
           "name": "Hoe schrijf ik in?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Schrijf je in op de Shoonya-inschrijfpagina. Kies de modules die je wilt — alleen of met een partner, een losse sessie of alle drie. Een Shoonya ID is verplicht."
+            "text": "Schrijf je in op de Shoonya-inschrijfpagina. Kies de modules die je wilt — alleen of met een partner, één module of meer. Een Shoonya ID is verplicht."
           }
         },
         {
@@ -363,7 +363,8 @@
   .price-card .desc{margin-top:16px;font-size:.96rem;color:var(--ink-soft);flex:1}
   .price-card.feat .desc{color:rgba(255,255,255,.82)}
   .price-foot{margin-top:24px;font-size:.92rem;color:var(--ink-soft)}
-  @media(max-width:760px){.price-grid{grid-template-columns:1fr}}
+  .price-grid.two{grid-template-columns:repeat(2,1fr);max-width:660px}
+  @media(max-width:760px){.price-grid{grid-template-columns:1fr}.price-grid.two{grid-template-columns:1fr}}
 
   /* FAQ */
   .faq details{border-bottom:1px solid var(--hair);padding:6px 0}
@@ -555,9 +556,9 @@
   <div class="wrap">
     <div class="sec-head rv">
       <p class="eyebrow">Prijzen</p>
-      <h2>Kies je module of pas.</h2>
+      <h2>Kies je module.</h2>
     </div>
-    <div class="price-grid">
+    <div class="price-grid two">
       <div class="price-card rv">
         <span class="tier">Per persoon</span>
         <span class="amt">€55</span>
@@ -569,12 +570,6 @@
         <span class="amt">€85</span>
         <span class="sub">per module</span>
         <p class="desc">Schrijf samen met een partner in voor elke losse module.</p>
-      </div>
-      <div class="price-card feat rv">
-        <span class="tier">Alle 3 · koppel</span>
-        <span class="amt">€210</span>
-        <span class="sub">in plaats van €255</span>
-        <p class="desc">De volledige reeks voor twee — de beste prijs over alle drie de modules.</p>
       </div>
     </div>
     <p class="price-foot rv">"Leden" = ingeschreven Shoonya-studenten; de ledenprijs wordt toegepast bij het afrekenen. De capaciteit is beperkt. Een Shoonya ID is verplicht om in te schrijven — die maak je in een minuut aan als je er nog geen hebt.</p>
@@ -589,7 +584,7 @@
       <h2>Veelgestelde vragen</h2>
     </div>
     <div class="faq rv">
-      <details><summary>Hoe schrijf ik in?</summary><div class="ans">Schrijf je in op de Shoonya-inschrijfpagina. Kies de modules die je wilt — alleen of met een partner, een losse sessie of alle drie. Een Shoonya ID is verplicht.</div></details>
+      <details><summary>Hoe schrijf ik in?</summary><div class="ans">Schrijf je in op de Shoonya-inschrijfpagina. Kies de modules die je wilt — alleen of met een partner, één module of meer. Een Shoonya ID is verplicht.</div></details>
       <details><summary>Kan ik één losse module volgen?</summary><div class="ans">Ja. Kies een van de beschikbare modules: Module A, Module B of Module C. Het inschrijfformulier toont de beschikbare pasopties.</div></details>
       <details><summary>Heb ik een partner nodig?</summary><div class="ans">Je kunt alleen of als koppel inschrijven. Bij een koppelinschrijving geef je het Shoonya ID en het e-mailadres van je partner in, en één betaling geldt voor jullie beiden.</div></details>
       <details><summary>Wat draag ik en wat breng ik mee?</summary><div class="ans">Comfortabele, goed aansluitende danskleding waarin je vrij kan bewegen. Geschikte dansschoenen of sokken. Breng een drinkfles mee.</div></details>
@@ -602,7 +597,7 @@
   <div class="wrap">
     <p class="eyebrow" style="color:#fff">Volgende: 7 nov 2026 · Studio Art Deco 1</p>
     <h2>Klaar om in te schrijven?</h2>
-    <p>Schrijf je in op de Shoonya-inschrijfpagina. Kies de modules die je wilt — alleen of met een partner, een losse sessie of alle drie. Een Shoonya ID is verplicht — maak die eerst aan als je er nog geen hebt.</p>
+    <p>Schrijf je in op de Shoonya-inschrijfpagina. Kies de modules die je wilt — alleen of met een partner, één module of meer. Een Shoonya ID is verplicht — maak die eerst aan als je er nog geen hebt.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
       <a class="btn" href="https://portal.shoonyadance.com/register/event/kizomba-intensive-beginner-bootcamp" target="_blank" rel="noopener">Schrijf nu in</a>
       <a class="btn btn-ghost" style="background:transparent;border-color:rgba(255,255,255,.75);color:#fff" href="https://portal.shoonyadance.com/register/shoonya-id" target="_blank" rel="noopener">Maak eerst je ID aan</a>
