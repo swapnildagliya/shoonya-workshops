@@ -222,1293 +222,359 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@300;400;500;600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@400;500&family=Marcellus&family=PT+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 <style>
-/* Skip link — first tabbable, visible only on focus. Added 2026-09-05: the page
-   had 36 tabbable elements and no way to bypass the nav. */
-.skip-link{position:absolute;left:-9999px;top:0;z-index:9999;padding:12px 20px;
-  background:#000;color:#fff;font-family:'Inter',sans-serif;font-size:14px;
-  letter-spacing:.04em;text-decoration:none}
-.skip-link:focus{left:8px;top:8px;outline:2px solid #fff;outline-offset:2px}
+:root{
+  /* tokens.json / colors_and_type.css only */
+  --void-black:#000000;
+  --bone:#F4F1EB;
+  --void-white:#FFFFFF;
+  --mist:#D6D6D6;
+  --charcoal:#4A4A4A;
+  --vibrant-purple:#B564F7;
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  --font-display:"Marcellus","Playfair Display",Georgia,serif;
+  --font-italic:"PT Serif",Georgia,serif;
+  --font-body:"PT Serif",Georgia,serif;
+  --font-data:"Geist Mono",ui-monospace,monospace;
+  --font-ui:"Inter",-apple-system,"Helvetica Neue",Arial,sans-serif;
 
-:root {
-  --bg:        #F4F1EB;
-  --surface:   #FBFAF7;
-  --text:      #15131A;
-  --muted:     #5C5860;
-  --dim:       #8A858E;
-  --border-w:  rgba(21,19,26,0.12);
-  --border-m:  rgba(21,19,26,0.22);
-  --on-dark:        #F7F4EE;
-  --on-dark-muted:  rgba(247,244,238,0.72);
-  --on-dark-dim:    rgba(247,244,238,0.55);
-  --on-dark-hair:   rgba(255,255,255,0.20);
-  --purple:    #B564F7;
-  --purple-deep: #7A36BC;
-  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --pad:clamp(20px,4vw,56px);
+}
+/* Programme ground — stage (black), chosen by Swapnil 11 Nov 2026 */
+html{
+  --bg:var(--void-black); --fg:var(--void-white); --muted:var(--mist);
+  --rule:var(--charcoal); --focus:var(--vibrant-purple);
 }
 
-html { scroll-behavior: auto; }
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:18px;line-height:1.55;font-weight:400}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-weight:400;margin:0}
+[hidden]{display:none!important}
+p{margin:0}
 
-body {
-  font-family: 'PT Serif', Georgia, serif;
-  color: var(--text);
-  background: var(--bg);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  width: 100%;
-  max-width: 100vw;
-}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-80px;z-index:100;background:var(--void-white);color:var(--void-black);padding:12px 16px;font:500 16px var(--font-ui);text-decoration:none}
+.skip:focus{top:12px;outline:3px solid var(--vibrant-purple);outline-offset:2px}
 
-img { display: block; }
+:focus-visible{outline:3px solid var(--focus);outline-offset:4px}
 
-/* ── NAV ── */
-.nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 200;
-  padding: 0 48px;
-  height: 66px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: transparent;
-  border-bottom: 1px solid transparent;
-  transition: background 0.4s ease, border-color 0.4s ease;
+/* ---------- Header: slim, still, black ---------- */
+.site-header{background:var(--void-black);color:var(--void-white);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 24px;padding:10px var(--pad)}
+.site-header :focus-visible{outline-color:var(--vibrant-purple)}
+.brand{display:inline-flex;align-items:center;min-height:44px}
+.brand img{height:52px;width:auto}
+.site-nav{display:flex;flex-wrap:wrap;gap:0 6px;order:2}
+.site-nav a,.lang a,.lang span{display:inline-flex;align-items:center;min-height:44px;padding:0 10px;font:500 16px/1 var(--font-ui);text-decoration:none;color:var(--void-white)}
+.site-nav a:hover,.lang a:hover{text-decoration:underline;text-underline-offset:6px}
+.site-nav a[aria-current="page"]{text-decoration:underline;text-decoration-color:var(--vibrant-purple);text-decoration-thickness:2px;text-underline-offset:10px}
+.lang{display:flex;align-items:center;order:3;color:var(--mist)}
+.lang span[aria-current="true"]{color:var(--void-white)}
+.lang i{font-style:normal;color:var(--charcoal)}
+@media (min-width:900px){
+  .site-header{flex-wrap:nowrap}
+  .brand{order:1}
+  .site-nav{order:2;margin-left:auto;margin-right:20px}
+  .lang{order:3}
 }
-.nav.scrolled {
-  background: rgba(11,9,15,0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom-color: var(--on-dark-hair);
+@media (max-width:899px){
+  .brand{order:1}
+  .lang{order:2;margin-left:auto}
+  .site-nav{order:3;flex-basis:100%;margin-left:-10px}
 }
-.nav-brand img { height: 46px; width: auto; }
-.nav-right { display: flex; align-items: center; gap: 22px; }
-.nav-lang {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--on-dark-dim);
-  text-decoration: none;
-  transition: color 0.18s;
-}
-.nav-lang:hover { color: var(--on-dark); }
-.nav-cta {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--on-dark);
-  text-decoration: none;
-  border: 1px solid var(--on-dark-hair);
-  padding: 8px 18px;
-  transition: background 0.18s, color 0.18s, border-color 0.18s, transform 0.16s var(--ease-out);
-}
-.nav-cta:hover { background: var(--on-dark); color: #15131A; border-color: var(--on-dark); }
-.nav-cta:active { transform: scale(0.97); }
-
-/* ── HERO ── */
-.hero {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 120px 48px 80px;
-  z-index: 1;
-}
-.hero-inner {
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 2;
-}
-.hero-eyebrow {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--purple);
-  margin-bottom: 30px;
-}
-.hero-title {
-  font-family: 'Marcellus', Georgia, serif;
-  font-weight: 400;
-  line-height: 0.96;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: var(--on-dark);
-  position: relative;
-}
-.hero-line {
-  display: block;
-  font-size: clamp(56px, 11.5vw, 168px);
-  white-space: nowrap;
-  position: relative;
-}
-.hero-line .w { display: inline-block; will-change: transform; }
-.hero-line:nth-child(1) { z-index: 1; }
-.hero-line:nth-child(2) { z-index: 3; margin-left: 0.08em; }
-.hero-line:nth-child(3) { z-index: 1; margin-left: 0.16em; color: var(--purple); }
-
-.hero-video {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-.hero-video video,
-.hero-video .hero-poster {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-.hero-video .hero-poster { object-position: 65% 40%; }
-.hero-video-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to top, rgba(11,9,15,0.96) 0%, rgba(11,9,15,0.62) 45%, rgba(11,9,15,0.55) 100%);
+@media (max-width:480px){
+  .site-nav{flex-wrap:nowrap;justify-content:space-between;gap:0;margin-left:-6px;margin-right:-6px}
+  .site-nav a{padding:0 6px;font-size:14px}
 }
 
-.oo-traveller {
-  position: absolute;
-  top: 8vh;
-  left: 50%;
-  width: clamp(260px, 34vw, 520px);
-  margin-left: calc(clamp(260px, 34vw, 520px) / -2);
-  z-index: 1;
-  opacity: 0;
-  pointer-events: none;
-  will-change: transform, opacity;
-}
-.oo-traveller img { width: 100%; height: auto; }
+/* ---------- Lead poster ---------- */
+.poster{position:relative;display:grid;align-items:end;min-height:max(80svh,560px);background:var(--void-black);color:var(--void-white);text-decoration:none;overflow:hidden}
+.poster-img{position:absolute;top:0;right:0;bottom:0;width:54%;height:100%;object-fit:cover;object-position:50% 12%}
+.poster-copy{position:relative;padding:0 var(--pad) clamp(36px,6vw,64px)}
+.poster-title{font-size:clamp(56px,8.6vw,124px);line-height:.98;letter-spacing:-.015em}
+.poster-title .roman{display:block;font-family:var(--font-display)}
+.poster-title .ital{display:block;font-family:var(--font-italic);font-style:italic}
+.poster-line{margin-top:22px;font-size:clamp(19px,1.8vw,24px);line-height:1.4;color:var(--void-white)}
+.poster:focus-visible{outline:4px solid var(--vibrant-purple);outline-offset:-8px}
+.poster:hover .poster-title .ital{text-decoration:underline;text-decoration-color:var(--vibrant-purple);text-decoration-thickness:3px;text-underline-offset:10px}
 
-.hero-lead {
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--on-dark-muted);
-  max-width: 460px;
-  margin-top: 48px;
-}
-.hero-ctas {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px 32px;
-  margin-top: 36px;
-}
-.hero-cta {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--on-dark);
-  text-decoration: none;
-  border: 1px solid rgba(255,255,255,0.55);
-  padding: 16px 34px;
-  transition: background 0.22s, border-color 0.22s, transform 0.16s var(--ease-out);
-}
-.hero-cta:hover { background: var(--purple); border-color: var(--purple); color: #fff; }
-.hero-cta:active { transform: scale(0.97); }
-.hero-cta-ghost {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--on-dark-muted);
-  text-decoration: none;
-  transition: color 0.18s;
-}
-.hero-cta-ghost:hover { color: var(--on-dark); }
-.hero-cta-ghost::after { content: ' →'; }
-
-/* ── MARQUEE ── */
-.marquee {
-  position: relative;
-  z-index: 5;
-  background: var(--purple);
-  color: #0B090F;
-  overflow: hidden;
-  padding: 22px 0;
-}
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 26s linear infinite;
-}
-.marquee-chunk {
-  font-family: 'Marcellus', Georgia, serif;
-  font-size: clamp(22px, 3vw, 38px);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  white-space: nowrap;
-  padding-right: 0.8em;
-}
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+@media (max-width:760px){
+  .poster{display:flex;flex-direction:column;min-height:0}
+  .poster-img{position:static;width:100%;height:56svh;object-position:50% 10%}
+    .poster-copy{padding:28px var(--pad) 40px}
+  .poster-title{font-size:clamp(52px,16vw,64px)}
 }
 
-/* ── BENTO SECTION ── */
-.bento-section {
-  position: relative;
-  z-index: 4;
-  background: #0B090F;
-  padding: 72px 48px 80px;
+/* ---------- Sections ---------- */
+.wrap{max-width:1360px;margin:0 auto;padding:0 var(--pad)}
+.prog{background:var(--bg);color:var(--fg);padding:clamp(56px,8vw,104px) 0 0}
+.sec-head{padding-bottom:clamp(28px,4vw,44px)}
+.sec-head h1,.sec-head h2{font-family:var(--font-display);font-size:clamp(38px,5vw,64px);line-height:1.05;letter-spacing:-.01em}
+.sec-head p{margin-top:14px;max-width:60ch;color:var(--muted);font-size:19px}
+
+.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.rows>li{border-bottom:1px solid var(--rule)}
+.row{display:grid;grid-template-columns:240px minmax(0,1fr) minmax(300px,420px);gap:clamp(24px,4vw,56px);align-items:start;padding:clamp(28px,4vw,48px) 0;text-decoration:none;color:inherit}
+.row:focus-visible{outline-offset:-3px}
+
+.when{font-family:var(--font-data);font-variant-numeric:tabular-nums;font-weight:400}
+.when .big{display:block;font-size:clamp(34px,3.2vw,42px);line-height:1.1}
+.when .sub{display:block;margin-top:10px;font-size:16px;line-height:1.4;color:var(--muted)}
+
+.row h2,.row h3{font-family:var(--font-display);font-size:clamp(34px,3.6vw,48px);line-height:1.08;letter-spacing:-.01em;text-wrap:balance}
+.row:hover h2,.row:hover h3{text-decoration:underline;text-decoration-color:var(--vibrant-purple);text-decoration-thickness:3px;text-underline-offset:8px}
+.row .with{margin-top:10px;font-size:20px;color:var(--muted);font-style:italic;font-family:var(--font-italic)}
+.row .desc{margin-top:18px;max-width:46ch;text-wrap:pretty}
+.row .facts{margin-top:18px;font-family:var(--font-data);font-variant-numeric:tabular-nums;font-size:17px;line-height:1.5;color:var(--fg)}
+.row .facts span:last-child{white-space:nowrap}
+.row .facts span+span::before{content:"·";margin:0 .6em;color:var(--muted)}
+
+.shot{margin:0}
+.shot img{width:100%;aspect-ratio:4/3;object-fit:cover;background:var(--charcoal)}
+.shot figcaption{margin-top:8px;font:400 14px/1.4 var(--font-ui);color:var(--muted)}
+
+@media (max-width:1000px){
+  .row{grid-template-columns:200px minmax(0,1fr) 300px}
 }
-.bento-section-inner {
-  max-width: 1500px;
-  margin: 0 auto;
+@media (max-width:760px){
+  .row{grid-template-columns:minmax(0,1fr);gap:0;align-items:start;padding:28px 0 32px;
+    grid-template-areas:"shot" "when" "text"}
+  .row .shot{grid-area:shot}
+  .row .when{grid-area:when;margin-top:22px}
+  .row .text{grid-area:text;margin-top:14px}
+  .when .big{font-size:34px}
+  .row .facts{font-size:16px}
+  .row h2,.row h3{font-size:36px}
+  .shot img{aspect-ratio:4/3}
 }
-.bento-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 36px;
-}
-.bento-eyebrow {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--purple);
-}
-.bento-count {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--on-dark-dim);
+@media (min-width:761px){
+  .row .shot{order:3}
 }
 
-/* The grid */
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 390px 350px 290px;
-  gap: 8px;
+.series{padding-top:clamp(64px,9vw,112px)}
+
+.weekly{padding:clamp(48px,7vw,88px) 0 clamp(64px,9vw,112px)}
+.weekly p{font-size:22px;line-height:1.45;max-width:46ch}
+.weekly a{display:inline-block;min-height:44px;padding:9px 0;text-underline-offset:5px;text-decoration-thickness:1px}
+.weekly a:hover{text-decoration-thickness:3px}
+
+/* ---------- Empty and off-season states: plain text, one link ---------- */
+.state{max-width:46ch;padding-bottom:clamp(8px,2vw,24px)}
+.state p{font-size:20px;line-height:1.5;color:var(--muted)}
+.state h2{font-family:var(--font-display);font-size:clamp(28px,3.4vw,40px);line-height:1.15;margin-bottom:14px}
+.state a{display:inline-flex;align-items:center;min-height:44px;margin-top:6px;font-size:20px;text-underline-offset:5px;text-decoration-thickness:1px}
+.state a:hover{text-decoration-thickness:3px}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--void-black);color:var(--void-white);padding:56px 0 56px}
+.site-footer :focus-visible{outline-color:var(--vibrant-purple)}
+.foot{display:grid;grid-template-columns:1fr auto;gap:28px 48px;align-items:start}
+.foot h2{font-family:var(--font-display);font-size:28px;line-height:1.2}
+.foot address{font-style:normal;margin-top:12px;color:var(--mist)}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0 8px}
+.foot li a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;font:500 16px/1 var(--font-ui);text-decoration:none}
+.foot li a:hover{text-decoration:underline;text-underline-offset:6px}
+@media (max-width:760px){
+  .foot{grid-template-columns:1fr}
+  .foot ul{margin-left:-12px}
 }
 
-/* Cell base */
-.bento-cell {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  text-decoration: none;
-  cursor: pointer;
-  background: #1a1720;
-}
-.bento-cell[hidden] { display: none; }
-
-/* Cell grid positions — assigned by JS via slot-N classes */
-.bento-cell.slot-0 { grid-column: 1/3; grid-row: 1/3; } /* flagship 2×2 */
-.bento-cell.slot-1 { grid-column: 3/4; grid-row: 1/2; }
-.bento-cell.slot-2 { grid-column: 4/5; grid-row: 1/2; }
-.bento-cell.slot-3 { grid-column: 3/4; grid-row: 2/3; }
-.bento-cell.slot-4 { grid-column: 4/5; grid-row: 2/3; }
-.bento-cell.slot-5 { grid-column: 1/3; grid-row: 3/4; }
-.bento-cell.slot-6 { grid-column: 3/5; grid-row: 3/4; }
-
-/* Count-aware tiling — the 7-slot map above leaves a hole at any other count,
-   and cards leave constantly as dates pass. `count-N` is set by assignSlots().
-   Desktop only: the ≤1100px block below re-lays the grid in two columns. */
-@media (min-width: 1101px) {
-  .bento-grid.count-1 .bento-cell.slot-0 { grid-column: 1/5; grid-row: 1/2; }
-
-  .bento-grid.count-2 .bento-cell.slot-0 { grid-column: 1/3; grid-row: 1/2; }
-  .bento-grid.count-2 .bento-cell.slot-1 { grid-column: 3/5; grid-row: 1/2; }
-
-  .bento-grid.count-3 .bento-cell.slot-1 { grid-column: 3/5; grid-row: 1/2; }
-  .bento-grid.count-3 .bento-cell.slot-2 { grid-column: 3/5; grid-row: 2/3; }
-
-  .bento-grid.count-4 .bento-cell.slot-3 { grid-column: 3/5; grid-row: 2/3; }
-
-  .bento-grid.count-6 .bento-cell.slot-5 { grid-column: 1/5; grid-row: 3/4; }
-
-  /* Collapse the row TRACKS too. The 2026-09-07 count-N fix retiled the columns
-     but left `grid-template-rows: 390px 350px 290px` standing at every count,
-     so counts 1-5 rendered a 248px empty band under the last card (measured
-     2026-09-14 at count-4 and count-3, both 1046px tall with the last cell
-     ending at 798). Rows used: counts 1-2 fill row 1 only; counts 3-5 fill
-     rows 1-2; counts 6-7 need all three. */
-  .bento-grid.count-1,
-  .bento-grid.count-2 { grid-template-rows: 390px; }
-  .bento-grid.count-3,
-  .bento-grid.count-4,
-  .bento-grid.count-5 { grid-template-rows: 390px 350px; }
-}
-
-/* Photo */
-.bento-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  will-change: transform;
-  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.bento-cell:hover .bento-img { transform: scale(1.04); }
-
-/* Overlay — gradient, bottom-heavy */
-.bento-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to top,
-      rgba(11,9,15,0.95) 0%,
-      rgba(11,9,15,0.70) 28%,
-      rgba(11,9,15,0.30) 55%,
-      rgba(11,9,15,0.10) 100%);
-  transition: background 0.4s ease;
-}
-.bento-cell:hover .bento-overlay {
-  background:
-    linear-gradient(to top,
-      rgba(11,9,15,0.98) 0%,
-      rgba(11,9,15,0.78) 32%,
-      rgba(11,9,15,0.40) 60%,
-      rgba(11,9,15,0.18) 100%);
-}
-
-/* Body — anchored to bottom */
-.bento-body {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 28px 28px 32px;
-}
-.bento-cell.slot-0 .bento-body { padding: 36px 40px 48px; }
-
-.bento-date {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.20em;
-  text-transform: uppercase;
-  color: var(--purple);
-  margin-bottom: 10px;
-}
-.bento-title {
-  font-family: 'Marcellus', Georgia, serif;
-  font-weight: 400;
-  color: var(--on-dark);
-  line-height: 1.12;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  font-size: clamp(14px, 1.5vw, 22px);
-}
-/* Slot-based title sizing — flagship gets the biggest type */
-.bento-cell.slot-0 .bento-title { font-size: clamp(22px, 2.6vw, 44px); }
-.bento-cell.slot-1 .bento-title,
-.bento-cell.slot-2 .bento-title { font-size: clamp(16px, 1.6vw, 24px); }
-.bento-cell.slot-5 .bento-title,
-.bento-cell.slot-6 .bento-title { font-size: clamp(16px, 1.7vw, 26px); }
-
-.bento-teacher {
-  font-family: 'PT Serif', Georgia, serif;
-  font-style: italic;
-  font-size: 14px;
-  color: var(--on-dark-muted);
-  margin-top: 6px;
-}
-.bento-cell.slot-0 .bento-teacher { font-size: 16px; margin-top: 8px; }
-
-/* Hover reveal */
-.bento-reveal {
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transform: translateY(8px);
-  transition:
-    max-height 0.4s var(--ease-out),
-    opacity 0.35s ease,
-    transform 0.35s var(--ease-out);
-}
-.bento-cell:hover .bento-reveal {
-  max-height: 130px;
-  opacity: 1;
-  transform: translateY(0);
-}
-.bento-excerpt {
-  font-family: 'PT Serif', Georgia, serif;
-  font-size: 13px;
-  color: var(--on-dark-dim);
-  line-height: 1.6;
-  margin-top: 12px;
-  margin-bottom: 16px;
-}
-.bento-cell.slot-0 .bento-excerpt { font-size: 15px; }
-
-/* ── PIN BADGE ── */
-.bento-pin {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 10;
-  display: none;
-  font-family: 'Inter', sans-serif;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.20em;
-  text-transform: uppercase;
-  background: var(--purple);
-  color: #0B090F;
-  padding: 5px 12px;
-}
-.bento-cell[data-pinned] .bento-pin { display: block; }
-.bento-cell[data-pinned] { outline: 1px solid rgba(181,100,247,0.40); outline-offset: -1px; }
-
-.bento-cta-link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--on-dark);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255,255,255,0.35);
-  padding-bottom: 2px;
-  transition: color 0.2s, border-color 0.2s;
-}
-.bento-cta-link:hover { color: var(--purple); border-color: var(--purple); }
-.miniseries-register-link { display:inline-flex; align-items:center; min-height:44px; }
-
-/* Bento empty + offseason */
-.bento-workshops-empty {
-  padding: 80px 0 40px;
-  font-family: 'PT Serif', Georgia, serif;
-  font-style: italic;
-  font-size: 18px;
-  color: var(--on-dark-dim);
-  text-align: center;
-}
-.bento-offseason {
-  padding: 120px 0;
-  text-align: center;
-}
-.bento-offseason h3 {
-  font-family: 'Marcellus', Georgia, serif;
-  font-size: clamp(32px, 5vw, 64px);
-  color: var(--on-dark);
-  text-transform: uppercase;
-  line-height: 1.06;
-  margin-bottom: 24px;
-}
-.bento-offseason p {
-  font-family: 'PT Serif', Georgia, serif;
-  font-size: 17px;
-  color: var(--on-dark-muted);
-  max-width: 440px;
-  margin: 0 auto 32px;
-  line-height: 1.7;
-}
-.bento-offseason a {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--on-dark);
-  text-decoration: none;
-  border: 1px solid rgba(255,255,255,0.4);
-  padding: 14px 30px;
-  transition: background 0.22s, color 0.22s;
-}
-.bento-offseason a:hover { background: var(--purple); border-color: var(--purple); }
-
-/* ── MINISERIES ── */
-/* Dark like the workshops above it (owner, 26 Oct 2026: no cream bands). Scoped token overrides, so every miniseries rule below follows. */
-.miniseries { --bg:#0B090F; --surface:#16131C; --text:#F7F4EE; --muted:rgba(247,244,238,0.72); --dim:rgba(247,244,238,0.55); --border-w:rgba(255,255,255,0.12); --border-m:rgba(255,255,255,0.22); }
-.miniseries {
-  position: relative;
-  z-index: 4;
-  background: var(--bg);
-  padding: 120px 48px 140px;
-}
-.miniseries-grid {
-  max-width: 1500px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 80px;
-  align-items: start;
-}
-.miniseries-left {
-  position: sticky;
-  top: 100px;
-}
-.miniseries-left h2 {
-  font-family: 'Marcellus', Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(40px, 5.5vw, 74px);
-  line-height: 1.04;
-  text-transform: uppercase;
-  color: var(--text);
-  margin-bottom: 24px;
-}
-.miniseries-intro {
-  font-size: 16px;
-  color: var(--muted);
-  line-height: 1.75;
-  margin-bottom: 28px;
-}
-.miniseries-note {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--dim);
-}
-
-.miniseries-right { display: flex; flex-direction: column; gap: 2px; }
-
-.miniseries-item {
-  display: flex;
-  overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--border-w);
-}
-.miniseries-item[hidden] { display: none; }
-
-.miniseries-photo-wrap {
-  flex-shrink: 0;
-  width: 180px;
-  position: relative;
-  overflow: hidden;
-}
-.miniseries-item-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--ease-out);
-}
-.miniseries-item:hover .miniseries-item-photo { transform: scale(1.04); }
-
-.miniseries-item-body {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 28px 30px;
-}
-.miniseries-item-main { flex: 1; }
-.miniseries-item-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin-bottom: 10px;
-}
-.miniseries-item-main h3 {
-  font-family: 'Marcellus', Georgia, serif;
-  font-size: clamp(18px, 2vw, 26px);
-  text-transform: uppercase;
-  line-height: 1.15;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-.miniseries-item-teacher {
-  font-style: italic;
-  font-size: 14px;
-  color: var(--muted);
-  margin-bottom: 14px;
-}
-.miniseries-item-desc {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.65;
-  margin-bottom: 18px;
-}
-.miniseries-register-link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--purple);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(181,100,247,0.4);
-  padding-bottom: 1px;
-  transition: border-color 0.2s;
-}
-.miniseries-register-link:hover { border-color: var(--purple); }
-.hero-cta-ghost { display:inline-flex; align-items:center; min-height:44px; }
-.miniseries-item-meta {
-  flex-shrink: 0;
-  text-align: right;
-}
-.miniseries-item-status {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-.photo-credit {
-  position: absolute;
-  bottom: 8px;
-  right: 10px;
-  font-family: 'Inter', sans-serif;
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  color: rgba(247,244,238,0.5);
-  pointer-events: none;
-}
-
-/* ── CLASSES CTA ── */
-.classes-cta {
-  position: relative;
-  z-index: 3;
-  background: var(--surface);
-  padding: 140px 48px;
-  text-align: center;
-  border-top: 1px solid var(--border-w);
-  overflow: hidden;
-}
-.classes-cta .oo-bg {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.045;
-  pointer-events: none;
-}
-.classes-cta .oo-bg img { width: min(80vw, 640px); }
-.classes-cta-eyebrow {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--purple);
-  margin-bottom: 20px;
-  position: relative;
-  z-index: 1;
-}
-.classes-cta h2 {
-  font-family: 'Marcellus', Georgia, serif;
-  font-size: clamp(32px, 5.5vw, 72px);
-  font-weight: 400;
-  line-height: 1.06;
-  text-transform: uppercase;
-  color: var(--text);
-  margin-bottom: 44px;
-  position: relative;
-  z-index: 1;
-}
-.classes-cta a.big {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--on-dark);
-  background: var(--text);
-  padding: 18px 40px;
-  position: relative;
-  z-index: 1;
-  transition: background 0.22s, transform 0.16s var(--ease-out);
-}
-.classes-cta a.big:hover { background: var(--purple); }
-.classes-cta a.big:active { transform: scale(0.97); }
-
-/* ── FOOTER ── */
-.footer {
-  background: #0B090F;
-  padding: 60px 48px 52px;
-}
-.footer-inner {
-  max-width: 1500px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-.footer-markline {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(247,244,238,0.55);
-}
-.footer-markline img { width: 22px; height: auto; opacity: 0.6; }
-.footer-address {
-  font-family: 'PT Serif', Georgia, serif;
-  font-size: 14px;
-  color: rgba(247,244,238,0.38);
-  text-align: center;
-  line-height: 1.7;
-}
-.footer-address a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; }
-.footer-address a:hover { color: var(--purple); }
-.footer-socials { display: flex; gap: 24px; }
-.footer-social {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  color: rgba(247,244,238,0.42);
-  transition: color 0.2s;
-  text-decoration: none;
-}
-.footer-social:hover { color: var(--purple); }
-.footer-social svg { width: 20px; height: 20px; }
-.footer-credits {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(247,244,238,0.22);
-}
-
-/* ── ACCESSIBILITY ── */
-.bento-cell:focus-visible,
-.miniseries-register-link:focus-visible,
-.classes-cta a.big:focus-visible,
-.nav-cta:focus-visible,
-.nav-lang:focus-visible {
-  outline: 2px solid var(--purple);
-  outline-offset: 3px;
-}
-
-/* ── REDUCED MOTION ── */
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
-  .oo-traveller { display: none; }
-  .bento-img { transition: none; }
-  .bento-cell:hover .bento-img { transform: none; }
-  .bento-reveal { transition: none; max-height: none; opacity: 1; transform: none; }
-  .nav-cta:active, .hero-cta:active, .classes-cta a.big:active { transform: none; }
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 1100px) {
-  .bento-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-  .bento-cell.slot-0 { grid-column: 1/3; grid-row: 1/2; min-height: 420px; }
-  .bento-cell.slot-1 { grid-column: 1/2; grid-row: 2/3; min-height: 320px; }
-  .bento-cell.slot-2 { grid-column: 2/3; grid-row: 2/3; min-height: 320px; }
-  .bento-cell.slot-3 { grid-column: 1/2; grid-row: 3/4; min-height: 280px; }
-  .bento-cell.slot-4 { grid-column: 2/3; grid-row: 3/4; min-height: 280px; }
-  .bento-cell.slot-5 { grid-column: 1/2; grid-row: 4/5; min-height: 280px; }
-  .bento-cell.slot-6 { grid-column: 2/3; grid-row: 4/5; min-height: 280px; }
-  /* Count-aware tiling, two-column version — a lone cell in the last row spans it */
-  .bento-grid.count-2 .bento-cell.slot-1 { grid-column: 1/3; }
-  .bento-grid.count-4 .bento-cell.slot-3 { grid-column: 1/3; }
-  .bento-grid.count-6 .bento-cell.slot-5 { grid-column: 1/3; }
-  /* At tablet, slots 1-2 use medium sizing */
-  .bento-cell.slot-1 .bento-title,
-  .bento-cell.slot-2 .bento-title,
-  .bento-cell.slot-3 .bento-title,
-  .bento-cell.slot-4 .bento-title,
-  .bento-cell.slot-5 .bento-title,
-  .bento-cell.slot-6 .bento-title { font-size: clamp(16px, 2vw, 24px); }
-}
-@media (max-width: 960px) {
-  .miniseries-grid { grid-template-columns: 1fr; gap: 48px; }
-  .miniseries-left { position: static; }
-}
-@media (max-width: 640px) {
-  .nav { padding: 0 20px; }
-  .hero { padding: 110px 20px 64px; }
-  .hero-line { white-space: normal; }
-  .bento-section { padding: 56px 20px 64px; }
-  .bento-grid { grid-template-columns: 1fr; }
-  /* All slots collapse to single column */
-  .bento-cell { grid-column: 1/2 !important; grid-row: auto !important; min-height: 300px; }
-  .bento-cell.slot-0 { min-height: 460px; }
-  /* On mobile titles are smaller — slot-0 is the exception */
-  .bento-cell.slot-0 .bento-title { font-size: 20px; }
-  .bento-cell .bento-title { font-size: 16px; }
-  /* Always show reveal on mobile (no hover on touch) */
-  .bento-reveal { max-height: none !important; opacity: 1 !important; transform: none !important; }
-  .miniseries { padding: 100px 20px; }
-  .miniseries-item { flex-direction: column; }
-  .miniseries-photo-wrap { width: 100%; height: 200px; }
-  .miniseries-item-body { flex-direction: column; gap: 16px; padding: 24px 20px 26px; }
-  .miniseries-item-meta { align-items: flex-start; text-align: left; }
-  .classes-cta { padding: 110px 20px; }
-  .footer { padding: 48px 20px 44px; }
-}
-
-
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip" href="#programme">Skip to the programme</a>
 
-<!-- ── NAV ── -->
-<nav class="nav" id="nav" aria-label="Site">
-  <a href="https://www.shoonyadance.com" class="nav-brand">
-    <img src="assets/shoonya-logo-script-purple.png" alt="Shoonya Dance Centre">
-  </a>
-  <div class="nav-right">
-    <a href="nl/" class="nav-lang">NL</a>
-    <a href="https://schedule.shoonyadance.com" class="nav-cta">Weekly classes</a>
-  </div>
-</nav>
-
-<main id="main">
-
-<!-- ── HERO ── -->
-<header class="hero" id="hero">
-  <div class="hero-video" aria-hidden="true">
-    <img class="hero-poster" src="assets/indian-dance.jpg" alt="">
-    <video id="hero-video-el" autoplay loop muted playsinline preload="auto" poster="assets/indian-dance.jpg">
-      <source src="assets/hero-video.mp4" type="video/mp4">
-    </video>
-    <div class="hero-video-overlay"></div>
-  </div>
-  <div class="oo-traveller" id="oo-traveller" aria-hidden="true">
-    <img src="assets/shoonya-oo-mark-purple.png" alt="">
-  </div>
-  <div class="hero-inner">
-    <p class="hero-eyebrow">Shoonya Dance Centre · Ghent</p>
-    <h1 class="hero-title" id="hero-title">
-      <span class="hero-line">Workshops,</span>
-      <span class="hero-line">Intensives</span>
-      <span class="hero-line">&amp; Series</span>
-    </h1>
-    <p class="hero-lead">Concentrated learning outside the weekly schedule. Each workshop is taught by a specialist — expect focused technique, a small group, and space to go deep.</p>
-    <div class="hero-ctas">
-      <a href="#bento" class="hero-cta">See what's coming up</a>
-      <a href="#miniseries" class="hero-cta-ghost">Miniseries</a>
-    </div>
+<header class="site-header">
+  <a class="brand" href="https://www.shoonyadance.com"><img src="assets/shoonya-logo-script-purple.png" alt="Shoonya Dance Centre"></a>
+  <nav class="site-nav" aria-label="Site">
+    <a href="https://schedule.shoonyadance.com">Classes</a>
+    <a href="https://workshops.shoonyadance.com/" aria-current="page">Workshops</a>
+    <a href="https://festivals.shoonyadance.com">Festivals</a>
+    <a href="https://performances.shoonyadance.com">Performances</a>
+  </nav>
+  <div class="lang" aria-label="Language">
+    <span aria-current="true">EN</span><i aria-hidden="true">/</i><a href="nl/" hreflang="nl" lang="nl">NL</a>
   </div>
 </header>
 
-<!-- ── MARQUEE ── -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="marquee-chunk">Workshops · Intensives · Series ·&nbsp;</span>
-    <span class="marquee-chunk">Workshops · Intensives · Series ·&nbsp;</span>
-    <span class="marquee-chunk">Workshops · Intensives · Series ·&nbsp;</span>
-    <span class="marquee-chunk">Workshops · Intensives · Series ·&nbsp;</span>
-    <span class="marquee-chunk">Workshops · Intensives · Series ·&nbsp;</span>
-    <span class="marquee-chunk">Workshops · Intensives · Series ·&nbsp;</span>
-  </div>
-</div>
+<main id="main">
 
-<!-- ── BENTO — D3: asymmetric editorial grid ── -->
-<section class="bento-section" id="bento" aria-label="Upcoming workshops and intensives">
-  <div class="bento-section-inner">
-
-    <div class="bento-header">
-      <p class="bento-eyebrow">Workshops &amp; Intensives</p>
-      <p class="bento-count" id="bento-count">5 upcoming</p>
+  <!-- Lead poster: the pinned workshop. Hides after its cut-off; the h1 below is the page heading and never hides. -->
+  <a class="poster" id="poster-cuba" href="/round-trip-to-cuba/">
+    <img class="poster-img" src="assets/trip-cuba.jpg" alt="Two dancers stand close together in front of a dark curtain, a stage light glowing behind them; she wears a grey dress, he a white jacket." fetchpriority="high" decoding="async">
+    <div class="poster-copy">
+      <p class="poster-title"><span class="roman">Round trip</span><span class="ital">to Cuba</span></p>
+      <p class="poster-line">with Wilmer &amp; Maria · 23–24 Jan 2027</p>
     </div>
+  </a>
 
-    <div class="bento-grid" id="bento-grid">
+  <section class="prog" id="programme" aria-labelledby="prog-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h1 id="prog-h">Workshops and intensives</h1>
+      </div>
 
+      <ol class="rows" id="rows-workshops">
+        <li id="row-flamenco">
+          <a class="row" href="/flamenco-technique/">
+            <div class="when"><span class="big" id="fl-big">21 Nov</span><span class="sub" id="fl-sub">then 19 Dec and 16 Jan</span></div>
+            <div class="text">
+              <h2>Flamenco technique</h2>
+              <p class="with">with La Liz</p>
+              <p class="desc">This monthly intensive workshop serves as a deep complement to your regular classes.</p>
+              <p class="facts"><span>Open level</span><span>Sat 10:00–12:00</span><span>from €28</span></p>
+            </div>
+            <figure class="shot"><img src="flamenco-technique/img/la-liz-class.jpg" alt="La Liz in a white ruffled shirt, eyes lowered, hands raised mid-gesture against a black background." loading="lazy" decoding="async" style="object-position:50% 22%"></figure>
+          </a>
+        </li>
+        <li id="row-contemporary">
+          <a class="row" href="/contemporary-dance-lab/">
+            <div class="when"><span class="big">29 Nov</span><span class="sub">Sunday</span></div>
+            <div class="text">
+              <h2>Contemporary dance lab</h2>
+              <p class="with">with Tono Ferriol</p>
+              <p class="desc">Spend a morning immersing yourself in contemporary dance.</p>
+              <p class="facts"><span>Open level</span><span>11:00–13:00</span><span>€30</span></p>
+            </div>
+            <figure class="shot"><img src="contemporary-dance-lab/img/hero.jpg" alt="A dancer seen from behind on a dark stage, holding the edge of a long dark skirt with a gold band." loading="lazy" decoding="async" style="object-position:80% 50%"><figcaption>© Andrei Moiseii</figcaption></figure>
+          </a>
+        </li>
+        <li id="row-indian-winter">
+          <a class="row" href="/indian-dance-winter-intensive-2027/">
+            <div class="when"><span class="big">22–24 Jan</span><span class="sub">2027</span></div>
+            <div class="text">
+              <h2>Indian dance winter intensive</h2>
+              <p class="with">with Swapnil Dagliya</p>
+              <p class="desc">A winter weekend full of Indian dance: harvest joy from Punjab, Garba’s circle, the grace of semi-classical.</p>
+              <p class="facts"><span>Four of five sessions open level</span><span>Fri 18:30 → Sun 16:00</span><span>from €35</span></p>
+            </div>
+            <figure class="shot"><img src="indian-dance-winter-intensive-2027/img/khoriya.jpg" alt="A dancer in a bright green embroidered jacket smiles mid-spin, red fabric swirling, in a leafy park." loading="lazy" decoding="async" style="object-position:50% 30%"><figcaption>© Stijn Dejonckheere</figcaption></figure>
+          </a>
+        </li>
+        <li id="row-kiz-beginner">
+          <a class="row" href="/kizomba-beginner-bootcamp-series/">
+            <div class="when"><span class="big">23 Jan</span><span class="sub">Module C</span></div>
+            <div class="text">
+              <h2>Kizomba beginner bootcamp series</h2>
+              <p class="with">with Sonja KikiZomba</p>
+              <p class="desc">Built for absolute beginners and dancers who want clean Kizomba foundations.</p>
+              <p class="facts"><span>11:00–14:00</span><span>from €55</span></p>
+            </div>
+            <figure class="shot"><img src="kizomba-beginner-bootcamp-series/assets/hero.jpg" alt="A woman in a yellow top looks off to one side against a dark background." loading="lazy" decoding="async" style="object-position:50% 25%"></figure>
+          </a>
+        </li>
+        <li id="row-kiz-universe">
+          <a class="row" href="/exploring-the-kizomba-universe/">
+            <div class="when"><span class="big">23 Jan</span><span class="sub">Semba next level</span></div>
+            <div class="text">
+              <h2>Exploring the Kizomba universe</h2>
+              <p class="with">with Sonja KikiZomba</p>
+              <p class="desc">Semba next level: dips and tricks with musicality.</p>
+              <p class="facts"><span>Open level, some Kizomba experience</span><span>15:00–18:00</span><span>from €55</span></p>
+            </div>
+            <figure class="shot"><img src="exploring-the-kizomba-universe/assets/sonja-universe.jpg" alt="Two dancers in a close kizomba embrace in a warmly lit studio, other couples blurred behind them." loading="lazy" decoding="async" style="object-position:50% 40%"></figure>
+          </a>
+        </li>
+      </ol>
 
-      <!-- Flamenco Technique — Sat 21 Nov · 19 Dec · 16 Jan -->
-      <a class="bento-cell" id="btc-flamenco-technique" data-event="flamenco-technique" href="/flamenco-technique/" aria-label="Flamenco Technique with La Liz">
-        <img class="bento-img"
-             src="flamenco-technique/img/hero.jpg"
-             alt="La Liz dancing flamenco"
-             style="object-position: 50% 20%;">
-        <div class="bento-overlay"></div>
-        <div class="bento-body">
-          <p class="bento-date">Nov · Dec · Jan</p>
-          <h3 class="bento-title">Flamenco Technique</h3>
-          <p class="bento-teacher">with La Liz</p>
-          <div class="bento-reveal">
-            <p class="bento-excerpt">This monthly intensive workshop serves as a deep complement to your regular classes. Open to flamenco dancers of all levels.</p>
-            <span class="bento-cta-link">Details &amp; register →</span>
-          </div>
-        </div>
-      </a>
+      <div class="state" id="empty-workshops" hidden>
+        <p>No upcoming workshops — more announced through the season.</p>
+      </div>
 
-      <!-- Contemporary Dance Lab — Sun 29 Nov -->
-      <a class="bento-cell" id="btc-contemporary-dance-lab" data-event="contemporary-dance-lab" href="/contemporary-dance-lab/" aria-label="Contemporary Dance Lab with Tono Ferriol">
-        <img class="bento-img"
-             src="contemporary-dance-lab/img/card.jpg"
-             alt="Tono Ferriol dances on a dark stage"
-             style="object-position: 50% 30%;">
-        <div class="bento-overlay"></div>
-        <div class="bento-body">
-          <p class="bento-date">29 Nov</p>
-          <h3 class="bento-title">Contemporary Dance Lab</h3>
-          <p class="bento-teacher">with Tono Ferriol</p>
-          <div class="bento-reveal">
-            <p class="bento-excerpt">Spend a morning immersing yourself in contemporary dance.</p>
-            <span class="bento-cta-link">Details &amp; register →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Indian Dance Winter Intensive — 22–24 Jan 2027 -->
-      <a class="bento-cell" id="btc-indian-winter" data-event="indian-winter" href="/indian-dance-winter-intensive-2027/" aria-label="Indian Dance Winter Intensive with Swapnil Dagliya">
-        <img class="bento-img"
-             src="indian-dance-winter-intensive-2027/img/hero.jpg"
-             alt="Indian Dance Winter Intensive 2027"
-             style="object-position: 50% 30%;">
-        <div class="bento-overlay"></div>
-        <div class="bento-body">
-          <p class="bento-date">22 &ndash; 24 Jan</p>
-          <h3 class="bento-title">Indian Dance Winter Intensive</h3>
-          <p class="bento-teacher">with Swapnil Dagliya</p>
-          <div class="bento-reveal">
-            <p class="bento-excerpt">A winter weekend full of Indian dance: harvest joy from Punjab, Garba’s circle, the grace of semi-classical.</p>
-            <span class="bento-cta-link">Details &amp; register →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Kizomba Beginner -->
-      <a class="bento-cell" id="btc-kiz-beginner" data-event="kiz-beginner" href="/kizomba-beginner-bootcamp-series/" aria-label="Kizomba Beginner Bootcamp Series">
-        <span class="bento-pin">Featured</span>
-        <img class="bento-img"
-             src="kizomba-beginner-bootcamp-series/assets/sonja-beginner.jpg"
-             alt="Kizomba Beginner Bootcamp Series"
-             style="object-position: 58% 18%;">
-        <div class="bento-overlay"></div>
-        <div class="bento-body">
-          <p class="bento-date">23 Jan</p>
-          <h3 class="bento-title">Kizomba Beginner Bootcamp Series</h3>
-          <p class="bento-teacher">with Sonja KikiZomba</p>
-          <div class="bento-reveal">
-            <p class="bento-excerpt">One Saturday module left: Module C (23 Jan). Built for absolute beginners and dancers who want clean Kizomba foundations.</p>
-            <span class="bento-cta-link">Details &amp; register →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Kizomba Universe -->
-      <a class="bento-cell" id="btc-kiz-universe" data-event="kiz-universe" href="/exploring-the-kizomba-universe/" aria-label="Exploring the Kizomba Universe">
-        <span class="bento-pin">Featured</span>
-        <img class="bento-img"
-             src="exploring-the-kizomba-universe/assets/sonja-universe.jpg"
-             alt="Exploring the Kizomba Universe"
-             style="object-position: 66% 35%;">
-        <div class="bento-overlay"></div>
-        <div class="bento-body">
-          <p class="bento-date">23 Jan</p>
-          <h3 class="bento-title">Exploring the Kizomba Universe</h3>
-          <p class="bento-teacher">with Sonja KikiZomba</p>
-          <div class="bento-reveal">
-            <p class="bento-excerpt">One module left: Semba next level (23 Jan).</p>
-            <span class="bento-cta-link">Details &amp; register →</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- Cuba — pinned; hidden until Jun 15 -->
-      <a class="bento-cell" id="btc-cuba" data-event="cuba" data-pinned="true" href="/round-trip-to-cuba/" hidden aria-label="Round Trip to Cuba">
-        <span class="bento-pin">Featured</span>
-        <img class="bento-img"
-             src="assets/trip-cuba.jpg"
-             alt="Round Trip to Cuba"
-             style="object-position: center 30%;">
-        <div class="bento-overlay"></div>
-        <div class="bento-body">
-          <p class="bento-date">23–24 Jan 2027</p>
-          <h3 class="bento-title">Round Trip to Cuba</h3>
-          <p class="bento-teacher">with Wilmer &amp; Maria</p>
-          <div class="bento-reveal">
-            <p class="bento-excerpt">A 2-day Cuban Salsa weekend intensive. Six masterclasses — Afrocuban, Rumba Cubana, Son Cubano, Salsa Cubana, Timba Cubana, Afrotimba Fusión.</p>
-            <span class="bento-cta-link">Details &amp; register →</span>
-          </div>
-        </div>
-      </a>
-
-    </div><!-- /bento-grid -->
-
-    <!-- Workshops empty state (all expired) -->
-    <p class="bento-workshops-empty" id="bento-workshops-empty" hidden>
-      No upcoming workshops — more announced through the season.
-    </p>
-
-    <!-- Full offseason state (workshops AND miniseries gone) -->
-    <div class="bento-offseason" id="bento-offseason" hidden aria-live="polite">
-      <h3>Next season<br>coming soon</h3>
-      <p>New workshops, intensives and series announced through the season. Join the newsletter to be the first to know.</p>
-      <a href="https://www.shoonyadance.com/newsletter" target="_blank" rel="noopener">Join the newsletter</a>
+      <div class="state" id="offseason" hidden aria-live="polite">
+        <h2>Next season coming soon</h2>
+        <p>New workshops, intensives and series announced through the season. Join the newsletter to be the first to know.</p>
+        <a href="https://www.shoonyadance.com/newsletter">Join the newsletter</a>
+      </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- ── MINISERIES ── -->
-<section class="miniseries" id="miniseries" aria-label="Miniseries">
-  <div class="miniseries-grid">
-    <div class="miniseries-left">
-      <h2>Mini&shy;series</h2>
-      <p class="miniseries-intro" id="miniseries-intro">A miniseries is a short course with one teacher — typically 5–10 sessions focused on a specific style or technique. Unlike a weekly class, you register for the full series and go deeper than a drop-in ever allows.</p>
-      <p class="miniseries-note">More series announced through the season.</p>
+  <section class="prog series" id="series" aria-labelledby="series-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="series-h">Miniseries</h2>
+        <p>A short course with one teacher, focused on a specific style or technique.</p>
+      </div>
+      <ol class="rows" id="rows-series">
+        <li id="ms-bachata">
+          <a class="row" href="/bachata-choreo-minireeks/">
+            <div class="when"><span class="big">10 Nov</span><span class="sub">to 15 Dec 2026 · Tuesdays · 6 sessions</span></div>
+            <div class="text">
+              <h3>Bachata choreo minireeks</h3>
+              <p class="with">with Alex Papaianopol &amp; Lenka Badriyah</p>
+              <p class="desc">A 6-week couple choreography series for Intermediate &amp; Advanced bachata dancers.</p>
+              <p class="facts"><span>Intermediate &amp; Advanced</span><span>Partner required</span><span>Tue 21:00–22:00</span><span>€75</span></p>
+            </div>
+            <figure class="shot"><img src="assets/alex-lenka.jpg" alt="Alex and Lenka dancing on a dark stage, she in a red skirt mid-spin, he in a white shirt guiding her." loading="lazy" decoding="async" style="object-position:55% 40%"><figcaption>© Stijn Dejonckheere</figcaption></figure>
+          </a>
+        </li>
+      </ol>
     </div>
+  </section>
 
-    <div class="miniseries-right">
-
-
-
-
-      <!-- Bachata Choreo Minireeks -->
-      <article class="miniseries-item" id="miniseries-bachata-choreo">
-        <div class="miniseries-photo-wrap">
-          <img class="miniseries-item-photo" src="assets/alex-lenka.jpg" alt="Bachata Choreo Minireeks" loading="lazy" style="object-position: 55% 15%;">
-          <span class="photo-credit">© Stijn Dejonckheere</span>
-        </div>
-        <div class="miniseries-item-body">
-          <div class="miniseries-item-main">
-            <p class="miniseries-item-label">10 Nov – 15 Dec 2026 · Tuesdays · 6 sessions</p>
-            <h3>Bachata Choreo Minireeks</h3>
-            <p class="miniseries-item-teacher">with Alex Papaianopol &amp; Lenka Badriyah</p>
-            <p class="miniseries-item-desc">A 6-week couple choreography series for Intermediate &amp; Advanced bachata dancers. Build a complete piece from the ground up — movement quality, partner dynamics, musicality, styling, and a full run-through. Partner required throughout.</p>
-            <a class="miniseries-register-link" href="/bachata-choreo-minireeks/">Full details →</a>
-          </div>
-          <div class="miniseries-item-meta">
-            <p class="miniseries-item-status">Registration open</p>
-            <p class="miniseries-item-status">€75 · Nov 2026</p>
-          </div>
-        </div>
-      </article>
-
+  <section class="prog weekly" aria-label="Weekly classes">
+    <div class="wrap">
+      <p>Looking for weekly classes? The full timetable lives at <a href="https://schedule.shoonyadance.com">schedule.shoonyadance.com</a>.</p>
     </div>
-  </div>
-</section>
-
-<!-- ── CLASSES CTA ── -->
-<section class="classes-cta">
-  <div class="oo-bg" aria-hidden="true">
-    <img src="assets/shoonya-oo-mark-purple.png" alt="">
-  </div>
-  <p class="classes-cta-eyebrow">Looking for weekly classes?</p>
-  <h2>See the full schedule<br>at shoonyadance.com</h2>
-  <a class="big" href="https://schedule.shoonyadance.com" target="_blank" rel="noopener">Weekly class schedule</a>
-</section>
+  </section>
 
 </main>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-markline">
-      <img src="assets/shoonya-oo-mark-white.png" alt="">
-      Shoonya Dance Centre
-      <img src="assets/shoonya-oo-mark-white.png" alt="">
+<footer class="site-footer">
+  <div class="wrap foot">
+    <div>
+      <h2>Shoonya Dance Centre</h2>
+      <address>Stapelplein 41 · 9000 Gent · Belgium</address>
     </div>
-    <p class="footer-address">
-      Stapelplein 41 · 9000 Gent · Belgium<br>
-      <a href="https://www.shoonyadance.com">shoonyadance.com</a>
-    </p>
-    <div class="footer-socials">
-      <a class="footer-social" href="https://instagram.com/shoonyadance" aria-label="Instagram" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="5"/>
-          <circle cx="12" cy="12" r="4"/>
-          <circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/>
-        </svg>
-      </a>
-      <a class="footer-social" href="https://facebook.com/shoonyadance" aria-label="Facebook" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M13 22v-8h3l.5-4H13V7.5c0-1.1.3-1.9 2-1.9h2V2.1c-.4 0-1.5-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V10H6.5v4H10v8h3z"/>
-        </svg>
-      </a>
-    </div>
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="https://instagram.com/shoonyadance">Instagram</a></li>
+        <li><a href="https://facebook.com/shoonyadance">Facebook</a></li>
+        <li><a href="https://www.shoonyadance.com/newsletter">Newsletter</a></li>
+        <li><a href="https://www.shoonyadance.com/contact">Contact</a></li>
+      </ul>
+    </nav>
   </div>
 </footer>
 
-<script src="lib/gsap.min.js"></script>
-<script src="lib/ScrollTrigger.min.js"></script>
 <script>
-  if (!window.gsap) document.write('<script src="https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/gsap\/3.12.5\/gsap.min.js"><\/script><script src="https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/gsap\/3.12.5\/ScrollTrigger.min.js"><\/script>');
-</script>
-<script>
+/* Date gating. Cut-offs and after() are the previous hub script's, unchanged.
+   The page is complete without this script; it only retires what is over. */
 (function () {
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   function g(id) { return document.getElementById(id); }
   function hide(id) { var e = g(id); if (e) e.setAttribute('hidden', ''); }
   function show(id) { var e = g(id); if (e) e.removeAttribute('hidden'); }
   function now() { return new Date(); }
   function after(dateStr) { return now() >= new Date(dateStr); }
 
-  /* ── Nav scroll state ── */
-  var nav = g('nav');
-  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 40); };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  /* Rows, lead poster and miniseries */
+  if (after('2027-01-17T00:00:00'))  { hide('row-flamenco'); }
+  if (after('2026-11-30T00:00:00'))  { hide('row-contemporary'); }
+  if (after('2027-01-25T00:00:00'))  { hide('row-indian-winter'); }
+  if (after('2027-01-24T00:00:00'))  { hide('row-kiz-beginner'); hide('row-kiz-universe'); }
+  if (after('2027-01-25T00:00:00'))  { hide('poster-cuba'); }
+  if (after('2026-12-16T00:00:00'))  { hide('ms-bachata'); }
 
-  /* ── Date gating — bento cells ── */
-  if (after('2026-06-15T00:00:00')) { show('btc-cuba'); }
-
-  if (after('2027-01-17T00:00:00'))  { hide('btc-flamenco-technique'); }
-  if (after('2026-11-30T00:00:00'))  { hide('btc-contemporary-dance-lab'); }
-  if (after('2027-01-25T00:00:00'))  { hide('btc-indian-winter'); }
-  if (after('2027-01-24T00:00:00'))  { hide('btc-kiz-beginner'); hide('btc-kiz-universe'); }
-  if (after('2027-01-25T00:00:00'))  { hide('btc-cuba'); }
-
-  /* ── Date gating — miniseries ── */
-  if (after('2026-12-16T00:00:00'))  { hide('miniseries-bachata-choreo'); }
-
-  /* ── Slot assignment — pinned cells get slot-0 (flagship) ── */
-  var SLOTS = [
-    { col: '1/3', row: '1/3' },  /* flagship 2×2 */
-    { col: '3/4', row: '1/2' },
-    { col: '4/5', row: '1/2' },
-    { col: '3/4', row: '2/3' },
-    { col: '4/5', row: '2/3' },
-    { col: '1/3', row: '3/4' },
-    { col: '3/5', row: '3/4' },
-  ];
-
-  function assignSlots() {
-    var allCells = Array.from(document.querySelectorAll('.bento-cell'));
-    /* Strip old slot classes */
-    allCells.forEach(function (c) {
-      c.className = c.className.replace(/\bslot-\d+\b/g, '').trim();
-    });
-    /* Visible cells: pinned first, then DOM order */
-    var visible = allCells.filter(function (c) { return !c.hidden; });
-    visible.sort(function (a, b) {
-      return (b.hasAttribute('data-pinned') ? 1 : 0) - (a.hasAttribute('data-pinned') ? 1 : 0);
-    });
-    visible.forEach(function (cell, i) {
-      if (i < SLOTS.length) cell.classList.add('slot-' + i);
-    });
-    /* Reorder DOM nodes to match — mobile collapses to grid-row:auto,
-       which falls back to source order, so pin order must be physical too */
-    var grid = g('bento-grid');
-    if (grid) {
-      visible.forEach(function (cell) { grid.appendChild(cell); });
-    }
+  /* Flamenco: the next date big, the rest as the small line.
+     Each date retires at the start of the following day. */
+  function flamenco(big, sub) {
+    var b = g('fl-big'), s = g('fl-sub');
+    if (b) b.textContent = big;
+    if (s) { s.textContent = sub; if (sub) s.removeAttribute('hidden'); else s.setAttribute('hidden', ''); }
   }
-  assignSlots();
+  if (after('2026-11-22T00:00:00'))  { flamenco('19 Dec', 'then 16 Jan'); }
+  if (after('2026-12-20T00:00:00'))  { flamenco('16 Jan', ''); }
 
-  /* ── Bento: update count + empty state ── */
-  var bentoVisible = document.querySelectorAll('.bento-cell:not([hidden])').length;
-  var bentoCount = g('bento-count');
-  if (bentoCount) bentoCount.textContent = bentoVisible + ' upcoming';
-
-  /* Tell the CSS how many cells survived, so the grid tiles without a hole */
-  var bentoGrid = g('bento-grid');
-  if (bentoGrid) {
-    bentoGrid.className = bentoGrid.className.replace(/\bcount-\d+\b/g, '').trim();
-    bentoGrid.classList.add('count-' + bentoVisible);
-  }
-
-  if (bentoVisible === 0) {
-    hide('bento-grid');
-    show('bento-workshops-empty');
-  }
-
-  /* ── Miniseries: hide section when empty ── */
-  var miniseriesVisible = document.querySelectorAll('.miniseries-item:not([hidden])').length;
-  if (miniseriesVisible === 0) { hide('miniseries'); }
-
-  /* ── Full offseason state ── */
-  if (bentoVisible === 0 && miniseriesVisible === 0) {
-    hide('bento-workshops-empty');
-    show('bento-offseason');
-  }
-
-  /* ── Hero CTA: smooth scroll to bento ── */
-  var heroCta = document.querySelector('.hero-cta[href="#bento"]');
-  if (heroCta) {
-    heroCta.addEventListener('click', function (e) {
-      e.preventDefault();
-      var target = g('bento');
-      if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.pageYOffset, behavior: 'smooth' });
-    });
-  }
-
-  /* ── Reduced motion: stop video ── */
-  if (reduced) {
-    var hv = g('hero-video-el');
-    if (hv) { hv.removeAttribute('autoplay'); hv.pause(); hv.style.display = 'none'; }
-  }
-
-  /* ── GSAP animations ── */
-  if (!reduced && window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-
-    /* Hero title entrance */
-    var lines = gsap.utils.toArray('.hero-line');
-    gsap.from(lines, { yPercent: 60, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.12, delay: 0.15 });
-    lines.forEach(function (line, i) {
-      gsap.to(line, {
-        xPercent: (i % 2 === 0 ? -4 : 4), ease: 'none',
-        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.6 }
-      });
-    });
-
-    /* oo-mark traveller */
-    gsap.to('#oo-traveller img', { rotation: 360, duration: 60, ease: 'none', repeat: -1 });
-    gsap.fromTo('#oo-traveller', { opacity: 0 }, {
-      y: function () { return window.innerHeight * 0.9; }, opacity: 0.45, ease: 'none',
-      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 0.4 }
-    });
-
-    /* Bento: cells stagger in */
-    var visibleCells = gsap.utils.toArray('.bento-cell:not([hidden])');
-    if (visibleCells.length > 0) {
-      gsap.from(visibleCells, {
-        y: 50, opacity: 0, duration: 0.8, ease: 'power3.out', stagger: 0.06,
-        scrollTrigger: { trigger: '#bento-grid', start: 'top 85%' }
-      });
-    }
-
-    /* Flagship (slot-0): subtle parallax on scroll, whoever that is */
-    var flagship = document.querySelector('.bento-cell.slot-0');
-    var flagshipImg = flagship ? flagship.querySelector('.bento-img') : null;
-    if (flagship && flagshipImg) {
-      gsap.to(flagshipImg, {
-        yPercent: -8, ease: 'none',
-        scrollTrigger: { trigger: flagship, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
-      });
-    }
-
-    /* Miniseries items stagger */
-    var mItems = gsap.utils.toArray('.miniseries-item:not([hidden])');
-    if (mItems.length > 0) {
-      gsap.from(mItems, {
-        y: 40, opacity: 0, duration: 0.7, ease: 'power3.out', stagger: 0.1,
-        scrollTrigger: { trigger: '.miniseries-right', start: 'top 85%' }
-      });
-    }
-  }
-
+  /* Empty states */
+  var rowsLeft = document.querySelectorAll('#rows-workshops > li:not([hidden])').length;
+  var seriesLeft = document.querySelectorAll('#rows-series > li:not([hidden])').length;
+  if (rowsLeft === 0) { hide('rows-workshops'); show('empty-workshops'); }
+  if (seriesLeft === 0) { hide('series'); }
+  if (rowsLeft === 0 && seriesLeft === 0) { hide('empty-workshops'); show('offseason'); }
 })();
 </script>
 </body>
