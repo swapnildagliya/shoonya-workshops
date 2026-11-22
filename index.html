@@ -480,6 +480,18 @@ p{margin:0}
             <figure class="shot"><img src="exploring-the-kizomba-universe/assets/sonja-universe.jpg" alt="Two dancers in a close kizomba embrace in a warmly lit studio, other couples blurred behind them." loading="lazy" decoding="async" style="object-position:50% 40%"></figure>
           </a>
         </li>
+        <li id="row-lindy-boot" hidden>
+          <a class="row" href="https://portal.shoonyadance.com/register/workshop/lindyhopbootcampfeb2027">
+            <div class="when"><span class="big">5 Feb</span><span class="sub">Friday</span></div>
+            <div class="text">
+              <h2>Lindy Hop bootcamp</h2>
+              <p class="with">with Ann-Sofie Van Enis</p>
+              <p class="desc">Refresh your moves in one night.</p>
+              <p class="facts"><span>3+ months of Lindy Hop</span><span>18:30–21:30</span><span>€40</span></p>
+            </div>
+            <figure class="shot"><img src="assets/lindy-hop/ann-sofie.jpg" alt="Ann-Sofie in a blue blouse and checked skirt dancing a swing step in front of a grey wall, smiling." loading="lazy" decoding="async" style="object-position:40% 25%"><figcaption>© Leyla Hesna</figcaption></figure>
+          </a>
+        </li>
       </ol>
 
       <div class="state" id="empty-workshops" hidden>
@@ -509,6 +521,30 @@ p{margin:0}
               <p class="with">with Alex Papaianopol &amp; Lenka Badriyah</p>
               <p class="desc">A 6-week couple choreography series for Intermediate &amp; Advanced bachata dancers.</p>
               <p class="facts"><span>Intermediate &amp; Advanced</span><span>Partner required</span><span>Tue 21:00–22:00</span><span>€75</span></p>
+            </div>
+            <figure class="shot"><img src="assets/alex-lenka.jpg" alt="Alex and Lenka dancing on a dark stage, she in a red skirt mid-spin, he in a white shirt guiding her." loading="lazy" decoding="async" style="object-position:55% 40%"><figcaption>© Stijn Dejonckheere</figcaption></figure>
+          </a>
+        </li>
+        <li id="ms-solo-spring" hidden>
+          <a class="row" href="https://www.shoonyadance.com/bachata-solo-style-gent">
+            <div class="when"><span class="big">18 Feb</span><span class="sub">to 27 May 2027 · Thursdays · 10 sessions</span></div>
+            <div class="text">
+              <h3>Bachata solo style</h3>
+              <p class="with">with Ioanna Petta</p>
+              <p class="desc">Bachata on your own: no partner needed, beginners welcome.</p>
+              <p class="facts"><span>No partner needed</span><span>18+</span><span>Thu 19:00–20:00</span><span>€124</span></p>
+            </div>
+            <figure class="shot"><img src="assets/ioanna.jpg" alt="Ioanna with long red hair in a white top, looking into the camera in soft sunlight." loading="lazy" decoding="async" style="object-position:50% 30%"></figure>
+          </a>
+        </li>
+        <li id="ms-choreo-spring" hidden>
+          <a class="row" href="https://portal.shoonyadance.com/register/workshop/bachata-choreo">
+            <div class="when"><span class="big">20 Apr</span><span class="sub">to 25 May 2027 · Tuesdays · 6 sessions</span></div>
+            <div class="text">
+              <h3>Bachata choreo minireeks</h3>
+              <p class="with">with Alex Papaianopol &amp; Lenka Badriyah</p>
+              <p class="desc">A 6-week couple choreography series: build one complete piece together.</p>
+              <p class="facts"><span>Bachata basics needed</span><span>Partner required</span><span>Tue 21:00–22:00</span><span>€75</span></p>
             </div>
             <figure class="shot"><img src="assets/alex-lenka.jpg" alt="Alex and Lenka dancing on a dark stage, she in a red skirt mid-spin, he in a white shirt guiding her." loading="lazy" decoding="async" style="object-position:55% 40%"><figcaption>© Stijn Dejonckheere</figcaption></figure>
           </a>
@@ -559,6 +595,12 @@ p{margin:0}
   if (after('2027-01-24T00:00:00'))  { hide('row-kiz-beginner'); hide('row-kiz-universe'); }
   if (after('2027-01-25T00:00:00'))  { hide('poster-cuba'); }
   if (after('2026-12-16T00:00:00'))  { hide('ms-bachata'); }
+
+  /* Spring 2027 sale: cards appear when booking opens (Mon 30 Nov 09:00) */
+  if (after('2026-11-30T09:00:00'))  { show('row-lindy-boot'); show('ms-solo-spring'); show('ms-choreo-spring'); }
+  if (after('2027-02-06T00:00:00'))  { hide('row-lindy-boot'); }
+  if (after('2027-05-28T00:00:00'))  { hide('ms-solo-spring'); }
+  if (after('2027-05-26T00:00:00'))  { hide('ms-choreo-spring'); }
 
   /* Flamenco: the next date big, the rest as the small line.
      Each date retires at the start of the following day. */
