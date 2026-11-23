@@ -496,6 +496,30 @@ p{margin:0}
             <figure class="shot"><img src="../assets/lindy-hop/ann-sofie.jpg" alt="Ann-Sofie in een blauwe blouse en geruite rok danst een swingpas voor een grijze muur en lacht." loading="lazy" decoding="async" style="object-position:40% 25%"><figcaption>© Leyla Hesna</figcaption></figure>
           </a>
         </li>
+        <li id="row-saaidi" hidden>
+          <a class="row" href="https://portal.shoonyadance.com/register/workshop/saaidi-variations">
+            <div class="when"><span class="big">13 mrt</span><span class="sub">zaterdag</span></div>
+            <div class="text">
+              <h2>Saaidi variations</h2>
+              <p class="with">met Nathalie El Ghoul</p>
+              <p class="desc">De vrolijke, speelse energie van Saidi uit Opper-Egypte, met de stok.</p>
+              <p class="facts"><span>Intermediair · wat ervaring met Raqs Sharqi</span><span>15:00–17:00</span><span>€35</span></p>
+            </div>
+            <figure class="shot"><img src="../assets/nathalie-saaidi.jpg" alt="Nathalie in een zwart topje en een rok met franjes leunt achterover met een hand op een houten stok en lacht." loading="lazy" decoding="async" style="object-position:50% 22%"><figcaption>© Camilo Perez</figcaption></figure>
+          </a>
+        </li>
+        <li id="row-belly-veil" hidden>
+          <a class="row" href="https://portal.shoonyadance.com/register/workshop/belly-dance-veil-travelling-movements-techniques">
+            <div class="when"><span class="big">14 mrt</span><span class="sub">zondag</span></div>
+            <div class="text">
+              <h2>Belly dance veil &amp; travelling movements</h2>
+              <p class="with">met Nathalie El Ghoul</p>
+              <p class="desc">Kracht, controle en zelfvertrouwen in je verplaatsingen en draaien, met de sluier.</p>
+              <p class="facts"><span>Intermediair</span><span>15:00–17:00</span><span>€35</span></p>
+            </div>
+            <figure class="shot"><img src="../assets/oriental-flow.jpg" alt="Nathalie danst op een donker podium met een hand omhoog, in een zwart topje en jeans met een heupsjaal." loading="lazy" decoding="async" style="object-position:50% 20%"></figure>
+          </a>
+        </li>
       </ol>
 
       <div class="state" id="empty-workshops" hidden>
@@ -605,6 +629,11 @@ p{margin:0}
   if (after('2027-02-06T00:00:00'))  { hide('row-lindy-boot'); }
   if (after('2027-05-28T00:00:00'))  { hide('ms-solo-spring'); }
   if (after('2027-05-26T00:00:00'))  { hide('ms-choreo-spring'); }
+
+  /* Nathalie's spring workshops: shown when booking opens (Mon 30 Nov 09:00), hidden after their day */
+  if (after('2026-11-30T09:00:00'))  { show('row-saaidi'); show('row-belly-veil'); }
+  if (after('2027-03-14T00:00:00'))  { hide('row-saaidi'); }
+  if (after('2027-03-15T00:00:00'))  { hide('row-belly-veil'); }
 
   /* Flamenco: the next date big, the rest as the small line.
      Each date retires at the start of the following day. */
