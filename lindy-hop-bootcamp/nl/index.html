@@ -442,7 +442,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
     <a class="nav-lang" href="../" hreflang="en" lang="en">EN</a>
   </div>
 </nav>
-<div class="past-banner" id="lh-past" role="note" hidden>Deze workshop vond plaats op 5 februari 2027. <a href="https://workshops.shoonyadance.com/nl/">Bekijk de komende workshops →</a></div>
+<div class="past-banner" id="lh-past" role="note" hidden></div>
 
 <main id="main">
 
@@ -721,7 +721,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   function set(el, txt) { if (!el) return; if (txt) { el.textContent = txt; el.style.display = ''; } else { el.style.display = 'none'; } }
   if (now >= OVER) {
     ids.forEach(function (el) { if (el) el.style.display = 'none'; });
-    var pb = document.getElementById('lh-past'); if (pb) pb.removeAttribute('hidden');
+    var pb = document.getElementById('lh-past'); if (pb) { pb.innerHTML = 'Deze workshop vond plaats op 5 februari 2027. <a href="https://workshops.shoonyadance.com/nl/">Bekijk de komende workshops →</a>'; pb.removeAttribute('hidden'); }
     return;
   }
   var st = now >= OPEN ? 'open' : (now >= PRIORITY ? 'prio' : 'pre');
